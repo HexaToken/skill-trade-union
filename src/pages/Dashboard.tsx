@@ -33,7 +33,7 @@ const Dashboard = () => {
   ];
 
   return (
-    <AppLayout>
+    <div className="page-container section-spacing">
       <div className="space-y-8">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -303,7 +303,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-    </AppLayout>
+    </div>
   );
 };
 
