@@ -49,7 +49,7 @@ export default function MatchesPage() {
   const skillCategories = [...new Set(skills.map(s => s.category))];
 
   return (
-    <AppLayout>
+    <div className="page-container section-spacing">
       <div className="space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -288,6 +288,6 @@ export default function MatchesPage() {
           </div>
         )}
       </div>
-    </AppLayout>
+    </div>
   );
 }
