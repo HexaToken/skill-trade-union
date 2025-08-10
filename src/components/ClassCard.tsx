@@ -1,371 +1,262 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { 
-  Calendar, 
-  Clock, 
-  Users, 
-  MapPin, 
-  Star, 
-  Bookmark,
-  Play,
-  Award
-} from 'lucide-react';
+import { Star, Users, Clock, Calendar, BookOpen, Award, Play, Zap } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
-import type { Class, User, Skill } from '@/models/types';
-import { RatingDisplay } from './RatingDisplay';
+import type { Course } from '@/models/expert-types';
+import { users } from '@/data/mockData';
 
 interface ClassCardProps {
-  classData: Class;
-  teacher: User;
-  skill: Skill;
+  course: Course;
   variant?: 'default' | 'compact' | 'featured';
-  showActions?: boolean;
   className?: string;
+  onViewDetails?: (courseId: string) => void;
+  onEnroll?: (courseId: string) => void;
+  onInstantHelp?: (courseId: string) => void;
+  showProgress?: boolean;
+  progress?: number;
 }
 
-export function ClassCard({ 
-  classData, 
-  teacher, 
-  skill, 
+const difficultyLabels = {
+  1: { label: 'Beginner', color: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' },
+  2: { label: 'Intermediate', color: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' },
+  3: { label: 'Advanced', color: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' }
+};
+
+export default function ClassCard({ 
+  course, 
   variant = 'default', 
-  showActions = true, 
-  className 
+  className, 
+  onViewDetails,
+  onEnroll,
+  onInstantHelp,
+  showProgress = false,
+  progress = 0
 }: ClassCardProps) {
-  const [isBookmarked, setIsBookmarked] = useState(false);
-
-  const enrollmentPercentage = (classData.currentSeats / classData.maxSeats) * 100;
-  const spotsLeft = classData.maxSeats - classData.currentSeats;
+  const teacher = users.find(u => u.id === course.teacherId);
+  const difficulty = difficultyLabels[course.level];
+  const seatsRemaining = course.maxSeats - course.currentSeats;
+  const seatsPercentage = (course.currentSeats / course.maxSeats) * 100;
   
-  const formatDate = (dateStr: string) => {
-    return new Date(dateStr).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric'
-    });
-  };
-
-  const formatTime = (timeStr: string) => {
-    return new Date(`2024-01-01T${timeStr}`).toLocaleTimeString('en-US', {
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true
-    });
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'upcoming': return 'status-pending';
-      case 'active': return 'status-active';
-      case 'completed': return 'status-inactive';
-      default: return 'status-inactive';
-    }
-  };
-
-  const getDifficultyColor = (difficulty: number) => {
-    switch (difficulty) {
-      case 1: return 'difficulty-1';
-      case 2: return 'difficulty-2';
-      case 3: return 'difficulty-3';
-      default: return 'difficulty-1';
-    }
-  };
+  const totalDuration = course.lessons?.reduce((total, lesson) => total + lesson.durationMins, 0) || 
+                       course.schedule.length * 120; // Fallback estimate
 
   if (variant === 'compact') {
     return (
-      <Card className={cn('glass-card hover-lift cursor-pointer group', className)}>
-        <CardContent className="p-4">
-          <div className="flex gap-3">
-            {/* Class thumbnail placeholder */}
-            <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10 flex items-center justify-center">
-              <span className="text-2xl">{skill.icon}</span>
-            </div>
-            
-            <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-sm mb-1 line-clamp-1 group-hover:text-brand-primary transition-colors">
-                {classData.title}
-              </h3>
-              
-              <div className="flex items-center gap-2 mb-2">
-                <Avatar className="w-6 h-6">
-                  <AvatarImage src={teacher.avatarUrl} alt={teacher.name} />
-                  <AvatarFallback className="text-xs">
-                    {teacher.name.split(' ').map(n => n[0]).join('')}
-                  </AvatarFallback>
-                </Avatar>
-                <span className="text-xs text-muted-foreground">{teacher.name}</span>
-              </div>
-              
-              <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                <div className="flex items-center gap-1">
-                  <Users className="w-3 h-3" />
-                  <span>{classData.currentSeats}/{classData.maxSeats}</span>
-                </div>
-                
-                <div className="flex items-center gap-1">
-                  <Calendar className="w-3 h-3" />
-                  <span>{formatDate(classData.schedule[0]?.date)}</span>
-                </div>
-              </div>
-            </div>
-            
-            <div className="text-right">
-              <div className="text-sm font-bold text-brand-primary">
-                {classData.pricePerSeat} credits
-              </div>
-              <Badge variant="outline" size="sm" className={getStatusColor(classData.status)}>
-                {classData.status}
-              </Badge>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    );
-  }
-
-  if (variant === 'featured') {
-    return (
-      <Card className={cn('glass-card hover-lift cursor-pointer group relative overflow-hidden', className)}>
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 to-brand-secondary/5 group-hover:from-brand-primary/10 group-hover:to-brand-secondary/10 transition-colors" />
-        
-        <CardContent className="p-6 relative">
-          {/* Header with thumbnail and bookmark */}
-          <div className="flex justify-between items-start mb-4">
-            <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10 flex items-center justify-center relative group-hover:scale-105 transition-transform">
-              <span className="text-4xl">{skill.icon}</span>
-              <div className="absolute inset-0 bg-black/20 rounded-2xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <Play className="w-6 h-6 text-white" />
-              </div>
-            </div>
-            
-            <button 
-              onClick={() => setIsBookmarked(!isBookmarked)}
-              className="p-2 rounded-lg hover:bg-background/50 transition-colors"
-            >
-              <Bookmark 
-                className={cn(
-                  'w-5 h-5',
-                  isBookmarked 
-                    ? 'fill-brand-primary text-brand-primary' 
-                    : 'text-muted-foreground'
-                )}
-              />
-            </button>
-          </div>
-          
-          <h3 className="text-lg font-heading font-bold mb-2 line-clamp-2 group-hover:text-brand-primary transition-colors">
-            {classData.title}
-          </h3>
-          
-          {/* Teacher info */}
-          <div className="flex items-center gap-3 mb-3">
-            <Avatar className="w-8 h-8">
-              <AvatarImage src={teacher.avatarUrl} alt={teacher.name} />
-              <AvatarFallback>{teacher.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-            </Avatar>
-            
-            <div>
-              <p className="text-sm font-medium">{teacher.name}</p>
-              <RatingDisplay 
-                rating={teacher.ratingAvg} 
-                size="sm" 
-                showNumber={false}
-              />
-            </div>
-          </div>
-          
-          {/* Class details */}
-          <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
-            <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4 text-brand-secondary" />
-              <span>{formatDate(classData.schedule[0]?.date)}</span>
-            </div>
-            
-            <div className="flex items-center gap-2">
-              <Clock className="w-4 h-4 text-brand-secondary" />
-              <span>{formatTime(classData.schedule[0]?.startTime)}</span>
-            </div>
-            
-            <div className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-brand-secondary" />
-              <span>{classData.currentSeats}/{classData.maxSeats} enrolled</span>
-            </div>
-            
-            <div className="flex items-center gap-2">
-              <Award className="w-4 h-4 text-brand-secondary" />
-              <Badge variant="outline" className={getDifficultyColor(classData.difficulty)}>
-                Level {classData.difficulty}
-              </Badge>
-            </div>
-          </div>
-          
-          {/* Enrollment progress */}
-          <div className="mb-4">
-            <div className="flex justify-between text-sm mb-2">
-              <span className="text-muted-foreground">Enrollment</span>
-              <span className="text-foreground">{spotsLeft} spots left</span>
-            </div>
-            <Progress 
-              value={enrollmentPercentage} 
-              className="h-2"
+      <Card className={cn('hover-lift cursor-pointer', className)} onClick={() => onViewDetails?.(course.id)}>
+        <div className="flex items-center gap-4 p-4">
+          <div className="relative">
+            <img 
+              src={course.thumbnailUrl} 
+              alt={course.title}
+              className="w-20 h-14 object-cover rounded-lg"
             />
-          </div>
-          
-          <div className="flex items-center justify-between">
-            <div className="text-xl font-bold text-brand-primary">
-              {classData.pricePerSeat} credits
-            </div>
-            
-            {showActions && (
-              <Button className="btn-neo">
-                Enroll Now
-              </Button>
+            {course.badges.includes('recorded') && (
+              <Badge size="sm" className="absolute -top-1 -right-1 bg-brand-primary">
+                <Play className="w-3 h-3" />
+              </Badge>
             )}
           </div>
-        </CardContent>
+          
+          <div className="flex-1 min-w-0">
+            <h3 className="font-medium truncate">{course.title}</h3>
+            <p className="text-sm text-muted-foreground truncate">{teacher?.name}</p>
+            <div className="flex items-center gap-2 mt-1">
+              <div className="flex items-center gap-1">
+                <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                <span className="text-xs font-medium">{course.ratingAvg}</span>
+              </div>
+              <span className="text-xs text-muted-foreground">{course.pricePerSeat} credits</span>
+            </div>
+          </div>
+        </div>
       </Card>
     );
   }
 
   return (
-    <Card className={cn('glass-card hover-lift cursor-pointer group', className)}>
-      <CardHeader className="pb-4">
-        <div className="flex gap-4">
-          {/* Class thumbnail */}
-          <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10 flex items-center justify-center relative group-hover:scale-105 transition-transform">
-            <span className="text-4xl">{skill.icon}</span>
-            <div className="absolute inset-0 bg-black/20 rounded-2xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <Play className="w-6 h-6 text-white" />
-            </div>
-          </div>
-          
-          <div className="flex-1 min-w-0">
-            <div className="flex justify-between items-start mb-2">
-              <h3 className="text-lg font-heading font-bold line-clamp-2 group-hover:text-brand-primary transition-colors">
-                {classData.title}
-              </h3>
-              
-              <button 
-                onClick={() => setIsBookmarked(!isBookmarked)}
-                className="p-2 rounded-lg hover:bg-background/50 transition-colors"
-              >
-                <Bookmark 
-                  className={cn(
-                    'w-5 h-5',
-                    isBookmarked 
-                      ? 'fill-brand-primary text-brand-primary' 
-                      : 'text-muted-foreground'
-                  )}
-                />
-              </button>
-            </div>
+    <Card 
+      className={cn(
+        'hover-lift transition-all duration-200 group overflow-hidden',
+        variant === 'featured' && 'border-brand-primary/50 bg-gradient-to-br from-brand-primary/5 to-brand-secondary/5',
+        className
+      )}
+    >
+      {/* Thumbnail */}
+      <div className="relative aspect-video overflow-hidden">
+        <img 
+          src={course.thumbnailUrl} 
+          alt={course.title}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+        
+        {/* Overlay badges */}
+        <div className="absolute top-3 left-3 flex gap-1">
+          {course.badges.map((badge) => {
+            const badgeConfig = {
+              group: { icon: Users, label: 'Group Class', color: 'bg-blue-500' },
+              materials: { icon: BookOpen, label: 'Materials', color: 'bg-green-500' },
+              recorded: { icon: Play, label: 'Recorded', color: 'bg-purple-500' },
+              certificate: { icon: Award, label: 'Certificate', color: 'bg-yellow-500' }
+            }[badge];
             
-            {/* Teacher */}
-            <div className="flex items-center gap-3 mb-3">
-              <Avatar className="w-8 h-8">
-                <AvatarImage src={teacher.avatarUrl} alt={teacher.name} />
-                <AvatarFallback>{teacher.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-              </Avatar>
-              
-              <div>
-                <p className="text-sm font-medium">{teacher.name}</p>
-                <RatingDisplay 
-                  rating={teacher.ratingAvg} 
-                  reviewCount={teacher.ratingCount}
-                  size="sm"
-                />
-              </div>
-            </div>
+            if (!badgeConfig) return null;
+            const Icon = badgeConfig.icon;
             
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-3">
-              {classData.tags.slice(0, 3).map((tag) => (
-                <Badge key={tag} variant="outline" size="sm">
-                  {tag}
-                </Badge>
-              ))}
-              <Badge variant="outline" className={getDifficultyColor(classData.difficulty)}>
-                Level {classData.difficulty}
+            return (
+              <Badge key={badge} className={cn('text-white border-0', badgeConfig.color)} size="sm">
+                <Icon className="w-3 h-3 mr-1" />
+                {badgeConfig.label}
               </Badge>
-            </div>
-          </div>
+            );
+          })}
         </div>
-      </CardHeader>
-      
-      <CardContent className="pt-0">
-        <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-          {classData.description}
-        </p>
-        
-        {/* Schedule */}
-        <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
-          <div className="flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-brand-secondary" />
-            <div>
-              <p className="font-medium">{formatDate(classData.schedule[0]?.date)}</p>
-              <p className="text-xs text-muted-foreground">
-                {formatTime(classData.schedule[0]?.startTime)} - {formatTime(classData.schedule[0]?.endTime)}
-              </p>
-            </div>
+
+        {/* Duration overlay */}
+        <div className="absolute bottom-3 right-3">
+          <Badge className="bg-black/70 text-white border-0" size="sm">
+            <Clock className="w-3 h-3 mr-1" />
+            {Math.round(totalDuration / 60)}h {totalDuration % 60}m
+          </Badge>
+        </div>
+
+        {variant === 'featured' && (
+          <div className="absolute top-3 right-3">
+            <Badge className="bg-brand-primary text-white border-0">Featured</Badge>
+          </div>
+        )}
+      </div>
+
+      <CardHeader className="pb-3">
+        <div className="space-y-2">
+          <div className="flex items-start justify-between gap-2">
+            <h3 
+              className="font-semibold text-lg line-clamp-2 cursor-pointer hover:text-brand-primary transition-colors"
+              onClick={() => onViewDetails?.(course.id)}
+            >
+              {course.title}
+            </h3>
+            <Badge variant="outline" className={difficulty.color} size="sm">
+              {difficulty.label}
+            </Badge>
           </div>
           
-          <div className="flex items-center gap-2">
-            <MapPin className="w-4 h-4 text-brand-secondary" />
-            <div>
-              <p className="font-medium">Virtual</p>
-              <p className="text-xs text-muted-foreground">Zoom link provided</p>
-            </div>
-          </div>
-        </div>
-        
-        {/* Enrollment status */}
-        <div className="mb-4">
-          <div className="flex justify-between text-sm mb-2">
-            <span className="text-muted-foreground">Enrollment</span>
-            <span className="text-foreground">
-              {classData.currentSeats}/{classData.maxSeats} enrolled
-            </span>
-          </div>
-          <Progress 
-            value={enrollmentPercentage} 
-            className="h-2 mb-2"
-          />
-          <p className="text-xs text-muted-foreground">
-            {spotsLeft > 0 ? `${spotsLeft} spots remaining` : 'Class is full'}
+          <p className="text-sm text-muted-foreground line-clamp-2">
+            {course.subtitle || course.description}
           </p>
         </div>
-        
-        {/* Actions */}
-        <div className="flex items-center justify-between">
-          <div>
-            <div className="text-2xl font-bold text-brand-primary">
-              {classData.pricePerSeat}
+      </CardHeader>
+
+      <CardContent className="space-y-4">
+        {/* Teacher info */}
+        <div className="flex items-center gap-3">
+          <Avatar className="w-8 h-8">
+            <AvatarImage src={teacher?.avatarUrl} alt={teacher?.name} />
+            <AvatarFallback className="text-xs">
+              {teacher?.name?.split(' ').map(n => n[0]).join('')}
+            </AvatarFallback>
+          </Avatar>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-medium truncate">{teacher?.name}</p>
+            <div className="flex items-center gap-1">
+              <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+              <span className="text-xs font-medium">{teacher?.ratingAvg}</span>
+              <span className="text-xs text-muted-foreground">({teacher?.ratingCount})</span>
             </div>
-            <div className="text-xs text-muted-foreground">credits per seat</div>
+          </div>
+          <span className="text-sm text-muted-foreground">{course.language}</span>
+        </div>
+
+        {/* Rating and enrollment */}
+        <div className="flex items-center justify-between text-sm">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-1">
+              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+              <span className="font-medium">{course.ratingAvg}</span>
+              <span className="text-muted-foreground">({course.ratingCount})</span>
+            </div>
+            
+            <div className="flex items-center gap-1 text-muted-foreground">
+              <Users className="w-3 h-3" />
+              <span>{course.enrolled?.toLocaleString() || course.currentSeats} enrolled</span>
+            </div>
           </div>
           
-          {showActions && (
-            <div className="flex gap-2">
-              <Button variant="outline" size="sm" asChild>
-                <Link to={`/classes/${classData.id}`}>
-                  View Details
-                </Link>
-              </Button>
-              
-              <Button 
-                className="btn-neo"
-                disabled={spotsLeft === 0}
-              >
-                {spotsLeft === 0 ? 'Full' : 'Enroll Now'}
-              </Button>
-            </div>
+          <div className="font-semibold text-brand-primary">
+            {course.pricePerSeat} credits
+          </div>
+        </div>
+
+        {/* Seats progress */}
+        <div className="space-y-2">
+          <div className="flex justify-between text-sm">
+            <span className="text-muted-foreground">Available Seats</span>
+            <span className="font-medium">
+              {seatsRemaining} of {course.maxSeats} remaining
+            </span>
+          </div>
+          <Progress value={seatsPercentage} className="h-2" />
+          {seatsRemaining <= 3 && seatsRemaining > 0 && (
+            <Badge variant="destructive" size="sm">
+              Limited seats!
+            </Badge>
           )}
         </div>
+
+        {/* Course progress (if enrolled) */}
+        {showProgress && (
+          <div className="space-y-2">
+            <div className="flex justify-between text-sm">
+              <span className="text-muted-foreground">Progress</span>
+              <span className="font-medium">{progress}% complete</span>
+            </div>
+            <Progress value={progress} className="h-2" />
+          </div>
+        )}
+
+        {/* Next session date */}
+        {course.schedule.length > 0 && (
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Calendar className="w-4 h-4" />
+            <span>
+              Next session: {new Date(course.schedule[0].date).toLocaleDateString()}
+            </span>
+          </div>
+        )}
+
+        {/* Action buttons */}
+        <div className="flex gap-2 pt-2">
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex-1"
+            onClick={() => onViewDetails?.(course.id)}
+          >
+            View Details
+          </Button>
+          
+          <Button
+            size="sm"
+            className="flex-1"
+            onClick={() => onEnroll?.(course.id)}
+            disabled={seatsRemaining === 0}
+          >
+            {seatsRemaining === 0 ? 'Full' : showProgress ? 'Continue' : 'Enroll'}
+          </Button>
+        </div>
+
+        {/* Instant Help CTA */}
+        <Button
+          variant="secondary"
+          size="sm"
+          className="w-full bg-gradient-to-r from-brand-amber/20 to-brand-green/20 border-brand-amber/50 text-brand-amber hover:from-brand-amber/30 hover:to-brand-green/30"
+          onClick={() => onInstantHelp?.(course.id)}
+        >
+          <Zap className="w-4 h-4 mr-2" />
+          Get Instant Expert Help
+        </Button>
       </CardContent>
     </Card>
   );
