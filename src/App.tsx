@@ -8,12 +8,15 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 // Import all pages
-import Index from "./pages/Index";
+import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import Matches from "./pages/Matches";
+import Classes from "./pages/Classes";
+import ClassDetail from "./pages/ClassDetail";
 import Wallet from "./pages/Wallet";
 import Profile from "./pages/Profile";
+import Onboarding from "./pages/Onboarding";
 import Placeholder from "./pages/Placeholder";
 
 const queryClient = new QueryClient();
