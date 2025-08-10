@@ -1,292 +1,460 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Slider } from "@/components/ui/slider";
-import { Switch } from "@/components/ui/switch";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MatchTile } from "@/components/MatchTile";
-import { Search, Filter, Map, List, SlidersHorizontal, Clock, Star, MapPin, Zap, Globe } from "lucide-react";
-import { users, skills } from "@/data/mockData";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useMemo } from 'react';
+import { useSearchParams, useNavigate } from 'react-router-dom';
+import { Search, SlidersHorizontal, Map, List, Loader2, Filter } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import FilterPanel from '@/components/FilterPanel';
+import MatchCard from '@/components/MatchCard';
+import InstantHelpDrawer from '@/components/InstantHelpDrawer';
+import { cn } from '@/lib/utils';
+import { matchService } from '@/services/api-stubs';
+import type { AdvancedSearchFilters, MatchResult } from '@/models/expert-types';
+import { users, skills } from '@/data/mockData';
 
-export default function MatchesPage() {
+const sortOptions = [
+  { value: 'relevance', label: 'Best Match' },
+  { value: 'rating', label: 'Highest Rated' },
+  { value: 'recent', label: 'Most Recent' },
+  { value: 'available', label: 'Available Now' },
+  { value: 'distance', label: 'Nearest' },
+  { value: 'price-low', label: 'Price: Low to High' },
+  { value: 'price-high', label: 'Price: High to Low' }
+];
+
+export default function Matches() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedMode, setSelectedMode] = useState("all");
-  const [distance, setDistance] = useState([50]);
-  const [minRating, setMinRating] = useState([4.0]);
-  const [showOnlineOnly, setShowOnlineOnly] = useState(false);
-  const [viewMode, setViewMode] = useState("grid");
+  
+  // State management
+  const [matches, setMatches] = useState<MatchResult[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
+  const [sortBy, setSortBy] = useState('relevance');
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
 
-  // Filter users based on current filters
-  const filteredUsers = users.filter(user => {
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      const matchesName = user.name.toLowerCase().includes(query);
-      const matchesSkills = user.skillsOffered.some(skill => 
-        skills.find(s => s.id === skill.skillId)?.name.toLowerCase().includes(query)
-      );
-      const matchesBio = user.bio.toLowerCase().includes(query);
-      if (!matchesName && !matchesSkills && !matchesBio) return false;
-    }
-    
-    if (selectedCategory !== "all") {
-      const hasSkillInCategory = user.skillsOffered.some(skill => 
-        skills.find(s => s.id === skill.skillId)?.category === selectedCategory
-      );
-      if (!hasSkillInCategory) return false;
-    }
-    
-    if (user.ratingAvg < minRating[0]) return false;
-    
-    return true;
+  // Initialize filters from URL params
+  const [filters, setFilters] = useState<AdvancedSearchFilters>(() => {
+    return {
+      query: searchParams.get('q') || undefined,
+      category: searchParams.get('category') || undefined,
+      mode: searchParams.get('mode') as any || undefined,
+      instantAvailable: searchParams.get('instant') === 'true' || undefined,
+      availability: searchParams.get('availability') as any || undefined,
+      minRating: searchParams.get('minRating') ? parseFloat(searchParams.get('minRating')!) : undefined,
+      maxDistance: searchParams.get('maxDistance') ? parseInt(searchParams.get('maxDistance')!) : undefined,
+      priceRange: searchParams.get('priceMin') && searchParams.get('priceMax') ? 
+        [parseInt(searchParams.get('priceMin')!), parseInt(searchParams.get('priceMax')!)] : undefined,
+      languages: searchParams.get('languages')?.split(',').filter(Boolean) || undefined,
+      timezone: searchParams.get('timezone') || undefined,
+      verified: searchParams.get('verified') === 'true' || undefined,
+      hasPortfolio: searchParams.get('portfolio') === 'true' || undefined
+    };
   });
 
-  const skillCategories = [...new Set(skills.map(s => s.category))];
+  // Update URL when filters change
+  useEffect(() => {
+    const params = new URLSearchParams();
+    
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value !== undefined && value !== '' && 
+          !(Array.isArray(value) && value.length === 0)) {
+        if (Array.isArray(value)) {
+          if (key === 'priceRange') {
+            params.set('priceMin', value[0].toString());
+            params.set('priceMax', value[1].toString());
+          } else {
+            params.set(key, value.join(','));
+          }
+        } else if (typeof value === 'boolean') {
+          params.set(key, value.toString());
+        } else {
+          params.set(key, value.toString());
+        }
+      }
+    });
+
+    setSearchParams(params, { replace: true });
+  }, [filters, setSearchParams]);
+
+  // Fetch matches when filters change
+  useEffect(() => {
+    const fetchMatches = async () => {
+      setIsLoading(true);
+      try {
+        const results = await matchService.search(filters);
+        setMatches(results);
+      } catch (error) {
+        console.error('Failed to fetch matches:', error);
+        setMatches([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchMatches();
+  }, [filters]);
+
+  // Mock matches for demo when no API results
+  const mockMatches = useMemo((): MatchResult[] => {
+    let filteredUsers = users;
+
+    // Apply filters
+    if (filters.query) {
+      const query = filters.query.toLowerCase();
+      filteredUsers = filteredUsers.filter(user =>
+        user.name.toLowerCase().includes(query) ||
+        user.bio.toLowerCase().includes(query) ||
+        user.skillsOffered.some(skill => {
+          const skillData = skills.find(s => s.id === skill.skillId);
+          return skillData?.name.toLowerCase().includes(query);
+        })
+      );
+    }
+
+    if (filters.category) {
+      filteredUsers = filteredUsers.filter(user =>
+        user.skillsOffered.some(skill => {
+          const skillData = skills.find(s => s.id === skill.skillId);
+          return skillData?.category.toLowerCase() === filters.category?.toLowerCase();
+        })
+      );
+    }
+
+    if (filters.minRating) {
+      filteredUsers = filteredUsers.filter(user => user.ratingAvg >= filters.minRating!);
+    }
+
+    if (filters.verified) {
+      filteredUsers = filteredUsers.filter(user => user.verification.idVerified);
+    }
+
+    if (filters.instantAvailable) {
+      // Mock instant availability for some users
+      filteredUsers = filteredUsers.filter(user => user.id === 'user-1' || user.id === 'user-2');
+    }
+
+    // Convert to MatchResult format
+    return filteredUsers.map(user => {
+      const primarySkill = user.skillsOffered[0];
+      const skillData = skills.find(s => s.id === primarySkill?.skillId) || skills[0];
+      
+      return {
+        user,
+        skill: skillData,
+        matchScore: Math.floor(Math.random() * 30) + 70, // 70-100
+        reasons: ['skill complementarity', 'timezone match', 'high rating'],
+        distance: user.location.city === 'San Francisco' ? undefined : Math.floor(Math.random() * 5000),
+        nextAvailable: new Date(Date.now() + Math.random() * 7 * 24 * 60 * 60 * 1000).toISOString()
+      };
+    });
+  }, [filters]);
+
+  const displayMatches = matches.length > 0 ? matches : mockMatches;
+
+  // Sort matches
+  const sortedMatches = useMemo(() => {
+    const sorted = [...displayMatches];
+    
+    switch (sortBy) {
+      case 'rating':
+        return sorted.sort((a, b) => b.user.ratingAvg - a.user.ratingAvg);
+      case 'available':
+        return sorted.filter(match => 
+          !match.nextAvailable || new Date(match.nextAvailable) <= new Date()
+        );
+      case 'distance':
+        return sorted.sort((a, b) => (a.distance || 0) - (b.distance || 0));
+      case 'price-low':
+        return sorted.sort((a, b) => a.skill.baseRateCredits - b.skill.baseRateCredits);
+      case 'price-high':
+        return sorted.sort((a, b) => b.skill.baseRateCredits - a.skill.baseRateCredits);
+      case 'relevance':
+      default:
+        return sorted.sort((a, b) => b.matchScore - a.matchScore);
+    }
+  }, [displayMatches, sortBy]);
+
+  const handleFiltersChange = (newFilters: AdvancedSearchFilters) => {
+    setFilters(newFilters);
+  };
+
+  const handleClearFilters = () => {
+    setFilters({});
+  };
+
+  const handleViewProfile = (userId: string) => {
+    navigate(`/profile/${userId}`);
+  };
+
+  const handleBook = (userId: string, skillId: string) => {
+    navigate(`/booking?teacher=${userId}&skill=${skillId}`);
+  };
+
+  const handleMessage = (userId: string) => {
+    navigate(`/messages?user=${userId}`);
+  };
+
+  const handleInstantHelp = (userId: string, skillId: string) => {
+    console.log('Starting instant help with:', userId, skillId);
+  };
+
+  const hasActiveFilters = Object.keys(filters).some(key => {
+    const value = filters[key as keyof AdvancedSearchFilters];
+    return value !== undefined && value !== '' && 
+           (Array.isArray(value) ? value.length > 0 : true);
+  });
 
   return (
-    <div className="page-container section-spacing">
-      <div className="space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-heading font-bold text-foreground">Find Your Perfect Match</h1>
-            <p className="text-muted-foreground">AI-powered skill matching based on your interests and schedule</p>
-          </div>
-          <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm" onClick={() => setViewMode(viewMode === "grid" ? "list" : "grid")}>
-              {viewMode === "grid" ? <List className="w-4 h-4" /> : <div className="w-4 h-4 grid grid-cols-2 gap-0.5"><div className="bg-current rounded-sm"></div><div className="bg-current rounded-sm"></div><div className="bg-current rounded-sm"></div><div className="bg-current rounded-sm"></div></div>}
-            </Button>
-            <Button variant="outline" size="sm">
-              <Map className="w-4 h-4 mr-2" />
-              Map View
-            </Button>
-          </div>
-        </div>
-
-        {/* Search and Filters */}
-        <div className="glass-card p-6">
-          <div className="flex flex-col lg:flex-row gap-4">
-            {/* Search */}
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-              <Input
-                placeholder="Search skills, names, or keywords..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <div className="border-b bg-card">
+        <div className="page-container py-6">
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-3xl font-heading font-bold">Find Your Perfect Match</h1>
+                <p className="text-muted-foreground">
+                  Discover skilled teachers and passionate learners in your area
+                </p>
+              </div>
+              
+              <InstantHelpDrawer
+                trigger={
+                  <Button className="bg-gradient-to-r from-brand-amber to-brand-green hover:from-brand-amber/90 hover:to-brand-green/90 text-white border-0">
+                    Need Help Now?
+                  </Button>
+                }
               />
             </div>
 
-            {/* Quick Filters */}
-            <div className="flex flex-wrap items-center gap-3">
-              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="w-40">
-                  <SelectValue placeholder="Category" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Categories</SelectItem>
-                  {skillCategories.map(category => (
-                    <SelectItem key={category} value={category}>{category}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-
-              <Select value={selectedMode} onValueChange={setSelectedMode}>
-                <SelectTrigger className="w-32">
-                  <SelectValue placeholder="Mode" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Modes</SelectItem>
-                  <SelectItem value="virtual">Virtual</SelectItem>
-                  <SelectItem value="in-person">In-Person</SelectItem>
-                  <SelectItem value="async">Async</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Button variant="outline" size="sm">
-                <SlidersHorizontal className="w-4 h-4 mr-2" />
-                More Filters
-              </Button>
-            </div>
-          </div>
-
-          {/* Advanced Filters Row */}
-          <div className="mt-4 pt-4 border-t border-border/50">
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">Distance: {distance[0]}km</label>
-                <Slider
-                  value={distance}
-                  onValueChange={setDistance}
-                  max={100}
-                  min={1}
-                  step={1}
-                  className="w-full"
+            {/* Mobile search */}
+            <div className="flex gap-3 lg:hidden">
+              <div className="flex-1 relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search skills or people..."
+                  value={filters.query || ''}
+                  onChange={(e) => handleFiltersChange({ ...filters, query: e.target.value || undefined })}
+                  className="pl-10"
                 />
               </div>
               
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">Min Rating: {minRating[0]}+</label>
-                <Slider
-                  value={minRating}
-                  onValueChange={setMinRating}
-                  max={5}
-                  min={1}
-                  step={0.1}
-                  className="w-full"
-                />
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <Switch checked={showOnlineOnly} onCheckedChange={setShowOnlineOnly} />
-                <label className="text-sm font-medium text-foreground">Available now</label>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <Globe className="w-4 h-4 text-brand-secondary" />
-                <span className="text-sm text-muted-foreground">Global mode</span>
-                <Switch />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Results Summary */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <p className="text-sm text-muted-foreground">
-              Found <span className="font-medium text-foreground">{filteredUsers.length}</span> matches
-            </p>
-            {searchQuery && (
-              <Badge variant="secondary">
-                Search: "{searchQuery}"
-              </Badge>
-            )}
-            {selectedCategory !== "all" && (
-              <Badge variant="secondary">
-                {selectedCategory}
-              </Badge>
-            )}
-          </div>
-          
-          <Select defaultValue="best-match">
-            <SelectTrigger className="w-40">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="best-match">Best Match</SelectItem>
-              <SelectItem value="rating">Highest Rated</SelectItem>
-              <SelectItem value="distance">Nearest</SelectItem>
-              <SelectItem value="available">Available Soon</SelectItem>
-              <SelectItem value="newest">Newest</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        {/* Recommended Skills Banner */}
-        <Card className="glass-card bg-gradient-brand/5 border-brand-primary/20">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Zap className="w-5 h-5 text-brand-primary" />
-              Hot Skills Right Now
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-wrap gap-3">
-              {skills.filter(s => s.demandScore > 80).slice(0, 6).map(skill => (
-                <Badge 
-                  key={skill.id} 
-                  variant="secondary" 
-                  className="cursor-pointer hover:bg-brand-primary/20 transition-colors"
-                  onClick={() => setSearchQuery(skill.name)}
-                >
-                  {skill.icon} {skill.name}
-                </Badge>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Results Grid */}
-        <Tabs value={viewMode} onValueChange={setViewMode}>
-          <TabsContent value="grid">
-            {filteredUsers.length > 0 ? (
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {filteredUsers.map((user) => {
-                  const userSkill = user.skillsOffered[0];
-                  const skill = skills.find(s => s.id === userSkill.skillId);
-                  
-                  return skill ? (
-                    <MatchTile
-                      key={user.id}
-                      user={user}
-                      skill={skill}
-                      matchScore={Math.floor(Math.random() * 30) + 70}
-                      distance={`${(Math.random() * distance[0]).toFixed(1)} km`}
-                      nextAvailable="Today, 3:00 PM"
-                      onMessage={() => {}}
-                      onBookSession={() => navigate('/sessions')}
-                      onViewProfile={() => navigate('/profile')}
+              <Sheet open={showMobileFilters} onOpenChange={setShowMobileFilters}>
+                <SheetTrigger asChild>
+                  <Button variant="outline" size="icon" className="relative">
+                    <Filter className="h-4 w-4" />
+                    {hasActiveFilters && (
+                      <Badge size="sm" className="absolute -top-1 -right-1 h-5 w-5 p-0 text-xs">
+                        !
+                      </Badge>
+                    )}
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="left" className="w-80 p-0">
+                  <SheetHeader className="p-6 pb-4">
+                    <SheetTitle>Filters</SheetTitle>
+                  </SheetHeader>
+                  <div className="px-6 pb-6 overflow-y-auto">
+                    <FilterPanel
+                      filters={filters}
+                      onFiltersChange={handleFiltersChange}
+                      onClearFilters={handleClearFilters}
+                      variant="modal"
+                      showInstantFilter
                     />
-                  ) : null;
-                })}
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex">
+        {/* Left Sidebar - Desktop Filters */}
+        <aside className="hidden lg:block w-80 border-r bg-card">
+          <div className="sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto">
+            <FilterPanel
+              filters={filters}
+              onFiltersChange={handleFiltersChange}
+              onClearFilters={handleClearFilters}
+              variant="sidebar"
+              showInstantFilter
+              className="border-0 rounded-none"
+            />
+          </div>
+        </aside>
+
+        {/* Main Content */}
+        <main className="flex-1 min-w-0">
+          <div className="p-6">
+            {/* Results Header */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  {isLoading ? (
+                    <div className="flex items-center gap-2">
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>Searching...</span>
+                    </div>
+                  ) : (
+                    <span>
+                      {sortedMatches.length} {sortedMatches.length === 1 ? 'match' : 'matches'} found
+                    </span>
+                  )}
+                </div>
+
+                {hasActiveFilters && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleClearFilters}
+                    className="text-xs"
+                  >
+                    Clear Filters
+                  </Button>
+                )}
               </div>
-            ) : (
-              <div className="text-center py-12">
-                <Search className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-foreground mb-2">No matches found</h3>
-                <p className="text-muted-foreground mb-4">Try adjusting your filters or search terms</p>
-                <div className="flex gap-2 justify-center">
-                  <Button variant="outline" onClick={() => setSearchQuery("")}>Clear Search</Button>
-                  <Button onClick={() => {
-                    setSelectedCategory("all");
-                    setDistance([50]);
-                    setMinRating([4.0]);
-                    setShowOnlineOnly(false);
-                  }}>Reset Filters</Button>
+
+              <div className="flex items-center gap-3">
+                {/* Sort */}
+                <Select value={sortBy} onValueChange={setSortBy}>
+                  <SelectTrigger className="w-48">
+                    <SelectValue placeholder="Sort by..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {sortOptions.map((option) => (
+                      <SelectItem key={option.value} value={option.value}>
+                        {option.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+
+                {/* View Mode Toggle */}
+                <div className="flex rounded-lg border">
+                  <Button
+                    variant={viewMode === 'list' ? 'default' : 'ghost'}
+                    size="sm"
+                    onClick={() => setViewMode('list')}
+                    className="rounded-r-none border-r"
+                  >
+                    <List className="w-4 h-4" />
+                  </Button>
+                  <Button
+                    variant={viewMode === 'map' ? 'default' : 'ghost'}
+                    size="sm"
+                    onClick={() => setViewMode('map')}
+                    className="rounded-l-none"
+                  >
+                    <Map className="w-4 h-4" />
+                  </Button>
                 </div>
               </div>
-            )}
-          </TabsContent>
-
-          <TabsContent value="list">
-            <div className="space-y-4">
-              {filteredUsers.map((user) => {
-                const userSkill = user.skillsOffered[0];
-                const skill = skills.find(s => s.id === userSkill.skillId);
-                
-                return skill ? (
-                  <MatchTile
-                    key={user.id}
-                    user={user}
-                    skill={skill}
-                    matchScore={Math.floor(Math.random() * 30) + 70}
-                    distance={`${(Math.random() * distance[0]).toFixed(1)} km`}
-                    nextAvailable="Today, 3:00 PM"
-                    className="w-full"
-                    onMessage={() => {}}
-                    onBookSession={() => navigate('/sessions')}
-                    onViewProfile={() => navigate('/profile')}
-                  />
-                ) : null;
-              })}
             </div>
-          </TabsContent>
-        </Tabs>
 
-        {/* Load More */}
-        {filteredUsers.length > 0 && (
-          <div className="text-center pt-8">
-            <Button variant="outline" size="lg">
-              Load More Matches
-            </Button>
+            {/* Active Filters Display */}
+            {hasActiveFilters && (
+              <div className="flex flex-wrap gap-2 mb-6">
+                {Object.entries(filters).map(([key, value]) => {
+                  if (value === undefined || value === '' || 
+                      (Array.isArray(value) && value.length === 0)) return null;
+
+                  const displayValue = Array.isArray(value) ? value.join(', ') : 
+                                    typeof value === 'boolean' ? (value ? 'Yes' : 'No') :
+                                    value.toString();
+
+                  return (
+                    <Badge key={key} variant="secondary" className="gap-1">
+                      <span className="capitalize">{key.replace(/([A-Z])/g, ' $1').toLowerCase()}:</span>
+                      <span>{displayValue}</span>
+                    </Badge>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Results */}
+            {viewMode === 'list' ? (
+              <div className="space-y-6">
+                {isLoading ? (
+                  <div className="space-y-4">
+                    {Array.from({ length: 3 }).map((_, i) => (
+                      <Card key={i} className="animate-pulse">
+                        <CardContent className="p-6">
+                          <div className="flex gap-4">
+                            <div className="w-16 h-16 bg-muted rounded-full" />
+                            <div className="flex-1 space-y-3">
+                              <div className="h-4 bg-muted rounded w-1/3" />
+                              <div className="h-3 bg-muted rounded w-1/2" />
+                              <div className="h-3 bg-muted rounded w-3/4" />
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                ) : sortedMatches.length > 0 ? (
+                  <div className="grid gap-6">
+                    {sortedMatches.map((match) => (
+                      <MatchCard
+                        key={match.user.id}
+                        match={match}
+                        onViewProfile={handleViewProfile}
+                        onBook={handleBook}
+                        onMessage={handleMessage}
+                        onInstantHelp={handleInstantHelp}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <Card>
+                    <CardContent className="p-12 text-center">
+                      <div className="space-y-4">
+                        <div className="w-16 h-16 bg-muted rounded-lg flex items-center justify-center mx-auto">
+                          <Search className="w-8 h-8 text-muted-foreground" />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold">No matches found</h3>
+                          <p className="text-muted-foreground">
+                            Try adjusting your filters or search criteria
+                          </p>
+                        </div>
+                        <Button onClick={handleClearFilters}>
+                          Clear All Filters
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+              </div>
+            ) : (
+              /* Map View */
+              <Card>
+                <CardContent className="p-12 text-center">
+                  <div className="space-y-4">
+                    <div className="w-16 h-16 bg-muted rounded-lg flex items-center justify-center mx-auto">
+                      <Map className="w-8 h-8 text-muted-foreground" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold">Map View Coming Soon</h3>
+                      <p className="text-muted-foreground">
+                        Interactive map with skill clusters and location-based filtering
+                      </p>
+                    </div>
+                    <Button onClick={() => setViewMode('list')}>
+                      Switch to List View
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
           </div>
-        )}
+        </main>
       </div>
     </div>
   );
