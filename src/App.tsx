@@ -43,7 +43,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             {/* Home page */}
-            <Route path="/" element={<Layout><Index /></Layout>} />
+            <Route path="/" element={<Layout><Home /></Layout>} />
             
             {/* Core app pages */}
             <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
