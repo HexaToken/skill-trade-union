@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { Search, SlidersHorizontal, Map, List, Loader2, Filter } from 'lucide-react';
+import { Search, Filter, SlidersHorizontal, Users, Award, Zap, Star, TrendingUp, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -8,32 +8,52 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import FilterPanel from '@/components/FilterPanel';
-import MatchCard from '@/components/MatchCard';
+import MentorCard from '@/components/MentorCard';
 import InstantHelpDrawer from '@/components/InstantHelpDrawer';
 import { cn } from '@/lib/utils';
-import { matchService } from '@/services/api-stubs';
-import type { AdvancedSearchFilters, MatchResult } from '@/models/expert-types';
+import type { AdvancedSearchFilters } from '@/models/expert-types';
 import { users, skills } from '@/data/mockData';
 
 const sortOptions = [
-  { value: 'relevance', label: 'Best Match' },
   { value: 'rating', label: 'Highest Rated' },
-  { value: 'recent', label: 'Most Recent' },
+  { value: 'experience', label: 'Most Experienced' },
   { value: 'available', label: 'Available Now' },
-  { value: 'distance', label: 'Nearest' },
+  { value: 'response-time', label: 'Fastest Response' },
   { value: 'price-low', label: 'Price: Low to High' },
-  { value: 'price-high', label: 'Price: High to Low' }
+  { value: 'price-high', label: 'Price: High to Low' },
+  { value: 'popular', label: 'Most Popular' }
 ];
 
-export default function Matches() {
+const tierFilters = [
+  { value: 'all', label: 'All Tiers' },
+  { value: 'silver', label: 'Silver' },
+  { value: 'gold', label: 'Gold' },
+  { value: 'platinum', label: 'Platinum' }
+];
+
+const stats = [
+  { label: 'Expert Mentors', value: '2,500+', icon: Award },
+  { label: 'Skills Covered', value: '150+', icon: TrendingUp },
+  { label: 'Success Stories', value: '15K+', icon: Star },
+  { label: 'Countries', value: '65+', icon: Globe }
+];
+
+// Mock mentor data with tiers and rates
+const mentorData = users.map((user, index) => ({
+  ...user,
+  tier: index % 3 === 0 ? 'Platinum' : index % 2 === 0 ? 'Gold' : 'Silver',
+  creditsPerHour: index % 3 === 0 ? 40 : index % 2 === 0 ? 25 : 15,
+  instantAvailable: index % 4 === 0,
+  responseTime: index % 3 === 0 ? '< 1 hour' : index % 2 === 0 ? '< 4 hours' : '< 24 hours'
+}));
+
+export default function Mentors() {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   
   // State management
-  const [matches, setMatches] = useState<MatchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
-  const [sortBy, setSortBy] = useState('relevance');
+  const [sortBy, setSortBy] = useState('rating');
   const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   // Initialize filters from URL params
@@ -41,17 +61,14 @@ export default function Matches() {
     return {
       query: searchParams.get('q') || undefined,
       category: searchParams.get('category') || undefined,
-      mode: searchParams.get('mode') as any || undefined,
+      mentorTier: searchParams.get('tier') as any || undefined,
       instantAvailable: searchParams.get('instant') === 'true' || undefined,
-      availability: searchParams.get('availability') as any || undefined,
       minRating: searchParams.get('minRating') ? parseFloat(searchParams.get('minRating')!) : undefined,
-      maxDistance: searchParams.get('maxDistance') ? parseInt(searchParams.get('maxDistance')!) : undefined,
       priceRange: searchParams.get('priceMin') && searchParams.get('priceMax') ? 
         [parseInt(searchParams.get('priceMin')!), parseInt(searchParams.get('priceMax')!)] : undefined,
       languages: searchParams.get('languages')?.split(',').filter(Boolean) || undefined,
-      timezone: searchParams.get('timezone') || undefined,
       verified: searchParams.get('verified') === 'true' || undefined,
-      hasPortfolio: searchParams.get('portfolio') === 'true' || undefined
+      responseTime: searchParams.get('responseTime') as any || undefined
     };
   });
 
@@ -80,35 +97,17 @@ export default function Matches() {
     setSearchParams(params, { replace: true });
   }, [filters, setSearchParams]);
 
-  // Fetch matches when filters change
-  useEffect(() => {
-    const fetchMatches = async () => {
-      setIsLoading(true);
-      try {
-        const results = await matchService.search(filters);
-        setMatches(results);
-      } catch (error) {
-        console.error('Failed to fetch matches:', error);
-        setMatches([]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchMatches();
-  }, [filters]);
-
-  // Mock matches for demo when no API results
-  const mockMatches = useMemo((): MatchResult[] => {
-    let filteredUsers = users;
+  // Filter and sort mentors
+  const filteredMentors = useMemo(() => {
+    let filtered = [...mentorData];
 
     // Apply filters
     if (filters.query) {
       const query = filters.query.toLowerCase();
-      filteredUsers = filteredUsers.filter(user =>
-        user.name.toLowerCase().includes(query) ||
-        user.bio.toLowerCase().includes(query) ||
-        user.skillsOffered.some(skill => {
+      filtered = filtered.filter(mentor =>
+        mentor.name.toLowerCase().includes(query) ||
+        mentor.bio.toLowerCase().includes(query) ||
+        mentor.skillsOffered.some(skill => {
           const skillData = skills.find(s => s.id === skill.skillId);
           return skillData?.name.toLowerCase().includes(query);
         })
@@ -116,67 +115,61 @@ export default function Matches() {
     }
 
     if (filters.category) {
-      filteredUsers = filteredUsers.filter(user =>
-        user.skillsOffered.some(skill => {
+      filtered = filtered.filter(mentor =>
+        mentor.skillsOffered.some(skill => {
           const skillData = skills.find(s => s.id === skill.skillId);
           return skillData?.category.toLowerCase() === filters.category?.toLowerCase();
         })
       );
     }
 
+    if (filters.mentorTier && filters.mentorTier !== 'all') {
+      filtered = filtered.filter(mentor => 
+        mentor.tier.toLowerCase() === filters.mentorTier?.toLowerCase()
+      );
+    }
+
     if (filters.minRating) {
-      filteredUsers = filteredUsers.filter(user => user.ratingAvg >= filters.minRating!);
+      filtered = filtered.filter(mentor => mentor.ratingAvg >= filters.minRating!);
+    }
+
+    if (filters.priceRange) {
+      filtered = filtered.filter(mentor => 
+        mentor.creditsPerHour >= filters.priceRange![0] && 
+        mentor.creditsPerHour <= filters.priceRange![1]
+      );
     }
 
     if (filters.verified) {
-      filteredUsers = filteredUsers.filter(user => user.verification.idVerified);
+      filtered = filtered.filter(mentor => mentor.verification.idVerified);
     }
 
     if (filters.instantAvailable) {
-      // Mock instant availability for some users
-      filteredUsers = filteredUsers.filter(user => user.id === 'user-1' || user.id === 'user-2');
+      filtered = filtered.filter(mentor => mentor.instantAvailable);
     }
 
-    // Convert to MatchResult format
-    return filteredUsers.map(user => {
-      const primarySkill = user.skillsOffered[0];
-      const skillData = skills.find(s => s.id === primarySkill?.skillId) || skills[0];
-      
-      return {
-        user,
-        skill: skillData,
-        matchScore: Math.floor(Math.random() * 30) + 70, // 70-100
-        reasons: ['skill complementarity', 'timezone match', 'high rating'],
-        distance: user.location.city === 'San Francisco' ? undefined : Math.floor(Math.random() * 5000),
-        nextAvailable: new Date(Date.now() + Math.random() * 7 * 24 * 60 * 60 * 1000).toISOString()
-      };
-    });
-  }, [filters]);
-
-  const displayMatches = matches.length > 0 ? matches : mockMatches;
-
-  // Sort matches
-  const sortedMatches = useMemo(() => {
-    const sorted = [...displayMatches];
-    
+    // Sort mentors
     switch (sortBy) {
-      case 'rating':
-        return sorted.sort((a, b) => b.user.ratingAvg - a.user.ratingAvg);
+      case 'experience':
+        return filtered.sort((a, b) => b.ratingCount - a.ratingCount);
       case 'available':
-        return sorted.filter(match => 
-          !match.nextAvailable || new Date(match.nextAvailable) <= new Date()
-        );
-      case 'distance':
-        return sorted.sort((a, b) => (a.distance || 0) - (b.distance || 0));
+        return filtered.filter(mentor => mentor.instantAvailable);
+      case 'response-time':
+        return filtered.sort((a, b) => {
+          const timeOrder = { '< 1 hour': 1, '< 4 hours': 2, '< 24 hours': 3 };
+          return timeOrder[a.responseTime as keyof typeof timeOrder] - timeOrder[b.responseTime as keyof typeof timeOrder];
+        });
       case 'price-low':
-        return sorted.sort((a, b) => a.skill.baseRateCredits - b.skill.baseRateCredits);
+        return filtered.sort((a, b) => a.creditsPerHour - b.creditsPerHour);
       case 'price-high':
-        return sorted.sort((a, b) => b.skill.baseRateCredits - a.skill.baseRateCredits);
-      case 'relevance':
+        return filtered.sort((a, b) => b.creditsPerHour - a.creditsPerHour);
+      case 'popular':
+        return filtered.sort((a, b) => b.ratingCount - a.ratingCount);
+      case 'rating':
       default:
-        return sorted.sort((a, b) => b.matchScore - a.matchScore);
+        return filtered.sort((a, b) => b.ratingAvg - a.ratingAvg);
     }
-  }, [displayMatches, sortBy]);
+  }, [filters, sortBy]);
 
   const handleFiltersChange = (newFilters: AdvancedSearchFilters) => {
     setFilters(newFilters);
@@ -186,20 +179,20 @@ export default function Matches() {
     setFilters({});
   };
 
-  const handleViewProfile = (userId: string) => {
-    navigate(`/profile/${userId}`);
+  const handleViewProfile = (mentorId: string) => {
+    navigate(`/profile/${mentorId}`);
   };
 
-  const handleBook = (userId: string, skillId: string) => {
-    navigate(`/booking?teacher=${userId}&skill=${skillId}`);
+  const handleRequestMentorship = (mentorId: string) => {
+    navigate(`/booking?mentor=${mentorId}&type=mentorship`);
   };
 
-  const handleMessage = (userId: string) => {
-    navigate(`/messages?user=${userId}`);
+  const handleMessage = (mentorId: string) => {
+    navigate(`/messages?user=${mentorId}`);
   };
 
-  const handleInstantHelp = (userId: string, skillId: string) => {
-    console.log('Starting instant help with:', userId, skillId);
+  const handleInstantCall = (mentorId: string) => {
+    console.log('Starting instant call with mentor:', mentorId);
   };
 
   const hasActiveFilters = Object.keys(filters).some(key => {
@@ -212,23 +205,40 @@ export default function Matches() {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <div className="border-b bg-card">
-        <div className="page-container py-6">
-          <div className="space-y-4">
+        <div className="page-container py-8">
+          <div className="space-y-6">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-heading font-bold">Find Your Perfect Match</h1>
-                <p className="text-muted-foreground">
-                  Discover skilled teachers and passionate learners in your area
+                <h1 className="text-3xl md:text-4xl font-heading font-bold">Find Your Mentor</h1>
+                <p className="text-muted-foreground text-lg">
+                  Connect with expert mentors for personalized guidance and career growth
                 </p>
               </div>
               
               <InstantHelpDrawer
                 trigger={
                   <Button className="bg-gradient-to-r from-brand-amber to-brand-green hover:from-brand-amber/90 hover:to-brand-green/90 text-white border-0">
-                    Need Help Now?
+                    <Zap className="w-4 h-4 mr-2" />
+                    Instant Help
                   </Button>
                 }
               />
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {stats.map((stat) => {
+                const Icon = stat.icon;
+                return (
+                  <div key={stat.label} className="text-center space-y-2">
+                    <div className="inline-flex items-center justify-center w-12 h-12 bg-brand-primary/10 rounded-lg">
+                      <Icon className="w-6 h-6 text-brand-primary" />
+                    </div>
+                    <div className="text-2xl font-bold font-heading">{stat.value}</div>
+                    <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  </div>
+                );
+              })}
             </div>
 
             {/* Mobile search */}
@@ -236,7 +246,7 @@ export default function Matches() {
               <div className="flex-1 relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
-                  placeholder="Search skills or people..."
+                  placeholder="Search mentors or skills..."
                   value={filters.query || ''}
                   onChange={(e) => handleFiltersChange({ ...filters, query: e.target.value || undefined })}
                   className="pl-10"
@@ -278,14 +288,54 @@ export default function Matches() {
         {/* Left Sidebar - Desktop Filters */}
         <aside className="hidden lg:block w-80 border-r bg-card">
           <div className="sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto">
-            <FilterPanel
-              filters={filters}
-              onFiltersChange={handleFiltersChange}
-              onClearFilters={handleClearFilters}
-              variant="sidebar"
-              showInstantFilter
-              className="border-0 rounded-none"
-            />
+            <div className="p-6 space-y-6">
+              {/* Search */}
+              <div className="space-y-3">
+                <h4 className="font-medium text-sm">Search</h4>
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    placeholder="Search mentors or skills..."
+                    value={filters.query || ''}
+                    onChange={(e) => handleFiltersChange({ ...filters, query: e.target.value || undefined })}
+                    className="pl-10"
+                  />
+                </div>
+              </div>
+
+              {/* Tier Filter */}
+              <div className="space-y-3">
+                <h4 className="font-medium text-sm">Mentor Tier</h4>
+                <Select 
+                  value={filters.mentorTier || 'all'} 
+                  onValueChange={(value) => handleFiltersChange({ 
+                    ...filters, 
+                    mentorTier: value === 'all' ? undefined : value as any
+                  })}
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {tierFilters.map((tier) => (
+                      <SelectItem key={tier.value} value={tier.value}>
+                        {tier.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Additional filters */}
+              <FilterPanel
+                filters={filters}
+                onFiltersChange={handleFiltersChange}
+                onClearFilters={handleClearFilters}
+                variant="inline"
+                showInstantFilter
+                className="border-0 p-0"
+              />
+            </div>
           </div>
         </aside>
 
@@ -298,12 +348,12 @@ export default function Matches() {
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   {isLoading ? (
                     <div className="flex items-center gap-2">
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Searching...</span>
+                      <div className="w-4 h-4 border-2 border-brand-primary border-t-transparent rounded-full animate-spin" />
+                      <span>Loading...</span>
                     </div>
                   ) : (
                     <span>
-                      {sortedMatches.length} {sortedMatches.length === 1 ? 'match' : 'matches'} found
+                      {filteredMentors.length} {filteredMentors.length === 1 ? 'mentor' : 'mentors'} found
                     </span>
                   )}
                 </div>
@@ -334,26 +384,6 @@ export default function Matches() {
                     ))}
                   </SelectContent>
                 </Select>
-
-                {/* View Mode Toggle */}
-                <div className="flex rounded-lg border">
-                  <Button
-                    variant={viewMode === 'list' ? 'default' : 'ghost'}
-                    size="sm"
-                    onClick={() => setViewMode('list')}
-                    className="rounded-r-none border-r"
-                  >
-                    <List className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    variant={viewMode === 'map' ? 'default' : 'ghost'}
-                    size="sm"
-                    onClick={() => setViewMode('map')}
-                    className="rounded-l-none"
-                  >
-                    <Map className="w-4 h-4" />
-                  </Button>
-                </div>
               </div>
             </div>
 
@@ -379,75 +409,54 @@ export default function Matches() {
             )}
 
             {/* Results */}
-            {viewMode === 'list' ? (
-              <div className="space-y-6">
-                {isLoading ? (
-                  <div className="space-y-4">
-                    {Array.from({ length: 3 }).map((_, i) => (
-                      <Card key={i} className="animate-pulse">
-                        <CardContent className="p-6">
-                          <div className="flex gap-4">
-                            <div className="w-16 h-16 bg-muted rounded-full" />
-                            <div className="flex-1 space-y-3">
-                              <div className="h-4 bg-muted rounded w-1/3" />
-                              <div className="h-3 bg-muted rounded w-1/2" />
-                              <div className="h-3 bg-muted rounded w-3/4" />
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                ) : sortedMatches.length > 0 ? (
-                  <div className="grid gap-6">
-                    {sortedMatches.map((match) => (
-                      <MatchCard
-                        key={match.user.id}
-                        match={match}
-                        onViewProfile={handleViewProfile}
-                        onBook={handleBook}
-                        onMessage={handleMessage}
-                        onInstantHelp={handleInstantHelp}
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <Card>
-                    <CardContent className="p-12 text-center">
-                      <div className="space-y-4">
-                        <div className="w-16 h-16 bg-muted rounded-lg flex items-center justify-center mx-auto">
-                          <Search className="w-8 h-8 text-muted-foreground" />
+            {isLoading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <Card key={i} className="animate-pulse">
+                    <CardContent className="p-6">
+                      <div className="flex gap-4">
+                        <div className="w-16 h-16 bg-muted rounded-full" />
+                        <div className="flex-1 space-y-3">
+                          <div className="h-4 bg-muted rounded w-3/4" />
+                          <div className="h-3 bg-muted rounded w-1/2" />
+                          <div className="h-3 bg-muted rounded w-2/3" />
                         </div>
-                        <div>
-                          <h3 className="text-lg font-semibold">No matches found</h3>
-                          <p className="text-muted-foreground">
-                            Try adjusting your filters or search criteria
-                          </p>
-                        </div>
-                        <Button onClick={handleClearFilters}>
-                          Clear All Filters
-                        </Button>
                       </div>
                     </CardContent>
                   </Card>
-                )}
+                ))}
+              </div>
+            ) : filteredMentors.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredMentors.map((mentor) => (
+                  <MentorCard
+                    key={mentor.id}
+                    mentor={mentor}
+                    tier={mentor.tier as any}
+                    creditsPerHour={mentor.creditsPerHour}
+                    instantAvailable={mentor.instantAvailable}
+                    onViewProfile={handleViewProfile}
+                    onRequestMentorship={handleRequestMentorship}
+                    onMessage={handleMessage}
+                    onInstantCall={handleInstantCall}
+                  />
+                ))}
               </div>
             ) : (
-              /* Map View */
               <Card>
                 <CardContent className="p-12 text-center">
                   <div className="space-y-4">
                     <div className="w-16 h-16 bg-muted rounded-lg flex items-center justify-center mx-auto">
-                      <Map className="w-8 h-8 text-muted-foreground" />
+                      <Users className="w-8 h-8 text-muted-foreground" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold">Map View Coming Soon</h3>
+                      <h3 className="text-lg font-semibold">No mentors found</h3>
                       <p className="text-muted-foreground">
-                        Interactive map with skill clusters and location-based filtering
+                        Try adjusting your filters or search criteria
                       </p>
                     </div>
-                    <Button onClick={() => setViewMode('list')}>
-                      Switch to List View
+                    <Button onClick={handleClearFilters}>
+                      Clear All Filters
                     </Button>
                   </div>
                 </CardContent>

@@ -263,6 +263,109 @@ All colors MUST be HSL.
     @apply focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-background;
   }
 
+  /* Enhanced accessibility utilities */
+  .sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
+  .not-sr-only {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+  }
+
+  /* Focus-within improvements */
+  .focus-within\:not-sr-only:focus-within {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .glass-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+    }
+
+    .glass-header {
+      background: var(--card);
+      border-bottom: 2px solid var(--border);
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    .hover-lift {
+      transform: none !important;
+    }
+
+    .hover-scale {
+      transform: none !important;
+    }
+  }
+
+  /* Improved focus indicators */
+  .focus-visible-ring:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .focus-visible-ring:focus-visible {
+    @apply outline-none ring-2 ring-brand-primary ring-offset-2;
+  }
+
+  /* Better text selection */
+  ::selection {
+    background-color: hsl(var(--brand-primary) / 0.2);
+    color: hsl(var(--foreground));
+  }
+
+  /* Ensure interactive elements meet minimum size requirements */
+  button,
+  [role="button"],
+  [type="button"],
+  [type="submit"],
+  [type="reset"],
+  input[type="checkbox"],
+  input[type="radio"],
+  a {
+    min-height: 44px;
+    min-width: 44px;
+    @apply focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2;
+  }
+
+  /* Exception for icon-only buttons that are properly sized */
+  .btn-icon {
+    min-height: 40px;
+    min-width: 40px;
+  }
+
   /* Academic/Course focused styles */
   .course-card {
     @apply bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200;

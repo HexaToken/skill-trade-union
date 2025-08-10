@@ -7,7 +7,7 @@ import { Rating } from "@/components/ui/rating";
 import { ProgressRing } from "@/components/ui/progress-ring";
 import { WalletWidget } from "@/components/WalletWidget";
 import { MatchTile } from "@/components/MatchTile";
-import { SkillCard } from "@/components/SkillCard";
+import SkillCard from "@/components/SkillCard";
 import { CalendarDays, TrendingUp, Users, Zap, Star, Clock, Plus, Calendar, MessageCircle, Trophy, BookOpen, Award, Search } from "lucide-react";
 import { users, skills, sessions, challenges } from "@/data/mockData";
 import { useNavigate } from "react-router-dom";
