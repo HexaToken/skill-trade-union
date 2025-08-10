@@ -36,23 +36,28 @@ All colors MUST be HSL.
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Brand palette */
+    --brand-primary: 262 83% 58%; /* #7C3AED */
+    --brand-secondary: 189 95% 43%; /* #06B6D4 */
+    --brand-green: 142 71% 45%; /* #22C55E */
+    --brand-amber: 38 92% 50%; /* #F59E0B */
+    --brand-red: 0 84% 60%; /* #EF4444 */
+
+    /* Effects */
+    --gradient-brand: linear-gradient(135deg, hsl(var(--brand-primary)) 0%, hsl(var(--brand-secondary)) 100%);
+    --shadow-elev: 0 10px 30px -12px hsl(var(--brand-primary) / 0.35);
+    --shadow-soft: 0 2px 10px -4px hsl(var(--foreground) / 0.08);
   }
 
   .dark {
@@ -100,6 +105,16 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
   }
+}
+
+@layer utilities {
+  .bg-gradient-brand { background-image: var(--gradient-brand); }
+  .shadow-elev { box-shadow: var(--shadow-elev); }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .glass {
+    @apply bg-background/60 backdrop-blur-xl border border-border/60 shadow-soft;
+  }
+  .hover-scale { @apply transition-transform duration-200 hover:scale-105; }
 }
