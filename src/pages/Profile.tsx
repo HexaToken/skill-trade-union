@@ -1,11 +1,10 @@
-import AppLayout from "@/components/layout/AppLayout";
-import { users } from "@/mock/data";
+import { users } from "@/data/mockData";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function ProfilePage() {
   const u = users[0];
   return (
-    <AppLayout>
+    <div className="page-container section-spacing">
       <div className="grid gap-4 md:grid-cols-3">
         <Card className="md:col-span-1 glass">
           <CardContent className="p-4">
@@ -21,6 +20,6 @@ export default function ProfilePage() {
           </CardContent>
         </Card>
       </div>
-    </AppLayout>
+    </div>
   );
 }

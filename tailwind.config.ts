@@ -77,7 +77,12 @@ export default {
 			},
 			fontFamily: {
 				sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				heading: ['Outfit', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
 				mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace']
+			},
+			spacing: {
+				'18': '4.5rem',
+				'88': '22rem'
 			},
 			keyframes: {
 				'accordion-down': {
