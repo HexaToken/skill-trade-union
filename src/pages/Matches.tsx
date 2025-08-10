@@ -1,4 +1,3 @@
-import { AppLayout } from "@/components/layout/AppLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -9,7 +8,7 @@ import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MatchTile } from "@/components/MatchTile";
 import { Search, Filter, Map, List, SlidersHorizontal, Clock, Star, MapPin, Zap, Globe } from "lucide-react";
-import { users, skills } from "@/mock/skillswap-data";
+import { users, skills } from "@/data/mockData";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
