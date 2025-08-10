@@ -1,4 +1,4 @@
-import { Wallet, TrendingUp, Gift, ArrowUpRight, Plus } from "lucide-react";
+import { Wallet, TrendingUp, Gift, Plus, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -39,13 +39,13 @@ export function WalletWidget({
             {isPro && <Badge variant="secondary" size="sm">PRO</Badge>}
           </div>
           {recentEarning > 0 && (
-            <div className="flex items-center gap-1 text-xs text-brand-green">
+            <div className="flex items-center gap-1 text-xs text-brand-success">
               <TrendingUp className="w-3 h-3" />
               <span>+{recentEarning} today</span>
             </div>
           )}
         </div>
-        <ArrowUpRight className="w-4 h-4 text-muted-foreground ml-auto" />
+        <ExternalLink className="w-4 h-4 text-muted-foreground ml-auto" />
       </div>
     );
   }
@@ -71,9 +71,9 @@ export function WalletWidget({
           </div>
           
           {recentEarning > 0 && (
-            <div className="flex items-center justify-center gap-2 p-3 bg-brand-green/10 rounded-lg">
-              <TrendingUp className="w-4 h-4 text-brand-green" />
-              <span className="text-sm font-medium text-brand-green">
+            <div className="flex items-center justify-center gap-2 p-3 bg-brand-success/10 rounded-lg">
+              <TrendingUp className="w-4 h-4 text-brand-success" />
+              <span className="text-sm font-medium text-brand-success">
                 +{recentEarning} earned today
               </span>
             </div>
@@ -119,7 +119,7 @@ export function WalletWidget({
       </div>
       
       {recentEarning > 0 && (
-        <div className="flex items-center gap-1 text-sm text-brand-green">
+        <div className="flex items-center gap-1 text-sm text-brand-success">
           <TrendingUp className="w-3 h-3" />
           <span>+{recentEarning} today</span>
         </div>

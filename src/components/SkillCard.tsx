@@ -2,7 +2,7 @@ import { TrendingUp, Users, Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import type { Skill } from "@/mock/skillswap-data";
+import type { Skill } from "@/models/types";
 
 interface SkillCardProps {
   skill: Skill;
@@ -28,9 +28,9 @@ export function SkillCard({
   };
 
   const difficultyColors = {
-    1: "bg-brand-green/10 text-brand-green border-brand-green/20",
-    2: "bg-brand-amber/10 text-brand-amber border-brand-amber/20",
-    3: "bg-brand-red/10 text-brand-red border-brand-red/20"
+    1: "bg-brand-success/10 text-brand-success border-brand-success/20",
+    2: "bg-brand-warning/10 text-brand-warning border-brand-warning/20",
+    3: "bg-brand-danger/10 text-brand-danger border-brand-danger/20"
   };
 
   if (variant === "compact") {
@@ -65,11 +65,11 @@ export function SkillCard({
       )} onClick={onClick}>
         <CardContent className="p-6">
           <div className="flex items-start justify-between mb-4">
-            <div className="p-3 rounded-xl bg-gradient-brand/10 group-hover:bg-gradient-brand/20 transition-colors">
+            <div className="p-3 rounded-xl bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10 group-hover:from-brand-primary/20 group-hover:to-brand-secondary/20 transition-colors">
               <span className="text-3xl">{skill.icon}</span>
             </div>
             {showDemand && skill.demandScore > 80 && (
-              <Badge variant="secondary" className="bg-brand-red/10 text-brand-red border-brand-red/20">
+              <Badge variant="secondary" className="bg-brand-danger/10 text-brand-danger border-brand-danger/20">
                 🔥 Hot
               </Badge>
             )}

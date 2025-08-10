@@ -2,9 +2,8 @@ import { MapPin, Clock, Star, MessageCircle, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Rating } from "@/components/ui/rating";
 import { cn } from "@/lib/utils";
-import type { User, Skill } from "@/mock/skillswap-data";
+import type { User, Skill } from "@/models/types";
 
 interface MatchTileProps {
   user: User;
@@ -78,7 +77,22 @@ export function MatchTile({
       {/* Rating & Stats */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-4">
-          <Rating rating={user.ratingAvg} size="sm" />
+          <div className="flex items-center gap-1">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <Star 
+                key={i} 
+                className={cn(
+                  "w-3 h-3",
+                  i < Math.floor(user.ratingAvg) 
+                    ? "fill-brand-warning text-brand-warning" 
+                    : "text-muted-foreground"
+                )}
+              />
+            ))}
+            <span className="text-xs text-muted-foreground ml-1">
+              {user.ratingAvg.toFixed(1)}
+            </span>
+          </div>
           <span className="text-xs text-muted-foreground">
             ({user.ratingCount} reviews)
           </span>
