@@ -8,12 +8,16 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 // Import all pages
-import Index from "./pages/Index";
+import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import Matches from "./pages/Matches";
+import Classes from "./pages/Classes";
+import ClassDetail from "./pages/ClassDetail";
+import SkillPaths from "./pages/SkillPaths";
 import Wallet from "./pages/Wallet";
 import Profile from "./pages/Profile";
+import Onboarding from "./pages/Onboarding";
 import Placeholder from "./pages/Placeholder";
 
 const queryClient = new QueryClient();
@@ -40,7 +44,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             {/* Home page */}
-            <Route path="/" element={<Layout><Index /></Layout>} />
+            <Route path="/" element={<Layout><Home /></Layout>} />
             
             {/* Core app pages */}
             <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
@@ -55,7 +59,10 @@ const App = () => (
             <Route path="/workspace/:id" element={<Layout><Placeholder title="Async Workspace" desc="Collaborate on projects and assignments." /></Layout>} />
             
             {/* Learning & discovery */}
-            <Route path="/classes" element={<Layout><Placeholder title="Group Classes" desc="Join group classes and learn with peers." /></Layout>} />
+            <Route path="/classes" element={<Layout><Classes /></Layout>} />
+            <Route path="/classes/:id" element={<Layout><ClassDetail /></Layout>} />
+            <Route path="/paths" element={<Layout><SkillPaths /></Layout>} />
+            <Route path="/paths/:id" element={<Layout><Placeholder title="Skill Path Detail" desc="Complete learning path with progress tracking." /></Layout>} />
             <Route path="/mentors" element={<Layout><Placeholder title="Mentor Marketplace" desc="Find long-term mentors with tiered credit rates." /></Layout>} />
             <Route path="/challenges" element={<Layout><Placeholder title="Challenges" desc="Join community challenges and climb leaderboards." /></Layout>} />
             <Route path="/map" element={<Layout><Placeholder title="Global Skill Map" desc="Explore trending skills by region. Coming soon!" /></Layout>} />
@@ -68,7 +75,7 @@ const App = () => (
             <Route path="/settings" element={<Layout><Placeholder title="Settings" desc="Manage preferences, verification, and notifications." /></Layout>} />
             
             {/* Onboarding */}
-            <Route path="/onboarding" element={<Layout><Placeholder title="Onboarding" desc="Complete your profile and start skill swapping." /></Layout>} />
+            <Route path="/onboarding" element={<Layout><Onboarding /></Layout>} />
             
             {/* Support pages */}
             <Route path="/about" element={<Layout><Placeholder title="About SkillSwap" desc="Learn about our mission to democratize skill sharing." /></Layout>} />

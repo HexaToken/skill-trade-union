@@ -1,8 +1,11 @@
+/* Import Google Fonts - must be first */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
 All colors MUST be HSL.
 */
 
@@ -113,8 +116,6 @@ All colors MUST be HSL.
   }
 }
 
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @layer base {
   * {
@@ -123,10 +124,8 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    background-attachment: fixed;
-    background-image:
-      radial-gradient(circle at 25% 25%, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+    /* Clean academic background without gradients */
+    background-color: hsl(var(--background));
   }
 
   /* Typography Hierarchy */
@@ -262,5 +261,113 @@ All colors MUST be HSL.
   /* Focus states for accessibility */
   .focus-neo {
     @apply focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-background;
+  }
+
+  /* Academic/Course focused styles */
+  .course-card {
+    @apply bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200;
+  }
+
+  .course-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .instructor-card {
+    @apply bg-card border border-border rounded-lg p-4;
+  }
+
+  .filter-rail {
+    @apply bg-card border-r border-border h-full overflow-y-auto;
+  }
+
+  .sticky-panel {
+    @apply bg-card border border-border rounded-lg p-6 sticky top-24;
+  }
+
+  .curriculum-section {
+    @apply border border-border rounded-lg mb-4;
+  }
+
+  .lesson-item {
+    @apply flex items-center justify-between p-4 border-b border-border last:border-b-0 hover:bg-muted/50 transition-colors;
+  }
+
+  .academic-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+  }
+
+  .catalog-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+
+  /* Course detail layout */
+  .course-header {
+    @apply bg-muted/30 py-12;
+  }
+
+  .course-content {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Progress and completion styling */
+  .progress-bar {
+    @apply bg-muted rounded-full h-2;
+  }
+
+  .progress-fill {
+    @apply bg-brand-primary rounded-full h-full transition-all duration-300;
+  }
+
+  .completion-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-brand-green/10 text-brand-green border border-brand-green/20;
+  }
+
+  /* Filter and search styling */
+  .filter-group {
+    @apply space-y-4 p-4 border-b border-border;
+  }
+
+  .filter-title {
+    @apply font-semibold text-sm text-foreground mb-3;
+  }
+
+  /* Curriculum and lesson styling */
+  .curriculum-header {
+    @apply bg-muted p-4 font-semibold border-b border-border;
+  }
+
+  .lesson-preview {
+    @apply text-brand-primary text-sm font-medium;
+  }
+
+  .lesson-duration {
+    @apply text-muted-foreground text-sm;
+  }
+
+  /* Responsive course layouts */
+  @media (min-width: 1024px) {
+    .course-layout {
+      @apply grid grid-cols-12 gap-8;
+    }
+
+    .course-main {
+      @apply col-span-8;
+    }
+
+    .course-sidebar {
+      @apply col-span-4;
+    }
+
+    .catalog-layout {
+      @apply grid grid-cols-12 gap-8;
+    }
+
+    .catalog-filters {
+      @apply col-span-3;
+    }
+
+    .catalog-content {
+      @apply col-span-9;
+    }
   }
 }
