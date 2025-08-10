@@ -58,7 +58,8 @@ const App = () => (
             <Route path="/workspace/:id" element={<Layout><Placeholder title="Async Workspace" desc="Collaborate on projects and assignments." /></Layout>} />
             
             {/* Learning & discovery */}
-            <Route path="/classes" element={<Layout><Placeholder title="Group Classes" desc="Join group classes and learn with peers." /></Layout>} />
+            <Route path="/classes" element={<Layout><Classes /></Layout>} />
+            <Route path="/classes/:id" element={<Layout><ClassDetail /></Layout>} />
             <Route path="/mentors" element={<Layout><Placeholder title="Mentor Marketplace" desc="Find long-term mentors with tiered credit rates." /></Layout>} />
             <Route path="/challenges" element={<Layout><Placeholder title="Challenges" desc="Join community challenges and climb leaderboards." /></Layout>} />
             <Route path="/map" element={<Layout><Placeholder title="Global Skill Map" desc="Explore trending skills by region. Coming soon!" /></Layout>} />
