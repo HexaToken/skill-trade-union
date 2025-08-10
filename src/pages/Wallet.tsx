@@ -18,10 +18,10 @@ export default function WalletPage() {
   // Extended mock transactions
   const allTransactions = [
     ...creditTransactions,
-    { id: 'tx-4', userId: 'user-2', type: 'earn' as const, amount: 50, createdAt: '2024-01-21T10:00:00Z', description: 'Teaching: React Components Workshop', refSessionId: 'session-new-1' },
-    { id: 'tx-5', userId: 'user-2', type: 'spend' as const, amount: -30, createdAt: '2024-01-20T14:00:00Z', description: 'Learning: Logo Design Basics', refSessionId: 'session-new-2' },
-    { id: 'tx-6', userId: 'user-2', type: 'donation' as const, amount: -25, createdAt: '2024-01-19T16:00:00Z', description: 'Donated to Code for Africa' },
-    { id: 'tx-7', userId: 'user-2', type: 'bonus' as const, amount: 15, createdAt: '2024-01-18T09:00:00Z', description: 'Weekly challenge completion bonus' }
+    { id: 'tx-6', userId: 'user-2', type: 'earn' as const, amount: 50, createdAt: '2024-01-21T10:00:00Z', description: 'Teaching: React Components Workshop', refSessionId: 'session-new-1' },
+    { id: 'tx-7', userId: 'user-2', type: 'spend' as const, amount: -30, createdAt: '2024-01-20T14:00:00Z', description: 'Learning: Logo Design Basics', refSessionId: 'session-new-2' },
+    { id: 'tx-8', userId: 'user-2', type: 'donation' as const, amount: -25, createdAt: '2024-01-19T16:00:00Z', description: 'Donated to Code for Africa' },
+    { id: 'tx-9', userId: 'user-2', type: 'bonus' as const, amount: 15, createdAt: '2024-01-18T09:00:00Z', description: 'Weekly challenge completion bonus' }
   ];
 
   const filteredTransactions = selectedFilter === "all" 
