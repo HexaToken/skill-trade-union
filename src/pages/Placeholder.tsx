@@ -1,4 +1,4 @@
-import AppLayout from "@/components/layout/AppLayout";
+import { AppLayout } from "@/components/layout/AppLayout";
 
 export default function Placeholder({ title, desc }: { title: string; desc: string }) {
   return (

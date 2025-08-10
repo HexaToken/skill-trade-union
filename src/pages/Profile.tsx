@@ -1,4 +1,4 @@
-import AppLayout from "@/components/layout/AppLayout";
+import { AppLayout } from "@/components/layout/AppLayout";
 import { users } from "@/mock/data";
 import { Card, CardContent } from "@/components/ui/card";
 
