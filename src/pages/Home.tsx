@@ -1,241 +1,288 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
   ArrowRight, 
   Star, 
   Users, 
-  Shield, 
-  Search,
-  Calendar,
-  Zap,
   Play,
-  CheckCircle,
+  Clock,
+  Award,
   TrendingUp,
-  Quote
+  BookOpen,
+  Target,
+  CheckCircle,
+  ChevronRight,
+  Search,
+  Filter
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { Input } from '@/components/ui/input';
+import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
-import { skills, users, reviews } from '@/data/mockData';
+import { classes, users, skills, skillPaths } from '@/data/courseData';
+
+const CATEGORIES = [
+  { id: 'technology', name: 'Technology', icon: '💻', count: 1200 },
+  { id: 'design', name: 'Design', icon: '🎨', count: 800 },
+  { id: 'business', name: 'Business', icon: '📊', count: 950 },
+  { id: 'languages', name: 'Languages', icon: '🗣️', count: 400 },
+  { id: 'creative', name: 'Creative', icon: '🎭', count: 350 },
+  { id: 'marketing', name: 'Marketing', icon: '📈', count: 600 },
+  { id: 'photography', name: 'Photography', icon: '📸', count: 300 },
+  { id: 'music', name: 'Music', icon: '🎵', count: 250 }
+];
 
 export default function Home() {
   const navigate = useNavigate();
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState('');
 
-  // Rotate testimonials
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
+  // Get featured content
+  const featuredClasses = classes.slice(0, 8);
+  const topInstructors = users.slice(0, 6);
+  const featuredPaths = skillPaths.filter(path => path.featured);
 
-  // Featured skills for carousel
-  const featuredSkills = skills.filter(s => s.demandScore > 80).slice(0, 6);
-  
-  // Sample testimonials
-  const testimonials = [
-    {
-      text: "SkillSwap transformed how I learn. I traded my design skills for guitar lessons and built amazing friendships along the way!",
-      author: users[0],
-      skill: "Logo Design"
-    },
-    {
-      text: "The AI matching is incredible. Found the perfect Spanish tutor who fits my schedule and learning pace. ¡Gracias SkillSwap!",
-      author: users[1],
-      skill: "Web Development"
-    },
-    {
-      text: "As a yoga instructor, I love the community here. Teaching brings me joy, and learning web dev with my earned credits is exciting!",
-      author: users[2],
-      skill: "Yoga"
+  const formatDuration = (minutes: number) => {
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    if (hours > 0) {
+      return `${hours}h ${mins > 0 ? `${mins}m` : ''}`;
     }
-  ];
+    return `${mins}m`;
+  };
 
-  // Trust indicators
-  const trustStats = [
-    { icon: Users, label: "50k+ active learners", value: "50,000+" },
-    { icon: Star, label: "4.9 average rating", value: "4.9" },
-    { icon: Shield, label: "Verified teachers", value: "98%" }
-  ];
+  const CourseCard = ({ course }: { course: typeof classes[0] }) => {
+    const instructor = users.find(u => u.id === course.instructorId);
+    
+    return (
+      <Card className="course-card group cursor-pointer" onClick={() => navigate(`/classes/${course.id}`)}>
+        <div className="relative">
+          <img 
+            src={course.thumbnailUrl} 
+            alt={course.title}
+            className="w-full h-40 object-cover rounded-t-lg"
+          />
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors rounded-t-lg flex items-center justify-center">
+            <Play className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+          </div>
+          <Badge className="absolute top-3 left-3 bg-white/90 text-foreground">
+            {course.level}
+          </Badge>
+        </div>
+        
+        <CardContent className="p-4">
+          <h3 className="font-semibold text-sm mb-2 line-clamp-2 group-hover:text-brand-primary transition-colors">
+            {course.title}
+          </h3>
+          
+          {instructor && (
+            <p className="text-xs text-muted-foreground mb-2">
+              {instructor.name}
+            </p>
+          )}
+          
+          <div className="flex items-center gap-1 mb-2">
+            <div className="flex items-center">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star 
+                  key={i} 
+                  className={cn(
+                    "w-3 h-3",
+                    i < Math.floor(course.ratingAvg) 
+                      ? "fill-brand-warning text-brand-warning" 
+                      : "text-muted-foreground/30"
+                  )}
+                />
+              ))}
+            </div>
+            <span className="text-xs text-muted-foreground">
+              {course.ratingAvg} ({course.ratingCount})
+            </span>
+          </div>
+          
+          <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
+            <div className="flex items-center gap-1">
+              <Clock className="w-3 h-3" />
+              <span>{formatDuration(course.durationMins)}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Users className="w-3 h-3" />
+              <span>{course.studentsCount.toLocaleString()}</span>
+            </div>
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <Badge variant="outline" className="text-xs">
+              {course.category}
+            </Badge>
+            <div className="text-right">
+              <div className="text-sm font-bold text-brand-primary">
+                {course.priceCredits} credits
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  };
+
+  const InstructorCard = ({ instructor }: { instructor: typeof users[0] }) => {
+    return (
+      <Card className="instructor-card group cursor-pointer hover:shadow-md transition-all" 
+            onClick={() => navigate(`/profile/${instructor.id}`)}>
+        <CardContent className="p-4 text-center">
+          <Avatar className="w-16 h-16 mx-auto mb-3">
+            <AvatarImage src={instructor.avatarUrl} alt={instructor.name} />
+            <AvatarFallback>{instructor.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+          </Avatar>
+          
+          <h4 className="font-semibold text-sm mb-1 group-hover:text-brand-primary transition-colors">
+            {instructor.name}
+          </h4>
+          
+          <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
+            {instructor.headline}
+          </p>
+          
+          <div className="flex items-center justify-center gap-1 mb-2">
+            <Star className="w-3 h-3 fill-brand-warning text-brand-warning" />
+            <span className="text-xs font-medium">{instructor.ratingAvg}</span>
+          </div>
+          
+          <div className="text-xs text-muted-foreground">
+            {instructor.totalStudents?.toLocaleString()} students
+          </div>
+        </CardContent>
+      </Card>
+    );
+  };
+
+  const PathCard = ({ path }: { path: typeof skillPaths[0] }) => {
+    return (
+      <Card className="course-card group cursor-pointer" onClick={() => navigate(`/paths/${path.id}`)}>
+        <div className="relative">
+          <img 
+            src={path.thumbnailUrl} 
+            alt={path.title}
+            className="w-full h-40 object-cover rounded-t-lg"
+          />
+          <Badge className="absolute top-3 left-3 bg-brand-primary text-white">
+            Specialization
+          </Badge>
+          <Badge className="absolute top-3 right-3 bg-white/90 text-foreground">
+            {path.level}
+          </Badge>
+        </div>
+        
+        <CardContent className="p-4">
+          <h3 className="font-semibold text-sm mb-2 line-clamp-2 group-hover:text-brand-primary transition-colors">
+            {path.title}
+          </h3>
+          
+          <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
+            {path.description}
+          </p>
+          
+          <div className="flex items-center gap-4 mb-3 text-xs text-muted-foreground">
+            <div className="flex items-center gap-1">
+              <BookOpen className="w-3 h-3" />
+              <span>{path.steps.length} courses</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Clock className="w-3 h-3" />
+              <span>{path.estimatedHours}h</span>
+            </div>
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-1">
+              <Star className="w-3 h-3 fill-brand-warning text-brand-warning" />
+              <span className="text-xs">{path.ratingAvg}</span>
+            </div>
+            <div className="text-right">
+              <div className="text-sm font-bold text-brand-primary">
+                {path.priceCredits} credits
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  };
 
   return (
-    <div className="space-y-0">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative section-spacing overflow-hidden">
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 via-transparent to-brand-secondary/5" />
-        
-        <div className="page-container relative">
-          <div className="text-center max-w-4xl mx-auto">
-            {/* Main heading */}
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-heading font-bold mb-6 animate-fade-in">
-              Trade skills,{" "}
-              <span className="text-gradient">not cash.</span>
+      <section className="bg-gradient-to-r from-muted/50 to-muted/30 py-16 lg:py-24">
+        <div className="page-container">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
+              Trade skills, <span className="text-gradient">not cash.</span>
             </h1>
             
-            {/* Subheading */}
-            <p className="text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 animate-fade-in [animation-delay:200ms]">
-              Teach what you know. Learn what you want. Your time and talent are the currency.
-              Connect with passionate learners and teachers in our global skill-sharing community.
+            <p className="text-xl lg:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+              Learn from expert instructors, teach what you know, and build your career with our credit-based learning platform.
             </p>
             
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-in [animation-delay:400ms]">
-              <Button 
-                size="lg" 
-                className="btn-neo text-lg px-8 py-4"
-                onClick={() => navigate('/matches')}
-              >
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <Button size="lg" className="btn-neo text-lg px-8 py-4" onClick={() => navigate('/matches')}>
                 Find a Match
                 <Search className="ml-2 h-5 w-5" />
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="btn-glass text-lg px-8 py-4"
-                onClick={() => navigate('/dashboard')}
-              >
-                Offer a Skill
-                <ArrowRight className="ml-2 h-5 w-5" />
+              
+              <Button size="lg" variant="outline" className="text-lg px-8 py-4" onClick={() => navigate('/classes')}>
+                Browse Classes
+                <BookOpen className="ml-2 h-5 w-5" />
               </Button>
             </div>
             
-            {/* Trust indicators */}
-            <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-muted-foreground animate-fade-in [animation-delay:600ms]">
-              {trustStats.map((stat, index) => {
-                const Icon = stat.icon;
-                return (
-                  <div key={index} className="flex items-center gap-2">
-                    <Icon className="w-4 h-4 text-brand-secondary" />
-                    <span>{stat.label}</span>
-                  </div>
-                );
-              })}
+            {/* Search Bar */}
+            <div className="max-w-2xl mx-auto relative">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Input 
+                placeholder="What do you want to learn today?"
+                className="pl-12 pr-4 h-14 text-lg rounded-xl border-2"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    navigate(`/classes?q=${encodeURIComponent(e.currentTarget.value)}`);
+                  }
+                }}
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section className="section-spacing bg-muted/30">
+      {/* Categories Rail */}
+      <section className="py-12 border-b bg-card">
         <div className="page-container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-4">
-              How SkillSwap Works
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Three simple steps to start trading skills and building your expertise.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                step: "1",
-                title: "Find Your Match",
-                description: "Our AI matches you with compatible teachers and learners based on skills, schedule, location, and learning style.",
-                icon: Search,
-                color: "from-brand-primary to-brand-secondary"
-              },
-              {
-                step: "2", 
-                title: "Book & Learn",
-                description: "Schedule 1:1 sessions, join group classes, or collaborate async. Credits are held in escrow until completion.",
-                icon: Calendar,
-                color: "from-brand-secondary to-brand-success"
-              },
-              {
-                step: "3",
-                title: "Earn & Grow", 
-                description: "Rate your experience, build your reputation, and earn credits to learn new skills. The cycle continues!",
-                icon: Zap,
-                color: "from-brand-success to-brand-warning"
-              }
-            ].map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <div key={index} className="text-center group">
-                  <div className={cn(
-                    "w-16 h-16 rounded-2xl bg-gradient-to-br flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300",
-                    item.color
-                  )}>
-                    <Icon className="h-8 w-8 text-white" />
-                  </div>
-                  <div className="mb-4">
-                    <span className="inline-block w-8 h-8 rounded-full bg-brand-primary text-white text-sm font-bold flex items-center justify-center mb-3">
-                      {item.step}
-                    </span>
-                    <h3 className="text-xl font-heading font-semibold text-foreground mb-3">
-                      {item.title}
-                    </h3>
-                  </div>
-                  <p className="text-muted-foreground">
-                    {item.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Skills Section */}
-      <section className="section-spacing">
-        <div className="page-container">
-          <div className="flex items-center justify-between mb-12">
-            <div>
-              <h2 className="text-3xl font-heading font-bold text-foreground mb-2">
-                Trending Skills
-              </h2>
-              <p className="text-muted-foreground">
-                Discover the most in-demand skills in our community
-              </p>
-            </div>
-            <Button variant="outline" onClick={() => navigate('/matches')} className="btn-glass">
-              Browse All
-              <ArrowRight className="ml-2 h-4 w-4" />
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-heading font-bold">Explore Categories</h2>
+            <Button variant="outline" asChild>
+              <Link to="/classes">
+                View All
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </Button>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredSkills.map((skill) => (
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
+            {CATEGORIES.map((category) => (
               <Card 
-                key={skill.id} 
-                className="glass-card hover-lift cursor-pointer group"
-                onClick={() => navigate('/matches')}
+                key={category.id} 
+                className="cursor-pointer hover:shadow-md transition-all group"
+                onClick={() => navigate(`/classes?category=${category.id}`)}
               >
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="p-3 rounded-xl bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10 group-hover:from-brand-primary/20 group-hover:to-brand-secondary/20 transition-colors">
-                      <span className="text-3xl">{skill.icon}</span>
-                    </div>
-                    {skill.demandScore > 85 && (
-                      <Badge variant="secondary" className="bg-brand-danger/10 text-brand-danger border-brand-danger/20">
-                        🔥 Hot
-                      </Badge>
-                    )}
-                  </div>
-                  
-                  <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-brand-primary transition-colors">
-                    {skill.name}
+                <CardContent className="p-4 text-center">
+                  <div className="text-3xl mb-2">{category.icon}</div>
+                  <h3 className="font-medium text-sm mb-1 group-hover:text-brand-primary transition-colors">
+                    {category.name}
                   </h3>
-                  
-                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                    {skill.description}
+                  <p className="text-xs text-muted-foreground">
+                    {category.count.toLocaleString()} classes
                   </p>
-                  
-                  <div className="flex items-center justify-between">
-                    <Badge variant="outline" size="sm" className="text-xs">
-                      {skill.category}
-                    </Badge>
-                    <div className="flex items-center gap-1 text-sm">
-                      <TrendingUp className="w-3 h-3 text-brand-secondary" />
-                      <span className="text-muted-foreground">{skill.demandScore}% demand</span>
-                    </div>
-                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -243,115 +290,135 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="section-spacing bg-muted/30">
+      {/* Featured Classes */}
+      <section className="py-16">
+        <div className="page-container">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-heading font-bold mb-2">Featured Classes</h2>
+              <p className="text-muted-foreground">Learn from top-rated instructors</p>
+            </div>
+            <Button variant="outline" asChild>
+              <Link to="/classes">
+                Browse All Classes
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+          
+          <div className="academic-grid">
+            {featuredClasses.map((course) => (
+              <CourseCard key={course.id} course={course} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Skill Paths */}
+      <section className="py-16 bg-muted/30">
+        <div className="page-container">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-heading font-bold mb-2">Skill Paths</h2>
+              <p className="text-muted-foreground">Structured learning journeys to master new skills</p>
+            </div>
+            <Button variant="outline" asChild>
+              <Link to="/paths">
+                View All Paths
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+          
+          <div className="catalog-grid">
+            {featuredPaths.map((path) => (
+              <PathCard key={path.id} path={path} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Top Instructors */}
+      <section className="py-16">
+        <div className="page-container">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-heading font-bold mb-2">Top Instructors</h2>
+              <p className="text-muted-foreground">Learn from industry experts and experienced educators</p>
+            </div>
+            <Button variant="outline" asChild>
+              <Link to="/mentors">
+                Find a Mentor
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+          
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+            {topInstructors.map((instructor) => (
+              <InstructorCard key={instructor.id} instructor={instructor} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-16 bg-muted/30">
         <div className="page-container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-4">
-              What Our Community Says
-            </h2>
+            <h2 className="text-3xl font-heading font-bold mb-4">How SkillSwap Works</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Real stories from learners and teachers who found their perfect skill match.
+              Three simple steps to start learning and earning credits
             </p>
           </div>
           
-          {/* Featured testimonial */}
-          <div className="max-w-4xl mx-auto mb-12">
-            <Card className="glass-card p-8 text-center">
-              <CardContent className="p-0">
-                <Quote className="w-12 h-12 text-brand-primary mx-auto mb-6 opacity-50" />
-                <blockquote className="text-xl lg:text-2xl font-medium text-foreground mb-6 leading-relaxed">
-                  "{testimonials[currentTestimonial].text}"
-                </blockquote>
-                <div className="flex items-center justify-center gap-4">
-                  <Avatar className="w-12 h-12">
-                    <AvatarImage 
-                      src={testimonials[currentTestimonial].author.avatarUrl} 
-                      alt={testimonials[currentTestimonial].author.name} 
-                    />
-                    <AvatarFallback>
-                      {testimonials[currentTestimonial].author.name.split(' ').map(n => n[0]).join('')}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="text-left">
-                    <p className="font-semibold text-foreground">
-                      {testimonials[currentTestimonial].author.name}
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      Teaching {testimonials[currentTestimonial].skill}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            
-            {/* Testimonial indicators */}
-            <div className="flex justify-center gap-2 mt-6">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentTestimonial(index)}
-                  className={cn(
-                    "w-2 h-2 rounded-full transition-colors",
-                    index === currentTestimonial 
-                      ? "bg-brand-primary" 
-                      : "bg-muted-foreground/30"
-                  )}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Additional testimonials grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {users.slice(0, 3).map((user, index) => {
-              const testimonialTexts = [
-                "The platform made it so easy to find exactly what I was looking for. The community is supportive and encouraging.",
-                "I've learned more in 3 months here than I did in years of traditional classes. The personalized approach works!",
-                "Not only did I gain new skills, but I also built lasting professional relationships. Highly recommend!"
-              ];
-              
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                step: "1",
+                title: "Find Your Course",
+                description: "Browse thousands of classes and skill paths from expert instructors",
+                icon: Search,
+                color: "from-brand-primary to-brand-secondary"
+              },
+              {
+                step: "2", 
+                title: "Learn & Practice",
+                description: "Take classes, complete projects, and get personalized feedback",
+                icon: BookOpen,
+                color: "from-brand-secondary to-brand-green"
+              },
+              {
+                step: "3",
+                title: "Teach & Earn", 
+                description: "Share your knowledge, teach others, and earn credits for learning more",
+                icon: Award,
+                color: "from-brand-green to-brand-warning"
+              }
+            ].map((item, index) => {
+              const Icon = item.icon;
               return (
-                <Card key={user.id} className="glass-card">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <Avatar className="w-10 h-10">
-                        <AvatarImage src={user.avatarUrl} alt={user.name} />
-                        <AvatarFallback>{user.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                      </Avatar>
-                      <div>
-                        <h4 className="font-semibold text-foreground">{user.name}</h4>
-                        <div className="flex items-center gap-1">
-                          {Array.from({ length: 5 }).map((_, i) => (
-                            <Star 
-                              key={i} 
-                              className={cn(
-                                "w-3 h-3",
-                                i < Math.floor(user.ratingAvg) 
-                                  ? "fill-brand-warning text-brand-warning" 
-                                  : "text-muted-foreground"
-                              )}
-                            />
-                          ))}
-                          <span className="text-xs text-muted-foreground ml-1">
-                            {user.ratingCount} sessions
-                          </span>
-                        </div>
-                      </div>
+                <Card key={index} className="text-center group hover:shadow-lg transition-all">
+                  <CardContent className="p-8">
+                    <div className={cn(
+                      "w-16 h-16 rounded-2xl bg-gradient-to-br flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform",
+                      item.color
+                    )}>
+                      <Icon className="h-8 w-8 text-white" />
                     </div>
-                    <p className="text-sm text-muted-foreground italic mb-4">
-                      "{testimonialTexts[index]}"
+                    
+                    <div className="mb-4">
+                      <Badge className="mb-3 bg-brand-primary text-white">
+                        Step {item.step}
+                      </Badge>
+                      <h3 className="text-xl font-heading font-semibold mb-3">
+                        {item.title}
+                      </h3>
+                    </div>
+                    
+                    <p className="text-muted-foreground">
+                      {item.description}
                     </p>
-                    <div className="flex flex-wrap gap-2">
-                      {user.skillsOffered.slice(0, 2).map((skillOffer) => {
-                        const skill = skills.find(s => s.id === skillOffer.skillId);
-                        return skill ? (
-                          <Badge key={skill.id} variant="outline" size="sm">
-                            {skill.icon} {skill.name}
-                          </Badge>
-                        ) : null;
-                      })}
-                    </div>
                   </CardContent>
                 </Card>
               );
@@ -360,44 +427,71 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section-spacing">
+      {/* Trust & Social Proof */}
+      <section className="py-16">
         <div className="page-container">
-          <Card className="glass-card bg-gradient-to-br from-brand-primary/5 to-brand-secondary/5 border-brand-primary/20 p-12 text-center">
-            <CardContent className="p-0">
-              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-4">
-                Ready to start trading skills?
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-heading font-bold mb-4">Join Our Learning Community</h2>
+            <p className="text-lg text-muted-foreground">
+              Thousands of learners are already building their skills
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-4xl font-bold text-brand-primary mb-2">50,000+</div>
+              <div className="text-muted-foreground">Active Learners</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-brand-secondary mb-2">5,000+</div>
+              <div className="text-muted-foreground">Expert Instructors</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-brand-green mb-2">15,000+</div>
+              <div className="text-muted-foreground">Classes Available</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-brand-warning mb-2">4.8</div>
+              <div className="text-muted-foreground">Average Rating</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-gradient-to-r from-brand-primary/10 to-brand-secondary/10">
+        <div className="page-container">
+          <Card className="border-brand-primary/20 bg-card/50 backdrop-blur-sm">
+            <CardContent className="p-12 text-center">
+              <h2 className="text-3xl font-heading font-bold mb-4">
+                Ready to start your learning journey?
               </h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Join thousands of learners and teachers who are building skills, 
-                earning credits, and creating meaningful connections.
+                Join thousands of learners who are building skills, earning credits, 
+                and advancing their careers on SkillSwap.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                <Button 
-                  size="lg" 
-                  className="btn-neo text-lg px-8 py-4"
-                  onClick={() => navigate('/onboarding')}
-                >
-                  Get Started Free
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                <Button size="lg" className="btn-neo text-lg px-8 py-4" asChild>
+                  <Link to="/onboarding">
+                    Get Started Free
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
                 </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="btn-glass text-lg px-8 py-4"
-                  onClick={() => navigate('/matches')}
-                >
-                  Explore Skills
-                  <Search className="ml-2 h-5 w-5" />
+                
+                <Button size="lg" variant="outline" className="text-lg px-8 py-4" asChild>
+                  <Link to="/classes">
+                    Explore Classes
+                    <BookOpen className="ml-2 h-5 w-5" />
+                  </Link>
                 </Button>
               </div>
               
               <div className="flex flex-wrap gap-3 justify-center">
-                <Badge variant="secondary" className="text-xs bg-white/10">✓ Free to start</Badge>
-                <Badge variant="secondary" className="text-xs bg-white/10">✓ No subscription required</Badge>
-                <Badge variant="secondary" className="text-xs bg-white/10">✓ Global community</Badge>
-                <Badge variant="secondary" className="text-xs bg-white/10">✓ Verified teachers</Badge>
+                <Badge variant="secondary" className="bg-white/10">✓ Free to start</Badge>
+                <Badge variant="secondary" className="bg-white/10">✓ Learn at your pace</Badge>
+                <Badge variant="secondary" className="bg-white/10">✓ Expert instructors</Badge>
+                <Badge variant="secondary" className="bg-white/10">✓ Earn while you teach</Badge>
               </div>
             </CardContent>
           </Card>
