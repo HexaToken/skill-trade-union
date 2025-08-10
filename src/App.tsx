@@ -72,7 +72,7 @@ const App = () => (
             <Route path="/settings" element={<Layout><Placeholder title="Settings" desc="Manage preferences, verification, and notifications." /></Layout>} />
             
             {/* Onboarding */}
-            <Route path="/onboarding" element={<Layout><Placeholder title="Onboarding" desc="Complete your profile and start skill swapping." /></Layout>} />
+            <Route path="/onboarding" element={<Layout><Onboarding /></Layout>} />
             
             {/* Support pages */}
             <Route path="/about" element={<Layout><Placeholder title="About SkillSwap" desc="Learn about our mission to democratize skill sharing." /></Layout>} />
