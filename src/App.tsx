@@ -14,6 +14,7 @@ import Dashboard from "./pages/Dashboard";
 import Matches from "./pages/Matches";
 import Classes from "./pages/Classes";
 import ClassDetail from "./pages/ClassDetail";
+import SkillPaths from "./pages/SkillPaths";
 import Wallet from "./pages/Wallet";
 import Profile from "./pages/Profile";
 import Onboarding from "./pages/Onboarding";
