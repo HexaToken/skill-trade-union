@@ -1,4 +1,3 @@
-import { AppLayout } from "@/components/layout/AppLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -7,7 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
 import { ArrowDownIcon, ArrowUpIcon, CreditCard, DollarSign, Gift, Plus, TrendingUp, Calendar, Trophy, Heart, Bitcoin, ExternalLink, Download, Filter } from "lucide-react";
-import { users, organizations, creditTransactions } from "@/mock/skillswap-data";
+import { users, organizations, creditTransactions } from "@/data/mockData";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -44,7 +43,7 @@ export default function WalletPage() {
   ];
 
   return (
-    <AppLayout>
+    <div className="page-container section-spacing">
       <div className="space-y-8">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -331,6 +330,6 @@ export default function WalletPage() {
           </TabsContent>
         </Tabs>
       </div>
-    </AppLayout>
+    </div>
   );
 }
