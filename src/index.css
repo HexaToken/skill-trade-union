@@ -8,96 +8,113 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* NeoGlass Flow Color System */
+    --background: 243 247 251; /* #F3F7FB - Very light blue-gray */
+    --foreground: 11 18 32; /* #0B1220 - Rich blue-black */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 255 255 255; /* Pure white for glass cards */
+    --card-foreground: 11 18 32;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 255 255 255;
+    --popover-foreground: 11 18 32;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 262 83% 58%; /* #7C3AED - Brand violet */
+    --primary-foreground: 255 255 255;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 243 247 251;
+    --secondary-foreground: 55 71 81; /* #374151 - Medium gray */
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 243 247 251;
+    --muted-foreground: 158 163 175; /* #9CA3AF - Light gray */
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 243 247 251;
+    --accent-foreground: 55 71 81;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%; /* #EF4444 - Brand red */
+    --destructive-foreground: 255 255 255;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 219 234 245; /* Light border with blue tint */
+    --input: 219 234 245;
+    --ring: 262 83% 58%;
 
-    --radius: 0.75rem;
+    --radius: 1rem; /* 2xl rounded corners */
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* NeoGlass specific variables */
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    --neo-blur: 16px;
+    --neo-gradient: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
 
-    /* Brand palette */
-    --brand-primary: 262 83% 58%; /* #7C3AED */
-    --brand-secondary: 189 95% 43%; /* #06B6D4 */
-    --brand-green: 142 71% 45%; /* #22C55E */
-    --brand-amber: 38 92% 50%; /* #F59E0B */
-    --brand-red: 0 84% 60%; /* #EF4444 */
+    /* Brand palette - exact colors from spec */
+    --brand-primary: 262 83% 58%; /* #7C3AED violet */
+    --brand-secondary: 189 95% 43%; /* #06B6D4 cyan */
+    --brand-success: 142 71% 45%; /* #22C55E green */
+    --brand-warning: 38 92% 50%; /* #F59E0B amber */
+    --brand-danger: 0 84% 60%; /* #EF4444 red */
 
-    /* Effects */
+    /* Neutrals from spec */
+    --neutral-900: 11 18 32; /* #0B1220 */
+    --neutral-800: 17 24 39; /* #111827 */
+    --neutral-600: 55 71 81; /* #374151 */
+    --neutral-400: 158 163 175; /* #9CA3AF */
+    --neutral-100: 243 247 251; /* #F3F4F6 */
+    --neutral-50: 255 255 255; /* #FFFFFF */
+
+    /* Enhanced Effects */
     --gradient-brand: linear-gradient(135deg, hsl(var(--brand-primary)) 0%, hsl(var(--brand-secondary)) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+    --shadow-neo: 0 8px 32px rgba(124, 58, 237, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
     --shadow-elev: 0 10px 30px -12px hsl(var(--brand-primary) / 0.35);
-    --shadow-soft: 0 2px 10px -4px hsl(var(--foreground) / 0.08);
+    --shadow-soft: 0 2px 10px -4px rgba(0, 0, 0, 0.1);
+    --shadow-glow: 0 0 20px rgba(124, 58, 237, 0.3);
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark mode NeoGlass Flow */
+    --background: 11 18 32; /* #0B1220 - Rich blue-black */
+    --foreground: 243 247 251; /* Light text */
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 17 24 39; /* #111827 - Darker card background */
+    --card-foreground: 243 247 251;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 17 24 39;
+    --popover-foreground: 243 247 251;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 262 83% 58%; /* Keep brand violet */
+    --primary-foreground: 255 255 255;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 55 71 81; /* #374151 */
+    --secondary-foreground: 243 247 251;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 55 71 81;
+    --muted-foreground: 158 163 175;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 55 71 81;
+    --accent-foreground: 243 247 251;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 255 255 255;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 55 71 81;
+    --input: 55 71 81;
+    --ring: 262 83% 58%;
+
+    /* Dark NeoGlass adjustments */
+    --glass-bg: rgba(17, 24, 39, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --neo-gradient: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(6, 182, 212, 0.15) 100%);
+
+    /* Enhanced shadows for dark mode */
+    --shadow-neo: 0 8px 32px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(124, 58, 237, 0.2);
+    --shadow-soft: 0 2px 10px -4px rgba(0, 0, 0, 0.3);
+    --shadow-glow: 0 0 20px rgba(124, 58, 237, 0.4);
   }
 }
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @layer base {
   * {
@@ -106,20 +123,144 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    background-attachment: fixed;
+    background-image:
+      radial-gradient(circle at 25% 25%, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+  }
+
+  /* Typography Hierarchy */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl lg:text-5xl xl:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl lg:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl lg:text-3xl;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Remove scrollbar styling for cleaner look */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--brand-primary) / 0.3);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--brand-primary) / 0.5);
   }
 }
 
 @layer utilities {
+  /* NeoGlass Flow Utilities */
   .bg-gradient-brand { background-image: var(--gradient-brand); }
+  .bg-gradient-glass { background-image: var(--gradient-glass); }
+  .shadow-neo { box-shadow: var(--shadow-neo); }
   .shadow-elev { box-shadow: var(--shadow-elev); }
   .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+
+  /* Enhanced Glass Effects */
   .glass {
-    @apply bg-background/60 backdrop-blur-xl border border-border/60 shadow-soft;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--neo-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    @apply rounded-2xl;
   }
+
   .glass-card {
-    @apply bg-card/80 backdrop-blur-md border border-border/50 shadow-soft rounded-2xl;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    @apply rounded-2xl shadow-neo;
   }
-  .hover-scale { @apply transition-transform duration-200 hover:scale-105; }
-  .hover-lift { @apply transition-all duration-200 hover:shadow-elev hover:-translate-y-1; }
+
+  .glass-header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    @apply transition-all duration-300;
+  }
+
+  .dark .glass-header {
+    background: rgba(17, 24, 39, 0.95);
+    border-bottom: 1px solid rgba(55, 71, 81, 0.3);
+  }
+
+  /* Motion & Interactions */
+  .hover-scale { @apply transition-transform duration-200 hover:scale-[1.02]; }
+  .hover-lift {
+    @apply transition-all duration-200 hover:shadow-elev hover:-translate-y-1 hover:shadow-glow;
+  }
+  .hover-glow { @apply transition-all duration-200 hover:shadow-glow; }
+
+  /* Text Effects */
   .text-gradient { @apply bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent; }
+  .text-neo { @apply font-medium tracking-tight; }
+
+  /* Button Enhancements */
+  .btn-neo {
+    background: var(--gradient-brand);
+    @apply text-white font-medium px-6 py-3 rounded-2xl shadow-neo hover:shadow-glow transition-all duration-200 hover:-translate-y-0.5;
+  }
+
+  .btn-glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    @apply rounded-2xl shadow-soft hover:shadow-neo transition-all duration-200;
+  }
+
+  /* Layout Utilities */
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-spacing {
+    @apply py-12 lg:py-16;
+  }
+
+  /* Animations */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes glow {
+    from { box-shadow: 0 0 20px rgba(124, 58, 237, 0.3); }
+    to { box-shadow: 0 0 30px rgba(124, 58, 237, 0.6); }
+  }
+
+  /* Focus states for accessibility */
+  .focus-neo {
+    @apply focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-background;
+  }
 }
