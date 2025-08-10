@@ -623,9 +623,9 @@ export default function ClassDetail() {
             </Tabs>
           </div>
 
-          {/* Desktop Sticky Panel (repeated for correct layout) */}
+          {/* Desktop Sticky Panel */}
           <div className="course-sidebar hidden lg:block">
-            {/* Sticky panel is rendered above */}
+            <StickyEnrollmentPanel />
           </div>
         </div>
       </div>
