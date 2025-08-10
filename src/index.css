@@ -116,5 +116,10 @@ All colors MUST be HSL.
   .glass {
     @apply bg-background/60 backdrop-blur-xl border border-border/60 shadow-soft;
   }
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-md border border-border/50 shadow-soft rounded-2xl;
+  }
   .hover-scale { @apply transition-transform duration-200 hover:scale-105; }
+  .hover-lift { @apply transition-all duration-200 hover:shadow-elev hover:-translate-y-1; }
+  .text-gradient { @apply bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent; }
 }
