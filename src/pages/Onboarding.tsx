@@ -11,7 +11,13 @@ import {
   Check,
   Zap,
   Award,
-  Calendar
+  Calendar,
+  Languages,
+  Target,
+  Users,
+  BookOpen,
+  Camera,
+  Sparkles
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -22,6 +28,7 @@ import { Badge } from '@/components/ui/badge';
 import { Slider } from '@/components/ui/slider';
 import { Checkbox } from '@/components/ui/checkbox';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Progress } from '@/components/ui/progress';
 import { 
   Select,
   SelectContent,
@@ -29,38 +36,41 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import { skills } from '@/data/mockData';
-import type { OnboardingData, SkillOffered, SkillWanted, Availability } from '@/models/types';
+import type { OnboardingData } from '@/models/types';
 
-const LANGUAGES = [
-  'English', 'Spanish', 'French', 'German', 'Italian', 'Portuguese', 
-  'Mandarin', 'Japanese', 'Korean', 'Arabic', 'Russian', 'Hindi'
+const steps = [
+  { id: 'welcome', title: 'Welcome', icon: Sparkles },
+  { id: 'basics', title: 'Tell us about yourself', icon: User },
+  { id: 'skills', title: 'Your skills', icon: Award },
+  { id: 'availability', title: 'Availability', icon: Calendar },
+  { id: 'complete', title: 'Complete', icon: Check }
 ];
 
-const TIMEZONES = [
-  'America/New_York', 'America/Los_Angeles', 'America/Chicago', 'America/Denver',
+const languages = [
+  'English', 'Spanish', 'French', 'German', 'Chinese', 'Japanese', 
+  'Portuguese', 'Russian', 'Arabic', 'Hindi', 'Italian', 'Korean'
+];
+
+const timezones = [
+  'America/Los_Angeles', 'America/Denver', 'America/Chicago', 'America/New_York',
   'Europe/London', 'Europe/Paris', 'Europe/Berlin', 'Europe/Madrid',
-  'Asia/Tokyo', 'Asia/Shanghai', 'Asia/Mumbai', 'Asia/Dubai',
+  'Asia/Tokyo', 'Asia/Shanghai', 'Asia/Seoul', 'Asia/Mumbai',
   'Australia/Sydney', 'Australia/Melbourne'
 ];
 
-const DAYS_OF_WEEK = [
-  'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+const countries = [
+  'United States', 'United Kingdom', 'Canada', 'Australia', 'Germany', 'France',
+  'Spain', 'Italy', 'Japan', 'China', 'India', 'Brazil', 'Mexico', 'Argentina'
 ];
 
-const TIME_SLOTS = [
-  '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00',
-  '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00'
-];
+const skillCategories = Array.from(new Set(skills.map(s => s.category)));
 
 export default function Onboarding() {
   const navigate = useNavigate();
-  const [currentStep, setCurrentStep] = useState(1);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  const [formData, setFormData] = useState<OnboardingData>({
+  const [currentStep, setCurrentStep] = useState(0);
+  const [onboardingData, setOnboardingData] = useState<OnboardingData>({
     step1: {
       location: { city: '', country: '', lat: 0, lng: 0 },
       languages: [],
@@ -76,511 +86,558 @@ export default function Onboarding() {
     }
   });
 
-  const totalSteps = 3;
-  const progress = (currentStep / totalSteps) * 100;
+  const [selectedSkillsOffered, setSelectedSkillsOffered] = useState<{[key: string]: number}>({});
+  const [selectedSkillsWanted, setSelectedSkillsWanted] = useState<{[key: string]: 'low' | 'medium' | 'high'}>({});
+  const [availabilityGrid, setAvailabilityGrid] = useState<{[key: string]: string[]}>({});
 
-  const updateFormData = (step: keyof OnboardingData, data: any) => {
-    setFormData(prev => ({
+  const currentStepData = steps[currentStep];
+  const progress = ((currentStep + 1) / steps.length) * 100;
+
+  const handleNext = () => {
+    if (currentStep < steps.length - 1) {
+      setCurrentStep(currentStep + 1);
+    } else {
+      // Complete onboarding
+      console.log('Onboarding completed:', onboardingData);
+      navigate('/matches');
+    }
+  };
+
+  const handleBack = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  const updateStep1 = (field: keyof OnboardingData['step1'], value: any) => {
+    setOnboardingData(prev => ({
       ...prev,
-      [step]: { ...prev[step], ...data }
+      step1: { ...prev.step1, [field]: value }
     }));
   };
 
-  const nextStep = () => {
-    if (currentStep < totalSteps) {
-      setCurrentStep(prev => prev + 1);
-    }
+  const toggleLanguage = (language: string) => {
+    const current = onboardingData.step1.languages;
+    const updated = current.includes(language) 
+      ? current.filter(l => l !== language)
+      : [...current, language];
+    updateStep1('languages', updated);
   };
 
-  const prevStep = () => {
-    if (currentStep > 1) {
-      setCurrentStep(prev => prev - 1);
-    }
+  const toggleSkillOffered = (skillId: string, level: number) => {
+    setSelectedSkillsOffered(prev => ({
+      ...prev,
+      [skillId]: level
+    }));
   };
 
-  const handleSubmit = async () => {
-    setIsSubmitting(true);
-    // TODO: API integration
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    navigate('/matches');
+  const toggleSkillWanted = (skillId: string, priority: 'low' | 'medium' | 'high') => {
+    setSelectedSkillsWanted(prev => ({
+      ...prev,
+      [skillId]: priority
+    }));
   };
 
-  const isStepValid = (step: number) => {
-    switch (step) {
-      case 1:
-        return formData.step1.location.city && 
-               formData.step1.location.country && 
-               formData.step1.languages.length > 0 &&
-               formData.step1.bio.length >= 20 &&
-               formData.step1.timezone;
-      case 2:
-        return formData.step2.skillsOffered.length > 0 || formData.step2.skillsWanted.length > 0;
-      case 3:
-        return formData.step3.availability.length > 0;
-      default:
-        return false;
-    }
-  };
-
-  const handleSkillOfferedToggle = (skillId: string, level: number = 3) => {
-    const currentSkills = formData.step2.skillsOffered;
-    const exists = currentSkills.find(s => s.skillId === skillId);
-    
-    if (exists) {
-      updateFormData('step2', {
-        skillsOffered: currentSkills.filter(s => s.skillId !== skillId)
-      });
-    } else {
-      updateFormData('step2', {
-        skillsOffered: [...currentSkills, { skillId, level: level as 1 | 2 | 3 | 4 | 5 }]
-      });
-    }
-  };
-
-  const handleSkillWantedToggle = (skillId: string, priority: 'low' | 'medium' | 'high' = 'medium') => {
-    const currentSkills = formData.step2.skillsWanted;
-    const exists = currentSkills.find(s => s.skillId === skillId);
-    
-    if (exists) {
-      updateFormData('step2', {
-        skillsWanted: currentSkills.filter(s => s.skillId !== skillId)
-      });
-    } else {
-      updateFormData('step2', {
-        skillsWanted: [...currentSkills, { skillId, priority }]
-      });
-    }
-  };
-
-  const handleAvailabilityToggle = (dayOfWeek: number, slot: string) => {
-    const currentAvailability = formData.step3.availability;
-    const dayAvailability = currentAvailability.find(a => a.dayOfWeek === dayOfWeek);
-    
-    if (dayAvailability) {
-      const hasSlot = dayAvailability.slots.includes(slot);
-      const newSlots = hasSlot 
-        ? dayAvailability.slots.filter(s => s !== slot)
-        : [...dayAvailability.slots, slot];
+  const toggleAvailability = (day: number, time: string) => {
+    setAvailabilityGrid(prev => {
+      const dayKey = day.toString();
+      const currentTimes = prev[dayKey] || [];
+      const updated = currentTimes.includes(time)
+        ? currentTimes.filter(t => t !== time)
+        : [...currentTimes, time];
       
-      if (newSlots.length === 0) {
-        updateFormData('step3', {
-          availability: currentAvailability.filter(a => a.dayOfWeek !== dayOfWeek)
-        });
-      } else {
-        updateFormData('step3', {
-          availability: currentAvailability.map(a => 
-            a.dayOfWeek === dayOfWeek ? { ...a, slots: newSlots } : a
-          )
-        });
-      }
-    } else {
-      updateFormData('step3', {
-        availability: [...currentAvailability, { dayOfWeek, slots: [slot] }]
-      });
+      return { ...prev, [dayKey]: updated };
+    });
+  };
+
+  const renderWelcomeStep = () => (
+    <div className="text-center space-y-6">
+      <div className="w-24 h-24 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-full flex items-center justify-center mx-auto">
+        <Sparkles className="w-12 h-12 text-white" />
+      </div>
+      
+      <div className="space-y-4">
+        <h2 className="text-3xl font-heading font-bold">Welcome to SkillSwap!</h2>
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          Join the world's largest skill-sharing community where knowledge flows freely and everyone can teach and learn.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+        <Card className="text-center">
+          <CardContent className="p-6">
+            <Award className="w-8 h-8 text-brand-primary mx-auto mb-3" />
+            <h3 className="font-semibold mb-2">Share Your Skills</h3>
+            <p className="text-sm text-muted-foreground">
+              Teach what you know and earn credits for helping others learn
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="text-center">
+          <CardContent className="p-6">
+            <BookOpen className="w-8 h-8 text-brand-secondary mx-auto mb-3" />
+            <h3 className="font-semibold mb-2">Learn Anything</h3>
+            <p className="text-sm text-muted-foreground">
+              Use your earned credits to learn new skills from expert mentors
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="text-center">
+          <CardContent className="p-6">
+            <Zap className="w-8 h-8 text-brand-amber mx-auto mb-3" />
+            <h3 className="font-semibold mb-2">Instant Help</h3>
+            <p className="text-sm text-muted-foreground">
+              Get immediate expert assistance with our ExpertMatch AI
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="space-y-2">
+        <p className="text-sm text-muted-foreground">This should take about 5 minutes</p>
+        <Button size="lg" onClick={handleNext} className="px-8">
+          Get Started
+          <ChevronRight className="w-4 h-4 ml-2" />
+        </Button>
+      </div>
+    </div>
+  );
+
+  const renderBasicsStep = () => (
+    <div className="space-y-6 max-w-2xl mx-auto">
+      <div className="text-center space-y-2">
+        <User className="w-12 h-12 text-brand-primary mx-auto" />
+        <h2 className="text-2xl font-heading font-bold">Tell us about yourself</h2>
+        <p className="text-muted-foreground">
+          Help us create your SkillSwap profile and connect you with the right people
+        </p>
+      </div>
+
+      <div className="grid gap-6">
+        {/* Location */}
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="city">City</Label>
+            <Input
+              id="city"
+              placeholder="e.g., San Francisco"
+              value={onboardingData.step1.location.city}
+              onChange={(e) => updateStep1('location', { 
+                ...onboardingData.step1.location, 
+                city: e.target.value 
+              })}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="country">Country</Label>
+            <Select
+              value={onboardingData.step1.location.country}
+              onValueChange={(value) => updateStep1('location', { 
+                ...onboardingData.step1.location, 
+                country: value 
+              })}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select country" />
+              </SelectTrigger>
+              <SelectContent>
+                {countries.map((country) => (
+                  <SelectItem key={country} value={country}>
+                    {country}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+
+        {/* Timezone */}
+        <div className="space-y-2">
+          <Label htmlFor="timezone">Timezone</Label>
+          <Select
+            value={onboardingData.step1.timezone}
+            onValueChange={(value) => updateStep1('timezone', value)}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Select your timezone" />
+            </SelectTrigger>
+            <SelectContent>
+              {timezones.map((tz) => (
+                <SelectItem key={tz} value={tz}>
+                  {tz.replace('_', ' ').replace('/', ' / ')}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+
+        {/* Languages */}
+        <div className="space-y-3">
+          <Label>Languages you speak</Label>
+          <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
+            {languages.map((language) => (
+              <Badge
+                key={language}
+                variant={onboardingData.step1.languages.includes(language) ? "default" : "outline"}
+                className="cursor-pointer hover-scale justify-center py-2"
+                onClick={() => toggleLanguage(language)}
+              >
+                {language}
+              </Badge>
+            ))}
+          </div>
+        </div>
+
+        {/* Bio */}
+        <div className="space-y-2">
+          <Label htmlFor="bio">Tell us about yourself</Label>
+          <Textarea
+            id="bio"
+            placeholder="Share a bit about your background, interests, and what you're passionate about..."
+            value={onboardingData.step1.bio}
+            onChange={(e) => updateStep1('bio', e.target.value)}
+            rows={4}
+          />
+          <p className="text-xs text-muted-foreground">
+            {onboardingData.step1.bio.length}/500 characters
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderSkillsStep = () => (
+    <div className="space-y-6 max-w-4xl mx-auto">
+      <div className="text-center space-y-2">
+        <Award className="w-12 h-12 text-brand-primary mx-auto" />
+        <h2 className="text-2xl font-heading font-bold">What skills do you have?</h2>
+        <p className="text-muted-foreground">
+          Tell us what you can teach and what you'd like to learn
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Skills I Can Teach */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Award className="w-5 h-5" />
+              Skills I Can Teach
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid gap-3">
+              {skills.slice(0, 8).map((skill) => (
+                <div key={skill.id} className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg">{skill.icon}</span>
+                      <span className="font-medium">{skill.name}</span>
+                    </div>
+                    <Badge variant="outline" size="sm">{skill.category}</Badge>
+                  </div>
+                  {selectedSkillsOffered[skill.id] && (
+                    <div className="ml-6 space-y-2">
+                      <Label className="text-sm">Skill Level (1-5)</Label>
+                      <Slider
+                        value={[selectedSkillsOffered[skill.id]]}
+                        onValueChange={(value) => toggleSkillOffered(skill.id, value[0])}
+                        max={5}
+                        min={1}
+                        step={1}
+                        className="w-full"
+                      />
+                      <div className="flex justify-between text-xs text-muted-foreground">
+                        <span>Beginner</span>
+                        <span>Expert</span>
+                      </div>
+                    </div>
+                  )}
+                  <Button
+                    variant={selectedSkillsOffered[skill.id] ? "secondary" : "outline"}
+                    size="sm"
+                    onClick={() => selectedSkillsOffered[skill.id] 
+                      ? setSelectedSkillsOffered(prev => {
+                          const updated = {...prev};
+                          delete updated[skill.id];
+                          return updated;
+                        })
+                      : toggleSkillOffered(skill.id, 3)
+                    }
+                  >
+                    {selectedSkillsOffered[skill.id] ? 'Selected' : 'Add Skill'}
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Skills I Want to Learn */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Target className="w-5 h-5" />
+              Skills I Want to Learn
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid gap-3">
+              {skills.slice(8, 16).map((skill) => (
+                <div key={skill.id} className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg">{skill.icon}</span>
+                      <span className="font-medium">{skill.name}</span>
+                    </div>
+                    <Badge variant="outline" size="sm">{skill.category}</Badge>
+                  </div>
+                  {selectedSkillsWanted[skill.id] && (
+                    <div className="ml-6">
+                      <Label className="text-sm">Priority</Label>
+                      <RadioGroup
+                        value={selectedSkillsWanted[skill.id]}
+                        onValueChange={(value) => toggleSkillWanted(skill.id, value as any)}
+                        className="flex gap-4 mt-1"
+                      >
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="low" id={`${skill.id}-low`} />
+                          <Label htmlFor={`${skill.id}-low`} className="text-sm">Low</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="medium" id={`${skill.id}-medium`} />
+                          <Label htmlFor={`${skill.id}-medium`} className="text-sm">Medium</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="high" id={`${skill.id}-high`} />
+                          <Label htmlFor={`${skill.id}-high`} className="text-sm">High</Label>
+                        </div>
+                      </RadioGroup>
+                    </div>
+                  )}
+                  <Button
+                    variant={selectedSkillsWanted[skill.id] ? "secondary" : "outline"}
+                    size="sm"
+                    onClick={() => selectedSkillsWanted[skill.id] 
+                      ? setSelectedSkillsWanted(prev => {
+                          const updated = {...prev};
+                          delete updated[skill.id];
+                          return updated;
+                        })
+                      : toggleSkillWanted(skill.id, 'medium')
+                    }
+                  >
+                    {selectedSkillsWanted[skill.id] ? 'Selected' : 'Add Skill'}
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+
+  const renderAvailabilityStep = () => {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const timeSlots = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
+
+    return (
+      <div className="space-y-6 max-w-4xl mx-auto">
+        <div className="text-center space-y-2">
+          <Calendar className="w-12 h-12 text-brand-primary mx-auto" />
+          <h2 className="text-2xl font-heading font-bold">When are you available?</h2>
+          <p className="text-muted-foreground">
+            Select your preferred time slots for teaching and learning
+          </p>
+        </div>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Weekly Availability</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4">
+              {days.map((day, dayIndex) => (
+                <div key={day} className="space-y-3">
+                  <h4 className="font-medium">{day}</h4>
+                  <div className="grid grid-cols-6 md:grid-cols-12 gap-1">
+                    {timeSlots.map((time) => (
+                      <Button
+                        key={`${dayIndex}-${time}`}
+                        variant={availabilityGrid[dayIndex]?.includes(time) ? "default" : "outline"}
+                        size="sm"
+                        className="text-xs h-8"
+                        onClick={() => toggleAvailability(dayIndex, time)}
+                      >
+                        {time}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="mt-6 p-4 bg-muted/50 rounded-lg">
+              <p className="text-sm text-muted-foreground">
+                💡 <strong>Tip:</strong> More availability = better matches! You can always update this later in your profile.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  };
+
+  const renderCompleteStep = () => (
+    <div className="text-center space-y-6 max-w-2xl mx-auto">
+      <div className="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto">
+        <Check className="w-12 h-12 text-white" />
+      </div>
+      
+      <div className="space-y-4">
+        <h2 className="text-3xl font-heading font-bold">Welcome to SkillSwap!</h2>
+        <p className="text-xl text-muted-foreground">
+          Your profile is complete and you're ready to start your skill-sharing journey.
+        </p>
+      </div>
+
+      <Card>
+        <CardContent className="p-6">
+          <div className="space-y-4">
+            <h3 className="font-semibold">What happens next?</h3>
+            <div className="grid gap-3 text-left">
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-brand-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-brand-primary text-sm font-medium">1</span>
+                </div>
+                <div>
+                  <p className="font-medium">Get matched with learners and teachers</p>
+                  <p className="text-sm text-muted-foreground">Our AI will find the perfect skill matches for you</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-brand-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-brand-primary text-sm font-medium">2</span>
+                </div>
+                <div>
+                  <p className="font-medium">Start earning credits</p>
+                  <p className="text-sm text-muted-foreground">Share your skills and build up your credit balance</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-brand-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-brand-primary text-sm font-medium">3</span>
+                </div>
+                <div>
+                  <p className="font-medium">Learn anything you want</p>
+                  <p className="text-sm text-muted-foreground">Use your credits to learn from our expert community</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <div className="space-y-3">
+        <p className="text-sm text-muted-foreground">You've earned 100 welcome credits to get started!</p>
+        <Button size="lg" onClick={handleNext} className="px-8">
+          Start Exploring
+          <ChevronRight className="w-4 h-4 ml-2" />
+        </Button>
+      </div>
+    </div>
+  );
+
+  const isStepValid = () => {
+    switch (currentStep) {
+      case 0:
+        return true;
+      case 1:
+        return onboardingData.step1.location.city && 
+               onboardingData.step1.location.country && 
+               onboardingData.step1.timezone &&
+               onboardingData.step1.languages.length > 0 &&
+               onboardingData.step1.bio.length > 10;
+      case 2:
+        return Object.keys(selectedSkillsOffered).length > 0 || Object.keys(selectedSkillsWanted).length > 0;
+      case 3:
+        return Object.keys(availabilityGrid).length > 0;
+      default:
+        return true;
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/30">
-      <div className="page-container py-8">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Welcome to <span className="text-gradient">SkillSwap</span>!
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Let's set up your profile so you can start trading skills with our global community.
-          </p>
-        </div>
-
-        {/* Progress */}
-        <div className="max-w-2xl mx-auto mb-8">
+    <div className="min-h-screen bg-background">
+      {/* Progress Header */}
+      <div className="border-b bg-card">
+        <div className="page-container py-4">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-sm font-medium">Step {currentStep} of {totalSteps}</span>
-            <span className="text-sm text-muted-foreground">{Math.round(progress)}% complete</span>
+            <h1 className="font-heading font-bold text-xl">SkillSwap Onboarding</h1>
+            <div className="text-sm text-muted-foreground">
+              Step {currentStep + 1} of {steps.length}
+            </div>
           </div>
-          <Progress value={progress} className="h-2" />
-        </div>
-
-        {/* Step Content */}
-        <div className="max-w-4xl mx-auto">
-          <Card className="glass-card">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3">
-                {currentStep === 1 && (
-                  <>
-                    <div className="p-2 rounded-lg bg-brand-primary/10">
-                      <User className="w-6 h-6 text-brand-primary" />
+          
+          <div className="space-y-2">
+            <Progress value={progress} className="h-2" />
+            <div className="flex justify-between">
+              {steps.map((step, index) => {
+                const Icon = step.icon;
+                return (
+                  <div key={step.id} className="flex items-center gap-2">
+                    <div className={cn(
+                      'w-8 h-8 rounded-full flex items-center justify-center border-2',
+                      index <= currentStep 
+                        ? 'bg-brand-primary border-brand-primary text-white' 
+                        : 'border-muted-foreground/30 text-muted-foreground'
+                    )}>
+                      <Icon className="w-4 h-4" />
                     </div>
-                    Tell us about yourself
-                  </>
-                )}
-                {currentStep === 2 && (
-                  <>
-                    <div className="p-2 rounded-lg bg-brand-secondary/10">
-                      <Star className="w-6 h-6 text-brand-secondary" />
-                    </div>
-                    Choose your skills
-                  </>
-                )}
-                {currentStep === 3 && (
-                  <>
-                    <div className="p-2 rounded-lg bg-brand-green/10">
-                      <Calendar className="w-6 h-6 text-brand-green" />
-                    </div>
-                    Set your availability
-                  </>
-                )}
-              </CardTitle>
-            </CardHeader>
-            
-            <CardContent className="space-y-6">
-              {/* Step 1: Basic Info */}
-              {currentStep === 1 && (
-                <div className="space-y-6">
-                  {/* Location */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="city">City</Label>
-                      <div className="relative">
-                        <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input
-                          id="city"
-                          placeholder="San Francisco"
-                          className="pl-10"
-                          value={formData.step1.location.city}
-                          onChange={(e) => updateFormData('step1', {
-                            location: { ...formData.step1.location, city: e.target.value }
-                          })}
-                        />
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="country">Country</Label>
-                      <div className="relative">
-                        <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input
-                          id="country"
-                          placeholder="United States"
-                          className="pl-10"
-                          value={formData.step1.location.country}
-                          onChange={(e) => updateFormData('step1', {
-                            location: { ...formData.step1.location, country: e.target.value }
-                          })}
-                        />
-                      </div>
-                    </div>
+                    <span className={cn(
+                      'text-xs font-medium hidden sm:block',
+                      index <= currentStep ? 'text-foreground' : 'text-muted-foreground'
+                    )}>
+                      {step.title}
+                    </span>
                   </div>
-
-                  {/* Languages */}
-                  <div>
-                    <Label>Languages you speak</Label>
-                    <p className="text-sm text-muted-foreground mb-3">
-                      Select all languages you're comfortable using for teaching or learning.
-                    </p>
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                      {LANGUAGES.map((language) => (
-                        <label key={language} className="flex items-center gap-2 cursor-pointer">
-                          <Checkbox
-                            checked={formData.step1.languages.includes(language)}
-                            onCheckedChange={(checked) => {
-                              const currentLangs = formData.step1.languages;
-                              if (checked) {
-                                updateFormData('step1', {
-                                  languages: [...currentLangs, language]
-                                });
-                              } else {
-                                updateFormData('step1', {
-                                  languages: currentLangs.filter(l => l !== language)
-                                });
-                              }
-                            }}
-                          />
-                          <span className="text-sm">{language}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Bio */}
-                  <div>
-                    <Label htmlFor="bio">Tell us about yourself</Label>
-                    <p className="text-sm text-muted-foreground mb-3">
-                      Share your background, interests, and what you're passionate about. This helps others connect with you.
-                    </p>
-                    <Textarea
-                      id="bio"
-                      placeholder="I'm a graphic designer who loves photography and wants to learn web development..."
-                      rows={4}
-                      value={formData.step1.bio}
-                      onChange={(e) => updateFormData('step1', { bio: e.target.value })}
-                    />
-                    <p className="text-xs text-muted-foreground mt-1">
-                      {formData.step1.bio.length}/500 characters (minimum 20)
-                    </p>
-                  </div>
-
-                  {/* Timezone */}
-                  <div>
-                    <Label>Timezone</Label>
-                    <p className="text-sm text-muted-foreground mb-3">
-                      This helps us match you with people in compatible time zones.
-                    </p>
-                    <Select
-                      value={formData.step1.timezone}
-                      onValueChange={(value) => updateFormData('step1', { timezone: value })}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select your timezone" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {TIMEZONES.map((tz) => (
-                          <SelectItem key={tz} value={tz}>
-                            {tz.replace('_', ' ').replace('/', ' / ')}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-              )}
-
-              {/* Step 2: Skills */}
-              {currentStep === 2 && (
-                <div className="space-y-8">
-                  {/* Skills offered */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                      <Award className="w-5 h-5 text-brand-primary" />
-                      Skills you can teach
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Select skills you're confident teaching others. You can always add more later.
-                    </p>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {skills.map((skill) => {
-                        const isSelected = formData.step2.skillsOffered.some(s => s.skillId === skill.id);
-                        const selectedSkill = formData.step2.skillsOffered.find(s => s.skillId === skill.id);
-                        
-                        return (
-                          <Card 
-                            key={skill.id}
-                            className={cn(
-                              'cursor-pointer transition-all duration-200 hover-lift',
-                              isSelected 
-                                ? 'ring-2 ring-brand-primary bg-brand-primary/5' 
-                                : 'hover:shadow-md'
-                            )}
-                            onClick={() => handleSkillOfferedToggle(skill.id)}
-                          >
-                            <CardContent className="p-4">
-                              <div className="flex items-center gap-3 mb-3">
-                                <span className="text-2xl">{skill.icon}</span>
-                                <div>
-                                  <h4 className="font-medium">{skill.name}</h4>
-                                  <Badge variant="outline" size="sm">{skill.category}</Badge>
-                                </div>
-                                {isSelected && (
-                                  <Check className="w-5 h-5 text-brand-primary ml-auto" />
-                                )}
-                              </div>
-                              
-                              {isSelected && (
-                                <div>
-                                  <Label className="text-xs">Your level (1-5)</Label>
-                                  <Slider
-                                    value={[selectedSkill?.level || 3]}
-                                    onValueChange={([value]) => {
-                                      const currentSkills = formData.step2.skillsOffered;
-                                      updateFormData('step2', {
-                                        skillsOffered: currentSkills.map(s => 
-                                          s.skillId === skill.id 
-                                            ? { ...s, level: value as 1 | 2 | 3 | 4 | 5 }
-                                            : s
-                                        )
-                                      });
-                                    }}
-                                    max={5}
-                                    min={1}
-                                    step={1}
-                                    className="mt-2"
-                                  />
-                                  <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                                    <span>Beginner</span>
-                                    <span>Expert</span>
-                                  </div>
-                                </div>
-                              )}
-                            </CardContent>
-                          </Card>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* Skills wanted */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                      <Zap className="w-5 h-5 text-brand-secondary" />
-                      Skills you want to learn
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      What would you like to learn? We'll help you find the perfect teachers.
-                    </p>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {skills.map((skill) => {
-                        const isSelected = formData.step2.skillsWanted.some(s => s.skillId === skill.id);
-                        const selectedSkill = formData.step2.skillsWanted.find(s => s.skillId === skill.id);
-                        
-                        return (
-                          <Card 
-                            key={skill.id}
-                            className={cn(
-                              'cursor-pointer transition-all duration-200 hover-lift',
-                              isSelected 
-                                ? 'ring-2 ring-brand-secondary bg-brand-secondary/5' 
-                                : 'hover:shadow-md'
-                            )}
-                            onClick={() => handleSkillWantedToggle(skill.id)}
-                          >
-                            <CardContent className="p-4">
-                              <div className="flex items-center gap-3 mb-3">
-                                <span className="text-2xl">{skill.icon}</span>
-                                <div>
-                                  <h4 className="font-medium">{skill.name}</h4>
-                                  <Badge variant="outline" size="sm">{skill.category}</Badge>
-                                </div>
-                                {isSelected && (
-                                  <Check className="w-5 h-5 text-brand-secondary ml-auto" />
-                                )}
-                              </div>
-                              
-                              {isSelected && (
-                                <div>
-                                  <Label className="text-xs">Priority</Label>
-                                  <RadioGroup
-                                    value={selectedSkill?.priority || 'medium'}
-                                    onValueChange={(value: 'low' | 'medium' | 'high') => {
-                                      const currentSkills = formData.step2.skillsWanted;
-                                      updateFormData('step2', {
-                                        skillsWanted: currentSkills.map(s => 
-                                          s.skillId === skill.id 
-                                            ? { ...s, priority: value }
-                                            : s
-                                        )
-                                      });
-                                    }}
-                                    className="flex gap-4 mt-2"
-                                  >
-                                    <div className="flex items-center space-x-1">
-                                      <RadioGroupItem value="low" id={`${skill.id}-low`} />
-                                      <label htmlFor={`${skill.id}-low`} className="text-xs">Low</label>
-                                    </div>
-                                    <div className="flex items-center space-x-1">
-                                      <RadioGroupItem value="medium" id={`${skill.id}-med`} />
-                                      <label htmlFor={`${skill.id}-med`} className="text-xs">Medium</label>
-                                    </div>
-                                    <div className="flex items-center space-x-1">
-                                      <RadioGroupItem value="high" id={`${skill.id}-high`} />
-                                      <label htmlFor={`${skill.id}-high`} className="text-xs">High</label>
-                                    </div>
-                                  </RadioGroup>
-                                </div>
-                              )}
-                            </CardContent>
-                          </Card>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Step 3: Availability */}
-              {currentStep === 3 && (
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                      <Clock className="w-5 h-5 text-brand-green" />
-                      When are you available?
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Select your preferred time slots. This helps us find matches when you're both free.
-                    </p>
-                  </div>
-
-                  <div className="space-y-4">
-                    {DAYS_OF_WEEK.map((day, dayIndex) => {
-                      const dayAvailability = formData.step3.availability.find(a => a.dayOfWeek === dayIndex);
-                      const selectedSlots = dayAvailability?.slots || [];
-                      
-                      return (
-                        <div key={day} className="border rounded-lg p-4">
-                          <h4 className="font-medium mb-3">{day}</h4>
-                          <div className="grid grid-cols-4 md:grid-cols-8 gap-2">
-                            {TIME_SLOTS.map((slot) => {
-                              const isSelected = selectedSlots.includes(slot);
-                              return (
-                                <Button
-                                  key={slot}
-                                  variant={isSelected ? "default" : "outline"}
-                                  size="sm"
-                                  className={cn(
-                                    "text-xs",
-                                    isSelected && "bg-brand-green hover:bg-brand-green/90"
-                                  )}
-                                  onClick={() => handleAvailabilityToggle(dayIndex, slot)}
-                                >
-                                  {slot}
-                                </Button>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-
-          {/* Navigation */}
-          <div className="flex justify-between mt-8">
-            <Button 
-              variant="outline" 
-              onClick={prevStep}
-              disabled={currentStep === 1}
-            >
-              <ChevronLeft className="w-4 h-4 mr-2" />
-              Previous
-            </Button>
-
-            {currentStep < totalSteps ? (
-              <Button 
-                onClick={nextStep}
-                disabled={!isStepValid(currentStep)}
-                className="btn-neo"
-              >
-                Next
-                <ChevronRight className="w-4 h-4 ml-2" />
-              </Button>
-            ) : (
-              <Button 
-                onClick={handleSubmit}
-                disabled={!isStepValid(currentStep) || isSubmitting}
-                className="btn-neo"
-              >
-                {isSubmitting ? 'Creating profile...' : 'Generate Matches'}
-                <Zap className="w-4 h-4 ml-2" />
-              </Button>
-            )}
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Main Content */}
+      <div className="page-container py-12">
+        {currentStep === 0 && renderWelcomeStep()}
+        {currentStep === 1 && renderBasicsStep()}
+        {currentStep === 2 && renderSkillsStep()}
+        {currentStep === 3 && renderAvailabilityStep()}
+        {currentStep === 4 && renderCompleteStep()}
+      </div>
+
+      {/* Navigation */}
+      {currentStep > 0 && currentStep < steps.length - 1 && (
+        <div className="border-t bg-card">
+          <div className="page-container py-4">
+            <div className="flex justify-between">
+              <Button variant="outline" onClick={handleBack}>
+                <ChevronLeft className="w-4 h-4 mr-2" />
+                Back
+              </Button>
+              
+              <Button onClick={handleNext} disabled={!isStepValid()}>
+                Next
+                <ChevronRight className="w-4 h-4 ml-2" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
