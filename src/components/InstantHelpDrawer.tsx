@@ -277,7 +277,7 @@ export default function InstantHelpDrawer({
                     
                     <div className="flex items-center gap-4 mt-2 text-sm">
                       <div className="flex items-center gap-1">
-                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                        <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                         <span className="font-medium">{expert.expertStatus.instantRating}</span>
                         <span className="text-muted-foreground">
                           ({expert.expertStatus.completedInstantSessions})
@@ -338,7 +338,7 @@ export default function InstantHelpDrawer({
                 <div>
                   <h4 className="font-medium">{expert.name}</h4>
                   <div className="flex items-center gap-1">
-                    <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                    <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                     <span className="text-sm font-medium">{expert.expertStatus.instantRating}</span>
                     <span className="text-sm text-muted-foreground">
                       ({expert.expertStatus.completedInstantSessions} sessions)

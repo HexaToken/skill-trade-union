@@ -246,7 +246,7 @@ export default function Profile() {
 
                     <div className="flex items-center gap-6 text-sm">
                       <div className="flex items-center gap-1">
-                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                        <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
                         <span className="font-medium">{user.ratingAvg}</span>
                         <span className="text-muted-foreground">({user.ratingCount} reviews)</span>
                       </div>
@@ -564,7 +564,7 @@ export default function Profile() {
                         Reviews & Feedback
                       </span>
                       <div className="flex items-center gap-2">
-                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                        <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
                         <span className="font-medium">{user.ratingAvg}</span>
                         <span className="text-muted-foreground">({user.ratingCount} reviews)</span>
                       </div>
@@ -576,7 +576,7 @@ export default function Profile() {
                       {[5, 4, 3, 2, 1].map((rating) => (
                         <div key={rating} className="flex items-center gap-3">
                           <span className="text-sm w-4">{rating}</span>
-                          <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                          <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                           <Progress value={rating === 5 ? 80 : rating === 4 ? 15 : 5} className="flex-1 h-2" />
                           <span className="text-sm text-muted-foreground w-8">
                             {rating === 5 ? '80%' : rating === 4 ? '15%' : '5%'}
@@ -605,7 +605,7 @@ export default function Profile() {
                                   <span className="font-medium">{reviewer?.name}</span>
                                   <div className="flex items-center">
                                     {Array.from({ length: review.rating }).map((_, i) => (
-                                      <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                                      <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
                                     ))}
                                   </div>
                                   <span className="text-sm text-muted-foreground">
@@ -702,7 +702,7 @@ export default function Profile() {
                       <h4 className="text-sm font-medium truncate">{similarUser.name}</h4>
                       <p className="text-xs text-muted-foreground truncate">{similarUser.bio}</p>
                       <div className="flex items-center gap-1 mt-1">
-                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                        <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                         <span className="text-xs">{similarUser.ratingAvg}</span>
                       </div>
                     </div>
