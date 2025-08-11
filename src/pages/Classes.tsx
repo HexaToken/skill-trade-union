@@ -280,8 +280,8 @@ export default function Classes() {
                           key={i} 
                           className={cn(
                             "w-3 h-3",
-                            i < Math.floor(course.ratingAvg) 
-                              ? "fill-brand-warning text-brand-warning" 
+                            i < Math.floor(course.ratingAvg)
+                              ? "fill-brand-amber text-brand-amber"
                               : "text-muted-foreground/30"
                           )}
                         />
