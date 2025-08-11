@@ -30,7 +30,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
-import { skillPaths, users } from '@/data/courseData';
+import { skillPaths, users } from '@/data/mockData';
 import type { SkillPath } from '@/models/course-types';
 
 export default function SkillPaths() {
