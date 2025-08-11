@@ -120,15 +120,15 @@ export default function MapPage() {
       >
         <div className="absolute inset-0 bg-black/20" />
         
-        <div className="relative page-container py-20 md:py-32">
+        <div className="relative page-container py-12 md:py-32">
           <div className="max-w-4xl">
-            <h1 className="font-heading text-4xl md:text-6xl font-bold text-white mb-6">
+            <h1 className="font-heading text-3xl md:text-6xl font-bold text-white mb-4 md:mb-6">
               Explore Skills Around the World
             </h1>
-            <p className="text-lg md:text-xl text-white/85 mb-8 max-w-2xl">
+            <p className="text-base md:text-xl text-white/85 mb-6 md:mb-8 max-w-2xl">
               Discover what people are teaching and learning in your city — or anywhere in the world.
             </p>
-            
+
             {/* Search Input Overlay */}
             <div className="relative max-w-2xl">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -136,7 +136,7 @@ export default function MapPage() {
                 placeholder="Search by skill, mentor, or location…"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 h-14 text-lg bg-white/95 backdrop-blur border-white/20 placeholder:text-muted-foreground"
+                className="pl-12 h-12 md:h-14 text-base md:text-lg bg-white/95 backdrop-blur border-white/20 placeholder:text-muted-foreground"
               />
             </div>
           </div>
