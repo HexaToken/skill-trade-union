@@ -24,6 +24,7 @@ import {
   isHighValueTrade
 } from '@/models/offline-trade-types';
 import { mockTradeUsers, mockSkills, getUserById, generatePin, generateQRToken } from '@/mock/offline-trade-data';
+import { Step2Verification, Step3Review } from './OfflineTradeModalSteps';
 
 interface OfflineTradeModalProps {
   isOpen: boolean;
