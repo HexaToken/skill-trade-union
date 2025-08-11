@@ -633,10 +633,10 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
                 onClick={() => handleRelatedCourseClick(relatedCourse.slug)}
               >
                 <div className="relative aspect-video overflow-hidden">
-                  <img 
-                    src={relatedCourse.thumbnail} 
+                  <img
+                    src={relatedCourse.thumbnail}
                     alt={relatedCourse.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                   <div className="absolute bottom-3 right-3">
                     <Badge className="bg-black/70 text-white border-0" size="sm">
