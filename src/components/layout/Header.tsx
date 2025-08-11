@@ -57,7 +57,7 @@ export default function Header() {
     const formData = new FormData(e.currentTarget);
     const query = formData.get('search') as string;
     if (query.trim()) {
-      navigate(`/matches?q=${encodeURIComponent(query)}`);
+      navigate(`/search?q=${encodeURIComponent(query)}`);
     }
   };
 
