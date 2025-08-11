@@ -210,16 +210,16 @@ export default function Home() {
       </section>
 
       {/* Popular Skills */}
-      <section className="py-16">
+      <section className="py-20 bg-gradient-to-br from-white via-slate-50/30 to-white dark:from-slate-900 dark:via-slate-800/30 dark:to-slate-900">
         <div className="page-container">
-          <div className="flex items-center justify-between mb-8">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-heading font-bold">Popular Skills</h2>
-              <p className="text-muted-foreground">
+          <div className="flex items-center justify-between mb-12">
+            <div className="space-y-3">
+              <h2 className="text-4xl font-heading font-bold text-slate-800 dark:text-white">Popular Skills</h2>
+              <p className="text-lg text-slate-600 dark:text-slate-300">
                 Most in-demand skills in our community
               </p>
             </div>
-            <Button variant="outline" asChild>
+            <Button variant="outline" className="border-educational-blue text-educational-blue hover:bg-educational-blue hover:text-white rounded-xl px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300" asChild>
               <Link to="/matches">
                 View All Skills
                 <ArrowRight className="ml-2 w-4 h-4" />
