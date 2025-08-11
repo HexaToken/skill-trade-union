@@ -178,32 +178,37 @@ All colors MUST be HSL.
   .shadow-soft { box-shadow: var(--shadow-soft); }
   .shadow-glow { box-shadow: var(--shadow-glow); }
 
-  /* Enhanced Glass Effects */
+  /* Enhanced Glass Effects - Warm EduTech */
   .glass {
     background: var(--glass-bg);
     backdrop-filter: blur(var(--neo-blur));
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
-    @apply rounded-2xl;
+    @apply rounded-xl;
   }
 
   .glass-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    @apply rounded-2xl shadow-neo;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    @apply rounded-xl shadow-soft;
+  }
+
+  .dark .glass-card {
+    background: rgba(59, 28, 88, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .glass-header {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     @apply transition-all duration-300;
   }
 
   .dark .glass-header {
-    background: rgba(17, 24, 39, 0.95);
-    border-bottom: 1px solid rgba(55, 71, 81, 0.3);
+    background: rgba(59, 28, 88, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   /* Motion & Interactions */
