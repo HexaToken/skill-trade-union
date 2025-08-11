@@ -162,7 +162,7 @@ export default function SearchResults() {
         if (filters.categories.length > 0 && !filters.categories.includes(user.category || '')) return;
         if (filters.verifiedOnly && !user.verifiedID) return;
         if (filters.skillTested && !user.skillTested) return;
-        if (filters.location && !(user.location || '').includes(filters.location)) return;
+        if (filters.location && filters.location !== 'all' && !(user.location || '').includes(filters.location)) return;
         if ((user.creditsPerHour || 0) < filters.creditsRange[0] || (user.creditsPerHour || 0) > filters.creditsRange[1]) return;
         
         results.push({
