@@ -148,7 +148,7 @@ export default function ClassCard({
           <div className="flex items-start justify-between gap-2">
             <h3
               className="font-bold text-lg line-clamp-2 cursor-pointer hover:text-[#0056D2] transition-colors text-[#0F172A] dark:text-[#F1F5F9] font-heading"
-              onClick={() => onViewDetails?.(course.id)}
+              onClick={handleViewDetails}
             >
               {course.title}
             </h3>
