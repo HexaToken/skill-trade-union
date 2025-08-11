@@ -339,7 +339,7 @@ export default function SearchResults() {
             <SelectValue placeholder="Any location" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Any location</SelectItem>
+            <SelectItem value="all">Any location</SelectItem>
             {locations.map(location => (
               <SelectItem key={location} value={location}>{location}</SelectItem>
             ))}
