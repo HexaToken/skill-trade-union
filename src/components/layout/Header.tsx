@@ -47,6 +47,7 @@ export default function Header() {
     { label: 'Find a Match', href: '/matches', icon: Users },
     { label: 'Classes', href: '/classes', icon: BookOpen },
     { label: 'Mentors', href: '/mentors', icon: Award },
+    { label: 'Profile Demo', href: '/profile/marcus-chen', icon: User },
     { label: 'Challenges', href: '/challenges', icon: Target },
     { label: 'Map', href: '/map', icon: Map },
     { label: 'Donate', href: '/donate', icon: Heart },
