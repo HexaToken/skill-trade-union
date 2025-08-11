@@ -416,15 +416,7 @@ export default function Classes() {
   );
 
   const FiltersPanel = () => (
-    <div className="filter-rail w-80 p-6">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg font-semibold">Filters</h2>
-        {activeFiltersCount > 0 && (
-          <Button variant="ghost" size="sm" onClick={clearFilters}>
-            Clear all ({activeFiltersCount})
-          </Button>
-        )}
-      </div>
+    <div className="space-y-6">
 
       {/* Category */}
       <FilterSection 
