@@ -588,15 +588,15 @@ export default function Classes() {
   );
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-white via-slate-50/30 to-white dark:from-slate-900 dark:via-slate-800/30 dark:to-slate-900">
       {/* Header */}
-      <div className="bg-neutral-100 dark:bg-slate-800 py-8 border-b">
+      <div className="bg-gradient-to-r from-slate-50 to-white dark:from-slate-800 dark:to-slate-900 py-12 border-b border-slate-200 dark:border-slate-700">
         <div className="page-container">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-3xl font-heading font-bold mb-2 text-foreground">All Classes</h1>
-              <p className="text-muted-foreground">
-                {sortedClasses.length} results found
+              <h1 className="text-4xl font-heading font-bold mb-3 text-[#0F172A] dark:text-[#F1F5F9]">All Classes</h1>
+              <p className="text-lg text-[#334155] dark:text-[#E2E8F0]">
+                Discover {sortedClasses.length} learning opportunities from expert instructors
               </p>
             </div>
             
