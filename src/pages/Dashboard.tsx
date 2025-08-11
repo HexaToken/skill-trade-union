@@ -12,6 +12,8 @@ import OfflineTradeButton from "@/components/OfflineTradeButton";
 import { CalendarDays, TrendingUp, Users, Zap, Star, Clock, Plus, Calendar, MessageCircle, Trophy, BookOpen, Award, Search } from "lucide-react";
 import { users, skills, sessions, challenges } from "@/data/mockData";
 import { useNavigate } from "react-router-dom";
+import { mockOfflineTrades, getTradesAwaitingUser, getPendingTradesByUser, getTradeParticipants } from "@/mock/offline-trade-data";
+import { getTradeStatusColor, getTradeStatusLabel } from "@/models/offline-trade-types";
 
 const Dashboard = () => {
   const navigate = useNavigate();
