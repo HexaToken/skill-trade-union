@@ -26,10 +26,10 @@ interface InstantHelpDrawerProps {
 type Step = 'request' | 'matching' | 'experts' | 'payment' | 'connecting';
 
 const urgencyOptions = [
-  { value: 'low', label: 'Low - Can wait a few hours', color: 'bg-blue-50 text-blue-700 border-blue-200' },
-  { value: 'medium', label: 'Medium - Need help today', color: 'bg-yellow-50 text-yellow-700 border-yellow-200' },
-  { value: 'high', label: 'High - Need help within 1 hour', color: 'bg-orange-50 text-orange-700 border-orange-200' },
-  { value: 'critical', label: 'Critical - Emergency help needed', color: 'bg-red-50 text-red-700 border-red-200' }
+  { value: 'low', label: 'Low - Can wait a few hours', color: 'bg-brand-success/10 text-brand-success border-brand-success/20' },
+  { value: 'medium', label: 'Medium - Need help today', color: 'bg-brand-secondary/10 text-brand-secondary border-brand-secondary/20' },
+  { value: 'high', label: 'High - Need help within 1 hour', color: 'bg-brand-primary/10 text-brand-primary border-brand-primary/20' },
+  { value: 'critical', label: 'Critical - Emergency help needed', color: 'bg-brand-danger/10 text-brand-danger border-brand-danger/20' }
 ];
 
 export default function InstantHelpDrawer({ 
@@ -277,7 +277,7 @@ export default function InstantHelpDrawer({
                     
                     <div className="flex items-center gap-4 mt-2 text-sm">
                       <div className="flex items-center gap-1">
-                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                        <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                         <span className="font-medium">{expert.expertStatus.instantRating}</span>
                         <span className="text-muted-foreground">
                           ({expert.expertStatus.completedInstantSessions})
@@ -338,7 +338,7 @@ export default function InstantHelpDrawer({
                 <div>
                   <h4 className="font-medium">{expert.name}</h4>
                   <div className="flex items-center gap-1">
-                    <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                    <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                     <span className="text-sm font-medium">{expert.expertStatus.instantRating}</span>
                     <span className="text-sm text-muted-foreground">
                       ({expert.expertStatus.completedInstantSessions} sessions)

@@ -211,20 +211,20 @@ export default function Matches() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="border-b bg-card">
+      <div className="border-b bg-neutral-100 dark:bg-slate-800">
         <div className="page-container py-6">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-heading font-bold">Find Your Perfect Match</h1>
+                <h1 className="text-3xl font-heading font-bold text-foreground">Find Your Perfect Match</h1>
                 <p className="text-muted-foreground">
                   Discover skilled teachers and passionate learners in your area
                 </p>
               </div>
-              
+
               <InstantHelpDrawer
                 trigger={
-                  <Button className="bg-gradient-to-r from-brand-amber to-brand-green hover:from-brand-amber/90 hover:to-brand-green/90 text-white border-0">
+                  <Button className="bg-gradient-to-r from-brand-primary to-brand-secondary hover:from-brand-secondary hover:to-brand-primary text-white border-0 shadow-lg">
                     Need Help Now?
                   </Button>
                 }

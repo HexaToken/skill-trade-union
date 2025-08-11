@@ -30,9 +30,9 @@ export default function MatchCard({
   const hasInstantAvailable = user.id === 'user-1' || user.id === 'user-2';
   
   const getMatchScoreColor = (score: number) => {
-    if (score >= 90) return 'text-green-600 bg-green-50 border-green-200';
-    if (score >= 80) return 'text-yellow-600 bg-yellow-50 border-yellow-200';
-    return 'text-orange-600 bg-orange-50 border-orange-200';
+    if (score >= 90) return 'text-brand-success bg-brand-success/10 border-brand-success/20';
+    if (score >= 80) return 'text-brand-secondary bg-brand-secondary/10 border-brand-secondary/20';
+    return 'text-brand-primary bg-brand-primary/10 border-brand-primary/20';
   };
 
   const formatDistance = (distanceKm?: number) => {
@@ -54,7 +54,7 @@ export default function MatchCard({
   };
 
   return (
-    <Card className={cn('hover-lift transition-all duration-200 group', className)}>
+    <Card className={cn('bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover-lift group', className)}>
       <CardHeader className="pb-4">
         <div className="flex items-start gap-4">
           <Avatar className="w-16 h-16 border-2 border-muted">
@@ -84,7 +84,7 @@ export default function MatchCard({
             
             <div className="flex items-center gap-4 mt-2 text-sm">
               <div className="flex items-center gap-1">
-                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
                 <span className="font-medium">{user.ratingAvg}</span>
                 <span className="text-muted-foreground">({user.ratingCount})</span>
               </div>

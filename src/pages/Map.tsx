@@ -165,7 +165,7 @@ export default function Map() {
                   <span>High Demand</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full" />
+                  <div className="w-3 h-3 bg-brand-secondary rounded-full" />
                   <span>Medium Demand</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -224,7 +224,7 @@ export default function Map() {
                     <div className={cn(
                       'w-3 h-3 rounded-full',
                       point.intensity > 90 ? 'bg-red-500' :
-                      point.intensity > 80 ? 'bg-yellow-500' : 'bg-green-500'
+                      point.intensity > 80 ? 'bg-brand-secondary' : 'bg-green-500'
                     )} />
                     <div>
                       <p className="font-medium text-sm">{point.city}</p>
@@ -353,7 +353,7 @@ export default function Map() {
                         <div className={cn(
                           'w-3 h-3 rounded-full',
                           region.intensity > 90 ? 'bg-red-500' :
-                          region.intensity > 80 ? 'bg-yellow-500' : 'bg-green-500'
+                          region.intensity > 80 ? 'bg-brand-secondary' : 'bg-green-500'
                         )} />
                         <div>
                           <p className="font-medium text-sm">{region.city}</p>

@@ -44,7 +44,7 @@ import type { Course } from '@/models/expert-types';
 
 const difficultyLabels = {
   1: { label: 'Beginner', color: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200', description: 'No prior experience required' },
-  2: { label: 'Intermediate', color: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200', description: 'Some basic knowledge helpful' },
+  2: { label: 'Intermediate', color: 'bg-brand-secondary/10 text-brand-secondary dark:bg-brand-secondary/20 dark:text-brand-secondary', description: 'Some basic knowledge helpful' },
   3: { label: 'Advanced', color: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200', description: 'Significant experience required' }
 };
 
@@ -151,7 +151,7 @@ export default function ClassDetail() {
                       group: { label: 'Group Class', color: 'bg-blue-500 text-white' },
                       materials: { label: 'Materials Included', color: 'bg-green-500 text-white' },
                       recorded: { label: 'Recorded Sessions', color: 'bg-purple-500 text-white' },
-                      certificate: { label: 'Certificate', color: 'bg-yellow-500 text-white' }
+                      certificate: { label: 'Certificate', color: 'bg-brand-secondary text-white' }
                     }[badge];
                     
                     return badgeConfig ? (
@@ -173,7 +173,7 @@ export default function ClassDetail() {
                 {/* Stats */}
                 <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
                   <div className="flex items-center gap-1">
-                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
                     <span className="font-medium">{course.ratingAvg}</span>
                     <span>({course.ratingCount} ratings)</span>
                   </div>
@@ -206,7 +206,7 @@ export default function ClassDetail() {
                     <h3 className="font-medium">Instructor: {instructor.name}</h3>
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
-                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                        <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                         <span>{instructor.ratingAvg} instructor rating</span>
                       </div>
                       <span>{instructor.ratingCount} reviews</span>
@@ -431,7 +431,7 @@ export default function ClassDetail() {
                         
                         <div className="flex flex-wrap gap-4 text-sm">
                           <div className="flex items-center gap-1">
-                            <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                            <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
                             <span className="font-medium">{instructor.ratingAvg}</span>
                             <span className="text-muted-foreground">({instructor.ratingCount} reviews)</span>
                           </div>
@@ -498,7 +498,7 @@ export default function ClassDetail() {
                         Student Reviews
                       </span>
                       <div className="flex items-center gap-2">
-                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                        <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
                         <span className="font-medium">{course.ratingAvg}</span>
                         <span className="text-muted-foreground">({course.ratingCount} reviews)</span>
                       </div>
@@ -511,7 +511,7 @@ export default function ClassDetail() {
                         {[5, 4, 3, 2, 1].map((rating) => (
                           <div key={rating} className="flex items-center gap-3">
                             <span className="text-sm w-4">{rating}</span>
-                            <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                            <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                             <Progress value={rating === 5 ? 80 : rating === 4 ? 15 : 5} className="flex-1 h-2" />
                             <span className="text-sm text-muted-foreground w-8">
                               {rating === 5 ? '80%' : rating === 4 ? '15%' : '5%'}
@@ -541,7 +541,7 @@ export default function ClassDetail() {
                                   <span className="font-medium">{reviewer?.name}</span>
                                   <div className="flex items-center">
                                     {Array.from({ length: review.rating }).map((_, i) => (
-                                      <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                                      <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
                                     ))}
                                   </div>
                                   <span className="text-sm text-muted-foreground">
@@ -615,7 +615,7 @@ export default function ClassDetail() {
                         {relatedClass.title}
                       </h4>
                       <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                        <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                         <span>{relatedClass.ratingAvg}</span>
                         <span>���</span>
                         <span>{relatedClass.pricePerSeat} credits</span>

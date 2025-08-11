@@ -175,7 +175,7 @@ export default function StickyPanel({
           </div>
           {rating && (
             <div className="flex items-center gap-1">
-              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+              <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
               <span className="font-medium">{rating}</span>
               <span className="text-sm text-muted-foreground">({ratingCount})</span>
             </div>

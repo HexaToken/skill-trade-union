@@ -173,7 +173,7 @@ export default function FilterPanel({
       <FilterSection title="Minimum Rating">
         <div className="space-y-2">
           <div className="flex items-center gap-2">
-            <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+            <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
             <span className="text-sm font-medium">
               {filters.minRating ? `${filters.minRating}+ stars` : 'Any rating'}
             </span>

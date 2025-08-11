@@ -71,21 +71,22 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-brand-primary/10 via-background to-brand-secondary/10">
+      <section className="relative overflow-hidden bg-white dark:bg-slate-900">
         <div className="absolute inset-0 bg-grid-black/[0.02] bg-[size:50px_50px]" />
         <div className="relative page-container py-20 md:py-32">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             {/* Hero Badge */}
-            <Badge className="bg-brand-primary/10 text-brand-primary border-brand-primary/20 px-4 py-2">
+            <Badge className="bg-brand-primary/10 text-brand-primary border-brand-primary/20 px-4 py-2 hover:bg-brand-primary/15 transition-colors">
               <Zap className="w-4 h-4 mr-2" />
               Now with ExpertMatch AI - Get instant help!
             </Badge>
 
             {/* Hero Title */}
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight">
-                Trade skills,{' '}
-                <span className="text-gradient">not cash</span>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
+                Trade{' '}
+                <span className="text-brand-primary">skills</span>,{' '}
+                <span className="text-brand-secondary">not cash</span>
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Learn anything, teach anything. Join the world's largest skill-sharing community where knowledge flows freely.
@@ -94,14 +95,14 @@ export default function Home() {
 
             {/* Hero Actions */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="text-lg px-8 py-6 hover-scale" asChild>
+              <Button size="lg" className="text-lg px-8 py-6 hover-scale bg-brand-primary hover:bg-gradient-to-r hover:from-brand-primary hover:to-brand-secondary text-white shadow-lg hover:shadow-glow" asChild>
                 <Link to="/matches">
                   Find a Match
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>
-              
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6 hover-scale" asChild>
+
+              <Button size="lg" className="text-lg px-8 py-6 hover-scale bg-brand-secondary hover:bg-brand-secondary/90 text-white shadow-lg" asChild>
                 <Link to="/onboarding">
                   Offer a Skill
                 </Link>
@@ -109,7 +110,7 @@ export default function Home() {
 
               <InstantHelpDrawer
                 trigger={
-                  <Button size="lg" variant="secondary" className="text-lg px-8 py-6 hover-scale bg-gradient-to-r from-brand-amber/20 to-brand-green/20 border-brand-amber/50 text-brand-amber hover:from-brand-amber/30 hover:to-brand-green/30">
+                  <Button size="lg" className="text-lg px-8 py-6 hover-scale bg-gradient-to-r from-brand-primary to-brand-secondary hover:from-brand-secondary hover:to-brand-primary text-white shadow-lg hover:shadow-glow">
                     <Zap className="w-5 h-5 mr-2" />
                     Need Help Now?
                   </Button>
@@ -143,17 +144,23 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 border-b">
+      <section className="py-16 border-b bg-card">
         <div className="page-container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat) => {
+            {stats.map((stat, index) => {
               const Icon = stat.icon;
+              const colors = [
+                'bg-brand-primary/10 text-brand-primary',
+                'bg-brand-secondary/10 text-brand-secondary',
+                'bg-brand-primary/10 text-brand-primary',
+                'bg-brand-secondary/10 text-brand-secondary'
+              ];
               return (
-                <div key={stat.label} className="text-center space-y-2">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-brand-primary/10 rounded-lg">
-                    <Icon className="w-6 h-6 text-brand-primary" />
+                <div key={stat.label} className="text-center space-y-3">
+                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg ${colors[index % colors.length]}`}>
+                    <Icon className="w-6 h-6" />
                   </div>
-                  <div className="text-3xl font-bold font-heading">{stat.value}</div>
+                  <div className="text-3xl font-bold font-heading text-brand-primary">{stat.value}</div>
                   <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </div>
               );
@@ -178,7 +185,11 @@ export default function Home() {
                 key={category.id}
                 variant={selectedCategory === category.id ? "default" : "outline"}
                 size="lg"
-                className={`hover-scale ${selectedCategory === category.id ? 'bg-brand-primary' : ''}`}
+                className={`hover-scale transition-all duration-200 shadow-sm hover:shadow-md ${
+                  selectedCategory === category.id
+                    ? 'bg-brand-primary hover:bg-brand-primary/90 text-white'
+                    : 'bg-card hover:bg-card/80 text-brand-neutral hover:text-foreground hover:border-brand-secondary hover:shadow-glow'
+                }`}
                 onClick={() => setSelectedCategory(category.id === selectedCategory ? null : category.id)}
                 asChild
               >
@@ -186,7 +197,7 @@ export default function Home() {
                   <span className="text-lg mr-2">{category.icon}</span>
                   {category.name}
                   {category.popular && (
-                    <Badge size="sm" variant="secondary" className="ml-2 bg-red-100 text-red-700">
+                    <Badge size="sm" variant="secondary" className="ml-2 bg-brand-secondary/10 text-brand-secondary border-brand-secondary/20">
                       Popular
                     </Badge>
                   )}
@@ -305,7 +316,7 @@ export default function Home() {
                     </p>
                     
                     <div className="flex items-center justify-center gap-1">
-                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
                       <span className="font-medium">{mentor.ratingAvg}</span>
                       <span className="text-sm text-muted-foreground">({mentor.ratingCount})</span>
                     </div>
@@ -335,15 +346,15 @@ export default function Home() {
       </section>
 
       {/* ExpertMatch AI Promo */}
-      <section className="py-16 bg-gradient-to-r from-brand-amber/10 to-brand-green/10 border-y">
+      <section className="py-16 bg-gradient-to-r from-blue-50/50 via-background to-cyan-50/50 dark:from-slate-800/50 dark:via-background dark:to-cyan-900/20 border-y">
         <div className="page-container">
           <div className="max-w-4xl mx-auto text-center space-y-6">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-amber to-brand-green rounded-2xl">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-2xl shadow-lg">
               <Zap className="w-8 h-8 text-white" />
             </div>
-            
+
             <div className="space-y-4">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
                 Instant Help with ExpertMatch AI
               </h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -352,31 +363,31 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-              <div className="space-y-3">
+              <div className="space-y-3 p-6 bg-card rounded-xl shadow-soft border hover:shadow-elev transition-shadow">
                 <div className="w-12 h-12 bg-brand-primary/10 rounded-lg flex items-center justify-center mx-auto">
                   <TrendingUp className="w-6 h-6 text-brand-primary" />
                 </div>
-                <h3 className="font-semibold">AI-Powered Matching</h3>
+                <h3 className="font-semibold text-foreground">AI-Powered Matching</h3>
                 <p className="text-sm text-muted-foreground">
                   Advanced algorithms find the perfect expert for your specific need
                 </p>
               </div>
-              
-              <div className="space-y-3">
+
+              <div className="space-y-3 p-6 bg-card rounded-xl shadow-soft border hover:shadow-elev transition-shadow">
                 <div className="w-12 h-12 bg-brand-secondary/10 rounded-lg flex items-center justify-center mx-auto">
                   <Zap className="w-6 h-6 text-brand-secondary" />
                 </div>
-                <h3 className="font-semibold">Instant Availability</h3>
+                <h3 className="font-semibold text-foreground">Instant Availability</h3>
                 <p className="text-sm text-muted-foreground">
                   Connect with experts available right now, no waiting required
                 </p>
               </div>
-              
-              <div className="space-y-3">
-                <div className="w-12 h-12 bg-brand-green/10 rounded-lg flex items-center justify-center mx-auto">
-                  <Star className="w-6 h-6 text-brand-green" />
+
+              <div className="space-y-3 p-6 bg-card rounded-xl shadow-soft border hover:shadow-elev transition-shadow">
+                <div className="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mx-auto">
+                  <Star className="w-6 h-6 text-brand-secondary" />
                 </div>
-                <h3 className="font-semibold">Per-Minute Billing</h3>
+                <h3 className="font-semibold text-foreground">Per-Minute Billing</h3>
                 <p className="text-sm text-muted-foreground">
                   Fair pricing - pay only for actual time used during your session
                 </p>
@@ -385,7 +396,7 @@ export default function Home() {
 
             <InstantHelpDrawer
               trigger={
-                <Button size="lg" className="bg-gradient-to-r from-brand-amber to-brand-green hover:from-brand-amber/90 hover:to-brand-green/90 text-white border-0 px-8 py-6">
+                <Button size="lg" className="bg-gradient-to-r from-brand-primary to-brand-secondary hover:from-brand-secondary hover:to-brand-primary text-white border-0 px-8 py-6 shadow-lg hover:shadow-glow transition-all duration-200">
                   <Zap className="w-5 h-5 mr-2" />
                   Try ExpertMatch AI
                 </Button>
@@ -411,7 +422,7 @@ export default function Home() {
                 <CardContent className="p-6 space-y-4">
                   <div className="flex items-center gap-1">
                     {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
                   
@@ -454,30 +465,30 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-brand-primary rounded-2xl flex items-center justify-center mx-auto">
+              <div className="w-16 h-16 bg-brand-primary rounded-2xl flex items-center justify-center mx-auto shadow-lg hover:shadow-glow transition-shadow">
                 <span className="text-2xl font-bold text-white">1</span>
               </div>
-              <h3 className="text-xl font-semibold">Offer Your Skills</h3>
+              <h3 className="text-xl font-semibold text-foreground">Offer Your Skills</h3>
               <p className="text-muted-foreground">
                 Share what you know and earn credits for teaching others. Every skill has value in our community.
               </p>
             </div>
 
             <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-brand-secondary rounded-2xl flex items-center justify-center mx-auto">
-                <span className="text-2xl font-bold text-white">2</span>
+              <div className="w-16 h-16 bg-brand-secondary rounded-2xl flex items-center justify-center mx-auto shadow-lg hover:shadow-glow transition-shadow">
+                <span className="text-2xl font-bold text-foreground">2</span>
               </div>
-              <h3 className="text-xl font-semibold">Earn Credits</h3>
+              <h3 className="text-xl font-semibold text-foreground">Earn Credits</h3>
               <p className="text-muted-foreground">
                 Build up credits by helping others learn. Your knowledge becomes currency in the SkillSwap economy.
               </p>
             </div>
 
             <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-brand-green rounded-2xl flex items-center justify-center mx-auto">
+              <div className="w-16 h-16 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-2xl flex items-center justify-center mx-auto shadow-lg hover:shadow-glow transition-shadow">
                 <span className="text-2xl font-bold text-white">3</span>
               </div>
-              <h3 className="text-xl font-semibold">Learn Anything</h3>
+              <h3 className="text-xl font-semibold text-foreground">Learn Anything</h3>
               <p className="text-muted-foreground">
                 Use your credits to learn new skills from our global community of experts and enthusiasts.
               </p>

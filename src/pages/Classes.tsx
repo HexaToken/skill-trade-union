@@ -248,7 +248,7 @@ export default function Classes() {
               <div className="flex-1 p-4">
                 <div className="flex justify-between items-start mb-2">
                   <div className="flex-1">
-                    <h3 className="font-semibold text-lg mb-1 group-hover:text-brand-primary transition-colors line-clamp-2">
+                    <h3 className="font-semibold text-lg mb-1 group-hover:text-brand-primary transition-colors line-clamp-2 text-foreground">
                       {course.title}
                     </h3>
                     <p className="text-sm text-muted-foreground mb-2 line-clamp-2">
@@ -280,8 +280,8 @@ export default function Classes() {
                           key={i} 
                           className={cn(
                             "w-3 h-3",
-                            i < Math.floor(course.ratingAvg) 
-                              ? "fill-brand-warning text-brand-warning" 
+                            i < Math.floor(course.ratingAvg)
+                              ? "fill-brand-secondary text-brand-secondary"
                               : "text-muted-foreground/30"
                           )}
                         />
@@ -358,8 +358,8 @@ export default function Classes() {
                   key={i} 
                   className={cn(
                     "w-3 h-3",
-                    i < Math.floor(course.ratingAvg) 
-                      ? "fill-brand-warning text-brand-warning" 
+                    i < Math.floor(course.ratingAvg)
+                      ? "fill-brand-secondary text-brand-secondary"
                       : "text-muted-foreground/30"
                   )}
                 />
@@ -548,7 +548,7 @@ export default function Classes() {
                   }}
                 />
                 <div className="flex items-center gap-1">
-                  <Star className="w-3 h-3 fill-brand-warning text-brand-warning" />
+                  <Star className="w-3 h-3 fill-brand-secondary text-brand-secondary" />
                   <span className="text-sm">{rating} & up</span>
                 </div>
               </div>
@@ -590,11 +590,11 @@ export default function Classes() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-muted/30 py-8 border-b">
+      <div className="bg-neutral-100 dark:bg-slate-800 py-8 border-b">
         <div className="page-container">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-3xl font-heading font-bold mb-2">All Classes</h1>
+              <h1 className="text-3xl font-heading font-bold mb-2 text-foreground">All Classes</h1>
               <p className="text-muted-foreground">
                 {sortedClasses.length} results found
               </p>

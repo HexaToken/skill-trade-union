@@ -20,9 +20,9 @@ interface ClassCardProps {
 }
 
 const difficultyLabels = {
-  1: { label: 'Beginner', color: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' },
-  2: { label: 'Intermediate', color: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' },
-  3: { label: 'Advanced', color: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' }
+  1: { label: 'Beginner', color: 'bg-brand-success/10 text-brand-success border-brand-success/20' },
+  2: { label: 'Intermediate', color: 'bg-brand-secondary/10 text-brand-secondary border-brand-secondary/20' },
+  3: { label: 'Advanced', color: 'bg-brand-primary/10 text-brand-primary border-brand-primary/20' }
 };
 
 export default function ClassCard({ 
@@ -45,7 +45,7 @@ export default function ClassCard({
 
   if (variant === 'compact') {
     return (
-      <Card className={cn('hover-lift cursor-pointer', className)} onClick={() => onViewDetails?.(course.id)}>
+      <Card className={cn('bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover-lift cursor-pointer', className)} onClick={() => onViewDetails?.(course.id)}>
         <div className="flex items-center gap-4 p-4">
           <div className="relative">
             <img 
@@ -65,7 +65,7 @@ export default function ClassCard({
             <p className="text-sm text-muted-foreground truncate">{teacher?.name}</p>
             <div className="flex items-center gap-2 mt-1">
               <div className="flex items-center gap-1">
-                <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                 <span className="text-xs font-medium">{course.ratingAvg}</span>
               </div>
               <span className="text-xs text-muted-foreground">{course.pricePerSeat} credits</span>
@@ -99,7 +99,7 @@ export default function ClassCard({
               group: { icon: Users, label: 'Group Class', color: 'bg-blue-500' },
               materials: { icon: BookOpen, label: 'Materials', color: 'bg-green-500' },
               recorded: { icon: Play, label: 'Recorded', color: 'bg-purple-500' },
-              certificate: { icon: Award, label: 'Certificate', color: 'bg-yellow-500' }
+              certificate: { icon: Award, label: 'Certificate', color: 'bg-brand-secondary' }
             }[badge];
             
             if (!badgeConfig) return null;
@@ -161,7 +161,7 @@ export default function ClassCard({
           <div className="flex-1 min-w-0">
             <p className="text-sm font-medium truncate">{teacher?.name}</p>
             <div className="flex items-center gap-1">
-              <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+              <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
               <span className="text-xs font-medium">{teacher?.ratingAvg}</span>
               <span className="text-xs text-muted-foreground">({teacher?.ratingCount})</span>
             </div>
@@ -173,7 +173,7 @@ export default function ClassCard({
         <div className="flex items-center justify-between text-sm">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1">
-              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+              <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
               <span className="font-medium">{course.ratingAvg}</span>
               <span className="text-muted-foreground">({course.ratingCount})</span>
             </div>

@@ -103,9 +103,9 @@ export function Footer({ className }: FooterProps) {
   ];
 
   return (
-    <footer className={cn('bg-gradient-to-b from-background to-muted border-t border-border/50', className)}>
+    <footer className={cn('bg-gray-50 dark:bg-slate-800 border-t border-border/50', className)}>
       {/* Glowing top divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-brand opacity-30" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-brand-primary to-brand-secondary opacity-20" />
       
       <div className="page-container">
         {/* Upper section with columns */}
@@ -163,13 +163,13 @@ export function Footer({ className }: FooterProps) {
             <div className="flex items-center gap-4">
               {/* Language selector */}
               <Select defaultValue="en">
-                <SelectTrigger className="w-32 h-9 glass-card border-0">
+                <SelectTrigger className="w-32 h-9 bg-white dark:bg-card border border-border rounded-lg shadow-sm border-0">
                   <div className="flex items-center gap-2">
                     <Globe className="w-4 h-4" />
                     <SelectValue />
                   </div>
                 </SelectTrigger>
-                <SelectContent className="glass-card">
+                <SelectContent className="bg-white dark:bg-card border border-border rounded-lg shadow-sm">
                   {languages.map((lang) => (
                     <SelectItem key={lang.code} value={lang.code}>
                       {lang.name}
@@ -187,7 +187,7 @@ export function Footer({ className }: FooterProps) {
                     <span className="sr-only">Toggle theme</span>
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="glass-card">
+                <DropdownMenuContent align="end" className="bg-white dark:bg-card border border-border rounded-lg shadow-sm">
                   <DropdownMenuItem onClick={() => setTheme('light')}>
                     <Sun className="mr-2 h-4 w-4" />
                     Light

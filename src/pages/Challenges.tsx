@@ -435,7 +435,7 @@ export default function Challenges() {
                             <div className="flex items-center gap-3">
                               <div className={cn(
                                 'w-8 h-8 rounded-full flex items-center justify-center',
-                                index === 0 ? 'bg-yellow-100 text-yellow-600' :
+                                index === 0 ? 'bg-brand-secondary/10 text-brand-secondary' :
                                 index === 1 ? 'bg-gray-100 text-gray-600' :
                                 index === 2 ? 'bg-orange-100 text-orange-600' :
                                 'bg-muted text-muted-foreground'

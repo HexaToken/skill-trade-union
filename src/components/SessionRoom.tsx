@@ -342,7 +342,7 @@ export default function SessionRoom({
                         message.userId === 'current-user' 
                           ? 'bg-brand-primary text-white' 
                           : message.userId === 'system'
-                          ? 'bg-yellow-100 text-yellow-800 text-center text-xs w-full'
+                          ? 'bg-brand-secondary/10 text-brand-secondary text-center text-xs w-full'
                           : 'bg-background border'
                       )}>
                         {message.message}
@@ -425,7 +425,7 @@ export default function SessionRoom({
                     <Star 
                       className={cn(
                         'w-6 h-6',
-                        star <= rating ? 'fill-yellow-400 text-yellow-400' : 'text-muted-foreground'
+                        star <= rating ? 'fill-amber-400 text-amber-400' : 'text-muted-foreground'
                       )} 
                     />
                   </button>

@@ -47,11 +47,11 @@ const Dashboard = () => {
             <p className="text-muted-foreground">Here's what's happening with your skills today.</p>
           </div>
           <div className="flex gap-3">
-            <Button onClick={() => navigate('/matches')}>
+            <Button onClick={() => navigate('/matches')} className="bg-brand-primary hover:bg-brand-primary/90 text-white shadow-sm">
               <Search className="w-4 h-4 mr-2" />
               Find Match
             </Button>
-            <Button variant="outline" onClick={() => navigate('/sessions')}>
+            <Button onClick={() => navigate('/sessions')} className="bg-brand-secondary hover:bg-brand-secondary/90 text-white shadow-sm">
               <Plus className="w-4 h-4 mr-2" />
               Offer Skill
             </Button>
@@ -60,49 +60,49 @@ const Dashboard = () => {
 
         {/* Quick Stats Row */}
         <div className="grid gap-4 md:grid-cols-4">
-          <Card className="glass-card hover-lift">
+          <Card className="bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover-lift">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Credits Balance</CardTitle>
-              <Zap className="h-4 w-4 text-brand-primary" />
+              <Zap className="h-4 w-4 text-brand-secondary" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-gradient">{stats.credits}</div>
-              <p className="text-xs text-brand-green">+{stats.recentEarning} from last session</p>
+              <div className="text-2xl font-bold text-brand-primary">{stats.credits}</div>
+              <p className="text-xs text-brand-success">+{stats.recentEarning} from last session</p>
             </CardContent>
           </Card>
 
-          <Card className="glass-card hover-lift">
+          <Card className="bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover-lift">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Sessions This Month</CardTitle>
-              <CalendarDays className="h-4 w-4 text-brand-secondary" />
+              <CalendarDays className="h-4 w-4 text-brand-primary" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-foreground">{stats.sessionsThisMonth}</div>
-              <p className="text-xs text-brand-green">+3 from last month</p>
+              <div className="text-2xl font-bold text-brand-primary">{stats.sessionsThisMonth}</div>
+              <p className="text-xs text-brand-success">+3 from last month</p>
             </CardContent>
           </Card>
 
-          <Card className="glass-card hover-lift">
+          <Card className="bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover-lift">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Your Rating</CardTitle>
-              <Star className="h-4 w-4 text-brand-amber" />
+              <Star className="h-4 w-4 text-brand-secondary" />
             </CardHeader>
             <CardContent>
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-2xl font-bold text-foreground">{stats.rating}</span>
+                <span className="text-2xl font-bold text-brand-primary">{stats.rating}</span>
                 <Rating rating={stats.rating} size="sm" showNumber={false} />
               </div>
               <p className="text-xs text-muted-foreground">Based on {currentUser.ratingCount} reviews</p>
             </CardContent>
           </Card>
 
-          <Card className="glass-card hover-lift">
+          <Card className="bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover-lift">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Skills Offered</CardTitle>
-              <TrendingUp className="h-4 w-4 text-brand-green" />
+              <TrendingUp className="h-4 w-4 text-brand-primary" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-foreground">{stats.skillsOffered}</div>
+              <div className="text-2xl font-bold text-brand-primary">{stats.skillsOffered}</div>
               <p className="text-xs text-muted-foreground">2 actively teaching</p>
             </CardContent>
           </Card>
@@ -112,7 +112,7 @@ const Dashboard = () => {
           {/* Left Column - Main Content */}
           <div className="lg:col-span-2 space-y-8">
             {/* Upcoming Sessions */}
-            <Card className="glass-card">
+            <Card className="bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -171,7 +171,7 @@ const Dashboard = () => {
             </Card>
 
             {/* Suggested Matches */}
-            <Card className="glass-card">
+            <Card className="bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -209,7 +209,7 @@ const Dashboard = () => {
             </Card>
 
             {/* Learning Progress */}
-            <Card className="glass-card">
+            <Card className="bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BookOpen className="w-5 h-5 text-brand-green" />
@@ -251,7 +251,7 @@ const Dashboard = () => {
             />
 
             {/* Active Challenge */}
-            <Card className="glass-card">
+            <Card className="bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Trophy className="w-5 h-5 text-brand-amber" />
@@ -281,7 +281,7 @@ const Dashboard = () => {
             </Card>
 
             {/* Your Skills */}
-            <Card className="glass-card">
+            <Card className="bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Award className="w-5 h-5 text-brand-primary" />

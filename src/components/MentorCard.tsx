@@ -22,7 +22,7 @@ interface MentorCardProps {
 
 const tierConfig = {
   Silver: { color: 'bg-gray-100 text-gray-800 border-gray-300', icon: '🥈' },
-  Gold: { color: 'bg-yellow-100 text-yellow-800 border-yellow-300', icon: '🥇' },
+  Gold: { color: 'bg-brand-secondary/10 text-brand-secondary border-brand-secondary/20', icon: '🥇' },
   Platinum: { color: 'bg-purple-100 text-purple-800 border-purple-300', icon: '💎' }
 };
 
@@ -110,7 +110,7 @@ export default function MentorCard({
             
             <div className="flex items-center gap-4 mt-2 text-sm">
               <div className="flex items-center gap-1">
-                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
                 <span className="font-medium">{mentor.ratingAvg}</span>
                 <span className="text-muted-foreground">({mentor.ratingCount})</span>
               </div>

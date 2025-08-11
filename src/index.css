@@ -11,108 +11,110 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* NeoGlass Flow Color System */
-    --background: 243 247 251; /* #F3F7FB - Very light blue-gray */
-    --foreground: 11 18 32; /* #0B1220 - Rich blue-black */
+    /* Coursera/Udemy Hybrid Color System */
+    --background: 255 255 255; /* #FFFFFF - Pure white */
+    --foreground: 15 23 42; /* #0F172A - Deep navy for headings */
 
-    --card: 255 255 255; /* Pure white for glass cards */
-    --card-foreground: 11 18 32;
+    --card: 255 255 255; /* Pure white for cards */
+    --card-foreground: 51 65 85; /* #334155 - Body text */
 
     --popover: 255 255 255;
-    --popover-foreground: 11 18 32;
+    --popover-foreground: 51 65 85;
 
-    --primary: 262 83% 58%; /* #7C3AED - Brand violet */
+    --primary: 214 100% 41%; /* #0056D2 - Deep blue */
     --primary-foreground: 255 255 255;
 
-    --secondary: 243 247 251;
-    --secondary-foreground: 55 71 81; /* #374151 - Medium gray */
+    --secondary: 189 94% 43%; /* #06B6D4 - Light cyan */
+    --secondary-foreground: 255 255 255; /* White text for better contrast */
 
-    --muted: 243 247 251;
-    --muted-foreground: 158 163 175; /* #9CA3AF - Light gray */
+    --muted: 248 250 252; /* #F8FAFC - Soft gray */
+    --muted-foreground: 100 116 139; /* #64748B - Slate gray */
 
-    --accent: 243 247 251;
-    --accent-foreground: 55 71 81;
+    --accent: 189 94% 43%; /* #06B6D4 - Light cyan accent */
+    --accent-foreground: 255 255 255; /* White text for better contrast */
 
-    --destructive: 0 84% 60%; /* #EF4444 - Brand red */
+    --destructive: 0 84% 60%; /* #EF4444 - Keep red for destructive */
     --destructive-foreground: 255 255 255;
 
-    --border: 219 234 245; /* Light border with blue tint */
-    --input: 219 234 245;
-    --ring: 262 83% 58%;
+    --border: 226 232 240; /* #E2E8F0 - Light border */
+    --input: 226 232 240;
+    --ring: 214 100% 41%;
 
-    --radius: 1rem; /* 2xl rounded corners */
+    --radius: 0.75rem; /* 12px rounded corners */
 
-    /* NeoGlass specific variables */
-    --glass-bg: rgba(255, 255, 255, 0.25);
-    --glass-border: rgba(255, 255, 255, 0.18);
-    --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    /* Coursera/Udemy specific variables */
+    --glass-bg: rgba(255, 255, 255, 0.98);
+    --glass-border: rgba(0, 0, 0, 0.05);
+    --glass-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     --neo-blur: 16px;
-    --neo-gradient: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+    --neo-gradient: linear-gradient(135deg, rgba(0, 86, 210, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
 
-    /* Brand palette - exact colors from spec */
-    --brand-primary: 262 83% 58%; /* #7C3AED violet */
-    --brand-secondary: 189 95% 43%; /* #06B6D4 cyan */
-    --brand-success: 142 71% 45%; /* #22C55E green */
-    --brand-warning: 38 92% 50%; /* #F59E0B amber */
-    --brand-danger: 0 84% 60%; /* #EF4444 red */
+    /* Brand palette - Coursera/Udemy colors */
+    --brand-primary: 214 100% 41%; /* #0056D2 - Deep blue */
+    --brand-secondary: 189 94% 43%; /* #06B6D4 - Light cyan */
+    --brand-neutral: 100 116 139; /* #64748B - Slate gray */
+    --brand-success: 142 71% 45%; /* #22C55E - Keep green for success */
+    --brand-warning: 45 93% 47%; /* #FBBF24 - Keep amber for warnings */
+    --brand-danger: 0 84% 60%; /* #EF4444 - Keep red for destructive */
 
-    /* Neutrals from spec */
-    --neutral-900: 11 18 32; /* #0B1220 */
-    --neutral-800: 17 24 39; /* #111827 */
-    --neutral-600: 55 71 81; /* #374151 */
-    --neutral-400: 158 163 175; /* #9CA3AF */
-    --neutral-100: 243 247 251; /* #F3F4F6 */
+    /* Neutrals - Coursera/Udemy */
+    --neutral-900: 15 23 42; /* #0F172A - Deep navy headings */
+    --neutral-800: 51 65 85; /* #334155 - Body text */
+    --neutral-600: 100 116 139; /* #64748B - Slate gray */
+    --neutral-400: 148 163 184; /* #94A3B8 - Light slate */
+    --neutral-100: 248 250 252; /* #F8FAFC - Soft gray background */
     --neutral-50: 255 255 255; /* #FFFFFF */
 
-    /* Enhanced Effects */
+    /* Enhanced Effects - Coursera/Udemy */
     --gradient-brand: linear-gradient(135deg, hsl(var(--brand-primary)) 0%, hsl(var(--brand-secondary)) 100%);
-    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
-    --shadow-neo: 0 8px 32px rgba(124, 58, 237, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
-    --shadow-elev: 0 10px 30px -12px hsl(var(--brand-primary) / 0.35);
-    --shadow-soft: 0 2px 10px -4px rgba(0, 0, 0, 0.1);
-    --shadow-glow: 0 0 20px rgba(124, 58, 237, 0.3);
+    --gradient-hero: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
+    --shadow-neo: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
+    --shadow-elev: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-glow: 0 0 15px rgba(0, 86, 210, 0.15);
   }
 
   .dark {
-    /* Dark mode NeoGlass Flow */
-    --background: 11 18 32; /* #0B1220 - Rich blue-black */
-    --foreground: 243 247 251; /* Light text */
+    /* Dark mode Coursera/Udemy Hybrid */
+    --background: 15 23 42; /* #0F172A - Deep navy */
+    --foreground: 241 245 249; /* #F1F5F9 - Light text for headings */
 
-    --card: 17 24 39; /* #111827 - Darker card background */
-    --card-foreground: 243 247 251;
+    --card: 30 41 59; /* #1E293B - Dark slate */
+    --card-foreground: 226 232 240; /* #E2E8F0 - Body text */
 
-    --popover: 17 24 39;
-    --popover-foreground: 243 247 251;
+    --popover: 30 41 59;
+    --popover-foreground: 226 232 240;
 
-    --primary: 262 83% 58%; /* Keep brand violet */
+    --primary: 214 100% 41%; /* #0056D2 - Keep deep blue */
     --primary-foreground: 255 255 255;
 
-    --secondary: 55 71 81; /* #374151 */
-    --secondary-foreground: 243 247 251;
+    --secondary: 189 94% 43%; /* #06B6D4 - Keep light cyan */
+    --secondary-foreground: 255 255 255; /* White text for better contrast */
 
-    --muted: 55 71 81;
-    --muted-foreground: 158 163 175;
+    --muted: 30 41 59; /* #1E293B - Dark slate for muted sections */
+    --muted-foreground: 148 163 184; /* #94A3B8 - Muted text */
 
-    --accent: 55 71 81;
-    --accent-foreground: 243 247 251;
+    --accent: 189 94% 43%; /* #06B6D4 - Light cyan accent */
+    --accent-foreground: 255 255 255; /* White text for better contrast */
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 255 255 255;
 
-    --border: 55 71 81;
-    --input: 55 71 81;
-    --ring: 262 83% 58%;
+    --border: 51 65 85; /* #334155 - Medium slate for borders */
+    --input: 51 65 85;
+    --ring: 214 100% 41%;
 
-    /* Dark NeoGlass adjustments */
-    --glass-bg: rgba(17, 24, 39, 0.4);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    --neo-gradient: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(6, 182, 212, 0.15) 100%);
+    /* Dark Coursera/Udemy adjustments */
+    --glass-bg: rgba(30, 41, 59, 0.95);
+    --glass-border: rgba(255, 255, 255, 0.06);
+    --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --neo-gradient: linear-gradient(135deg, rgba(0, 86, 210, 0.15) 0%, rgba(6, 182, 212, 0.15) 100%);
 
     /* Enhanced shadows for dark mode */
-    --shadow-neo: 0 8px 32px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(124, 58, 237, 0.2);
+    --shadow-neo: 0 4px 16px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 86, 210, 0.2);
     --shadow-soft: 0 2px 10px -4px rgba(0, 0, 0, 0.3);
-    --shadow-glow: 0 0 20px rgba(124, 58, 237, 0.4);
+    --shadow-glow: 0 0 20px rgba(6, 182, 212, 0.3);
   }
 }
 
@@ -178,38 +180,43 @@ All colors MUST be HSL.
   .shadow-soft { box-shadow: var(--shadow-soft); }
   .shadow-glow { box-shadow: var(--shadow-glow); }
 
-  /* Enhanced Glass Effects */
+  /* Enhanced Glass Effects - Coursera/Udemy */
   .glass {
     background: var(--glass-bg);
     backdrop-filter: blur(var(--neo-blur));
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
-    @apply rounded-2xl;
+    @apply rounded-xl;
   }
 
   .glass-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    @apply rounded-2xl shadow-neo;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    @apply rounded-xl shadow-soft;
+  }
+
+  .dark .glass-card {
+    background: rgba(30, 41, 59, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   .glass-header {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     @apply transition-all duration-300;
   }
 
   .dark .glass-header {
-    background: rgba(17, 24, 39, 0.95);
-    border-bottom: 1px solid rgba(55, 71, 81, 0.3);
+    background: rgba(30, 41, 59, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   }
 
-  /* Motion & Interactions */
+  /* Motion & Interactions - Coursera/Udemy */
   .hover-scale { @apply transition-transform duration-200 hover:scale-[1.02]; }
   .hover-lift {
-    @apply transition-all duration-200 hover:shadow-elev hover:-translate-y-1 hover:shadow-glow;
+    @apply transition-all duration-200 hover:shadow-elev hover:-translate-y-1;
   }
   .hover-glow { @apply transition-all duration-200 hover:shadow-glow; }
 
@@ -217,17 +224,17 @@ All colors MUST be HSL.
   .text-gradient { @apply bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent; }
   .text-neo { @apply font-medium tracking-tight; }
 
-  /* Button Enhancements */
+  /* Button Enhancements - Coursera/Udemy */
   .btn-neo {
     background: var(--gradient-brand);
-    @apply text-white font-medium px-6 py-3 rounded-2xl shadow-neo hover:shadow-glow transition-all duration-200 hover:-translate-y-0.5;
+    @apply text-white font-medium px-6 py-3 rounded-lg shadow-neo hover:shadow-glow transition-all duration-200 hover:-translate-y-0.5;
   }
 
   .btn-glass {
     background: var(--glass-bg);
     backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
-    @apply rounded-2xl shadow-soft hover:shadow-neo transition-all duration-200;
+    @apply rounded-lg shadow-soft hover:shadow-neo transition-all duration-200;
   }
 
   /* Layout Utilities */
@@ -403,16 +410,16 @@ All colors MUST be HSL.
     @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
   }
 
-  /* Course detail layout */
+  /* Course detail layout - Coursera/Udemy */
   .course-header {
-    @apply bg-muted/30 py-12;
+    @apply bg-neutral-100 dark:bg-slate-800 py-12;
   }
 
   .course-content {
     @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
-  /* Progress and completion styling */
+  /* Progress and completion styling - Coursera/Udemy */
   .progress-bar {
     @apply bg-muted rounded-full h-2;
   }
@@ -422,25 +429,25 @@ All colors MUST be HSL.
   }
 
   .completion-badge {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-brand-green/10 text-brand-green border border-brand-green/20;
+    @apply inline-flex items-center px-3 py-1 rounded-lg text-sm font-medium bg-brand-success/10 text-brand-success border border-brand-success/20;
   }
 
-  /* Filter and search styling */
+  /* Filter and search styling - Coursera/Udemy */
   .filter-group {
-    @apply space-y-4 p-4 border-b border-border;
+    @apply space-y-4 p-4 border-b border-border hover:bg-brand-primary/5 transition-colors;
   }
 
   .filter-title {
     @apply font-semibold text-sm text-foreground mb-3;
   }
 
-  /* Curriculum and lesson styling */
+  /* Curriculum and lesson styling - Coursera/Udemy */
   .curriculum-header {
-    @apply bg-muted p-4 font-semibold border-b border-border;
+    @apply bg-neutral-100 dark:bg-slate-800 p-4 font-semibold border-b border-border;
   }
 
   .lesson-preview {
-    @apply text-brand-primary text-sm font-medium;
+    @apply text-brand-primary text-sm font-medium hover:text-brand-primary/80 transition-colors;
   }
 
   .lesson-duration {
