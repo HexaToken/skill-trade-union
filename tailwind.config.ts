@@ -63,12 +63,30 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				brand: {
-					primary: 'hsl(var(--brand-primary))',
-					secondary: 'hsl(var(--brand-secondary))',
-					neutral: 'hsl(var(--brand-neutral))',
+					primary: 'hsl(var(--brand-primary))', /* #0056D2 */
+					secondary: 'hsl(var(--brand-secondary))', /* #06B6D4 */
+					neutral: 'hsl(var(--brand-neutral))', /* #64748B */
 					success: 'hsl(var(--brand-success))',
 					warning: 'hsl(var(--brand-warning))',
 					danger: 'hsl(var(--brand-danger))'
+				},
+				educational: {
+					blue: {
+						DEFAULT: '#0056D2',
+						50: '#EBF4FF',
+						100: '#DBEAFE',
+						500: '#0056D2',
+						600: '#004BB8',
+						700: '#003D96'
+					},
+					cyan: {
+						DEFAULT: '#06B6D4',
+						50: '#ECFEFF',
+						100: '#CFFAFE',
+						500: '#06B6D4',
+						600: '#0891B2',
+						700: '#0E7490'
+					}
 				}
 			},
 			borderRadius: {
