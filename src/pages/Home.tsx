@@ -150,10 +150,10 @@ export default function Home() {
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               const colors = [
-                'bg-brand-secondary/10 text-brand-secondary',
-                'bg-brand-amber/10 text-brand-amber',
                 'bg-brand-primary/10 text-brand-primary',
-                'bg-brand-green/10 text-brand-green'
+                'bg-brand-secondary/10 text-brand-secondary',
+                'bg-brand-primary/10 text-brand-primary',
+                'bg-brand-secondary/10 text-brand-secondary'
               ];
               return (
                 <div key={stat.label} className="text-center space-y-3">
