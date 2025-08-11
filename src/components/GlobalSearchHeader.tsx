@@ -638,7 +638,16 @@ export default function GlobalSearchHeader() {
                       My Courses
                     </Link>
                   </DropdownMenuItem>
-                  
+
+                  <DropdownMenuItem className="p-0">
+                    <OfflineTradeButton
+                      variant="ghost"
+                      size="sm"
+                      className="w-full justify-start font-normal text-sm h-8"
+                      showIcon={true}
+                    />
+                  </DropdownMenuItem>
+
                   <DropdownMenuItem asChild>
                     <Link to="/settings">
                       <Settings className="mr-2 h-4 w-4" />
