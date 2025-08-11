@@ -30,7 +30,7 @@ All colors MUST be HSL.
     --muted: 248 250 252; /* #F8FAFC - Soft gray */
     --muted-foreground: 100 116 139; /* #64748B - Slate gray */
 
-    --accent: 189 95% 43%; /* #06B6D4 - Light cyan accent */
+    --accent: 189 94% 43%; /* #06B6D4 - Light cyan accent */
     --accent-foreground: 15 23 42; /* Deep navy for cyan background */
 
     --destructive: 0 84% 60%; /* #EF4444 - Keep red for destructive */
