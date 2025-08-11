@@ -48,6 +48,7 @@ import {
 } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import BookingModalUnified from '@/components/BookingModalUnified';
+import OfflineTradeButton from '@/components/OfflineTradeButton';
 
 // Mock mentor data
 const mockMentors = [
