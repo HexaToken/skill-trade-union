@@ -54,7 +54,7 @@ export default function MatchCard({
   };
 
   return (
-    <Card className={cn('hover-lift transition-all duration-200 group', className)}>
+    <Card className={cn('bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover-lift group', className)}>
       <CardHeader className="pb-4">
         <div className="flex items-start gap-4">
           <Avatar className="w-16 h-16 border-2 border-muted">
