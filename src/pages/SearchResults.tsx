@@ -170,9 +170,9 @@ export default function SearchResults() {
         // Boost relevance if search matches
         if (searchQuery) {
           const query = searchQuery.toLowerCase();
-          if (course.title.toLowerCase().includes(query) ||
-              course.category.toLowerCase().includes(query) ||
-              course.description?.toLowerCase().includes(query)) {
+          if ((course.title?.toLowerCase() || '').includes(query) ||
+              (course.category?.toLowerCase() || '').includes(query) ||
+              (course.description?.toLowerCase() || '').includes(query)) {
             relevanceScore += 30;
           }
         }
