@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { 
-  Search, 
-  X, 
-  MessageCircle, 
+import {
+  Search,
+  X,
+  MessageCircle,
   Wallet,
   User,
   Settings,
@@ -12,7 +12,13 @@ import {
   Plus,
   Award,
   CheckCircle,
-  Zap
+  Zap,
+  Users,
+  BookOpen,
+  Target,
+  Map,
+  Heart,
+  Menu
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
