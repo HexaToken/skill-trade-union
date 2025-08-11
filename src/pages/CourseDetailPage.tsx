@@ -342,7 +342,7 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
                         )}
                       </div>
                     </CollapsibleTrigger>
-                    <CollapsibleContent className="mt-2">
+                    <CollapsibleContent className="mt-2 animate-accordion-down">
                       <div className="ml-4 space-y-2">
                         {module.lessons.map((lesson) => (
                           <div key={lesson.id} className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/30 rounded-lg border border-slate-200 dark:border-slate-700">
