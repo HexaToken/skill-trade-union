@@ -185,7 +185,11 @@ export default function Home() {
                 key={category.id}
                 variant={selectedCategory === category.id ? "default" : "outline"}
                 size="lg"
-                className={`hover-scale ${selectedCategory === category.id ? 'bg-brand-primary' : ''}`}
+                className={`hover-scale transition-all duration-200 ${
+                  selectedCategory === category.id
+                    ? 'bg-brand-primary hover:bg-brand-primary/90 text-white'
+                    : 'bg-card hover:bg-card/80 text-muted-foreground hover:text-foreground hover:border-brand-secondary/50'
+                }`}
                 onClick={() => setSelectedCategory(category.id === selectedCategory ? null : category.id)}
                 asChild
               >
@@ -193,7 +197,7 @@ export default function Home() {
                   <span className="text-lg mr-2">{category.icon}</span>
                   {category.name}
                   {category.popular && (
-                    <Badge size="sm" variant="secondary" className="ml-2 bg-red-100 text-red-700">
+                    <Badge size="sm" variant="secondary" className="ml-2 bg-brand-secondary/10 text-brand-secondary border-brand-secondary/20">
                       Popular
                     </Badge>
                   )}
