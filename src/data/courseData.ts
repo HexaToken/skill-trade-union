@@ -1,830 +1,282 @@
-import type { 
-  Class, 
-  User, 
-  Skill, 
-  SkillPath, 
-  Mentor, 
-  MentorTier,
-  CourseSection,
-  Lesson,
-  Challenge,
-  Organization,
-  Review
-} from '@/models/course-types';
+// Enhanced course data for the detail page with Builder.io specifications
+export interface CourseDetailData {
+  id: string;
+  slug: string;
+  title: string;
+  subtitle: string;
+  category: string;
+  thumbnail: string;
+  ratingAvg: number;
+  ratingCount: number;
+  learners: number;
+  level: string;
+  duration: string;
+  language: string;
+  credits: number;
+  outcomes: string[];
+  description: string;
+  curriculum: {
+    id: string;
+    title: string;
+    duration: string;
+    lessons: {
+      id: string;
+      title: string;
+      duration: string;
+      preview: boolean;
+    }[];
+  }[];
+  cohort?: {
+    nextStart: string;
+  };
+  isSelfPaced: boolean;
+  prerequisites: string[];
+  materials: string[];
+  accessLength: string;
+  certificate: boolean;
+  instructor: {
+    slug: string;
+    name: string;
+    avatar: string;
+    title: string;
+    location: string;
+    languages: string[];
+    ratingAvg: number;
+    ratingCount: number;
+    bio: string;
+    website?: string;
+    linkedin?: string;
+    portfolio?: string;
+  };
+  reviews: {
+    id: string;
+    userId: string;
+    userName: string;
+    userAvatar: string;
+    rating: number;
+    date: string;
+    text: string;
+    helpful: number;
+    images?: string[];
+  }[];
+}
 
-// Enhanced Skills for academic context
-export const skills: Skill[] = [
-  {
-    id: 'web-development',
-    name: 'Web Development',
-    category: 'Technology',
-    difficulty: 2,
-    demandScore: 95,
-    description: 'Build modern, responsive websites and web applications using the latest technologies',
-    icon: '💻',
-    baseRateCredits: 25,
-    relatedSkills: ['javascript', 'react', 'css'],
-    prerequisites: ['html-basics']
-  },
-  {
-    id: 'data-science',
-    name: 'Data Science',
-    category: 'Technology',
-    difficulty: 3,
-    demandScore: 92,
-    description: 'Analyze data, build machine learning models, and extract insights from complex datasets',
-    icon: '📊',
-    baseRateCredits: 30,
-    relatedSkills: ['python', 'statistics', 'machine-learning']
-  },
-  {
-    id: 'graphic-design',
-    name: 'Graphic Design',
-    category: 'Design',
-    difficulty: 2,
-    demandScore: 85,
-    description: 'Create visual content, brand identities, and digital graphics',
-    icon: '🎨',
-    baseRateCredits: 20,
-    relatedSkills: ['adobe-suite', 'typography', 'branding']
-  },
-  {
-    id: 'digital-marketing',
-    name: 'Digital Marketing',
-    category: 'Business',
-    difficulty: 2,
-    demandScore: 88,
-    description: 'Develop and execute marketing strategies across digital channels',
-    icon: '📈',
-    baseRateCredits: 22,
-    relatedSkills: ['seo', 'social-media', 'content-marketing']
-  },
-  {
-    id: 'spanish',
-    name: 'Spanish Language',
-    category: 'Languages',
-    difficulty: 1,
-    demandScore: 78,
-    description: 'Learn conversational and business Spanish from beginner to advanced levels',
-    icon: '🇪🇸',
-    baseRateCredits: 15,
-    relatedSkills: ['conversation', 'grammar', 'business-spanish']
-  },
-  {
-    id: 'photography',
-    name: 'Photography',
-    category: 'Creative',
-    difficulty: 2,
-    demandScore: 72,
-    description: 'Master composition, lighting, and post-processing techniques',
-    icon: '📸',
-    baseRateCredits: 18,
-    relatedSkills: ['lightroom', 'composition', 'portrait']
-  },
-  {
-    id: 'project-management',
-    name: 'Project Management',
-    category: 'Business',
-    difficulty: 2,
-    demandScore: 83,
-    description: 'Lead teams and deliver projects on time and within budget',
-    icon: '📋',
-    baseRateCredits: 24,
-    relatedSkills: ['agile', 'scrum', 'leadership']
-  },
-  {
-    id: 'music-production',
-    name: 'Music Production',
-    category: 'Creative',
-    difficulty: 3,
-    demandScore: 68,
-    description: 'Create, record, and produce professional music tracks',
-    icon: '🎵',
-    baseRateCredits: 20,
-    relatedSkills: ['ableton', 'mixing', 'mastering']
-  }
-];
-
-// Enhanced Users with instructor/mentor capabilities
-export const users: User[] = [
-  {
-    id: 'user-1',
-    name: 'Dr. Sarah Chen',
-    avatarUrl: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
-    location: { city: 'San Francisco', country: 'USA', lat: 37.7749, lng: -122.4194 },
-    languages: ['English', 'Mandarin'],
-    bio: 'Former Google engineer with 8+ years of experience teaching web development. I believe in hands-on learning and real-world projects.',
-    headline: 'Senior Software Engineer & Web Development Instructor',
-    skillsOffered: [
-      { skillId: 'web-development', level: 5 },
-      { skillId: 'data-science', level: 4 }
-    ],
-    skillsWanted: [
-      { skillId: 'graphic-design', priority: 'medium' }
-    ],
-    portfolio: [
-      {
-        title: 'E-commerce Platform',
-        mediaUrl: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop',
-        description: 'Full-stack e-commerce platform built with React and Node.js',
-        type: 'image'
-      },
-      {
-        title: 'Machine Learning Course',
-        mediaUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop',
-        description: 'Comprehensive ML course with 50+ students',
-        type: 'video'
-      }
-    ],
-    badges: ['top-instructor', 'verified-expert', 'course-creator'],
-    verification: { idVerified: true, testsPassed: ['react-expert', 'javascript-advanced'] },
-    ratingAvg: 4.9,
-    ratingCount: 247,
-    availability: [
-      { dayOfWeek: 1, slots: ['09:00', '14:00', '16:00'] },
-      { dayOfWeek: 3, slots: ['10:00', '15:00'] },
-      { dayOfWeek: 5, slots: ['09:00', '11:00', '14:00'] }
-    ],
-    wallet: { credits: 1250, txHistory: [] },
-    socials: {
-      twitter: '@sarahcodes',
-      linkedin: 'sarah-chen-dev',
-      github: 'sarahdev',
-      website: 'sarahchen.dev'
-    },
-    joinedAt: '2023-01-15T00:00:00Z',
-    lastActive: '2024-01-20T14:30:00Z',
-    timezone: 'America/Los_Angeles',
-    yearsExperience: 8,
-    totalStudents: 1200,
-    totalClasses: 15,
-    specializations: ['React', 'Node.js', 'Machine Learning'],
-    teachingStyle: 'Hands-on project-based learning with real-world applications',
-    certifications: ['AWS Certified', 'Google Cloud Professional']
-  },
-  {
-    id: 'user-2',
-    name: 'Marcus Rodriguez',
-    avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
-    location: { city: 'Barcelona', country: 'Spain', lat: 41.3851, lng: 2.1734 },
-    languages: ['Spanish', 'English', 'French'],
-    bio: 'Creative director with 10+ years in brand design and digital marketing. Passionate about helping others build stunning visual identities.',
-    headline: 'Creative Director & Brand Design Expert',
-    skillsOffered: [
-      { skillId: 'graphic-design', level: 5 },
-      { skillId: 'digital-marketing', level: 4 }
-    ],
-    skillsWanted: [
-      { skillId: 'web-development', priority: 'high' },
-      { skillId: 'photography', priority: 'medium' }
-    ],
-    portfolio: [
-      {
-        title: 'Brand Identity Collection',
-        mediaUrl: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&h=300&fit=crop',
-        description: 'Complete brand identities for tech startups',
-        type: 'image'
-      }
-    ],
-    badges: ['design-master', 'brand-expert', 'top-mentor'],
-    verification: { idVerified: true, testsPassed: ['adobe-certified', 'design-fundamentals'] },
-    ratingAvg: 4.8,
-    ratingCount: 189,
-    availability: [
-      { dayOfWeek: 2, slots: ['14:00', '16:00', '18:00'] },
-      { dayOfWeek: 4, slots: ['15:00', '17:00'] },
-      { dayOfWeek: 6, slots: ['10:00', '12:00'] }
-    ],
-    wallet: { credits: 890, txHistory: [] },
-    socials: {
-      twitter: '@marcusdesigns',
-      linkedin: 'marcus-rodriguez-design',
-      website: 'marcusdesigns.co'
-    },
-    joinedAt: '2023-03-20T00:00:00Z',
-    lastActive: '2024-01-20T16:45:00Z',
-    timezone: 'Europe/Madrid',
-    yearsExperience: 10,
-    totalStudents: 850,
-    totalClasses: 12,
-    specializations: ['Brand Design', 'Adobe Creative Suite', 'Digital Marketing'],
-    teachingStyle: 'Visual storytelling with emphasis on practical design principles'
-  },
-  {
-    id: 'user-3',
-    name: 'Dr. Elena Vasquez',
-    avatarUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
-    location: { city: 'Mexico City', country: 'Mexico', lat: 19.4326, lng: -99.1332 },
-    languages: ['Spanish', 'English', 'Portuguese'],
-    bio: 'Linguistics professor and certified language instructor. Specialized in business Spanish and cultural communication.',
-    headline: 'Linguistics Professor & Spanish Language Expert',
-    skillsOffered: [
-      { skillId: 'spanish', level: 5 }
-    ],
-    skillsWanted: [
-      { skillId: 'digital-marketing', priority: 'medium' }
-    ],
-    portfolio: [
-      {
-        title: 'Business Spanish Curriculum',
-        mediaUrl: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop',
-        description: 'Comprehensive business Spanish course for professionals',
-        type: 'document'
-      }
-    ],
-    badges: ['language-expert', 'certified-instructor', 'cultural-ambassador'],
-    verification: { idVerified: true, testsPassed: ['spanish-certified', 'teaching-credential'] },
-    ratingAvg: 4.95,
-    ratingCount: 156,
-    availability: [
-      { dayOfWeek: 1, slots: ['08:00', '10:00', '16:00'] },
-      { dayOfWeek: 3, slots: ['09:00', '11:00', '17:00'] },
-      { dayOfWeek: 5, slots: ['08:00', '14:00'] }
-    ],
-    wallet: { credits: 740, txHistory: [] },
-    socials: {
-      linkedin: 'elena-vasquez-linguistics',
-      website: 'elenaspanish.com'
-    },
-    joinedAt: '2023-02-10T00:00:00Z',
-    lastActive: '2024-01-20T12:20:00Z',
-    timezone: 'America/Mexico_City',
-    yearsExperience: 12,
-    totalStudents: 2100,
-    totalClasses: 25,
-    specializations: ['Business Spanish', 'Grammar', 'Cultural Communication'],
-    teachingStyle: 'Immersive conversation practice with cultural context'
-  }
-];
-
-// Course Lessons and Sections
-const webDevLessons: Lesson[] = [
-  {
-    id: 'lesson-1',
-    title: 'HTML Fundamentals',
-    description: 'Learn the building blocks of web pages',
-    durationMins: 45,
-    previewable: true,
-    videoUrl: 'https://example.com/video1',
-    materials: ['slides.pdf', 'exercises.zip'],
-    order: 1
-  },
-  {
-    id: 'lesson-2',
-    title: 'CSS Styling Basics',
-    description: 'Style your HTML with CSS',
-    durationMins: 60,
-    previewable: false,
-    order: 2
-  },
-  {
-    id: 'lesson-3',
-    title: 'JavaScript Introduction',
-    description: 'Add interactivity to your websites',
-    durationMins: 75,
-    previewable: true,
-    order: 3
-  }
-];
-
-const webDevSections: CourseSection[] = [
-  {
-    id: 'section-1',
-    title: 'Frontend Foundations',
-    description: 'Master the core technologies of web development',
-    lessons: webDevLessons,
-    order: 1
-  },
-  {
-    id: 'section-2',
-    title: 'Interactive Development',
-    description: 'Build dynamic and interactive web applications',
-    lessons: [
-      {
-        id: 'lesson-4',
-        title: 'DOM Manipulation',
-        durationMins: 90,
-        previewable: false,
-        order: 1
-      },
-      {
-        id: 'lesson-5',
-        title: 'Event Handling',
-        durationMins: 60,
-        previewable: false,
-        order: 2
-      }
-    ],
-    order: 2
-  }
-];
-
-// Classes with full curriculum structure
-export const classes: Class[] = [
-  {
-    id: 'class-1',
-    title: 'Complete Web Development Bootcamp',
-    subtitle: 'From Zero to Full-Stack Developer',
-    description: 'Master web development from scratch with hands-on projects. Build real-world applications using HTML, CSS, JavaScript, React, and Node.js.',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1593720213428-28a5b9e94613?w=400&h=225&fit=crop',
-    instructorId: 'user-1',
-    skillId: 'web-development',
-    level: 'Beginner',
-    durationMins: 1800, // 30 hours
-    language: 'English',
-    ratingAvg: 4.8,
-    ratingCount: 234,
-    studentsCount: 1250,
+// Sample course detail data
+export const courseDetailData: CourseDetailData = {
+  id: "c_88",
+  slug: "brand-strategy-essentials",
+  title: "Brand Strategy Essentials",
+  subtitle: "Master the art of creating compelling brand strategies that resonate with your target audience and drive business growth",
+  category: "Design",
+  thumbnail: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=675&fit=crop",
+  ratingAvg: 4.8,
+  ratingCount: 1260,
+  learners: 18450,
+  level: "Intermediate",
+  duration: "5h 10m",
+  language: "English",
+  credits: 150,
+  outcomes: [
+    "Define brand positioning and value proposition",
+    "Build messaging pillars and tone of voice",
+    "Create a lightweight brand strategy deck",
+    "Conduct competitive brand analysis",
+    "Design customer journey maps",
+    "Develop brand guidelines and visual systems"
+  ],
+  description: `
+    <p>This comprehensive brand strategy course will transform you into a strategic thinking designer who understands how to build brands that truly connect with audiences.</p>
     
-    sections: webDevSections,
-    requirements: [
-      'No prior programming experience required',
-      'Computer with internet connection',
-      'Willingness to learn and practice'
-    ],
-    outcomes: [
-      'Build responsive websites from scratch',
-      'Create interactive web applications',
-      'Understand modern JavaScript frameworks',
-      'Deploy applications to the web',
-      'Work with APIs and databases'
-    ],
+    <p>You'll learn the essential frameworks used by top agencies and in-house teams to create brand strategies that drive business results. Through hands-on exercises and real-world case studies, you'll master the art of brand positioning, messaging, and visual identity development.</p>
     
-    type: 'recorded',
-    maxSeats: 50,
-    currentSeats: 42,
-    schedule: {
-      startDate: '2024-02-01T00:00:00Z',
-      endDate: '2024-03-15T00:00:00Z',
-      sessions: [
-        {
-          date: '2024-02-01T00:00:00Z',
-          startTime: '18:00',
-          endTime: '20:00'
-        },
-        {
-          date: '2024-02-03T00:00:00Z',
-          startTime: '18:00',
-          endTime: '20:00'
-        }
+    <h3>What makes this course different?</h3>
+    <ul>
+      <li>Practical, hands-on approach with real client work</li>
+      <li>Templates and frameworks you can use immediately</li>
+      <li>Feedback from industry professionals</li>
+      <li>Access to exclusive brand strategy tools</li>
+    </ul>
+    
+    <p>Whether you're a designer looking to expand into strategy, a marketer wanting to understand brand fundamentals, or an entrepreneur building your own brand, this course provides the essential knowledge and practical skills you need to succeed.</p>
+  `,
+  curriculum: [
+    {
+      id: "m1",
+      title: "Foundations of Brand Strategy",
+      duration: "1h 40m",
+      lessons: [
+        { id: "l1", title: "What is a Brand?", duration: "12m", preview: true },
+        { id: "l2", title: "Brand vs. Marketing: Understanding the Difference", duration: "15m", preview: false },
+        { id: "l3", title: "The Business Impact of Strong Branding", duration: "18m", preview: false },
+        { id: "l4", title: "Brand Strategy Framework Overview", duration: "20m", preview: true },
+        { id: "l5", title: "Case Study: Successful Brand Transformations", duration: "35m", preview: false }
       ]
     },
-    
-    priceCredits: 150,
-    status: 'active',
-    createdAt: '2024-01-10T00:00:00Z',
-    updatedAt: '2024-01-20T00:00:00Z',
-    tags: ['beginner-friendly', 'project-based', 'career-focused', 'full-stack'],
-    category: 'Technology',
-    
-    materials: [
-      {
-        id: 'mat-1',
-        title: 'Course Slides (PDF)',
-        type: 'pdf',
-        url: '/materials/slides.pdf',
-        downloadable: true
-      },
-      {
-        id: 'mat-2',
-        title: 'Code Examples',
-        type: 'code',
-        url: '/materials/code.zip',
-        downloadable: true
-      }
-    ],
-    
-    certificateTemplate: 'web-dev-certificate',
-    passingGrade: 80
+    {
+      id: "m2",
+      title: "Brand Research & Analysis",
+      duration: "1h 15m",
+      lessons: [
+        { id: "l6", title: "Understanding Your Audience", duration: "25m", preview: false },
+        { id: "l7", title: "Competitive Landscape Analysis", duration: "20m", preview: false },
+        { id: "l8", title: "Market Positioning Maps", duration: "18m", preview: false },
+        { id: "l9", title: "Brand Audit Techniques", duration: "12m", preview: false }
+      ]
+    },
+    {
+      id: "m3",
+      title: "Brand Positioning & Messaging",
+      duration: "1h 30m",
+      lessons: [
+        { id: "l10", title: "Defining Your Brand Position", duration: "22m", preview: false },
+        { id: "l11", title: "Crafting Your Value Proposition", duration: "20m", preview: false },
+        { id: "l12", title: "Messaging Architecture", duration: "25m", preview: false },
+        { id: "l13", title: "Tone of Voice Development", duration: "23m", preview: false }
+      ]
+    },
+    {
+      id: "m4",
+      title: "Visual Identity & Guidelines",
+      duration: "45m",
+      lessons: [
+        { id: "l14", title: "Logo Design Principles", duration: "18m", preview: false },
+        { id: "l15", title: "Color Psychology in Branding", duration: "12m", preview: false },
+        { id: "l16", title: "Typography for Brand Identity", duration: "15m", preview: false }
+      ]
+    }
+  ],
+  cohort: {
+    nextStart: "2025-02-15"
   },
-  {
-    id: 'class-2',
-    title: 'Brand Identity Masterclass',
-    subtitle: 'Create Memorable Brand Experiences',
-    description: 'Learn to design compelling brand identities that tell powerful stories and connect with audiences.',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&h=225&fit=crop',
-    instructorId: 'user-2',
-    skillId: 'graphic-design',
-    level: 'Intermediate',
-    durationMins: 720, // 12 hours
-    language: 'English',
-    ratingAvg: 4.9,
-    ratingCount: 156,
-    studentsCount: 680,
-    
-    sections: [
-      {
-        id: 'section-brand-1',
-        title: 'Brand Strategy Foundation',
-        description: 'Understanding brand principles and strategy',
-        lessons: [
-          {
-            id: 'lesson-brand-1',
-            title: 'What Makes a Great Brand',
-            durationMins: 45,
-            previewable: true,
-            order: 1
-          },
-          {
-            id: 'lesson-brand-2',
-            title: 'Brand Research & Analysis',
-            durationMins: 60,
-            previewable: false,
-            order: 2
-          }
-        ],
-        order: 1
-      }
-    ],
-    requirements: [
-      'Basic knowledge of design principles',
-      'Adobe Creative Suite (trial version available)',
-      'Portfolio examples to work with'
-    ],
-    outcomes: [
-      'Develop comprehensive brand strategies',
-      'Create professional logo designs',
-      'Build complete brand guidelines',
-      'Present brand concepts effectively'
-    ],
-    
-    type: 'live',
-    maxSeats: 20,
-    currentSeats: 18,
-    
-    priceCredits: 120,
-    status: 'upcoming',
-    createdAt: '2024-01-15T00:00:00Z',
-    updatedAt: '2024-01-18T00:00:00Z',
-    tags: ['intermediate', 'design', 'branding', 'adobe'],
-    category: 'Design'
-  },
-  {
-    id: 'class-3',
-    title: 'Business Spanish Immersion',
-    subtitle: 'Professional Spanish for Global Business',
-    description: 'Master business Spanish through real-world scenarios, cultural insights, and professional communication strategies.',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=225&fit=crop',
-    instructorId: 'user-3',
-    skillId: 'spanish',
-    level: 'Intermediate',
-    durationMins: 900, // 15 hours
-    language: 'Spanish/English',
-    ratingAvg: 4.95,
-    ratingCount: 89,
-    studentsCount: 340,
-    
-    sections: [
-      {
-        id: 'section-spanish-1',
-        title: 'Business Communication',
-        description: 'Essential business Spanish vocabulary and phrases',
-        lessons: [
-          {
-            id: 'lesson-spanish-1',
-            title: 'Meeting & Presentations',
-            durationMins: 60,
-            previewable: true,
-            order: 1
-          }
-        ],
-        order: 1
-      }
-    ],
-    requirements: [
-      'Intermediate Spanish level (A2-B1)',
-      'Business communication experience helpful',
-      'Commitment to practice speaking'
-    ],
-    outcomes: [
-      'Conduct business meetings in Spanish',
-      'Write professional emails and documents',
-      'Navigate cultural business norms',
-      'Present and negotiate confidently'
-    ],
-    
-    type: 'live',
-    maxSeats: 15,
-    currentSeats: 12,
-    
-    priceCredits: 100,
-    status: 'active',
-    createdAt: '2024-01-12T00:00:00Z',
-    updatedAt: '2024-01-19T00:00:00Z',
-    tags: ['language', 'business', 'conversation', 'cultural'],
-    category: 'Languages'
-  }
-];
-
-// Skill Paths (Coursera-style specializations)
-export const skillPaths: SkillPath[] = [
-  {
-    id: 'path-1',
-    title: 'Full-Stack Developer',
-    description: 'Complete journey from frontend to backend development',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=400&h=225&fit=crop',
-    category: 'Technology',
-    level: 'Beginner',
-    
-    steps: [
-      {
-        id: 'step-1',
-        type: 'class',
-        refId: 'class-1',
-        title: 'Web Development Foundations',
-        description: 'Master HTML, CSS, and JavaScript fundamentals',
-        estimatedHours: 30,
-        isOptional: false,
-        order: 1
-      },
-      {
-        id: 'step-2',
-        type: 'class',
-        refId: 'class-advanced-js',
-        title: 'Advanced JavaScript & React',
-        description: 'Build modern frontend applications',
-        estimatedHours: 25,
-        isOptional: false,
-        prerequisites: ['step-1'],
-        order: 2
-      },
-      {
-        id: 'step-3',
-        type: 'mentorship',
-        refId: 'mentor-backend',
-        title: 'Backend Development Mentorship',
-        description: 'One-on-one guidance for server-side development',
-        estimatedHours: 15,
-        isOptional: false,
-        prerequisites: ['step-2'],
-        order: 3
-      },
-      {
-        id: 'step-4',
-        type: 'project',
-        refId: 'project-fullstack',
-        title: 'Capstone Project',
-        description: 'Build and deploy a full-stack application',
-        estimatedHours: 20,
-        isOptional: false,
-        prerequisites: ['step-3'],
-        order: 4
-      }
-    ],
-    
-    estimatedHours: 90,
-    outcomes: [
-      'Build complete web applications',
-      'Work with modern frameworks and tools',
-      'Deploy applications to production',
-      'Understand full development lifecycle'
-    ],
-    skills: ['web-development', 'javascript', 'react', 'node-js'],
-    
-    completionBadgeId: 'fullstack-developer',
-    certificateTemplate: 'fullstack-path-cert',
-    
-    priceCredits: 350,
-    studentsCount: 450,
+  isSelfPaced: true,
+  prerequisites: [
+    "Basic design software knowledge (Figma, Sketch, or similar)",
+    "Understanding of marketing fundamentals",
+    "Creative mindset and willingness to experiment"
+  ],
+  materials: [
+    "Brand strategy templates and frameworks",
+    "Case study examples and analysis",
+    "Design assets and resources",
+    "Brand audit checklist"
+  ],
+  accessLength: "Lifetime access",
+  certificate: true,
+  instructor: {
+    slug: "marcus-chen",
+    name: "Marcus Chen",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&h=160&fit=crop&crop=face",
+    title: "Brand Designer & Educator",
+    location: "San Francisco, USA",
+    languages: ["English", "Chinese"],
     ratingAvg: 4.8,
-    ratingCount: 67,
-    
-    createdBy: 'user-1',
-    createdAt: '2024-01-05T00:00:00Z',
-    updatedAt: '2024-01-15T00:00:00Z',
-    status: 'published',
-    featured: true
+    ratingCount: 128,
+    bio: "Brand designer and educator focused on practical, hands-on skill-building. With over 8 years of experience working with startups and Fortune 500 companies, I specialize in creating brand strategies that drive real business results. My approach combines strategic thinking with creative execution, helping students develop both the mindset and skills needed to succeed in brand design.",
+    website: "marcuschen.design",
+    linkedin: "marcus-chen-design",
+    portfolio: "behance.net/marcuschen"
   },
-  {
-    id: 'path-2',
-    title: 'Digital Brand Designer',
-    description: 'Master brand design from strategy to execution',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1542744094-3a31f272c490?w=400&h=225&fit=crop',
-    category: 'Design',
-    level: 'Intermediate',
-    
-    steps: [
-      {
-        id: 'step-d1',
-        type: 'class',
-        refId: 'class-2',
-        title: 'Brand Identity Masterclass',
-        description: 'Learn comprehensive brand design',
-        estimatedHours: 12,
-        isOptional: false,
-        order: 1
-      },
-      {
-        id: 'step-d2',
-        type: 'class',
-        refId: 'class-digital-marketing',
-        title: 'Digital Marketing Fundamentals',
-        description: 'Understand marketing strategy',
-        estimatedHours: 8,
-        isOptional: false,
-        order: 2
-      }
-    ],
-    
-    estimatedHours: 25,
-    outcomes: [
-      'Design complete brand identities',
-      'Create digital marketing campaigns',
-      'Develop brand guidelines',
-      'Present design concepts professionally'
-    ],
-    skills: ['graphic-design', 'digital-marketing', 'branding'],
-    
-    priceCredits: 200,
-    studentsCount: 280,
-    ratingAvg: 4.9,
-    ratingCount: 42,
-    
-    createdBy: 'user-2',
-    createdAt: '2024-01-08T00:00:00Z',
-    updatedAt: '2024-01-12T00:00:00Z',
-    status: 'published',
-    featured: true
-  }
-];
-
-// Mentor Tiers
-export const mentorTiers: MentorTier[] = [
-  {
-    id: 'silver',
-    name: 'Silver',
-    creditsPerHour: 20,
-    features: ['1:1 Sessions', 'Email Support', 'Basic Portfolio Review'],
-    color: '#C0C0C0',
-    requirements: {
-      minRating: 4.0,
-      minSessions: 10,
-      minStudents: 25,
-      verificationRequired: true
-    }
-  },
-  {
-    id: 'gold',
-    name: 'Gold',
-    creditsPerHour: 35,
-    features: ['1:1 Sessions', 'Priority Support', 'Portfolio Review', 'Career Guidance', 'Resume Review'],
-    color: '#FFD700',
-    requirements: {
-      minRating: 4.5,
-      minSessions: 50,
-      minStudents: 100,
-      verificationRequired: true
-    }
-  },
-  {
-    id: 'platinum',
-    name: 'Platinum',
-    creditsPerHour: 50,
-    features: ['All Gold Features', '24/7 Support', 'Industry Connections', 'Job Referrals', 'Ongoing Support'],
-    color: '#E5E4E2',
-    requirements: {
-      minRating: 4.8,
-      minSessions: 100,
-      minStudents: 250,
-      verificationRequired: true
-    }
-  }
-];
-
-// Organizations for donations and partnerships
-export const organizations: Organization[] = [
-  {
-    id: 'org-1',
-    name: 'Code for Africa',
-    logoUrl: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=100&h=100&fit=crop',
-    type: 'NGO',
-    verified: true,
-    description: 'Empowering African societies through technology and data journalism',
-    website: 'codeforafrica.org',
-    walletAddress: '0x1234...5678',
-    totalDonationsReceived: 15420,
-    classes: ['class-1'],
-    scholarships: [
-      {
-        id: 'scholarship-1',
-        title: 'Tech Education Scholarship',
-        description: 'Full scholarship for underrepresented students in tech',
-        creditsAwarded: 500,
-        eligibility: ['Student status', 'Financial need', 'Underrepresented background']
-      }
-    ]
-  },
-  {
-    id: 'org-2',
-    name: 'Design Academy',
-    logoUrl: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=100&h=100&fit=crop',
-    type: 'School',
-    verified: true,
-    description: 'Supporting emerging designers with education and resources',
-    website: 'designacademy.edu',
-    totalDonationsReceived: 8930,
-    classes: ['class-2']
-  },
-  {
-    id: 'org-3',
-    name: 'Global Language Institute',
-    logoUrl: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=100&h=100&fit=crop',
-    type: 'School',
-    verified: true,
-    description: 'Breaking language barriers through accessible education',
-    website: 'globallang.org',
-    totalDonationsReceived: 12100,
-    classes: ['class-3']
-  }
-];
-
-// Reviews for classes and instructors
-export const reviews: Review[] = [
-  {
-    id: 'review-1',
-    reviewerId: 'student-1',
-    classId: 'class-1',
-    revieweeId: 'user-1',
-    rating: 5,
-    title: 'Excellent course for beginners!',
-    text: 'Dr. Chen explains complex concepts in a very clear and understandable way. The projects are practical and helped me build a real portfolio.',
-    aspects: {
-      content: 5,
-      instruction: 5,
-      value: 4,
-      engagement: 5
+  reviews: [
+    {
+      id: "r1",
+      userId: "user-1",
+      userName: "Sofia Rodriguez",
+      userAvatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+      rating: 5,
+      date: "2025-01-15",
+      text: "Absolutely fantastic course! Marcus breaks down complex brand strategy concepts into digestible, actionable steps. The templates and frameworks are incredibly valuable for real client work. I've already implemented several techniques with great success.",
+      helpful: 24,
+      images: []
     },
-    createdAt: '2024-01-18T00:00:00Z',
-    helpful: 23,
-    reported: false
-  },
-  {
-    id: 'review-2',
-    reviewerId: 'student-2',
-    classId: 'class-2',
-    revieweeId: 'user-2',
-    rating: 5,
-    title: 'Transformed my design skills',
-    text: 'Marcus has an incredible eye for design and his feedback is invaluable. I learned more in this course than in years of self-study.',
-    aspects: {
-      content: 5,
-      instruction: 5,
-      value: 5,
-      engagement: 4
+    {
+      id: "r2",
+      userId: "user-3",
+      userName: "Isabella Thompson",
+      userAvatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+      rating: 4,
+      date: "2025-01-10",
+      text: "Great content and well-structured curriculum. The case studies were particularly helpful in understanding how to apply the concepts in real-world scenarios. Would have loved to see more advanced techniques, but perfect for intermediate level.",
+      helpful: 12
     },
-    createdAt: '2024-01-16T00:00:00Z',
-    helpful: 18,
-    reported: false
-  }
-];
-
-// Challenges for community engagement
-export const challenges: Challenge[] = [
-  {
-    id: 'challenge-1',
-    title: '30-Day Code Challenge',
-    description: 'Code something new every day for 30 days',
-    goal: 'Build 30 different projects or complete 30 coding exercises',
-    startAt: '2024-02-01T00:00:00Z',
-    endAt: '2024-03-02T23:59:59Z',
-    rules: 'Submit daily progress, original work only, help others in community',
-    rewardCredits: 100,
-    status: 'upcoming',
-    participants: 45,
-    maxParticipants: 100,
-    leaderboard: [],
-    category: 'Technology',
-    difficulty: 2,
-    skillsRequired: ['web-development'],
-    tasks: [
-      {
-        id: 'task-1',
-        title: 'Build a Landing Page',
-        description: 'Create a responsive landing page',
-        points: 10,
-        required: true
-      },
-      {
-        id: 'task-2',
-        title: 'JavaScript Calculator',
-        description: 'Build a functional calculator app',
-        points: 15,
-        required: true
-      }
-    ]
-  }
-];
-
-// Export all data
-export const courseData = {
-  skills,
-  users,
-  classes,
-  skillPaths,
-  mentorTiers,
-  organizations,
-  reviews,
-  challenges
+    {
+      id: "r3",
+      userId: "user-4",
+      userName: "Kenji Nakamura",
+      userAvatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+      rating: 5,
+      date: "2025-01-05",
+      text: "As someone coming from a business background, this course gave me the design perspective I was missing. Marcus explains everything clearly and the hands-on exercises really help cement the learning. Highly recommend!",
+      helpful: 18
+    },
+    {
+      id: "r4",
+      userId: "user-5",
+      userName: "Amara Okafor",
+      userAvatar: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face",
+      rating: 5,
+      date: "2024-12-28",
+      text: "This course exceeded my expectations. The brand strategy framework is solid and the instructor provides excellent feedback. I feel confident applying these skills to client projects now.",
+      helpful: 15
+    }
+  ]
 };
 
-export default courseData;
+// Additional sample courses for "You might also like" section
+export const relatedCourses = [
+  {
+    id: "c_89",
+    slug: "logo-design-mastery",
+    title: "Logo Design Mastery",
+    subtitle: "Create memorable and impactful logos that stand the test of time",
+    thumbnail: "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=400&h=300&fit=crop",
+    credits: 120,
+    ratingAvg: 4.7,
+    ratingCount: 892,
+    instructor: "Sofia Rodriguez",
+    category: "Design",
+    duration: "4h 20m",
+    level: "Beginner"
+  },
+  {
+    id: "c_90",
+    slug: "ux-design-fundamentals",
+    title: "UX Design Fundamentals",
+    subtitle: "Learn the principles of user experience design from industry experts",
+    thumbnail: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=400&h=300&fit=crop",
+    credits: 180,
+    ratingAvg: 4.9,
+    ratingCount: 1456,
+    instructor: "Alex Martinez",
+    category: "Design",
+    duration: "6h 45m",
+    level: "Intermediate"
+  },
+  {
+    id: "c_91",
+    slug: "adobe-illustrator-advanced",
+    title: "Adobe Illustrator Advanced",
+    subtitle: "Master professional illustration techniques and vector graphics",
+    thumbnail: "https://images.unsplash.com/photo-1541462608143-67571c6738dd?w=400&h=300&fit=crop",
+    credits: 140,
+    ratingAvg: 4.6,
+    ratingCount: 743,
+    instructor: "Lisa Chen",
+    category: "Design",
+    duration: "5h 30m",
+    level: "Advanced"
+  },
+  {
+    id: "c_92",
+    slug: "brand-identity-systems",
+    title: "Brand Identity Systems",
+    subtitle: "Build comprehensive brand systems that scale across all touchpoints",
+    thumbnail: "https://images.unsplash.com/photo-1558655146-364adaf25e54?w=400&h=300&fit=crop",
+    credits: 200,
+    ratingAvg: 4.8,
+    ratingCount: 567,
+    instructor: "Marcus Chen",
+    category: "Design",
+    duration: "7h 15m",
+    level: "Advanced"
+  }
+];
