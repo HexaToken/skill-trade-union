@@ -509,9 +509,9 @@ export default function SearchResults() {
                       <Badge variant="secondary" className="ml-2 bg-[#0056D2] text-white">
                         {[
                           ...filters.categories,
-                          filters.level,
-                          filters.location,
-                          filters.availability,
+                          filters.level !== 'all' ? filters.level : '',
+                          filters.location !== 'all' ? filters.location : '',
+                          filters.availability !== 'all' ? filters.availability : '',
                           filters.verifiedOnly ? 'Verified' : '',
                           filters.skillTested ? 'Tested' : '',
                           filters.onlineOnly ? 'Online' : ''
