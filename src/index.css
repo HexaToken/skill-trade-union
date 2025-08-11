@@ -11,50 +11,51 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Warm EduTech Color System */
-    --background: 243 244 246; /* #F3F4F6 - Soft warm gray */
-    --foreground: 31 41 55; /* #1F2937 - Slate gray for headings */
+    /* Coursera/Udemy Hybrid Color System */
+    --background: 255 255 255; /* #FFFFFF - Pure white */
+    --foreground: 15 23 42; /* #0F172A - Deep navy for headings */
 
     --card: 255 255 255; /* Pure white for cards */
-    --card-foreground: 55 65 81; /* #374151 - Body text */
+    --card-foreground: 51 65 85; /* #334155 - Body text */
 
     --popover: 255 255 255;
-    --popover-foreground: 55 65 81;
+    --popover-foreground: 51 65 85;
 
-    --primary: 262 83% 39%; /* #6B21A8 - Rich violet */
+    --primary: 0 86% 41%; /* #0056D2 - Deep blue */
     --primary-foreground: 255 255 255;
 
-    --secondary: 25 95% 53%; /* #F97316 - Coral-orange */
-    --secondary-foreground: 255 255 255;
+    --secondary: 189 95% 43%; /* #06B6D4 - Light cyan */
+    --secondary-foreground: 15 23 42; /* Deep navy for cyan background */
 
-    --muted: 243 244 246;
-    --muted-foreground: 107 114 128; /* #6B7280 - Muted gray */
+    --muted: 248 250 252; /* #F8FAFC - Soft gray */
+    --muted-foreground: 100 116 139; /* #64748B - Slate gray */
 
-    --accent: 45 93% 47%; /* #FBBF24 - Warm gold */
-    --accent-foreground: 31 41 55; /* Dark text for gold background */
+    --accent: 189 95% 43%; /* #06B6D4 - Light cyan accent */
+    --accent-foreground: 15 23 42; /* Deep navy for cyan background */
 
-    --destructive: 0 84% 60%; /* #EF4444 - Brand red */
+    --destructive: 0 84% 60%; /* #EF4444 - Keep red for destructive */
     --destructive-foreground: 255 255 255;
 
-    --border: 229 231 235; /* #E5E7EB - Light border */
-    --input: 229 231 235;
-    --ring: 262 83% 39%;
+    --border: 226 232 240; /* #E2E8F0 - Light border */
+    --input: 226 232 240;
+    --ring: 0 86% 41%;
 
-    --radius: 0.75rem; /* lg rounded corners */
+    --radius: 0.75rem; /* 12px rounded corners */
 
-    /* Warm EduTech specific variables */
-    --glass-bg: rgba(255, 255, 255, 0.95);
+    /* Coursera/Udemy specific variables */
+    --glass-bg: rgba(255, 255, 255, 0.98);
     --glass-border: rgba(0, 0, 0, 0.05);
-    --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-    --neo-blur: 20px;
-    --neo-gradient: linear-gradient(135deg, rgba(107, 33, 168, 0.1) 0%, rgba(249, 115, 22, 0.1) 100%);
+    --glass-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --neo-blur: 16px;
+    --neo-gradient: linear-gradient(135deg, rgba(0, 86, 210, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
 
-    /* Brand palette - Warm EduTech colors */
-    --brand-primary: 262 83% 39%; /* #6B21A8 - Rich violet */
-    --brand-secondary: 25 95% 53%; /* #F97316 - Coral-orange */
-    --brand-green: 142 71% 45%; /* #22C55E - Keep green for success */
-    --brand-amber: 45 93% 47%; /* #FBBF24 - Warm gold */
-    --brand-red: 0 84% 60%; /* #EF4444 - Keep red for destructive */
+    /* Brand palette - Coursera/Udemy colors */
+    --brand-primary: 0 86% 41%; /* #0056D2 - Deep blue */
+    --brand-secondary: 189 95% 43%; /* #06B6D4 - Light cyan */
+    --brand-neutral: 100 116 139; /* #64748B - Slate gray */
+    --brand-success: 142 71% 45%; /* #22C55E - Keep green for success */
+    --brand-warning: 45 93% 47%; /* #FBBF24 - Keep amber for warnings */
+    --brand-danger: 0 84% 60%; /* #EF4444 - Keep red for destructive */
 
     /* Neutrals - Warm EduTech */
     --neutral-900: 31 41 55; /* #1F2937 - Headings */
