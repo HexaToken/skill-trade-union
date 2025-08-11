@@ -627,7 +627,7 @@ export default function SearchResults() {
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                     {displayResults.map((result, index) => (
-                      <div key={`${result.type}-${index}`} className="animate-in fade-in duration-300" style={{ animationDelay: `${index * 50}ms` }}>
+                      <div key={`${result.type}-${index}`} className="animate-fade-in" style={{ animationDelay: `${index * 50}ms` }}>
                         {result.type === 'person' ? (
                           <MatchCard
                             {...result.data}
