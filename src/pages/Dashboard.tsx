@@ -25,6 +25,13 @@ const Dashboard = () => {
   const upcomingSessions = sessions.filter(s => s.status === 'booked').slice(0, 3);
   const suggestedMatches = users.filter(u => u.id !== currentUser.id).slice(0, 2);
   const activeChallenge = challenges[0];
+
+  // Offline trades data
+  const tradesAwaitingMe = getTradesAwaitingUser(currentUser.id);
+  const pendingTrades = getPendingTradesByUser(currentUser.id);
+  const recentTrades = mockOfflineTrades
+    .filter(trade => trade.initiatorId === currentUser.id || trade.counterpartyId === currentUser.id)
+    .slice(0, 3);
   
   const stats = {
     credits: currentUser.wallet.credits,
