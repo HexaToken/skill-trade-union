@@ -244,7 +244,6 @@ const ChallengesHub = () => {
                   {CATEGORIES.map((category) => (
                     <Button
                       key={category}
-                      variant={filters.category.includes(category) ? 'default' : 'outline'}
                       size="sm"
                       onClick={() => {
                         setFilters(prev => ({
@@ -255,10 +254,10 @@ const ChallengesHub = () => {
                         }));
                       }}
                       className={cn(
-                        'text-xs font-medium transition-all duration-200',
+                        'text-xs font-medium transition-all duration-200 border',
                         filters.category.includes(category)
-                          ? 'bg-[#0056D2] hover:bg-[#004BB8] text-white shadow-sm'
-                          : 'text-[#0056D2] border-[#0056D2]/30 hover:bg-[#0056D2]/10 hover:border-[#0056D2]/50'
+                          ? 'bg-[#0056D2] hover:bg-[#004BB8] text-white border-[#0056D2] shadow-sm'
+                          : 'bg-white text-[#0056D2] border-[#0056D2]/30 hover:bg-[#0056D2]/10 hover:border-[#0056D2]/50'
                       )}
                     >
                       {category}
