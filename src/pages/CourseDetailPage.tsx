@@ -627,7 +627,11 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {relatedCourses.map((relatedCourse) => (
-              <Card key={relatedCourse.id} className="hover-lift cursor-pointer overflow-hidden bg-white dark:bg-[#1E293B] border border-transparent dark:border-[rgba(255,255,255,0.06)] shadow-lg">
+              <Card
+                key={relatedCourse.id}
+                className="hover-lift cursor-pointer overflow-hidden bg-white dark:bg-[#1E293B] border border-transparent dark:border-[rgba(255,255,255,0.06)] shadow-lg"
+                onClick={() => handleRelatedCourseClick(relatedCourse.slug)}
+              >
                 <div className="relative aspect-video overflow-hidden">
                   <img 
                     src={relatedCourse.thumbnail} 
