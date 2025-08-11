@@ -80,7 +80,7 @@ const LEVELS = ["Beginner", "Intermediate", "Advanced"];
 const LANGUAGES = ["English", "Spanish", "French", "German", "Chinese", "Japanese"];
 
 const MentorsDirectory = () => {
-  const isMobile = useMobile();
+  const isMobile = useIsMobile();
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("relevance");
   const [filters, setFilters] = useState<Filters>(INITIAL_FILTERS);
