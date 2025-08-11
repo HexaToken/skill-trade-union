@@ -377,7 +377,7 @@ export default function Classes() {
             </div>
             <div className="flex items-center gap-1">
               <Users className="w-3 h-3" />
-              <span>{course.studentsCount.toLocaleString()}</span>
+              <span>{(course.studentsCount || course.currentSeats || 0).toLocaleString()}</span>
             </div>
           </div>
           
