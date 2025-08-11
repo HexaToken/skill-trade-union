@@ -323,7 +323,7 @@ export default function Matches() {
                     variant="outline"
                     size="sm"
                     onClick={handleClearFilters}
-                    className="text-xs border-educational-cyan text-educational-cyan hover:bg-educational-cyan hover:text-white rounded-xl transition-all duration-200"
+                    className="text-xs border-[#06B6D4] text-[#06B6D4] hover:bg-[#06B6D4] hover:text-white rounded-xl transition-all duration-200"
                   >
                     Clear Filters
                   </Button>
