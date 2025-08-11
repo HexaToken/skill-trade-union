@@ -228,7 +228,7 @@ const ChallengeDetail = () => {
     setSearchParams({ tab });
   };
 
-  const handleJoinSprint = async (data: { roles: string[]; timeWindows: string[]; onlineOnly: boolean }) => {
+  const handleJoinSprint = async (data: { roles: ('mentor' | 'learner')[]; timeWindows: string[]; onlineOnly: boolean }) => {
     // Mock join logic
     await new Promise(resolve => setTimeout(resolve, 1000));
     setUserProgress(prev => ({ ...prev, isJoined: true }));
