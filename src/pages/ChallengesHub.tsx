@@ -226,7 +226,7 @@ const ChallengesHub = () => {
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-[#64748B] dark:text-[#94A3B8]">Sort by</Label>
                   <Select value={filters.sort} onValueChange={(value) => setFilters(prev => ({ ...prev, sort: value }))}>
-                    <SelectTrigger className="w-48 border-[#0056D2]/20 focus:border-[#0056D2] focus:ring-[#0056D2]">
+                    <SelectTrigger className="w-48 bg-white border-[#0056D2]/20 focus:border-[#0056D2] focus:ring-[#0056D2] text-[#0F172A]">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
