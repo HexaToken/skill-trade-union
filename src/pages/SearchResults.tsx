@@ -355,7 +355,7 @@ export default function SearchResults() {
             <SelectValue placeholder="Any time" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Any time</SelectItem>
+            <SelectItem value="all">Any time</SelectItem>
             <SelectItem value="now">Available Now</SelectItem>
             <SelectItem value="24h">Within 24h</SelectItem>
             <SelectItem value="date">Choose Date</SelectItem>
