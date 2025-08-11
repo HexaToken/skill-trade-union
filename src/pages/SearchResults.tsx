@@ -481,9 +481,9 @@ export default function SearchResults() {
                     <Badge variant="secondary" className="bg-[#0056D2]/10 text-[#0056D2]">
                       {[
                         ...filters.categories,
-                        filters.level,
-                        filters.location,
-                        filters.availability,
+                        filters.level !== 'all' ? filters.level : '',
+                        filters.location !== 'all' ? filters.location : '',
+                        filters.availability !== 'all' ? filters.availability : '',
                         filters.verifiedOnly ? 'Verified' : '',
                         filters.skillTested ? 'Tested' : '',
                         filters.onlineOnly ? 'Online' : ''
