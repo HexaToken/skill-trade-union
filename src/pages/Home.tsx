@@ -71,7 +71,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-50/30 via-white to-blue-50/30 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
+      <section className="relative overflow-hidden bg-gradient-to-br from-white via-blue-50/20 to-white dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
         <div className="absolute inset-0 bg-grid-black/[0.02] bg-[size:50px_50px]" />
         <div className="relative page-container py-20 md:py-32">
           <div className="max-w-4xl mx-auto text-center space-y-8">
