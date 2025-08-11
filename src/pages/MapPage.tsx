@@ -493,7 +493,7 @@ export default function MapPage() {
             {/* Most Active Cities */}
             <div>
               <h2 className="text-2xl font-heading font-bold mb-6 flex items-center gap-2">
-                <Fire className="w-6 h-6 text-orange-500" />
+                <Flame className="w-6 h-6 text-orange-500" />
                 This Month's Most Active Cities
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
