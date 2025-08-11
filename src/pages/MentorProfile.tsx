@@ -378,12 +378,10 @@ export default function MentorProfile() {
 
                     {/* CTAs */}
                     <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                      <Button 
-                        size="lg" 
+                      <Button
+                        size="lg"
                         className="bg-[#0056D2] hover:bg-[#004BB8] text-white font-semibold"
-                        onClick={() => {
-                          document.getElementById('booking-card')?.scrollIntoView({ behavior: 'smooth' });
-                        }}
+                        onClick={() => setIsBookingModalOpen(true)}
                       >
                         <CreditCard className="w-4 h-4 mr-2" />
                         Book with Credits
