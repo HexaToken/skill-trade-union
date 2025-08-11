@@ -753,7 +753,7 @@ export default function MapPage() {
                     className="flex items-center gap-2 bg-card border border-border rounded-full px-4 py-2 hover:shadow-md transition-all cursor-pointer"
                   >
                     <span className="font-medium text-sm">{skill.name}</span>
-                    <Badge variant="secondary" className="text-green-700 bg-green-100">
+                    <Badge variant="secondary" className="text-green-700 bg-green-50 border-green-200">
                       +{skill.growth}%
                     </Badge>
                   </div>
