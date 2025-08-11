@@ -433,7 +433,7 @@ export default function MapPage() {
                     </div>
                   </div>
                   
-                  <Badge variant="secondary" className="bg-green-100 text-green-800">
+                  <Badge variant="secondary" className="bg-green-50 text-green-700 border-green-200">
                     <TrendingUp className="w-3 h-3 mr-1" />
                     +{selectedMarker.growth}% this month
                   </Badge>
