@@ -40,9 +40,9 @@ import type { Course } from '@/models/expert-types';
 interface SearchFilters {
   type: 'all' | 'people' | 'courses';
   categories: string[];
-  level: 'beginner' | 'intermediate' | 'advanced' | '';
+  level: 'beginner' | 'intermediate' | 'advanced' | 'all';
   location: string;
-  availability: 'now' | '24h' | 'date' | '';
+  availability: 'now' | '24h' | 'date' | 'all';
   creditsRange: [number, number];
   verifiedOnly: boolean;
   skillTested: boolean;
