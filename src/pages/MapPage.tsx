@@ -406,7 +406,7 @@ export default function MapPage() {
                 top: `${30 + (mapData.markers.findIndex(m => m.id === selectedMarker.id) % 3) * 20}%`
               }}
             >
-              <Card className="w-80 shadow-xl border-2 border-brand-primary/20 bg-white/95 backdrop-blur">
+              <Card className="w-80 shadow-xl border border-brand-primary/20 bg-card/98 backdrop-blur">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
