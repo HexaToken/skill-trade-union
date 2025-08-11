@@ -493,102 +493,40 @@ export default function Classes() {
         </div>
       </FilterSection>
 
-      {/* Price */}
-      <FilterSection 
-        title="Price (Credits)" 
-        isExpanded={expandedSections.price}
-        onToggle={() => toggleSection('price')}
-      >
-        <div className="space-y-4">
-          <div>
-            <div className="flex justify-between text-sm mb-2">
-              <span>{filters.priceRange?.[0] || 0}</span>
-              <span>{filters.priceRange?.[1] || 500}</span>
-            </div>
-            <Slider
-              value={filters.priceRange || [0, 500]}
-              onValueChange={(value) => updateFilter('priceRange', value as [number, number])}
-              max={500}
-              min={0}
-              step={10}
-              className="w-full"
-            />
-          </div>
-        </div>
-      </FilterSection>
-
-      {/* Duration */}
-      <FilterSection 
-        title="Duration (Hours)" 
-        isExpanded={expandedSections.duration}
-        onToggle={() => toggleSection('duration')}
-      >
-        <div className="space-y-4">
-          <div>
-            <div className="flex justify-between text-sm mb-2">
-              <span>{filters.duration?.[0] || 0}h</span>
-              <span>{filters.duration?.[1] || 50}h</span>
-            </div>
-            <Slider
-              value={filters.duration || [0, 50]}
-              onValueChange={(value) => updateFilter('duration', value as [number, number])}
-              max={50}
-              min={0}
-              step={1}
-              className="w-full"
-            />
-          </div>
-        </div>
-      </FilterSection>
-
-      {/* Rating */}
-      <FilterSection 
-        title="Rating" 
-        isExpanded={expandedSections.rating}
-        onToggle={() => toggleSection('rating')}
-      >
-        <div className="space-y-3">
-          {[4.5, 4.0, 3.5, 3.0].map(rating => (
-            <label key={rating} className="filter-option cursor-pointer">
-              <div className="flex items-center gap-2">
-                <Checkbox
-                  checked={filters.rating === rating}
-                  onCheckedChange={(checked) => {
-                    updateFilter('rating', checked ? rating : 0);
-                  }}
-                />
-                <div className="flex items-center gap-1">
-                  <Star className="w-3 h-3 fill-brand-secondary text-brand-secondary" />
-                  <span className="text-sm">{rating} & up</span>
-                </div>
-              </div>
-            </label>
-          ))}
-        </div>
-      </FilterSection>
-
-      {/* Language */}
-      <FilterSection 
-        title="Language" 
+      <FilterSection
+        title="Language"
         isExpanded={expandedSections.language}
         onToggle={() => toggleSection('language')}
       >
-        <div className="space-y-3">
-          {['English', 'Spanish', 'French', 'German'].map(language => (
-            <label key={language} className="filter-option cursor-pointer">
-              <div className="flex items-center gap-2">
-                <Checkbox
-                  checked={filters.language?.includes(language) || false}
-                  onCheckedChange={(checked) => {
-                    const currentLanguages = filters.language || [];
-                    if (checked) {
-                      updateFilter('language', [...currentLanguages, language]);
-                    } else {
-                      updateFilter('language', currentLanguages.filter(l => l !== language));
-                    }
-                  }}
-                />
-                <span className="text-sm">{language}</span>
+        <div className="space-y-2">
+          {[
+            { name: 'English', count: 35 },
+            { name: 'Spanish', count: 12 },
+            { name: 'French', count: 8 },
+            { name: 'German', count: 5 }
+          ].map(language => (
+            <label key={language.name} className="group cursor-pointer block">
+              <div className="flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/50 p-2 rounded-lg transition-colors">
+                <div className="flex items-center gap-3">
+                  <Checkbox
+                    checked={filters.language?.includes(language.name) || false}
+                    onCheckedChange={(checked) => {
+                      const currentLanguages = filters.language || [];
+                      if (checked) {
+                        updateFilter('language', [...currentLanguages, language.name]);
+                      } else {
+                        updateFilter('language', currentLanguages.filter(l => l !== language.name));
+                      }
+                    }}
+                    className="rounded border-2 data-[state=checked]:bg-[#0056D2] data-[state=checked]:border-[#0056D2] focus:ring-2 focus:ring-[#0056D2] focus:ring-offset-2"
+                  />
+                  <span className="text-sm text-[#1E293B] dark:text-[#F1F5F9] font-medium">
+                    {language.name}
+                  </span>
+                </div>
+                <span className="text-xs text-[#94A3B8] font-medium">
+                  {language.count}
+                </span>
               </div>
             </label>
           ))}
