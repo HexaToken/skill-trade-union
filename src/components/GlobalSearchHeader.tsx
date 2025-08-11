@@ -60,8 +60,19 @@ export default function GlobalSearchHeader() {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [suggestions, setSuggestions] = useState<SearchSuggestion[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+
+  const navItems = [
+    { label: 'Find a Match', href: '/matches', icon: Users },
+    { label: 'Classes', href: '/classes', icon: BookOpen },
+    { label: 'Mentors', href: '/mentors', icon: Award },
+    { label: 'Profile Demo', href: '/mentor/marcus-chen', icon: User },
+    { label: 'Challenges', href: '/challenges', icon: Target },
+    { label: 'Map', href: '/map', icon: Map },
+    { label: 'Donate', href: '/donate', icon: Heart },
+  ];
   
   const navigate = useNavigate();
   const searchRef = useRef<HTMLInputElement>(null);
