@@ -84,7 +84,7 @@ export default function MatchCard({
             
             <div className="flex items-center gap-4 mt-2 text-sm">
               <div className="flex items-center gap-1">
-                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
                 <span className="font-medium">{user.ratingAvg}</span>
                 <span className="text-muted-foreground">({user.ratingCount})</span>
               </div>
