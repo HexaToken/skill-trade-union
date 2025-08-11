@@ -91,7 +91,7 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
     const [hours, minutes] = module.duration.split('h ');
     const moduleMinutes = parseInt(hours) * 60 + parseInt(minutes.replace('m', ''));
     return total + moduleMinutes;
-  }, 0);
+  }, 0) || 0;
 
   const totalLessons = course.curriculum.reduce((total, module) => total + module.lessons.length, 0);
 
