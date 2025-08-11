@@ -454,7 +454,7 @@ export default function MapPage() {
 
         {/* Side Panel - Desktop Only */}
         <div className={cn(
-          "hidden md:block w-96 border-l bg-card transition-all duration-300 overflow-hidden",
+          "hidden md:block w-96 border-l border-border bg-card/80 backdrop-blur transition-all duration-300 overflow-hidden",
           sidePanelOpen ? "translate-x-0" : "translate-x-full w-0"
         )}>
           <div className="h-full overflow-y-auto">
