@@ -320,13 +320,13 @@ export default function Matches() {
                 )}
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-4">
                 {/* Sort */}
                 <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-48">
+                  <SelectTrigger className="w-52 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-600 rounded-xl shadow-sm hover:shadow-md transition-all">
                     <SelectValue placeholder="Sort by..." />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-600 rounded-xl shadow-lg">
                     {sortOptions.map((option) => (
                       <SelectItem key={option.value} value={option.value}>
                         {option.label}
@@ -336,7 +336,7 @@ export default function Matches() {
                 </Select>
 
                 {/* View Mode Toggle */}
-                <div className="flex rounded-lg border">
+                <div className="flex rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 shadow-sm">
                   <Button
                     variant={viewMode === 'list' ? 'default' : 'ghost'}
                     size="sm"
