@@ -51,7 +51,7 @@ All colors MUST be HSL.
 
     /* Brand palette - Coursera/Udemy colors */
     --brand-primary: 214 100% 41%; /* #0056D2 - Deep blue */
-    --brand-secondary: 189 95% 43%; /* #06B6D4 - Light cyan */
+    --brand-secondary: 189 94% 43%; /* #06B6D4 - Light cyan */
     --brand-neutral: 100 116 139; /* #64748B - Slate gray */
     --brand-success: 142 71% 45%; /* #22C55E - Keep green for success */
     --brand-warning: 45 93% 47%; /* #FBBF24 - Keep amber for warnings */
