@@ -1,4 +1,5 @@
 import { Star, Users, Clock, Calendar, BookOpen, Award, Play, Zap } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -25,27 +26,39 @@ const difficultyLabels = {
   3: { label: 'Advanced', color: 'bg-red-50 text-red-700 border-red-200 dark:bg-red-900/20 dark:text-red-300 dark:border-red-800' }
 };
 
-export default function ClassCard({ 
-  course, 
-  variant = 'default', 
-  className, 
+export default function ClassCard({
+  course,
+  variant = 'default',
+  className,
   onViewDetails,
   onEnroll,
   onInstantHelp,
   showProgress = false,
   progress = 0
 }: ClassCardProps) {
+  const navigate = useNavigate();
   const teacher = users.find(u => u.id === course.teacherId);
   const difficulty = difficultyLabels[course.level];
   const seatsRemaining = course.maxSeats - course.currentSeats;
   const seatsPercentage = (course.currentSeats / course.maxSeats) * 100;
+
+  // Generate slug from course title
+  const courseSlug = course.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+
+  const handleViewDetails = () => {
+    if (onViewDetails) {
+      onViewDetails(course.id);
+    } else {
+      navigate(`/classes/${courseSlug}`);
+    }
+  };
   
   const totalDuration = course.lessons?.reduce((total, lesson) => total + lesson.durationMins, 0) || 
                        (course.schedule?.length ? course.schedule.length * 120 : 0); // Fallback estimate
 
   if (variant === 'compact') {
     return (
-      <Card className={cn('hover-lift cursor-pointer', className)} onClick={() => onViewDetails?.(course.id)}>
+      <Card className={cn('hover-lift cursor-pointer', className)} onClick={handleViewDetails}>
         <div className="flex items-center gap-4 p-4">
           <div className="relative">
             <img
@@ -83,7 +96,7 @@ export default function ClassCard({
         variant === 'featured' && 'bg-gradient-to-br from-blue-50/50 to-cyan-50/50 dark:from-blue-900/20 dark:to-cyan-900/20',
         className
       )}
-      onClick={() => onViewDetails?.(course.id)}
+      onClick={handleViewDetails}
     >
       {/* Thumbnail */}
       <div className="relative aspect-video overflow-hidden">
@@ -135,7 +148,7 @@ export default function ClassCard({
           <div className="flex items-start justify-between gap-2">
             <h3
               className="font-bold text-lg line-clamp-2 cursor-pointer hover:text-[#0056D2] transition-colors text-[#0F172A] dark:text-[#F1F5F9] font-heading"
-              onClick={() => onViewDetails?.(course.id)}
+              onClick={handleViewDetails}
             >
               {course.title}
             </h3>
@@ -181,7 +194,7 @@ export default function ClassCard({
 
             <div className="flex items-center gap-1 text-[#334155] dark:text-[#E2E8F0]">
               <Users className="w-3 h-3" />
-              <span>{course.enrolled?.toLocaleString() || course.currentSeats} enrolled</span>
+              <span>{(course.enrolled || course.currentSeats || 0).toLocaleString()} enrolled</span>
             </div>
           </div>
 
@@ -233,7 +246,7 @@ export default function ClassCard({
             variant="outline"
             size="sm"
             className="flex-1 border-[#06B6D4] text-[#06B6D4] hover:bg-[#06B6D4] hover:text-white transition-all duration-200 font-semibold"
-            onClick={() => onViewDetails?.(course.id)}
+            onClick={handleViewDetails}
           >
             View Details
           </Button>

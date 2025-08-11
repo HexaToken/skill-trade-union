@@ -2,20 +2,21 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme-provider";
-import Header from "@/components/layout/Header";
+import GlobalSearchHeader from "@/components/GlobalSearchHeader";
 import Footer from "@/components/layout/Footer";
 import SkipLinks from "@/components/SkipLinks";
 
 // Import all pages
-import Home from "./pages/Home";
+import HomePage from "./pages/HomePage";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import Matches from "./pages/Matches";
 import SearchResults from "./pages/SearchResults";
 import Classes from "./pages/Classes";
 import ClassDetail from "./pages/ClassDetail";
+import CourseDetailPageFixed from "./pages/CourseDetailPageFixed";
 import SkillPaths from "./pages/SkillPaths";
 import Wallet from "./pages/Wallet";
 import Profile from "./pages/Profile";
@@ -30,7 +31,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
       <SkipLinks />
-      <Header />
+      <GlobalSearchHeader />
       <main id="main-content" className="flex-1" tabIndex={-1}>
         {children}
       </main>
@@ -48,7 +49,8 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             {/* Home page */}
-            <Route path="/" element={<Layout><Home /></Layout>} />
+            <Route path="/" element={<Layout><HomePage /></Layout>} />
+            <Route path="/Home" element={<Navigate to="/" replace />} />
             
             {/* Core app pages */}
             <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
@@ -65,7 +67,8 @@ const App = () => (
             
             {/* Learning & discovery */}
             <Route path="/classes" element={<Layout><Classes /></Layout>} />
-            <Route path="/classes/:id" element={<Layout><ClassDetail /></Layout>} />
+            <Route path="/classes/:courseSlug" element={<Layout><CourseDetailPageFixed /></Layout>} />
+            <Route path="/class/:id" element={<Layout><ClassDetail /></Layout>} />
             <Route path="/create" element={<Layout><Placeholder title="Create Class" desc="Share your skills by creating a new class. Set your schedule, price, and curriculum." /></Layout>} />
             <Route path="/paths" element={<Layout><SkillPaths /></Layout>} />
             <Route path="/paths/:id" element={<Layout><Placeholder title="Skill Path Detail" desc="Complete learning path with progress tracking." /></Layout>} />

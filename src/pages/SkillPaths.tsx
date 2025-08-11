@@ -30,7 +30,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
-import { skillPaths, users } from '@/data/courseData';
+import { skillPaths, users } from '@/data/mockData';
 import type { SkillPath } from '@/models/course-types';
 
 export default function SkillPaths() {
@@ -135,7 +135,7 @@ export default function SkillPaths() {
             </div>
             <div className="flex items-center gap-1">
               <Users className="w-4 h-4" />
-              <span>{path.studentsCount.toLocaleString()}</span>
+              <span>{(path.studentsCount || 0).toLocaleString()}</span>
             </div>
             <div className="flex items-center gap-1">
               <Star className="w-4 h-4 fill-brand-warning text-brand-warning" />
@@ -225,7 +225,7 @@ export default function SkillPaths() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Users className="w-4 h-4 text-brand-secondary" />
-                  <span>{path.studentsCount.toLocaleString()} enrolled</span>
+                  <span>{(path.studentsCount || 0).toLocaleString()} enrolled</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Star className="w-4 h-4 fill-brand-warning text-brand-warning" />
@@ -314,7 +314,7 @@ export default function SkillPaths() {
             </div>
             <div>
               <div className="text-3xl font-bold text-brand-secondary mb-2">
-                {skillPaths.reduce((acc, path) => acc + path.studentsCount, 0).toLocaleString()}
+                {skillPaths.reduce((acc, path) => acc + (path.studentsCount || 0), 0).toLocaleString()}
               </div>
               <div className="text-sm text-muted-foreground">Students Enrolled</div>
             </div>

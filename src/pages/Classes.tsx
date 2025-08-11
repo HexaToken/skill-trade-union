@@ -44,7 +44,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import { classes, users, skills } from '@/data/courseData';
+import { classes, users, skills } from '@/data/mockData';
 import type { SearchFilters } from '@/models/course-types';
 
 interface FilterState extends SearchFilters {
@@ -299,7 +299,7 @@ export default function Classes() {
                   
                   <div className="flex items-center gap-1 text-sm text-muted-foreground">
                     <Users className="w-4 h-4" />
-                    <span>{course.studentsCount.toLocaleString()}</span>
+                    <span>{(course.studentsCount || course.currentSeats || 0).toLocaleString()}</span>
                   </div>
                 </div>
                 
@@ -377,7 +377,7 @@ export default function Classes() {
             </div>
             <div className="flex items-center gap-1">
               <Users className="w-3 h-3" />
-              <span>{course.studentsCount.toLocaleString()}</span>
+              <span>{(course.studentsCount || course.currentSeats || 0).toLocaleString()}</span>
             </div>
           </div>
           
