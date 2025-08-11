@@ -465,30 +465,30 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-brand-primary rounded-2xl flex items-center justify-center mx-auto">
+              <div className="w-16 h-16 bg-brand-primary rounded-2xl flex items-center justify-center mx-auto shadow-lg">
                 <span className="text-2xl font-bold text-white">1</span>
               </div>
-              <h3 className="text-xl font-semibold">Offer Your Skills</h3>
+              <h3 className="text-xl font-semibold text-foreground">Offer Your Skills</h3>
               <p className="text-muted-foreground">
                 Share what you know and earn credits for teaching others. Every skill has value in our community.
               </p>
             </div>
 
             <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-brand-secondary rounded-2xl flex items-center justify-center mx-auto">
+              <div className="w-16 h-16 bg-brand-secondary rounded-2xl flex items-center justify-center mx-auto shadow-lg">
                 <span className="text-2xl font-bold text-white">2</span>
               </div>
-              <h3 className="text-xl font-semibold">Earn Credits</h3>
+              <h3 className="text-xl font-semibold text-foreground">Earn Credits</h3>
               <p className="text-muted-foreground">
                 Build up credits by helping others learn. Your knowledge becomes currency in the SkillSwap economy.
               </p>
             </div>
 
             <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-brand-green rounded-2xl flex items-center justify-center mx-auto">
-                <span className="text-2xl font-bold text-white">3</span>
+              <div className="w-16 h-16 bg-brand-amber rounded-2xl flex items-center justify-center mx-auto shadow-lg">
+                <span className="text-2xl font-bold text-neutral-900">3</span>
               </div>
-              <h3 className="text-xl font-semibold">Learn Anything</h3>
+              <h3 className="text-xl font-semibold text-foreground">Learn Anything</h3>
               <p className="text-muted-foreground">
                 Use your credits to learn new skills from our global community of experts and enthusiasts.
               </p>
