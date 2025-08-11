@@ -55,10 +55,9 @@ export default function SkillCard({
   return (
     <Card
       className={cn(
-        'hover-lift transition-all duration-300 cursor-pointer group rounded-2xl border-2 shadow-lg hover:shadow-2xl',
-        selected && 'ring-2 ring-educational-blue ring-offset-2',
-        variant === 'featured' && 'border-educational-blue/30 bg-gradient-to-br from-educational-blue/10 to-educational-cyan/10 shadow-xl',
-        !selected && 'hover:border-educational-cyan/40 hover:-translate-y-1',
+        'cursor-pointer group',
+        selected && 'ring-2 ring-blue-500 ring-offset-2',
+        variant === 'featured' && 'bg-gradient-to-br from-blue-50/50 to-cyan-50/50 dark:from-blue-900/20 dark:to-cyan-900/20',
         className
       )}
       onClick={() => onSelect?.(skill)}
