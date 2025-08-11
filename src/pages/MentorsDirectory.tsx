@@ -190,7 +190,7 @@ const MentorsDirectory = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white dark:bg-[#0F172A]">
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-[#0056D2]/5 to-[#06B6D4]/5 dark:from-[#0F172A] dark:to-[#1E293B] border-b">
         <div className="container mx-auto px-4 py-12 lg:py-16">
