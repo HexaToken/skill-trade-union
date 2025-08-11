@@ -541,11 +541,11 @@ export default function GlobalSearchHeader() {
                 </Link>
               </Button>
 
-              {/* Search Icon (Mobile) */}
+              {/* Search Icon (Tablet) */}
               <Button
                 variant="ghost"
                 size="sm"
-                className="md:hidden text-[#06B6D4] hover:bg-[#06B6D4]/10"
+                className="hidden md:flex lg:hidden text-[#06B6D4] hover:bg-[#06B6D4]/10"
                 onClick={() => setShowMobileSearch(true)}
               >
                 <Search className="w-5 h-5" />
