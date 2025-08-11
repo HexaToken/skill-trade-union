@@ -126,7 +126,13 @@ export default function SearchResults() {
     matchPercent: Math.floor(Math.random() * 30) + 70
   }));
 
-  const mockCourses = courses.slice(0, 8);
+  const mockCourses = courses.slice(0, 8).map(course => ({
+    ...course,
+    category: course.category || (course.skillId === 'web-development' ? 'Technology' :
+             course.skillId === 'logo-design' ? 'Design' :
+             course.skillId === 'spanish-tutoring' ? 'Languages' :
+             course.skillId === 'guitar' ? 'Music' : 'Technology')
+  }));
 
   // Create unified search results
   const searchResults: SearchResult[] = useMemo(() => {
