@@ -408,16 +408,37 @@ export default function Matches() {
                   </div>
                 ) : sortedMatches.length > 0 ? (
                   <div className="grid gap-6">
-                    {sortedMatches.map((match) => (
-                      <MatchCard
-                        key={match.user.id}
-                        match={match}
-                        onViewProfile={handleViewProfile}
-                        onBook={handleBook}
-                        onMessage={handleMessage}
-                        onInstantHelp={handleInstantHelp}
-                      />
-                    ))}
+                    {sortedMatches.map((match) => {
+                      const skill = skills.find(s => s.id === match.skill.id);
+                      return (
+                        <MatchCard
+                          key={match.user.id}
+                          name={match.user.name}
+                          location={`${match.user.location.city}, ${match.user.location.country}`}
+                          avatarUrl={match.user.avatarUrl}
+                          rating={match.user.ratingAvg}
+                          reviews={match.user.ratingCount}
+                          availabilityNote={match.nextAvailable ? formatNextAvailable(match.nextAvailable) : "Available now"}
+                          sameCity={match.distance !== undefined && match.distance < 50}
+                          skillTitle={skill?.name || match.skill.name}
+                          category={skill?.category || 'General'}
+                          creditsPerHour={skill?.baseRateCredits || 15}
+                          level={`Level ${skill?.difficulty || 1}`}
+                          blurb={match.user.bio}
+                          chips={match.reasons.map(reason => ({
+                            label: reason,
+                            tone: reason.includes('high rating') ? 'success' as const : 'neutral' as const
+                          }))}
+                          verifiedID={match.user.verification.idVerified}
+                          skillTested={match.user.verification.skillTested}
+                          matchPercent={match.matchScore}
+                          onViewProfile={() => handleViewProfile(match.user.id)}
+                          onBook={() => handleBook(match.user.id, match.skill.id)}
+                          onInstantCall={() => handleInstantHelp(match.user.id, match.skill.id)}
+                          showInstant={match.user.id === 'user-1' || match.user.id === 'user-2'}
+                        />
+                      );
+                    })}
                   </div>
                 ) : (
                   <Card>
