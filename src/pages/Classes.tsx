@@ -673,29 +673,31 @@ export default function Classes() {
       </div>
 
       {/* Main Content */}
-      <div className="catalog-layout page-container py-8">
+      <div className="catalog-layout page-container py-12 bg-gradient-to-br from-white via-slate-50/30 to-white dark:from-slate-900 dark:via-slate-800/30 dark:to-slate-900">
         {/* Left Filter Rail - Desktop */}
         <div className="hidden lg:block catalog-filters">
-          <FiltersPanel />
+          <div className="bg-white dark:bg-[#1E293B] rounded-xl border border-transparent dark:border-[rgba(255,255,255,0.06)] shadow-[0_1px_3px_rgba(0,0,0,0.05)] p-6">
+            <FiltersPanel />
+          </div>
         </div>
 
         {/* Results */}
         <div className="catalog-content">
           {/* Active Filters Display */}
           {activeFiltersCount > 0 && (
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-3 mb-8 p-4 bg-white dark:bg-[#1E293B] rounded-xl border border-transparent dark:border-[rgba(255,255,255,0.06)] shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
               {filters.category && (
-                <Badge variant="secondary" className="flex items-center gap-1">
+                <Badge variant="secondary" className="flex items-center gap-2 bg-[#06B6D4]/10 text-[#06B6D4] border-[#06B6D4]/20 px-3 py-1 rounded-lg">
                   Category: {filters.category}
-                  <button onClick={() => updateFilter('category', '')}>
+                  <button onClick={() => updateFilter('category', '')} className="hover:bg-[#06B6D4]/20 rounded-full p-0.5 transition-colors">
                     <X className="w-3 h-3" />
                   </button>
                 </Badge>
               )}
               {filters.level && filters.level.length > 0 && (
-                <Badge variant="secondary" className="flex items-center gap-1">
+                <Badge variant="secondary" className="flex items-center gap-2 bg-[#0056D2]/10 text-[#0056D2] border-[#0056D2]/20 px-3 py-1 rounded-lg">
                   Level: {filters.level.join(', ')}
-                  <button onClick={() => updateFilter('level', [])}>
+                  <button onClick={() => updateFilter('level', [])} className="hover:bg-[#0056D2]/20 rounded-full p-0.5 transition-colors">
                     <X className="w-3 h-3" />
                   </button>
                 </Badge>
