@@ -52,7 +52,23 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
 
   // In a real app, this would fetch based on courseSlug
   const course = courseDetailData;
-  const instructor = course.instructor;
+  const instructor = course?.instructor;
+
+  // Return loading state or 404 if course not found
+  if (!course) {
+    return (
+      <div className="min-h-screen bg-[#F9FAFB] dark:bg-[#0F172A] flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-[#0F172A] dark:text-[#F1F5F9] mb-4">
+            Course Not Found
+          </h1>
+          <p className="text-[#334155] dark:text-[#E2E8F0]">
+            The course you're looking for doesn't exist.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   const toggleModule = (moduleId: string) => {
     setExpandedModules(prev => 
