@@ -225,7 +225,7 @@ export default function SkillPaths() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Users className="w-4 h-4 text-brand-secondary" />
-                  <span>{path.studentsCount.toLocaleString()} enrolled</span>
+                  <span>{(path.studentsCount || 0).toLocaleString()} enrolled</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Star className="w-4 h-4 fill-brand-warning text-brand-warning" />
