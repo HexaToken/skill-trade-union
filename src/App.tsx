@@ -29,6 +29,7 @@ import ChallengeDetail from "./pages/ChallengeDetail";
 import SkillSprintPage from "./pages/SkillSprintPage";
 import OfflineTradeConfirmPage from "./pages/OfflineTradeConfirmPage";
 import OfflineTradeReceipt from "./pages/OfflineTradeReceipt";
+import MapPage from "./pages/MapPage";
 
 const queryClient = new QueryClient();
 
