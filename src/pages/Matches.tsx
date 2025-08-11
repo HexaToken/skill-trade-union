@@ -353,8 +353,8 @@ export default function Matches() {
                     onClick={() => setViewMode('list')}
                     className={`rounded-r-none border-r-0 ${
                       viewMode === 'list'
-                        ? 'bg-educational-blue text-white hover:bg-educational-blue/90'
-                        : 'hover:bg-educational-blue/10 hover:text-educational-blue'
+                        ? 'bg-[#0056D2] text-white hover:bg-[#004BB8]'
+                        : 'hover:bg-[#0056D2]/10 hover:text-[#0056D2]'
                     }`}
                   >
                     <List className="w-4 h-4" />
