@@ -11,50 +11,50 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* NeoGlass Flow Color System */
-    --background: 243 247 251; /* #F3F7FB - Very light blue-gray */
-    --foreground: 11 18 32; /* #0B1220 - Rich blue-black */
+    /* Warm EduTech Color System */
+    --background: 243 244 246; /* #F3F4F6 - Soft warm gray */
+    --foreground: 31 41 55; /* #1F2937 - Slate gray for headings */
 
-    --card: 255 255 255; /* Pure white for glass cards */
-    --card-foreground: 11 18 32;
+    --card: 255 255 255; /* Pure white for cards */
+    --card-foreground: 55 65 81; /* #374151 - Body text */
 
     --popover: 255 255 255;
-    --popover-foreground: 11 18 32;
+    --popover-foreground: 55 65 81;
 
-    --primary: 262 83% 58%; /* #7C3AED - Brand violet */
+    --primary: 262 83% 39%; /* #6B21A8 - Rich violet */
     --primary-foreground: 255 255 255;
 
-    --secondary: 243 247 251;
-    --secondary-foreground: 55 71 81; /* #374151 - Medium gray */
+    --secondary: 25 95% 53%; /* #F97316 - Coral-orange */
+    --secondary-foreground: 255 255 255;
 
-    --muted: 243 247 251;
-    --muted-foreground: 158 163 175; /* #9CA3AF - Light gray */
+    --muted: 243 244 246;
+    --muted-foreground: 107 114 128; /* #6B7280 - Muted gray */
 
-    --accent: 243 247 251;
-    --accent-foreground: 55 71 81;
+    --accent: 45 93% 47%; /* #FBBF24 - Warm gold */
+    --accent-foreground: 31 41 55; /* Dark text for gold background */
 
     --destructive: 0 84% 60%; /* #EF4444 - Brand red */
     --destructive-foreground: 255 255 255;
 
-    --border: 219 234 245; /* Light border with blue tint */
-    --input: 219 234 245;
-    --ring: 262 83% 58%;
+    --border: 229 231 235; /* #E5E7EB - Light border */
+    --input: 229 231 235;
+    --ring: 262 83% 39%;
 
-    --radius: 1rem; /* 2xl rounded corners */
+    --radius: 0.75rem; /* lg rounded corners */
 
-    /* NeoGlass specific variables */
-    --glass-bg: rgba(255, 255, 255, 0.25);
-    --glass-border: rgba(255, 255, 255, 0.18);
-    --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
-    --neo-blur: 16px;
-    --neo-gradient: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+    /* Warm EduTech specific variables */
+    --glass-bg: rgba(255, 255, 255, 0.95);
+    --glass-border: rgba(0, 0, 0, 0.05);
+    --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    --neo-blur: 20px;
+    --neo-gradient: linear-gradient(135deg, rgba(107, 33, 168, 0.1) 0%, rgba(249, 115, 22, 0.1) 100%);
 
-    /* Brand palette - exact colors from spec */
-    --brand-primary: 262 83% 58%; /* #7C3AED violet */
-    --brand-secondary: 189 95% 43%; /* #06B6D4 cyan */
-    --brand-success: 142 71% 45%; /* #22C55E green */
-    --brand-warning: 38 92% 50%; /* #F59E0B amber */
-    --brand-danger: 0 84% 60%; /* #EF4444 red */
+    /* Brand palette - Warm EduTech colors */
+    --brand-primary: 262 83% 39%; /* #6B21A8 - Rich violet */
+    --brand-secondary: 25 95% 53%; /* #F97316 - Coral-orange */
+    --brand-green: 142 71% 45%; /* #22C55E - Keep green for success */
+    --brand-amber: 45 93% 47%; /* #FBBF24 - Warm gold */
+    --brand-red: 0 84% 60%; /* #EF4444 - Keep red for destructive */
 
     /* Neutrals from spec */
     --neutral-900: 11 18 32; /* #0B1220 */
