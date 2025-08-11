@@ -99,7 +99,7 @@ export default function ClassCard({
               group: { icon: Users, label: 'Group Class', color: 'bg-blue-500' },
               materials: { icon: BookOpen, label: 'Materials', color: 'bg-green-500' },
               recorded: { icon: Play, label: 'Recorded', color: 'bg-purple-500' },
-              certificate: { icon: Award, label: 'Certificate', color: 'bg-yellow-500' }
+              certificate: { icon: Award, label: 'Certificate', color: 'bg-brand-secondary' }
             }[badge];
             
             if (!badgeConfig) return null;
