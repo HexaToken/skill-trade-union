@@ -275,16 +275,16 @@ export default function Home() {
       </section>
 
       {/* Top Mentors */}
-      <section className="py-16">
+      <section className="py-20 bg-gradient-to-br from-white via-purple-50/20 to-white dark:from-slate-900 dark:via-purple-900/10 dark:to-slate-900">
         <div className="page-container">
-          <div className="flex items-center justify-between mb-8">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-heading font-bold">Top Mentors</h2>
-              <p className="text-muted-foreground">
+          <div className="flex items-center justify-between mb-12">
+            <div className="space-y-3">
+              <h2 className="text-4xl font-heading font-bold text-slate-800 dark:text-white">Top Mentors</h2>
+              <p className="text-lg text-slate-600 dark:text-slate-300">
                 Learn from the best in their fields with personalized guidance
               </p>
             </div>
-            <Button variant="outline" asChild>
+            <Button variant="outline" className="border-purple-500 text-purple-600 hover:bg-purple-500 hover:text-white rounded-xl px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300" asChild>
               <Link to="/mentors">
                 Find Mentors
                 <ArrowRight className="ml-2 w-4 h-4" />
