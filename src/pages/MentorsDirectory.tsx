@@ -212,7 +212,7 @@ const MentorsDirectory = () => {
 
       {/* Sticky Search & Controls */}
       <div
-        className="sticky top-0 z-40 backdrop-blur-sm border-b border-[#E2E8F0] dark:border-[#334155]"
+        className="mentors-search-section sticky top-0 z-40 backdrop-blur-sm border-b border-[#E2E8F0] dark:border-[#334155]"
         style={{
           backgroundColor: '#ffffff !important',
           background: '#ffffff !important',
