@@ -211,8 +211,8 @@ const MentorsDirectory = () => {
       </div>
 
       {/* Sticky Search & Controls */}
-      <div className="sticky top-0 z-40 bg-white dark:bg-[#0F172A] backdrop-blur-sm border-b border-[#E2E8F0] dark:border-[#334155]" style={{backgroundColor: '#ffffff !important', background: '#ffffff !important'}}>
-        <div className="container mx-auto px-4 py-4" style={{backgroundColor: '#ffffff', background: '#ffffff'}}>
+      <div className="sticky top-0 z-40 bg-[#F8FAFC] dark:bg-[#0F172A] backdrop-blur-sm border-b border-[#E2E8F0] dark:border-[#334155]">
+        <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col lg:flex-row gap-4 items-center">
             {/* Search Input */}
             <div className="relative flex-1 w-full">
