@@ -191,6 +191,7 @@ export default function MentorProfile() {
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   const [isPortfolioOpen, setIsPortfolioOpen] = useState(false);
   const [selectedPortfolioItem, setSelectedPortfolioItem] = useState<any>(null);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   // Find mentor by slug
   const mentor = mockMentors.find(m => m.slug === mentorSlug);
