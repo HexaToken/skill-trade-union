@@ -109,11 +109,11 @@ export default function SearchResults() {
 
   // Mock data transformation for search results
   const mockUsers = users.slice(0, 12).map(user => ({
-    name: user.name,
-    location: user.location.city + ', ' + user.location.country,
-    avatarUrl: user.avatarUrl,
-    rating: user.ratingAvg,
-    reviews: user.ratingCount,
+    name: user.name || 'Unknown User',
+    location: (user.location?.city || 'Unknown') + ', ' + (user.location?.country || 'Unknown'),
+    avatarUrl: user.avatarUrl || '',
+    rating: user.ratingAvg || 4.0,
+    reviews: user.ratingCount || 0,
     availabilityNote: 'Available in 2h',
     sameCity: Math.random() > 0.7,
     skillTitle: user.skills?.[0]?.name || 'Web Development',
