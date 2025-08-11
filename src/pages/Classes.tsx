@@ -281,7 +281,7 @@ export default function Classes() {
                           className={cn(
                             "w-3 h-3",
                             i < Math.floor(course.ratingAvg)
-                              ? "fill-brand-amber text-brand-amber"
+                              ? "fill-brand-secondary text-brand-secondary"
                               : "text-muted-foreground/30"
                           )}
                         />
