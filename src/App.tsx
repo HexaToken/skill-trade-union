@@ -49,7 +49,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             {/* Home page */}
-            <Route path="/" element={<Layout><Home /></Layout>} />
+            <Route path="/" element={<Layout><HomePage /></Layout>} />
             <Route path="/Home" element={<Navigate to="/" replace />} />
             
             {/* Core app pages */}
