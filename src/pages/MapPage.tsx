@@ -229,8 +229,110 @@ export default function MapPage() {
         </div>
       </div>
 
+      {/* Mobile Floating Filter Button */}
+      <div className="md:hidden fixed top-32 left-4 z-50">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button size="icon" className="rounded-full shadow-lg">
+              <Filter className="w-4 h-4" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="top" className="h-[70vh]">
+            <div className="space-y-6 pt-6">
+              <h3 className="text-lg font-semibold">Filters</h3>
+
+              {/* Mobile Filters */}
+              <div className="space-y-4">
+                <div>
+                  <Label className="text-sm font-medium">Timeframe</Label>
+                  <Select value={selectedTimeframe} onValueChange={setSelectedTimeframe}>
+                    <SelectTrigger className="w-full mt-2">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="today">Today</SelectItem>
+                      <SelectItem value="week">This Week</SelectItem>
+                      <SelectItem value="month">This Month</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <Label className="text-sm font-medium">Category</Label>
+                  <Select value={selectedCategories[0]} onValueChange={(value) => setSelectedCategories([value])}>
+                    <SelectTrigger className="w-full mt-2">
+                      <SelectValue placeholder="All Categories" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {skillCategories.map((category) => (
+                        <SelectItem key={category} value={category}>
+                          {category === 'all' ? 'All Categories' : category}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-3">
+                  <Label className="text-sm font-medium">Options</Label>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <Label htmlFor="mobile-in-person" className="text-sm">In-person only</Label>
+                      <Switch
+                        id="mobile-in-person"
+                        checked={inPersonOnly}
+                        onCheckedChange={setInPersonOnly}
+                      />
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <Label htmlFor="mobile-online" className="text-sm">Online only</Label>
+                      <Switch
+                        id="mobile-online"
+                        checked={onlineOnly}
+                        onCheckedChange={setOnlineOnly}
+                      />
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <Label htmlFor="mobile-verified" className="text-sm">Verified mentors only</Label>
+                      <Switch
+                        id="mobile-verified"
+                        checked={verifiedOnly}
+                        onCheckedChange={setVerifiedOnly}
+                      />
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <Label htmlFor="mobile-challenges" className="text-sm">Show challenges only</Label>
+                      <Switch
+                        id="mobile-challenges"
+                        checked={challengesOnly}
+                        onCheckedChange={setChallengesOnly}
+                      />
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <Label htmlFor="mobile-heatmap" className="text-sm flex items-center gap-2">
+                        <TrendingUp className="w-4 h-4" />
+                        Show heatmap
+                      </Label>
+                      <Switch
+                        id="mobile-heatmap"
+                        checked={showHeatmap}
+                        onCheckedChange={setShowHeatmap}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
+
       {/* Main Map Container */}
-      <div className="flex h-[calc(100vh-300px)] relative">
+      <div className="flex md:h-[calc(100vh-300px)] h-[calc(100vh-200px)] relative">
         {/* Map Component */}
         <div className="flex-1 relative bg-muted/30">
           {/* Map Placeholder with Interactive Elements */}
