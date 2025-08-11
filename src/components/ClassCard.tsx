@@ -246,7 +246,7 @@ export default function ClassCard({
             variant="outline"
             size="sm"
             className="flex-1 border-[#06B6D4] text-[#06B6D4] hover:bg-[#06B6D4] hover:text-white transition-all duration-200 font-semibold"
-            onClick={() => onViewDetails?.(course.id)}
+            onClick={handleViewDetails}
           >
             View Details
           </Button>
