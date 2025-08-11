@@ -26,20 +26,32 @@ const difficultyLabels = {
   3: { label: 'Advanced', color: 'bg-red-50 text-red-700 border-red-200 dark:bg-red-900/20 dark:text-red-300 dark:border-red-800' }
 };
 
-export default function ClassCard({ 
-  course, 
-  variant = 'default', 
-  className, 
+export default function ClassCard({
+  course,
+  variant = 'default',
+  className,
   onViewDetails,
   onEnroll,
   onInstantHelp,
   showProgress = false,
   progress = 0
 }: ClassCardProps) {
+  const navigate = useNavigate();
   const teacher = users.find(u => u.id === course.teacherId);
   const difficulty = difficultyLabels[course.level];
   const seatsRemaining = course.maxSeats - course.currentSeats;
   const seatsPercentage = (course.currentSeats / course.maxSeats) * 100;
+
+  // Generate slug from course title
+  const courseSlug = course.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+
+  const handleViewDetails = () => {
+    if (onViewDetails) {
+      onViewDetails(course.id);
+    } else {
+      navigate(`/classes/${courseSlug}`);
+    }
+  };
   
   const totalDuration = course.lessons?.reduce((total, lesson) => total + lesson.durationMins, 0) || 
                        (course.schedule?.length ? course.schedule.length * 120 : 0); // Fallback estimate
