@@ -180,6 +180,9 @@ export default {
 				'scale-out': 'scale-out 0.2s ease-out',
 				'slide-in-right': 'slide-in-right 0.3s ease-out',
 				'slide-out-right': 'slide-out-right 0.3s ease-out',
+				'float': 'float 3s ease-in-out infinite',
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'gradient-shift': 'gradient-shift 3s ease infinite',
 				enter: 'fade-in 0.3s ease-out, scale-in 0.2s ease-out',
 				exit: 'fade-out 0.3s ease-out, scale-out 0.2s ease-out'
 			}
