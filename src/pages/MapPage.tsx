@@ -380,7 +380,7 @@ export default function MapPage() {
                   </div>
                   
                   {/* Hover Label */}
-                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/80 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-800/90 text-white text-xs rounded-lg px-3 py-2 whitespace-nowrap shadow-lg">
                     {marker.city} - {marker.skill} ({marker.count} mentors)
                   </div>
                 </div>
