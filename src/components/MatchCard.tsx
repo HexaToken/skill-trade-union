@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { cn } from '@/lib/utils';
-import type { MatchResult } from '@/models/expert-types';
+import type { MatchResult } from '@/models/types';
 import { skills } from '@/data/mockData';
 
 interface MatchCardProps {

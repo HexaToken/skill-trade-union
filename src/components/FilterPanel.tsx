@@ -62,8 +62,10 @@ export default function FilterPanel({
 
   const hasActiveFilters = Object.keys(filters).some(key => {
     const value = filters[key as keyof AdvancedSearchFilters];
-    return value !== undefined && value !== '' && 
-           (Array.isArray(value) ? value.length > 0 : true);
+    if (value === undefined || value === null) return false;
+    if (Array.isArray(value)) return value.length > 0;
+    if (typeof value === 'string') return value.trim() !== '';
+    return true;
   });
 
   const FilterSection = ({ title, children, defaultOpen = true }: { 
@@ -364,8 +366,10 @@ export default function FilterPanel({
             <Badge variant="secondary" size="sm">
               {Object.keys(filters).filter(key => {
                 const value = filters[key as keyof AdvancedSearchFilters];
-                return value !== undefined && value !== '' && 
-                       (Array.isArray(value) ? value.length > 0 : true);
+                if (value === undefined || value === null) return false;
+                if (Array.isArray(value)) return value.length > 0;
+                if (typeof value === 'string') return value.trim() !== '';
+                return true;
               }).length}
             </Badge>
           )}

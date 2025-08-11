@@ -125,14 +125,14 @@ export default function SessionRoom({
     setChatMessage('');
 
     // Simulate expert response
-    setTimeout(() => {
-      const expertMessage: ChatMessage = {
-        id: (Date.now() + 1).toString(),
-        userId: expert.id,
-        message: "Thanks for sharing that! Let me help you with this.",
-        timestamp: new Date().toISOString(),
-        type: 'text'
-      };
+      setTimeout(() => {
+        const expertMessage: ChatMessage = {
+          id: (Date.now() + 1).toString(),
+          userId: expert.id,
+          message: "Thanks for sharing that! Let me help you with this.",
+          timestamp: new Date().toISOString(),
+          type: 'text'
+        };
       setChatMessages(prev => [...prev, expertMessage]);
     }, 2000);
   };

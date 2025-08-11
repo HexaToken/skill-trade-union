@@ -4,7 +4,7 @@ import type { CreditTransaction } from '@/models/types';
 
 interface CreditDisplayProps {
   amount: number;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
   showSign?: boolean;
   className?: string;
 }
@@ -21,7 +21,8 @@ export function CreditDisplay({
   const sizeClasses = {
     sm: 'text-sm',
     md: 'text-base',
-    lg: 'text-lg'
+    lg: 'text-lg',
+    xl: 'text-xl'
   };
 
   const colorClass = isPositive 

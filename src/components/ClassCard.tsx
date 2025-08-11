@@ -41,7 +41,7 @@ export default function ClassCard({
   const seatsPercentage = (course.currentSeats / course.maxSeats) * 100;
   
   const totalDuration = course.lessons?.reduce((total, lesson) => total + lesson.durationMins, 0) || 
-                       course.schedule.length * 120; // Fallback estimate
+                       (course.schedule?.length ? course.schedule.length * 120 : 0); // Fallback estimate
 
   if (variant === 'compact') {
     return (
@@ -217,14 +217,14 @@ export default function ClassCard({
         )}
 
         {/* Next session date */}
-        {course.schedule.length > 0 && (
+        {course.schedule?.length ? (
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Calendar className="w-4 h-4" />
             <span>
               Next session: {new Date(course.schedule[0].date).toLocaleDateString()}
             </span>
           </div>
-        )}
+        ) : null}
 
         {/* Action buttons */}
         <div className="flex gap-2 pt-2">

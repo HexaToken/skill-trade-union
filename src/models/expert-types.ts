@@ -1,3 +1,5 @@
+import type { User, Class, SearchFilters, Organization } from '@/models/types';
+
 // ExpertMatch AI and additional feature types
 
 export interface ExpertMatchRequest {
@@ -346,3 +348,7 @@ export interface AIService {
     mentors: string[];
   }>;
 }
+
+// Re-export common types for convenience
+export type { MatchResult } from '@/models/types';
+
