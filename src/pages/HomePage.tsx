@@ -730,7 +730,13 @@ const HomePage = () => {
           isOpen={!!selectedBooking}
           onClose={() => setSelectedBooking(null)}
           mode={selectedBooking.type}
-          targetId={selectedBooking.id}
+          mentor={selectedBooking.type === 'mentor' ? selectedBooking.data : undefined}
+          course={selectedBooking.type === 'course' ? selectedBooking.data : undefined}
+          userBalance={720}
+          onBookingConfirm={(bookingData) => {
+            console.log('Booking confirmed:', bookingData);
+            setSelectedBooking(null);
+          }}
         />
       )}
     </div>
