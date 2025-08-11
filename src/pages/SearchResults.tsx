@@ -33,7 +33,8 @@ import {
 import { cn } from '@/lib/utils';
 import MatchCard from '@/components/MatchCard';
 import ClassCard from '@/components/ClassCard';
-import { users, courses } from '@/data/mockData';
+import { users } from '@/data/mockData';
+import { courses } from '@/mock/enhanced-data';
 import type { Course } from '@/models/expert-types';
 
 interface SearchFilters {
