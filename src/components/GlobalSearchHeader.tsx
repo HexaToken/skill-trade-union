@@ -219,18 +219,121 @@ export default function GlobalSearchHeader() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 lg:h-16 items-center justify-between">
             
-            {/* Left: Logo */}
-            <Link 
-              to={currentUser ? "/dashboard" : "/"} 
-              className="flex items-center gap-3 hover:scale-105 transition-transform duration-200"
-            >
-              <div className="w-8 h-8 bg-gradient-to-br from-[#0056D2] to-[#06B6D4] rounded-lg flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-sm">S</span>
-              </div>
-              <span className="text-xl lg:text-2xl font-heading font-bold bg-gradient-to-r from-[#0056D2] to-[#06B6D4] bg-clip-text text-transparent">
-                SkillSwap
-              </span>
-            </Link>
+            {/* Left: Mobile Menu + Logo */}
+            <div className="flex items-center gap-4">
+              {/* Mobile menu trigger */}
+              <Sheet open={showMobileMenu} onOpenChange={setShowMobileMenu}>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="sm" className="md:hidden text-[#06B6D4] hover:bg-[#06B6D4]/10">
+                    <Menu className="h-5 w-5" />
+                    <span className="sr-only">Open menu</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="left" className="w-80 bg-white dark:bg-[#1E293B]">
+                  <SheetHeader>
+                    <SheetTitle className="text-left">
+                      <Link
+                        to="/"
+                        className="flex items-center gap-3"
+                        onClick={() => setShowMobileMenu(false)}
+                      >
+                        <div className="w-8 h-8 bg-gradient-to-br from-[#0056D2] to-[#06B6D4] rounded-lg flex items-center justify-center shadow-lg">
+                          <span className="text-white font-bold text-sm">S</span>
+                        </div>
+                        <span className="text-xl font-heading font-bold bg-gradient-to-r from-[#0056D2] to-[#06B6D4] bg-clip-text text-transparent">
+                          SkillSwap
+                        </span>
+                      </Link>
+                    </SheetTitle>
+                  </SheetHeader>
+
+                  <div className="flex flex-col gap-6 py-6">
+                    {/* Search in mobile menu */}
+                    <div className="relative">
+                      <div className="relative flex items-center w-full h-11 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                        <Search className="absolute left-4 w-5 h-5 text-[#06B6D4]" />
+                        <input
+                          type="text"
+                          placeholder="Search skills, people, or courses…"
+                          className="w-full h-full pl-12 pr-4 bg-transparent border-0 focus:ring-0 rounded-full placeholder:text-slate-400 dark:placeholder:text-slate-500"
+                          onClick={() => {
+                            setShowMobileMenu(false);
+                            setShowMobileSearch(true);
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Navigation */}
+                    <nav className="flex flex-col gap-2">
+                      {navItems.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={item.href}
+                            to={item.href}
+                            onClick={() => setShowMobileMenu(false)}
+                            className="flex items-center gap-3 px-3 py-3 rounded-xl text-[#0F172A] dark:text-[#F1F5F9] hover:bg-[#0056D2]/10 hover:text-[#0056D2] transition-all duration-200"
+                          >
+                            <Icon className="w-5 h-5" />
+                            {item.label}
+                          </Link>
+                        );
+                      })}
+                    </nav>
+
+                    {/* Mobile user section */}
+                    <div className="border-t border-slate-200 dark:border-slate-700 pt-6 mt-auto">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Avatar className="w-10 h-10">
+                          <AvatarImage src={currentUser.avatarUrl} alt={currentUser.name} />
+                          <AvatarFallback className="bg-[#0056D2]/10 text-[#0056D2] font-medium">
+                            {currentUser.name.split(' ').map(n => n[0]).join('')}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <p className="font-medium text-[#0F172A] dark:text-[#F1F5F9]">{currentUser.name}</p>
+                          <div className="flex items-center gap-1">
+                            <Wallet className="w-3 h-3 text-[#06B6D4]" />
+                            <span className="text-sm font-medium text-[#06B6D4]">
+                              {currentUser.wallet.credits.toLocaleString()} credits
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-2">
+                        <Button variant="outline" size="sm" asChild>
+                          <Link to="/wallet" onClick={() => setShowMobileMenu(false)}>
+                            <Wallet className="w-4 h-4 mr-2" />
+                            Wallet
+                          </Link>
+                        </Button>
+                        <Button variant="outline" size="sm" asChild>
+                          <Link to="/messages" onClick={() => setShowMobileMenu(false)}>
+                            <MessageCircle className="w-4 h-4 mr-2" />
+                            Messages
+                          </Link>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </SheetContent>
+              </Sheet>
+
+              {/* Logo */}
+              <Link
+                to={currentUser ? "/dashboard" : "/"}
+                className="flex items-center gap-3 hover:scale-105 transition-transform duration-200"
+              >
+                <div className="w-8 h-8 bg-gradient-to-br from-[#0056D2] to-[#06B6D4] rounded-lg flex items-center justify-center shadow-lg">
+                  <span className="text-white font-bold text-sm">S</span>
+                </div>
+                <span className="text-xl lg:text-2xl font-heading font-bold bg-gradient-to-r from-[#0056D2] to-[#06B6D4] bg-clip-text text-transparent">
+                  SkillSwap
+                </span>
+              </Link>
+            </div>
 
             {/* Center: Search Bar (Desktop) */}
             <div className="hidden md:flex flex-1 max-w-2xl mx-8 relative">
