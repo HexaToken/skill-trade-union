@@ -47,6 +47,7 @@ export default function Header() {
     { label: 'Find a Match', href: '/matches', icon: Users },
     { label: 'Classes', href: '/classes', icon: BookOpen },
     { label: 'Mentors', href: '/mentors', icon: Award },
+    { label: 'Profile Demo', href: '/mentor/marcus-chen', icon: User },
     { label: 'Challenges', href: '/challenges', icon: Target },
     { label: 'Map', href: '/map', icon: Map },
     { label: 'Donate', href: '/donate', icon: Heart },
@@ -57,12 +58,12 @@ export default function Header() {
     const formData = new FormData(e.currentTarget);
     const query = formData.get('search') as string;
     if (query.trim()) {
-      navigate(`/matches?q=${encodeURIComponent(query)}`);
+      navigate(`/search?q=${encodeURIComponent(query)}`);
     }
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/50 glass-header">
+    <header className="sticky top-0 z-50 w-full border-b border-border/20 glass-header backdrop-blur-xl bg-white/95 dark:bg-slate-900/95 transition-all duration-300">
       <div className="page-container">
         <div className="flex h-16 items-center justify-between">
           {/* Left section - Logo and nav */}
@@ -106,7 +107,7 @@ export default function Header() {
                           key={item.href}
                           to={item.href}
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className="flex items-center gap-3 px-3 py-2 rounded-lg text-foreground hover:bg-brand-primary/10 hover:text-brand-primary transition-colors"
+                          className="flex items-center gap-3 px-3 py-2 rounded-xl text-foreground hover:bg-educational-blue/10 hover:text-educational-blue transition-all duration-200 hover:shadow-md"
                         >
                           <Icon className="w-5 h-5" />
                           {item.label}
@@ -150,16 +151,19 @@ export default function Header() {
             </Sheet>
             
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2">
+            <Link to="/" className="flex items-center gap-3 hover-scale">
+              <div className="w-8 h-8 bg-gradient-to-br from-educational-blue to-educational-cyan rounded-lg flex items-center justify-center shadow-lg">
+                <span className="text-white font-bold text-sm">S</span>
+              </div>
               <span className="text-xl md:text-2xl font-heading font-bold text-gradient">
                 SkillSwap
               </span>
             </Link>
             
             {/* Tagline */}
-            <Badge 
-              variant="secondary" 
-              className="hidden sm:inline-flex bg-brand-primary/10 text-brand-primary border-brand-primary/20"
+            <Badge
+              variant="secondary"
+              className="hidden sm:inline-flex bg-gradient-to-r from-educational-blue/10 to-educational-cyan/10 text-educational-blue border-educational-blue/20 hover:border-educational-cyan/30 transition-colors"
             >
               Trade skills, not cash
             </Badge>
@@ -174,8 +178,8 @@ export default function Header() {
                   name="search"
                   placeholder="Search skills, people, or classes..."
                   className={cn(
-                    "w-full pl-10 pr-4 transition-all duration-200",
-                    isSearchFocused && "ring-2 ring-brand-primary ring-offset-2"
+                    "w-full pl-10 pr-4 transition-all duration-200 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-xl",
+                    isSearchFocused && "ring-2 ring-educational-blue ring-offset-2 border-educational-blue"
                   )}
                   onFocus={() => setIsSearchFocused(true)}
                   onBlur={() => setIsSearchFocused(false)}
@@ -204,7 +208,7 @@ export default function Header() {
             </nav>
 
             {/* Wallet mini */}
-            <Button variant="ghost" size="sm" className="hover-scale text-brand-secondary hover:text-brand-secondary/80 hover:bg-brand-secondary/10" asChild>
+            <Button variant="ghost" size="sm" className="hover-scale text-educational-cyan hover:text-educational-cyan/80 hover:bg-educational-cyan/10 rounded-xl transition-all duration-200" asChild>
               <Link to="/wallet" className="flex items-center gap-2">
                 <Wallet className="h-4 w-4" />
                 <span className="hidden sm:inline font-medium">
@@ -214,7 +218,7 @@ export default function Header() {
             </Button>
 
             {/* Messages */}
-            <Button variant="ghost" size="sm" className="hover-scale relative text-brand-secondary hover:text-brand-secondary/80 hover:bg-brand-secondary/10" asChild>
+            <Button variant="ghost" size="sm" className="hover-scale relative text-educational-cyan hover:text-educational-cyan/80 hover:bg-educational-cyan/10 rounded-xl transition-all duration-200" asChild>
               <Link to="/messages">
                 <MessageCircle className="h-4 w-4" />
                 <Badge
@@ -227,7 +231,7 @@ export default function Header() {
             </Button>
 
             {/* Notifications */}
-            <Button variant="ghost" size="sm" className="hover-scale relative text-brand-secondary hover:text-brand-secondary/80 hover:bg-brand-secondary/10">
+            <Button variant="ghost" size="sm" className="hover-scale relative text-educational-cyan hover:text-educational-cyan/80 hover:bg-educational-cyan/10 rounded-xl transition-all duration-200">
               <Bell className="h-4 w-4" />
               <Badge
                 className="absolute -top-1 -right-1 h-5 w-5 p-0 text-xs bg-brand-red text-white"
@@ -240,7 +244,7 @@ export default function Header() {
             {/* Profile dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="hover-scale">
+                <Button variant="ghost" size="sm" className="hover-scale hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all duration-200">
                   <Avatar className="w-8 h-8">
                     <AvatarImage src={currentUser.avatarUrl} alt={currentUser.name} />
                     <AvatarFallback>
@@ -250,7 +254,7 @@ export default function Header() {
                   <span className="sr-only">Open user menu</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56 glass-card">
+              <DropdownMenuContent align="end" className="w-56 glass-card border-slate-200 dark:border-slate-700 shadow-xl">
                 <div className="px-2 py-1.5">
                   <p className="font-medium">{currentUser.name}</p>
                   <p className="text-sm text-muted-foreground">{currentUser.location.city}</p>

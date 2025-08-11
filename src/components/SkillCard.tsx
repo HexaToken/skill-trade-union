@@ -15,9 +15,9 @@ interface SkillCardProps {
 }
 
 const difficultyLabels = {
-  1: { label: 'Beginner', color: 'bg-brand-success/10 text-brand-success border-brand-success/20' },
-  2: { label: 'Intermediate', color: 'bg-brand-secondary/10 text-brand-secondary border-brand-secondary/20' },
-  3: { label: 'Advanced', color: 'bg-brand-primary/10 text-brand-primary border-brand-primary/20' }
+  1: { label: 'Beginner', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
+  2: { label: 'Intermediate', color: 'bg-amber-100 text-amber-700 border-amber-200' },
+  3: { label: 'Advanced', color: 'bg-red-100 text-red-700 border-red-200' }
 };
 
 export default function SkillCard({ 
@@ -36,8 +36,8 @@ export default function SkillCard({
         variant={selected ? 'default' : 'outline'}
         size="sm"
         className={cn(
-          'h-auto p-3 justify-start text-left hover-scale',
-          selected && 'ring-2 ring-brand-primary ring-offset-2',
+          'h-auto p-3 justify-start text-left',
+          selected && 'ring-2 ring-blue-500 ring-offset-2',
           className
         )}
         onClick={() => onSelect?.(skill)}
@@ -52,11 +52,11 @@ export default function SkillCard({
   }
 
   return (
-    <Card 
+    <Card
       className={cn(
-        'hover-lift transition-all duration-200 cursor-pointer group',
-        selected && 'ring-2 ring-brand-primary ring-offset-2',
-        variant === 'featured' && 'border-brand-primary/50 bg-gradient-to-br from-brand-primary/5 to-brand-secondary/5',
+        'cursor-pointer group',
+        selected && 'ring-2 ring-blue-500 ring-offset-2',
+        variant === 'featured' && 'bg-gradient-to-br from-blue-50/50 to-cyan-50/50 dark:from-blue-900/20 dark:to-cyan-900/20',
         className
       )}
       onClick={() => onSelect?.(skill)}
@@ -64,17 +64,17 @@ export default function SkillCard({
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-brand-primary/10 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+            <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-200">
               {skill.icon}
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-semibold truncate text-brand-primary">{skill.name}</h3>
-              <p className="text-sm text-brand-neutral truncate">{skill.category}</p>
+              <h3 className="font-semibold truncate text-slate-900 dark:text-slate-100">{skill.name}</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 truncate">{skill.category}</p>
             </div>
           </div>
 
           {variant === 'featured' && (
-            <Badge variant="secondary" className="bg-brand-secondary/10 text-brand-secondary border-brand-secondary/20">
+            <Badge variant="secondary" className="bg-gradient-to-r from-orange-100 to-amber-100 text-orange-600 border-orange-200 font-semibold shadow-sm">
               Featured
             </Badge>
           )}
@@ -89,9 +89,9 @@ export default function SkillCard({
         <div className="flex items-center justify-between text-xs">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1">
-              <TrendingUp className="w-3 h-3 text-brand-secondary" />
-              <span className="text-muted-foreground">Demand:</span>
-              <span className="font-medium text-brand-secondary">{skill.demandScore}%</span>
+              <TrendingUp className="w-4 h-4 text-educational-cyan" />
+              <span className="text-slate-600 dark:text-slate-300">Demand:</span>
+              <span className="font-bold text-educational-cyan">{skill.demandScore}%</span>
             </div>
 
             <Badge
@@ -103,18 +103,18 @@ export default function SkillCard({
             </Badge>
           </div>
 
-          <div className="flex items-center gap-1 text-muted-foreground">
-            <span className="font-medium text-brand-primary">{skill.baseRateCredits}</span>
+          <div className="flex items-center gap-1 text-slate-600 dark:text-slate-300">
+            <span className="font-bold text-educational-blue">{skill.baseRateCredits}</span>
             <span>credits/hr</span>
           </div>
         </div>
 
         {showActions && (
           <div className="flex gap-2 pt-2">
-            <Button size="sm" className="flex-1 bg-brand-primary hover:bg-brand-primary/90 shadow-sm">
+            <Button size="sm" className="flex-1 bg-blue-600 hover:bg-blue-700 text-white">
               Learn
             </Button>
-            <Button size="sm" className="flex-1 bg-brand-secondary hover:bg-brand-secondary/90 text-foreground shadow-sm">
+            <Button size="sm" variant="outline" className="flex-1 border-cyan-500 text-cyan-600 hover:bg-cyan-50 dark:hover:bg-cyan-900/20">
               Teach
             </Button>
           </div>

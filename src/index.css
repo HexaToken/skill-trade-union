@@ -1,5 +1,5 @@
 /* Import Google Fonts - must be first */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -15,7 +15,7 @@ All colors MUST be HSL.
     --background: 255 255 255; /* #FFFFFF - Pure white */
     --foreground: 15 23 42; /* #0F172A - Deep navy for headings */
 
-    --card: 255 255 255; /* Pure white for cards */
+    --card: 255 255 255; /* #FFFFFF - Pure white for cards */
     --card-foreground: 51 65 85; /* #334155 - Body text */
 
     --popover: 255 255 255;
@@ -80,7 +80,7 @@ All colors MUST be HSL.
     --background: 15 23 42; /* #0F172A - Deep navy */
     --foreground: 241 245 249; /* #F1F5F9 - Light text for headings */
 
-    --card: 30 41 59; /* #1E293B - Dark slate */
+    --card: 30 41 59; /* #1E293B - Dark slate for cards */
     --card-foreground: 226 232 240; /* #E2E8F0 - Body text */
 
     --popover: 30 41 59;

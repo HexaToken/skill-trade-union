@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import Matches from "./pages/Matches";
+import SearchResults from "./pages/SearchResults";
 import Classes from "./pages/Classes";
 import ClassDetail from "./pages/ClassDetail";
 import SkillPaths from "./pages/SkillPaths";
@@ -20,6 +21,7 @@ import Wallet from "./pages/Wallet";
 import Profile from "./pages/Profile";
 import Onboarding from "./pages/Onboarding";
 import Placeholder from "./pages/Placeholder";
+import MentorProfile from "./pages/MentorProfile";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +53,7 @@ const App = () => (
             {/* Core app pages */}
             <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
             <Route path="/matches" element={<Layout><Matches /></Layout>} />
+            <Route path="/search" element={<Layout><SearchResults /></Layout>} />
             <Route path="/wallet" element={<Layout><Wallet /></Layout>} />
             <Route path="/profile/:id?" element={<Layout><Profile /></Layout>} />
             
@@ -63,9 +66,11 @@ const App = () => (
             {/* Learning & discovery */}
             <Route path="/classes" element={<Layout><Classes /></Layout>} />
             <Route path="/classes/:id" element={<Layout><ClassDetail /></Layout>} />
+            <Route path="/create" element={<Layout><Placeholder title="Create Class" desc="Share your skills by creating a new class. Set your schedule, price, and curriculum." /></Layout>} />
             <Route path="/paths" element={<Layout><SkillPaths /></Layout>} />
             <Route path="/paths/:id" element={<Layout><Placeholder title="Skill Path Detail" desc="Complete learning path with progress tracking." /></Layout>} />
             <Route path="/mentors" element={<Layout><Placeholder title="Mentor Marketplace" desc="Find long-term mentors with tiered credit rates." /></Layout>} />
+            <Route path="/mentor/:mentorSlug" element={<Layout><MentorProfile /></Layout>} />
             <Route path="/challenges" element={<Layout><Placeholder title="Challenges" desc="Join community challenges and climb leaderboards." /></Layout>} />
             <Route path="/map" element={<Layout><Placeholder title="Global Skill Map" desc="Explore trending skills by region. Coming soon!" /></Layout>} />
             

@@ -396,189 +396,143 @@ export default function Classes() {
     );
   };
 
-  const FilterSection = ({ title, children, isExpanded, onToggle }: { 
-    title: string; 
-    children: React.ReactNode; 
-    isExpanded: boolean; 
+  const FilterSection = ({ title, children, isExpanded, onToggle }: {
+    title: string;
+    children: React.ReactNode;
+    isExpanded: boolean;
     onToggle: () => void;
   }) => (
     <Collapsible open={isExpanded} onOpenChange={onToggle}>
-      <CollapsibleTrigger className="filter-group w-full">
+      <CollapsibleTrigger className="group w-full hover:bg-slate-50 dark:hover:bg-slate-800/50 p-3 rounded-lg transition-colors">
         <div className="flex items-center justify-between w-full">
-          <h3 className="filter-title">{title}</h3>
-          {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+          <h3 className="font-heading font-bold text-base text-[#1E293B] dark:text-[#F1F5F9] text-left">
+            {title}
+          </h3>
+          {isExpanded ? (
+            <ChevronUp className="w-4 h-4 text-[#94A3B8] group-hover:text-[#0056D2] transition-colors" />
+          ) : (
+            <ChevronDown className="w-4 h-4 text-[#94A3B8] group-hover:text-[#0056D2] transition-colors" />
+          )}
         </div>
       </CollapsibleTrigger>
-      <CollapsibleContent className="pb-4">
+      <CollapsibleContent className="pt-2 pb-4 px-3">
         {children}
       </CollapsibleContent>
     </Collapsible>
   );
 
   const FiltersPanel = () => (
-    <div className="filter-rail w-80 p-6">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg font-semibold">Filters</h2>
-        {activeFiltersCount > 0 && (
-          <Button variant="ghost" size="sm" onClick={clearFilters}>
-            Clear all ({activeFiltersCount})
-          </Button>
-        )}
-      </div>
+    <div className="space-y-6">
 
-      {/* Category */}
-      <FilterSection 
-        title="Category" 
+      <FilterSection
+        title="Category"
         isExpanded={expandedSections.category}
         onToggle={() => toggleSection('category')}
       >
-        <div className="space-y-3">
-          {Array.from(new Set(skills.map(s => s.category))).map(category => (
-            <label key={category} className="filter-option cursor-pointer">
-              <div className="flex items-center gap-2">
-                <Checkbox
-                  checked={filters.category === category}
-                  onCheckedChange={(checked) => {
-                    updateFilter('category', checked ? category : '');
-                  }}
-                />
-                <span className="text-sm">{category}</span>
+        <div className="space-y-2">
+          {[
+            { name: 'Technology', count: 12 },
+            { name: 'Design', count: 8 },
+            { name: 'Business', count: 15 },
+            { name: 'Languages', count: 6 },
+            { name: 'Creative', count: 10 }
+          ].map(category => (
+            <label key={category.name} className="group cursor-pointer block">
+              <div className="flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/50 p-2 rounded-lg transition-colors">
+                <div className="flex items-center gap-3">
+                  <Checkbox
+                    checked={filters.category === category.name}
+                    onCheckedChange={(checked) => {
+                      updateFilter('category', checked ? category.name : '');
+                    }}
+                    className="rounded border-2 data-[state=checked]:bg-[#0056D2] data-[state=checked]:border-[#0056D2] focus:ring-2 focus:ring-[#0056D2] focus:ring-offset-2"
+                  />
+                  <span className="text-sm text-[#1E293B] dark:text-[#F1F5F9] font-medium">
+                    {category.name}
+                  </span>
+                </div>
+                <span className="text-xs text-[#94A3B8] font-medium">
+                  {category.count}
+                </span>
               </div>
-              <span className="text-xs text-muted-foreground">
-                {classes.filter(c => c.category === category).length}
-              </span>
             </label>
           ))}
         </div>
       </FilterSection>
 
-      {/* Level */}
-      <FilterSection 
-        title="Level" 
+      <FilterSection
+        title="Level"
         isExpanded={expandedSections.level}
         onToggle={() => toggleSection('level')}
       >
-        <div className="space-y-3">
-          {['Beginner', 'Intermediate', 'Advanced'].map(level => (
-            <label key={level} className="filter-option cursor-pointer">
-              <div className="flex items-center gap-2">
-                <Checkbox
-                  checked={filters.level?.includes(level) || false}
-                  onCheckedChange={(checked) => {
-                    const currentLevels = filters.level || [];
-                    if (checked) {
-                      updateFilter('level', [...currentLevels, level]);
-                    } else {
-                      updateFilter('level', currentLevels.filter(l => l !== level));
-                    }
-                  }}
-                />
-                <span className="text-sm">{level}</span>
-              </div>
-              <span className="text-xs text-muted-foreground">
-                {classes.filter(c => c.level === level).length}
-              </span>
-            </label>
-          ))}
-        </div>
-      </FilterSection>
-
-      {/* Price */}
-      <FilterSection 
-        title="Price (Credits)" 
-        isExpanded={expandedSections.price}
-        onToggle={() => toggleSection('price')}
-      >
-        <div className="space-y-4">
-          <div>
-            <div className="flex justify-between text-sm mb-2">
-              <span>{filters.priceRange?.[0] || 0}</span>
-              <span>{filters.priceRange?.[1] || 500}</span>
-            </div>
-            <Slider
-              value={filters.priceRange || [0, 500]}
-              onValueChange={(value) => updateFilter('priceRange', value as [number, number])}
-              max={500}
-              min={0}
-              step={10}
-              className="w-full"
-            />
-          </div>
-        </div>
-      </FilterSection>
-
-      {/* Duration */}
-      <FilterSection 
-        title="Duration (Hours)" 
-        isExpanded={expandedSections.duration}
-        onToggle={() => toggleSection('duration')}
-      >
-        <div className="space-y-4">
-          <div>
-            <div className="flex justify-between text-sm mb-2">
-              <span>{filters.duration?.[0] || 0}h</span>
-              <span>{filters.duration?.[1] || 50}h</span>
-            </div>
-            <Slider
-              value={filters.duration || [0, 50]}
-              onValueChange={(value) => updateFilter('duration', value as [number, number])}
-              max={50}
-              min={0}
-              step={1}
-              className="w-full"
-            />
-          </div>
-        </div>
-      </FilterSection>
-
-      {/* Rating */}
-      <FilterSection 
-        title="Rating" 
-        isExpanded={expandedSections.rating}
-        onToggle={() => toggleSection('rating')}
-      >
-        <div className="space-y-3">
-          {[4.5, 4.0, 3.5, 3.0].map(rating => (
-            <label key={rating} className="filter-option cursor-pointer">
-              <div className="flex items-center gap-2">
-                <Checkbox
-                  checked={filters.rating === rating}
-                  onCheckedChange={(checked) => {
-                    updateFilter('rating', checked ? rating : 0);
-                  }}
-                />
-                <div className="flex items-center gap-1">
-                  <Star className="w-3 h-3 fill-brand-secondary text-brand-secondary" />
-                  <span className="text-sm">{rating} & up</span>
+        <div className="space-y-2">
+          {[
+            { name: 'Beginner', count: 18, color: 'text-emerald-600' },
+            { name: 'Intermediate', count: 14, color: 'text-amber-600' },
+            { name: 'Advanced', count: 9, color: 'text-red-600' }
+          ].map(level => (
+            <label key={level.name} className="group cursor-pointer block">
+              <div className="flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/50 p-2 rounded-lg transition-colors">
+                <div className="flex items-center gap-3">
+                  <Checkbox
+                    checked={filters.level?.includes(level.name) || false}
+                    onCheckedChange={(checked) => {
+                      const currentLevels = filters.level || [];
+                      if (checked) {
+                        updateFilter('level', [...currentLevels, level.name]);
+                      } else {
+                        updateFilter('level', currentLevels.filter(l => l !== level.name));
+                      }
+                    }}
+                    className="rounded border-2 data-[state=checked]:bg-[#0056D2] data-[state=checked]:border-[#0056D2] focus:ring-2 focus:ring-[#0056D2] focus:ring-offset-2"
+                  />
+                  <span className={`text-sm font-medium ${level.color} dark:text-[#F1F5F9]`}>
+                    {level.name}
+                  </span>
                 </div>
+                <span className="text-xs text-[#94A3B8] font-medium">
+                  {level.count}
+                </span>
               </div>
             </label>
           ))}
         </div>
       </FilterSection>
 
-      {/* Language */}
-      <FilterSection 
-        title="Language" 
+      <FilterSection
+        title="Language"
         isExpanded={expandedSections.language}
         onToggle={() => toggleSection('language')}
       >
-        <div className="space-y-3">
-          {['English', 'Spanish', 'French', 'German'].map(language => (
-            <label key={language} className="filter-option cursor-pointer">
-              <div className="flex items-center gap-2">
-                <Checkbox
-                  checked={filters.language?.includes(language) || false}
-                  onCheckedChange={(checked) => {
-                    const currentLanguages = filters.language || [];
-                    if (checked) {
-                      updateFilter('language', [...currentLanguages, language]);
-                    } else {
-                      updateFilter('language', currentLanguages.filter(l => l !== language));
-                    }
-                  }}
-                />
-                <span className="text-sm">{language}</span>
+        <div className="space-y-2">
+          {[
+            { name: 'English', count: 35 },
+            { name: 'Spanish', count: 12 },
+            { name: 'French', count: 8 },
+            { name: 'German', count: 5 }
+          ].map(language => (
+            <label key={language.name} className="group cursor-pointer block">
+              <div className="flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/50 p-2 rounded-lg transition-colors">
+                <div className="flex items-center gap-3">
+                  <Checkbox
+                    checked={filters.language?.includes(language.name) || false}
+                    onCheckedChange={(checked) => {
+                      const currentLanguages = filters.language || [];
+                      if (checked) {
+                        updateFilter('language', [...currentLanguages, language.name]);
+                      } else {
+                        updateFilter('language', currentLanguages.filter(l => l !== language.name));
+                      }
+                    }}
+                    className="rounded border-2 data-[state=checked]:bg-[#0056D2] data-[state=checked]:border-[#0056D2] focus:ring-2 focus:ring-[#0056D2] focus:ring-offset-2"
+                  />
+                  <span className="text-sm text-[#1E293B] dark:text-[#F1F5F9] font-medium">
+                    {language.name}
+                  </span>
+                </div>
+                <span className="text-xs text-[#94A3B8] font-medium">
+                  {language.count}
+                </span>
               </div>
             </label>
           ))}
@@ -588,15 +542,15 @@ export default function Classes() {
   );
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#F9FAFB] dark:bg-[#0F172A]">
       {/* Header */}
-      <div className="bg-neutral-100 dark:bg-slate-800 py-8 border-b">
+      <div className="bg-white dark:bg-[#1E293B] py-8 border-b border-slate-200 dark:border-slate-700">
         <div className="page-container">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-3xl font-heading font-bold mb-2 text-foreground">All Classes</h1>
-              <p className="text-muted-foreground">
-                {sortedClasses.length} results found
+              <h1 className="text-4xl font-heading font-bold mb-3 text-[#0F172A] dark:text-[#F1F5F9]">All Classes</h1>
+              <p className="text-lg text-[#334155] dark:text-[#E2E8F0]">
+                Discover {sortedClasses.length} learning opportunities from expert instructors
               </p>
             </div>
             
@@ -604,31 +558,35 @@ export default function Classes() {
               {/* Mobile filters */}
               <Sheet open={isMobileFiltersOpen} onOpenChange={setIsMobileFiltersOpen}>
                 <SheetTrigger asChild>
-                  <Button variant="outline" className="lg:hidden">
+                  <Button variant="outline" className="lg:hidden border-[#06B6D4] text-[#06B6D4] hover:bg-[#06B6D4] hover:text-white rounded-xl">
                     <SlidersHorizontal className="w-4 h-4 mr-2" />
                     Filters
                     {activeFiltersCount > 0 && (
-                      <Badge variant="destructive" className="ml-2 h-5 w-5 p-0 text-xs">
+                      <Badge className="ml-2 h-5 w-5 p-0 text-xs bg-[#0056D2] text-white">
                         {activeFiltersCount}
                       </Badge>
                     )}
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="left" className="w-80 p-0 overflow-y-auto">
+                <SheetContent side="left" className="w-80 p-0 overflow-y-auto bg-white dark:bg-[#1E293B]">
                   <SheetHeader className="p-6 pb-0">
-                    <SheetTitle>Filters</SheetTitle>
+                    <SheetTitle className="text-[#0F172A] dark:text-[#F1F5F9]">Filters</SheetTitle>
                   </SheetHeader>
                   <FiltersPanel />
                 </SheetContent>
               </Sheet>
 
               {/* View mode toggle */}
-              <div className="hidden sm:flex rounded-lg border">
+              <div className="hidden sm:flex rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-[#1E293B] shadow-sm">
                 <Button
                   variant={viewMode === 'grid' ? 'default' : 'ghost'}
                   size="sm"
                   onClick={() => setViewMode('grid')}
-                  className="rounded-r-none"
+                  className={`rounded-r-none border-r-0 ${
+                    viewMode === 'grid'
+                      ? 'bg-[#0056D2] text-white hover:bg-[#004BB8]'
+                      : 'hover:bg-[#0056D2]/10 hover:text-[#0056D2]'
+                  }`}
                 >
                   <Grid3X3 className="w-4 h-4" />
                 </Button>
@@ -636,7 +594,11 @@ export default function Classes() {
                   variant={viewMode === 'list' ? 'default' : 'ghost'}
                   size="sm"
                   onClick={() => setViewMode('list')}
-                  className="rounded-l-none"
+                  className={`rounded-l-none ${
+                    viewMode === 'list'
+                      ? 'bg-[#06B6D4] text-white hover:bg-[#0891B2]'
+                      : 'hover:bg-[#06B6D4]/10 hover:text-[#06B6D4]'
+                  }`}
                 >
                   <List className="w-4 h-4" />
                 </Button>
@@ -673,29 +635,40 @@ export default function Classes() {
       </div>
 
       {/* Main Content */}
-      <div className="catalog-layout page-container py-8">
-        {/* Left Filter Rail - Desktop */}
-        <div className="hidden lg:block catalog-filters">
-          <FiltersPanel />
+      <div className="flex min-h-screen bg-[#F9FAFB] dark:bg-[#0F172A]">
+        {/* Left Filter Sidebar - Desktop */}
+        <div className="hidden lg:block w-[280px] bg-white dark:bg-[#1E293B] border-r border-slate-200 dark:border-slate-700 p-6">
+          <div className="sticky top-6">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-lg font-bold text-[#0056D2] font-heading">Filters</h2>
+              <button
+                onClick={clearFilters}
+                className="text-sm text-[#06B6D4] hover:underline transition-colors"
+              >
+                Clear All
+              </button>
+            </div>
+            <FiltersPanel />
+          </div>
         </div>
 
-        {/* Results */}
-        <div className="catalog-content">
+        {/* Course Grid Container */}
+        <div className="flex-1 p-6 lg:p-8">
           {/* Active Filters Display */}
           {activeFiltersCount > 0 && (
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-3 mb-8 p-4 bg-white dark:bg-[#1E293B] rounded-xl border border-transparent dark:border-[rgba(255,255,255,0.06)] shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
               {filters.category && (
-                <Badge variant="secondary" className="flex items-center gap-1">
+                <Badge variant="secondary" className="flex items-center gap-2 bg-[#06B6D4]/10 text-[#06B6D4] border-[#06B6D4]/20 px-3 py-1 rounded-lg">
                   Category: {filters.category}
-                  <button onClick={() => updateFilter('category', '')}>
+                  <button onClick={() => updateFilter('category', '')} className="hover:bg-[#06B6D4]/20 rounded-full p-0.5 transition-colors">
                     <X className="w-3 h-3" />
                   </button>
                 </Badge>
               )}
               {filters.level && filters.level.length > 0 && (
-                <Badge variant="secondary" className="flex items-center gap-1">
+                <Badge variant="secondary" className="flex items-center gap-2 bg-[#0056D2]/10 text-[#0056D2] border-[#0056D2]/20 px-3 py-1 rounded-lg">
                   Level: {filters.level.join(', ')}
-                  <button onClick={() => updateFilter('level', [])}>
+                  <button onClick={() => updateFilter('level', [])} className="hover:bg-[#0056D2]/20 rounded-full p-0.5 transition-colors">
                     <X className="w-3 h-3" />
                   </button>
                 </Badge>
@@ -703,25 +676,36 @@ export default function Classes() {
             </div>
           )}
 
-          {/* Class Grid/List */}
+          {/* Course Cards Grid */}
           {sortedClasses.length > 0 ? (
             <div className={cn(
-              viewMode === 'grid' 
-                ? 'academic-grid' 
+              viewMode === 'grid'
+                ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
                 : 'space-y-4'
             )}>
               {sortedClasses.map((course) => (
-                <ClassCard key={course.id} course={course} variant={viewMode} />
+                <ClassCard
+                  key={course.id}
+                  course={course}
+                  variant={viewMode === 'grid' ? 'default' : 'horizontal'}
+                />
               ))}
             </div>
           ) : (
-            <Card className="p-12 text-center">
-              <BookOpen className="w-16 h-16 mx-auto mb-4 text-muted-foreground opacity-50" />
-              <h3 className="text-lg font-semibold mb-2">No classes found</h3>
-              <p className="text-muted-foreground mb-6">
-                Try adjusting your filters or search terms.
+            <Card className="p-12 text-center bg-white dark:bg-[#1E293B] border border-transparent dark:border-[rgba(255,255,255,0.06)]">
+              <div className="w-16 h-16 mx-auto mb-6 bg-[#0056D2]/10 rounded-2xl flex items-center justify-center">
+                <BookOpen className="w-8 h-8 text-[#0056D2]" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-[#0F172A] dark:text-[#F1F5F9] font-heading">No classes found</h3>
+              <p className="text-[#334155] dark:text-[#E2E8F0] mb-8 max-w-md mx-auto leading-relaxed">
+                Try adjusting your filters or search terms to discover more learning opportunities.
               </p>
-              <Button onClick={clearFilters}>Clear all filters</Button>
+              <Button
+                onClick={clearFilters}
+                className="bg-[#0056D2] hover:bg-[#004BB8] text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+              >
+                Clear all filters
+              </Button>
             </Card>
           )}
         </div>

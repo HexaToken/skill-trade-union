@@ -202,9 +202,19 @@ export default function Matches() {
     console.log('Starting instant help with:', userId, skillId);
   };
 
+  const formatNextAvailable = (dateStr: string) => {
+    const date = new Date(dateStr);
+    const now = new Date();
+    const diffHours = Math.ceil((date.getTime() - now.getTime()) / (1000 * 60 * 60));
+
+    if (diffHours < 24) return `Available in ${diffHours}h`;
+    if (diffHours < 168) return `Available in ${Math.ceil(diffHours / 24)}d`;
+    return date.toLocaleDateString();
+  };
+
   const hasActiveFilters = Object.keys(filters).some(key => {
     const value = filters[key as keyof AdvancedSearchFilters];
-    return value !== undefined && value !== '' && 
+    return value !== undefined && value !== '' &&
            (Array.isArray(value) ? value.length > 0 : true);
   });
 
@@ -290,20 +300,20 @@ export default function Matches() {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 min-w-0">
-          <div className="p-6">
+        <main className="flex-1 min-w-0 bg-gradient-to-br from-white to-slate-50/50 dark:from-slate-900 dark:to-slate-800/50">
+          <div className="p-8">
             {/* Results Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-lg">
+              <div className="flex items-center gap-6">
+                <div className="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
                   {isLoading ? (
-                    <div className="flex items-center gap-2">
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Searching...</span>
+                    <div className="flex items-center gap-3">
+                      <Loader2 className="w-5 h-5 animate-spin text-educational-blue" />
+                      <span className="font-medium">Searching...</span>
                     </div>
                   ) : (
-                    <span>
-                      {sortedMatches.length} {sortedMatches.length === 1 ? 'match' : 'matches'} found
+                    <span className="font-semibold text-slate-800 dark:text-white">
+                      <span className="text-educational-blue">{sortedMatches.length}</span> {sortedMatches.length === 1 ? 'match' : 'matches'} found
                     </span>
                   )}
                 </div>
@@ -313,20 +323,20 @@ export default function Matches() {
                     variant="outline"
                     size="sm"
                     onClick={handleClearFilters}
-                    className="text-xs"
+                    className="text-xs border-educational-cyan text-educational-cyan hover:bg-educational-cyan hover:text-white rounded-xl transition-all duration-200"
                   >
                     Clear Filters
                   </Button>
                 )}
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-4">
                 {/* Sort */}
                 <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-48">
+                  <SelectTrigger className="w-52 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-600 rounded-xl shadow-sm hover:shadow-md transition-all">
                     <SelectValue placeholder="Sort by..." />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-600 rounded-xl shadow-lg">
                     {sortOptions.map((option) => (
                       <SelectItem key={option.value} value={option.value}>
                         {option.label}
@@ -336,12 +346,16 @@ export default function Matches() {
                 </Select>
 
                 {/* View Mode Toggle */}
-                <div className="flex rounded-lg border">
+                <div className="flex rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 shadow-sm">
                   <Button
                     variant={viewMode === 'list' ? 'default' : 'ghost'}
                     size="sm"
                     onClick={() => setViewMode('list')}
-                    className="rounded-r-none border-r"
+                    className={`rounded-r-none border-r-0 ${
+                      viewMode === 'list'
+                        ? 'bg-educational-blue text-white hover:bg-educational-blue/90'
+                        : 'hover:bg-educational-blue/10 hover:text-educational-blue'
+                    }`}
                   >
                     <List className="w-4 h-4" />
                   </Button>
@@ -349,7 +363,11 @@ export default function Matches() {
                     variant={viewMode === 'map' ? 'default' : 'ghost'}
                     size="sm"
                     onClick={() => setViewMode('map')}
-                    className="rounded-l-none"
+                    className={`rounded-l-none ${
+                      viewMode === 'map'
+                        ? 'bg-educational-cyan text-white hover:bg-educational-cyan/90'
+                        : 'hover:bg-educational-cyan/10 hover:text-educational-cyan'
+                    }`}
                   >
                     <Map className="w-4 h-4" />
                   </Button>
@@ -382,34 +400,44 @@ export default function Matches() {
             {viewMode === 'list' ? (
               <div className="space-y-6">
                 {isLoading ? (
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     {Array.from({ length: 3 }).map((_, i) => (
-                      <Card key={i} className="animate-pulse">
-                        <CardContent className="p-6">
-                          <div className="flex gap-4">
-                            <div className="w-16 h-16 bg-muted rounded-full" />
-                            <div className="flex-1 space-y-3">
-                              <div className="h-4 bg-muted rounded w-1/3" />
-                              <div className="h-3 bg-muted rounded w-1/2" />
-                              <div className="h-3 bg-muted rounded w-3/4" />
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
+                      <MatchCard key={i} variant="skeleton" />
                     ))}
                   </div>
                 ) : sortedMatches.length > 0 ? (
                   <div className="grid gap-6">
-                    {sortedMatches.map((match) => (
-                      <MatchCard
-                        key={match.user.id}
-                        match={match}
-                        onViewProfile={handleViewProfile}
-                        onBook={handleBook}
-                        onMessage={handleMessage}
-                        onInstantHelp={handleInstantHelp}
-                      />
-                    ))}
+                    {sortedMatches.map((match) => {
+                      const skill = skills.find(s => s.id === match.skill.id);
+                      return (
+                        <MatchCard
+                          key={match.user.id}
+                          name={match.user.name}
+                          location={`${match.user.location.city}, ${match.user.location.country}`}
+                          avatarUrl={match.user.avatarUrl}
+                          rating={match.user.ratingAvg}
+                          reviews={match.user.ratingCount}
+                          availabilityNote={match.nextAvailable ? formatNextAvailable(match.nextAvailable) : "Available now"}
+                          sameCity={match.distance !== undefined && match.distance < 50}
+                          skillTitle={skill?.name || match.skill.name}
+                          category={skill?.category || 'General'}
+                          creditsPerHour={skill?.baseRateCredits || 15}
+                          level={`Level ${skill?.difficulty || 1}`}
+                          blurb={match.user.bio}
+                          chips={match.reasons.map(reason => ({
+                            label: reason,
+                            tone: reason.includes('high rating') ? 'success' as const : 'neutral' as const
+                          }))}
+                          verifiedID={match.user.verification.idVerified}
+                          skillTested={match.user.verification.skillTested}
+                          matchPercent={match.matchScore}
+                          onViewProfile={() => handleViewProfile(match.user.id)}
+                          onBook={() => handleBook(match.user.id, match.skill.id)}
+                          onInstantCall={() => handleInstantHelp(match.user.id, match.skill.id)}
+                          showInstant={match.user.id === 'user-1' || match.user.id === 'user-2'}
+                        />
+                      );
+                    })}
                   </div>
                 ) : (
                   <Card>

@@ -103,9 +103,9 @@ export function Footer({ className }: FooterProps) {
   ];
 
   return (
-    <footer className={cn('bg-gray-50 dark:bg-slate-800 border-t border-border/50', className)}>
+    <footer className={cn('bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 border-t border-slate-200 dark:border-slate-700', className)}>
       {/* Glowing top divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-brand-primary to-brand-secondary opacity-20" />
+      <div className="h-1 bg-gradient-to-r from-educational-blue via-educational-cyan to-purple-500 opacity-60" />
       
       <div className="page-container">
         {/* Upper section with columns */}
@@ -113,7 +113,7 @@ export function Footer({ className }: FooterProps) {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {footerSections.map((section) => (
               <div key={section.title} className="space-y-4">
-                <h3 className="font-heading font-semibold text-foreground">
+                <h3 className="font-heading font-bold text-slate-800 dark:text-white">
                   {section.title}
                 </h3>
                 <ul className="space-y-3">
@@ -126,7 +126,7 @@ export function Footer({ className }: FooterProps) {
                             href={link.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 text-muted-foreground hover:text-brand-primary transition-colors focus-neo"
+                            className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-educational-blue transition-colors focus-neo"
                           >
                             {Icon && <Icon className="w-4 h-4" />}
                             {link.label}
@@ -134,7 +134,7 @@ export function Footer({ className }: FooterProps) {
                         ) : (
                           <Link
                             to={link.href}
-                            className="flex items-center gap-2 text-muted-foreground hover:text-brand-primary transition-colors focus-neo"
+                            className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-educational-blue transition-colors focus-neo"
                           >
                             {Icon && <Icon className="w-4 h-4" />}
                             {link.label}
@@ -150,13 +150,13 @@ export function Footer({ className }: FooterProps) {
         </div>
 
         {/* Lower bar */}
-        <div className="py-6 border-t border-border/50">
+        <div className="py-8 border-t border-slate-200 dark:border-slate-700 bg-gradient-to-r from-white to-slate-50/50 dark:from-slate-800 dark:to-slate-900/50">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Copyright */}
-            <div className="flex items-center gap-4 text-sm text-muted-foreground">
-              <span>© 2025 SkillSwap</span>
-              <span className="hidden md:inline">•</span>
-              <span>Trade skills, not cash.</span>
+            <div className="flex items-center gap-4 text-sm text-slate-600 dark:text-slate-300">
+              <span className="font-medium">© 2025 SkillSwap</span>
+              <span className="hidden md:inline text-educational-cyan">•</span>
+              <span className="italic">Trade skills, not cash.</span>
             </div>
 
             {/* Controls */}

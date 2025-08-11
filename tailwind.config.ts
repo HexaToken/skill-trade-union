@@ -63,12 +63,30 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				brand: {
-					primary: 'hsl(var(--brand-primary))',
-					secondary: 'hsl(var(--brand-secondary))',
-					neutral: 'hsl(var(--brand-neutral))',
+					primary: 'hsl(var(--brand-primary))', /* #0056D2 */
+					secondary: 'hsl(var(--brand-secondary))', /* #06B6D4 */
+					neutral: 'hsl(var(--brand-neutral))', /* #64748B */
 					success: 'hsl(var(--brand-success))',
 					warning: 'hsl(var(--brand-warning))',
 					danger: 'hsl(var(--brand-danger))'
+				},
+				educational: {
+					blue: {
+						DEFAULT: '#0056D2',
+						50: '#EBF4FF',
+						100: '#DBEAFE',
+						500: '#0056D2',
+						600: '#004BB8',
+						700: '#003D96'
+					},
+					cyan: {
+						DEFAULT: '#06B6D4',
+						50: '#ECFEFF',
+						100: '#CFFAFE',
+						500: '#06B6D4',
+						600: '#0891B2',
+						700: '#0E7490'
+					}
 				}
 			},
 			borderRadius: {
@@ -78,12 +96,34 @@ export default {
 			},
 			fontFamily: {
 				sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-				heading: ['Outfit', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				heading: ['Outfit', 'Poppins', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
 				mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace']
 			},
 			spacing: {
 				'18': '4.5rem',
-				'88': '22rem'
+				'88': '22rem',
+				'100': '25rem',
+				'104': '26rem',
+				'120': '30rem'
+			},
+			fontSize: {
+				'xs': ['0.75rem', { lineHeight: '1rem' }],
+				'sm': ['0.875rem', { lineHeight: '1.25rem' }],
+				'base': ['1rem', { lineHeight: '1.5rem' }],
+				'lg': ['1.125rem', { lineHeight: '1.75rem' }],
+				'xl': ['1.25rem', { lineHeight: '1.75rem' }],
+				'2xl': ['1.5rem', { lineHeight: '2rem' }],
+				'3xl': ['1.875rem', { lineHeight: '2.25rem' }],
+				'4xl': ['2.25rem', { lineHeight: '2.5rem' }],
+				'5xl': ['3rem', { lineHeight: '1' }],
+				'6xl': ['3.75rem', { lineHeight: '1' }],
+				'7xl': ['4.5rem', { lineHeight: '1' }],
+				'8xl': ['6rem', { lineHeight: '1' }],
+				'9xl': ['8rem', { lineHeight: '1' }],
+				'educational-h1': ['2.25rem', { lineHeight: '2.5rem', fontWeight: '700' }],
+				'educational-h2': ['1.875rem', { lineHeight: '2.25rem', fontWeight: '600' }],
+				'educational-h3': ['1.5rem', { lineHeight: '2rem', fontWeight: '600' }],
+				'educational-body': ['1rem', { lineHeight: '1.5rem', fontWeight: '400' }]
 			},
 			keyframes: {
 				'accordion-down': {
@@ -117,6 +157,18 @@ export default {
 				'slide-out-right': {
 					'0%': { transform: 'translateX(0)' },
 					'100%': { transform: 'translateX(100%)' }
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-10px)' }
+				},
+				'pulse-glow': {
+					'0%, 100%': { boxShadow: '0 0 20px rgba(0, 86, 210, 0.3)' },
+					'50%': { boxShadow: '0 0 30px rgba(0, 86, 210, 0.6)' }
+				},
+				'gradient-shift': {
+					'0%, 100%': { backgroundPosition: '0% 50%' },
+					'50%': { backgroundPosition: '100% 50%' }
 				}
 			},
 			animation: {
@@ -128,6 +180,9 @@ export default {
 				'scale-out': 'scale-out 0.2s ease-out',
 				'slide-in-right': 'slide-in-right 0.3s ease-out',
 				'slide-out-right': 'slide-out-right 0.3s ease-out',
+				'float': 'float 3s ease-in-out infinite',
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'gradient-shift': 'gradient-shift 3s ease infinite',
 				enter: 'fade-in 0.3s ease-out, scale-in 0.2s ease-out',
 				exit: 'fade-out 0.3s ease-out, scale-out 0.2s ease-out'
 			}
