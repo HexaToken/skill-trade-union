@@ -575,17 +575,142 @@ export default function MapPage() {
           </div>
         </div>
 
-        {/* Toggle Panel Button */}
+        {/* Toggle Panel Button - Desktop */}
         {!sidePanelOpen && (
           <Button
             variant="outline"
             size="icon"
-            className="absolute top-4 right-4 z-40"
+            className="hidden md:block absolute top-4 right-4 z-40"
             onClick={() => setSidePanelOpen(true)}
           >
             <Menu className="w-4 h-4" />
           </Button>
         )}
+
+        {/* Mobile Bottom Sheet */}
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 rounded-full px-6 shadow-lg"
+                size="lg"
+              >
+                <ArrowRight className="w-4 h-4 mr-2 rotate-90" />
+                Explore Skills
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="bottom" className="h-[80vh] rounded-t-xl">
+              <div className="h-full overflow-y-auto pb-6">
+                {/* Mobile Panel Header */}
+                <div className="sticky top-0 bg-background pb-4 mb-4">
+                  <div className="w-12 h-1 bg-muted rounded-full mx-auto mb-4" />
+                  <h3 className="font-semibold text-lg text-center">Global Insights</h3>
+                </div>
+
+                {/* Mobile Tabs */}
+                <Tabs value={activeTab} onValueChange={setActiveTab} className="h-full">
+                  <TabsList className="grid w-full grid-cols-3 mb-6">
+                    <TabsTrigger value="trending">Trending</TabsTrigger>
+                    <TabsTrigger value="mentors">Mentors</TabsTrigger>
+                    <TabsTrigger value="challenges">Events</TabsTrigger>
+                  </TabsList>
+
+                  {/* Mobile Trending Skills Tab */}
+                  <TabsContent value="trending" className="space-y-4">
+                    <div className="space-y-3">
+                      {mapData.trendingSkills.map((skill, index) => (
+                        <div key={index} className="flex items-center justify-between p-4 bg-muted/50 rounded-lg hover:bg-muted">
+                          <div className="flex items-center gap-3">
+                            <skill.icon className="w-6 h-6 text-brand-primary" />
+                            <div>
+                              <p className="font-medium">{skill.name}</p>
+                              <p className="text-sm text-muted-foreground">{skill.mentors} mentors</p>
+                            </div>
+                          </div>
+                          <Badge variant="secondary" className="text-green-700 bg-green-100">
+                            +{skill.growth}%
+                          </Badge>
+                        </div>
+                      ))}
+                    </div>
+                  </TabsContent>
+
+                  {/* Mobile Mentors Tab */}
+                  <TabsContent value="mentors" className="space-y-4">
+                    <div className="space-y-3">
+                      {mapData.nearbyMentors.map((mentor) => (
+                        <div
+                          key={mentor.id}
+                          className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg hover:bg-muted"
+                          onClick={() => navigate(`/profile/${mentor.id}`)}
+                        >
+                          <Avatar className="w-14 h-14">
+                            <AvatarImage src={mentor.avatarUrl} alt={mentor.name} />
+                            <AvatarFallback>
+                              {mentor.name.split(' ').map((n: string) => n[0]).join('')}
+                            </AvatarFallback>
+                          </Avatar>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 mb-1">
+                              <p className="font-medium truncate">{mentor.name}</p>
+                              <div className="flex items-center gap-1">
+                                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                                <span className="text-sm">{mentor.ratingAvg}</span>
+                              </div>
+                            </div>
+                            <p className="text-sm text-muted-foreground truncate mb-2">{mentor.location.city}, {mentor.location.country}</p>
+                            <div className="flex gap-1 flex-wrap">
+                              {mentor.skillsOffered.slice(0, 2).map((skill, idx) => {
+                                const skillData = skills.find(s => s.id === skill.skillId);
+                                return (
+                                  <Badge key={idx} variant="outline" className="text-xs">
+                                    {skillData?.name}
+                                  </Badge>
+                                );
+                              })}
+                            </div>
+                          </div>
+                          <Button size="sm" variant="outline">
+                            View
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  </TabsContent>
+
+                  {/* Mobile Challenges Tab */}
+                  <TabsContent value="challenges" className="space-y-4">
+                    <div className="space-y-3">
+                      {mapData.challenges.map((challenge) => (
+                        <div key={challenge.id} className="p-4 bg-muted/50 rounded-lg hover:bg-muted">
+                          <div className="flex items-start justify-between mb-3">
+                            <h4 className="font-medium">{challenge.title}</h4>
+                            <Badge variant="outline" className="text-xs">
+                              {challenge.skill}
+                            </Badge>
+                          </div>
+                          <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                            <div className="flex items-center gap-1">
+                              <Users className="w-4 h-4" />
+                              {challenge.participants} participants
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <Clock className="w-4 h-4" />
+                              Ends {new Date(challenge.endDate).toLocaleDateString()}
+                            </div>
+                          </div>
+                          <Button className="w-full">
+                            Join Challenge
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  </TabsContent>
+                </Tabs>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
 
       {/* Community Highlight Section */}
