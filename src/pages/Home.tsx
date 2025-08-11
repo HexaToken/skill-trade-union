@@ -144,17 +144,23 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 border-b">
+      <section className="py-16 border-b bg-card">
         <div className="page-container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat) => {
+            {stats.map((stat, index) => {
               const Icon = stat.icon;
+              const colors = [
+                'bg-brand-secondary/10 text-brand-secondary',
+                'bg-brand-amber/10 text-brand-amber',
+                'bg-brand-primary/10 text-brand-primary',
+                'bg-brand-green/10 text-brand-green'
+              ];
               return (
-                <div key={stat.label} className="text-center space-y-2">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-brand-primary/10 rounded-lg">
-                    <Icon className="w-6 h-6 text-brand-primary" />
+                <div key={stat.label} className="text-center space-y-3">
+                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg ${colors[index % colors.length]}`}>
+                    <Icon className="w-6 h-6" />
                   </div>
-                  <div className="text-3xl font-bold font-heading">{stat.value}</div>
+                  <div className="text-3xl font-bold font-heading text-brand-primary">{stat.value}</div>
                   <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </div>
               );
