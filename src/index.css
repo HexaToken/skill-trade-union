@@ -99,8 +99,8 @@ All colors MUST be HSL.
     --destructive: 0 84% 60%;
     --destructive-foreground: 255 255 255;
 
-    --border: 255 255 255; /* rgba(255, 255, 255, 0.08) - converted to HSL */
-    --input: 255 255 255;
+    --border: 75 85 99; /* #4B5563 - Medium gray for borders */
+    --input: 75 85 99;
     --ring: 262 83% 39%;
 
     /* Dark Warm EduTech adjustments */
