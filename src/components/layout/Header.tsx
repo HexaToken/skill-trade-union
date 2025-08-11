@@ -45,6 +45,7 @@ export default function Header() {
 
   const navItems = [
     { label: 'Find a Match', href: '/matches', icon: Users },
+    { label: 'Search Results', href: '/search?q=web+development', icon: Search },
     { label: 'Classes', href: '/classes', icon: BookOpen },
     { label: 'Mentors', href: '/mentors', icon: Award },
     { label: 'Challenges', href: '/challenges', icon: Target },
