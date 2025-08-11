@@ -621,31 +621,35 @@ const FeaturedMentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) =>
 // Regular Mentor Card Component
 const MentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) => {
   return (
-    <Card className="overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group border-[#0056D2]/10 h-full">
-      <CardContent className="p-6 h-full flex flex-col">
+    <Card className="glass-card hover-lift transition-all duration-300 group border-[#0056D2]/10 h-full bg-white/50 dark:bg-[#1E293B]/50 backdrop-blur-sm">
+      <CardContent className="p-5 h-full flex flex-col">
         <div className="flex items-start gap-4 mb-4">
           <div className="relative">
-            <Avatar className="h-14 w-14 ring-1 ring-[#0056D2]/20">
-              <AvatarImage src={mentor.avatar} alt={mentor.name} />
-              <AvatarFallback className="bg-[#0056D2]/10 text-[#0056D2] font-bold">{mentor.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+            <Avatar className="h-14 w-14 ring-1 ring-[#0056D2]/20 ring-offset-1 ring-offset-background">
+              <AvatarImage src={mentor.avatar} alt={mentor.name} className="object-cover" />
+              <AvatarFallback className="bg-gradient-to-br from-[#0056D2]/10 to-[#06B6D4]/10 text-[#0056D2] font-bold">
+                {mentor.name.split(' ').map(n => n[0]).join('')}
+              </AvatarFallback>
             </Avatar>
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between mb-2">
-              <div>
-                <h3 className="font-heading font-bold text-lg text-[#0F172A] dark:text-[#F1F5F9] group-hover:text-[#0056D2] transition-colors line-clamp-1">
+              <div className="flex-1 min-w-0 pr-2">
+                <h3 className="font-heading font-bold text-lg text-[#0F172A] dark:text-[#F1F5F9] group-hover:text-[#0056D2] transition-colors truncate">
                   {mentor.name}
                 </h3>
-                <p className="text-sm text-[#64748B] dark:text-[#94A3B8] font-medium line-clamp-1">{mentor.headline}</p>
+                <p className="text-sm text-[#64748B] dark:text-[#94A3B8] font-medium truncate">
+                  {mentor.headline}
+                </p>
               </div>
-              <div className="flex gap-1 ml-2">
+              <div className="flex gap-1 flex-shrink-0">
                 {mentor.verifiedID && (
-                  <div className="w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center">
+                  <div className="w-6 h-6 bg-emerald-50 dark:bg-emerald-900/30 rounded-full flex items-center justify-center border border-emerald-200 dark:border-emerald-800">
                     <Shield className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
                   </div>
                 )}
                 {mentor.skillTested && (
-                  <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                  <div className="w-6 h-6 bg-blue-50 dark:bg-blue-900/30 rounded-full flex items-center justify-center border border-blue-200 dark:border-blue-800">
                     <CheckCircle className="h-3 w-3 text-blue-600 dark:text-blue-400" />
                   </div>
                 )}
@@ -654,38 +658,43 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) => {
           </div>
         </div>
 
-        <div className="flex items-center gap-3 text-sm text-[#64748B] dark:text-[#94A3B8] mb-3">
+        <div className="flex items-center flex-wrap gap-2 text-sm text-[#64748B] dark:text-[#94A3B8] mb-3">
           <div className="flex items-center gap-1">
             <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
             <span className="font-semibold text-[#0F172A] dark:text-[#F1F5F9]">{mentor.rating}</span>
             <span>({mentor.reviews})</span>
           </div>
-          <span className="text-[#CBD5E1]">•</span>
+          <span className="text-[#CBD5E1] hidden sm:inline">•</span>
           <span className="font-medium">{mentor.sessions} sessions</span>
         </div>
 
-        <p className="text-sm text-[#64748B] dark:text-[#94A3B8] mb-4 line-clamp-2 flex-1">
+        <p className="text-sm text-[#64748B] dark:text-[#94A3B8] mb-4 line-clamp-2 flex-1 leading-relaxed">
           {mentor.blurb}
         </p>
 
         <div className="flex flex-wrap gap-1.5 mb-4">
           {mentor.tags.slice(0, 3).map((tag) => (
-            <Badge key={tag} variant="outline" className="text-xs bg-[#0056D2]/5 text-[#0056D2] border-[#0056D2]/20 font-medium">
+            <Badge key={tag} variant="outline" className="text-xs bg-[#0056D2]/5 text-[#0056D2] border-[#0056D2]/25 font-medium hover:bg-[#0056D2]/10 transition-colors">
               {tag}
             </Badge>
           ))}
+          {mentor.tags.length > 3 && (
+            <Badge variant="outline" className="text-xs bg-gray-50 text-gray-600 border-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700">
+              +{mentor.tags.length - 3}
+            </Badge>
+          )}
         </div>
 
-        <div className="flex items-center justify-between pt-2 border-t border-[#0056D2]/10">
+        <div className="flex items-center justify-between pt-3 border-t border-[#0056D2]/10 mt-auto">
           <div className="flex items-center gap-2">
             <span className="text-xl font-bold text-[#0056D2]">{mentor.creditsPerHour}</span>
-            <span className="text-xs text-[#64748B] dark:text-[#94A3B8]">credits/hr</span>
+            <span className="text-xs text-[#64748B] dark:text-[#94A3B8] font-medium">credits/hr</span>
           </div>
           <div className="flex gap-2">
-            <Button variant="ghost" size="sm" className="text-[#06B6D4] hover:text-[#0891B2] hover:bg-[#06B6D4]/10 font-medium">
+            <Button variant="ghost" size="sm" className="text-[#06B6D4] hover:text-[#0891B2] hover:bg-[#06B6D4]/10 font-medium text-xs px-3">
               View
             </Button>
-            <Button size="sm" className="bg-[#0056D2] hover:bg-[#004BB8] text-white font-semibold shadow-sm hover:shadow-md transition-all duration-200" onClick={() => onBookNow(mentor)}>
+            <Button size="sm" className="bg-[#0056D2] hover:bg-[#004BB8] text-white font-semibold shadow-sm hover:shadow-md transition-all duration-200 text-xs px-4" onClick={() => onBookNow(mentor)}>
               Book
             </Button>
           </div>
