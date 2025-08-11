@@ -396,7 +396,7 @@ export default function Home() {
 
             <InstantHelpDrawer
               trigger={
-                <Button size="lg" className="bg-gradient-to-r from-brand-amber to-brand-secondary hover:from-brand-amber/90 hover:to-brand-secondary/90 text-white border-0 px-8 py-6 shadow-lg hover:shadow-xl transition-all duration-200">
+                <Button size="lg" className="bg-gradient-to-r from-brand-primary to-brand-secondary hover:from-brand-secondary hover:to-brand-primary text-white border-0 px-8 py-6 shadow-lg hover:shadow-glow transition-all duration-200">
                   <Zap className="w-5 h-5 mr-2" />
                   Try ExpertMatch AI
                 </Button>
