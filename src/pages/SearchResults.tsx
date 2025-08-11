@@ -652,7 +652,7 @@ export default function SearchResults() {
                   {displayResults
                     .filter(result => result.type === 'person')
                     .map((result, index) => (
-                      <div key={index} className="animate-in fade-in duration-300" style={{ animationDelay: `${index * 50}ms` }}>
+                      <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 50}ms` }}>
                         <MatchCard
                           {...result.data}
                           variant="default"
