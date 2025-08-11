@@ -36,9 +36,8 @@ export default function SkillCard({
         variant={selected ? 'default' : 'outline'}
         size="sm"
         className={cn(
-          'h-auto p-4 justify-start text-left hover-scale rounded-xl border-2',
-          selected && 'ring-2 ring-educational-blue ring-offset-2 bg-gradient-to-r from-educational-blue/5 to-educational-cyan/5',
-          !selected && 'hover:border-educational-cyan/50 hover:shadow-lg',
+          'h-auto p-3 justify-start text-left',
+          selected && 'ring-2 ring-blue-500 ring-offset-2',
           className
         )}
         onClick={() => onSelect?.(skill)}
