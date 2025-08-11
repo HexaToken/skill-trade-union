@@ -178,12 +178,12 @@ export default function SearchResults() {
         }
         
         // Apply filters
-        if (filters.categories.length > 0 && !filters.categories.includes(course.category)) return;
+        if (filters.categories.length > 0 && !filters.categories.includes(course.category || '')) return;
         if (filters.level) {
           const levelMap = { beginner: 1, intermediate: 2, advanced: 3 };
-          if (course.level !== levelMap[filters.level]) return;
+          if ((course.level || 0) !== levelMap[filters.level]) return;
         }
-        if (course.pricePerSeat < filters.creditsRange[0] || course.pricePerSeat > filters.creditsRange[1]) return;
+        if ((course.pricePerSeat || 0) < filters.creditsRange[0] || (course.pricePerSeat || 0) > filters.creditsRange[1]) return;
         
         results.push({
           type: 'course',
