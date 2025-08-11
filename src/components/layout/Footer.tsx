@@ -99,7 +99,7 @@ export function Footer({ className }: FooterProps) {
     { code: 'de', name: 'Deutsch' },
     { code: 'pt', name: 'Português' },
     { code: 'ja', name: '日本語' },
-    { code: 'zh', name: '��文' }
+    { code: 'zh', name: '中文' }
   ];
 
   return (
@@ -113,7 +113,7 @@ export function Footer({ className }: FooterProps) {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {footerSections.map((section) => (
               <div key={section.title} className="space-y-4">
-                <h3 className="font-heading font-semibold text-foreground">
+                <h3 className="font-heading font-bold text-slate-800 dark:text-white">
                   {section.title}
                 </h3>
                 <ul className="space-y-3">
