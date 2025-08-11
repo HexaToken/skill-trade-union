@@ -25,7 +25,7 @@ All colors MUST be HSL.
     --primary-foreground: 255 255 255;
 
     --secondary: 189 94% 43%; /* #06B6D4 - Light cyan */
-    --secondary-foreground: 15 23 42; /* Deep navy for cyan background */
+    --secondary-foreground: 255 255 255; /* White text for better contrast */
 
     --muted: 248 250 252; /* #F8FAFC - Soft gray */
     --muted-foreground: 100 116 139; /* #64748B - Slate gray */
