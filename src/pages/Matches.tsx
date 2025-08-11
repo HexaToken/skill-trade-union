@@ -365,8 +365,8 @@ export default function Matches() {
                     onClick={() => setViewMode('map')}
                     className={`rounded-l-none ${
                       viewMode === 'map'
-                        ? 'bg-educational-cyan text-white hover:bg-educational-cyan/90'
-                        : 'hover:bg-educational-cyan/10 hover:text-educational-cyan'
+                        ? 'bg-[#06B6D4] text-white hover:bg-[#0891B2]'
+                        : 'hover:bg-[#06B6D4]/10 hover:text-[#06B6D4]'
                     }`}
                   >
                     <Map className="w-4 h-4" />
