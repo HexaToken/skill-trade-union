@@ -74,9 +74,9 @@ export default function SearchResults() {
   const [filters, setFilters] = useState<SearchFilters>({
     type: 'all',
     categories: [],
-    level: '',
-    location: '',
-    availability: '',
+    level: 'all',
+    location: 'all',
+    availability: 'all',
     creditsRange: [0, 50],
     verifiedOnly: false,
     skillTested: false,
