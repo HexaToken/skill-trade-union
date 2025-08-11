@@ -15,9 +15,9 @@ interface SkillCardProps {
 }
 
 const difficultyLabels = {
-  1: { label: 'Beginner', color: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' },
-  2: { label: 'Intermediate', color: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' },
-  3: { label: 'Advanced', color: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' }
+  1: { label: 'Beginner', color: 'bg-brand-green/10 text-brand-green border-brand-green/20' },
+  2: { label: 'Intermediate', color: 'bg-brand-amber/10 text-brand-amber border-brand-amber/20' },
+  3: { label: 'Advanced', color: 'bg-brand-secondary/10 text-brand-secondary border-brand-secondary/20' }
 };
 
 export default function SkillCard({ 
