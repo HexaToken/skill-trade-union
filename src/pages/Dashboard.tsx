@@ -47,11 +47,11 @@ const Dashboard = () => {
             <p className="text-muted-foreground">Here's what's happening with your skills today.</p>
           </div>
           <div className="flex gap-3">
-            <Button onClick={() => navigate('/matches')} className="bg-brand-primary hover:bg-brand-primary/90 shadow-sm">
+            <Button onClick={() => navigate('/matches')} className="bg-brand-primary hover:bg-brand-primary/90 text-white shadow-sm">
               <Search className="w-4 h-4 mr-2" />
               Find Match
             </Button>
-            <Button onClick={() => navigate('/sessions')} className="bg-brand-secondary hover:bg-brand-secondary/90 text-foreground shadow-sm">
+            <Button onClick={() => navigate('/sessions')} className="bg-brand-secondary hover:bg-brand-secondary/90 text-white shadow-sm">
               <Plus className="w-4 h-4 mr-2" />
               Offer Skill
             </Button>
@@ -60,7 +60,7 @@ const Dashboard = () => {
 
         {/* Quick Stats Row */}
         <div className="grid gap-4 md:grid-cols-4">
-          <Card className="glass-card hover-lift border-brand-secondary/20">
+          <Card className="bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover-lift">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Credits Balance</CardTitle>
               <Zap className="h-4 w-4 text-brand-secondary" />
@@ -71,7 +71,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          <Card className="glass-card hover-lift border-brand-primary/20">
+          <Card className="bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover-lift">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Sessions This Month</CardTitle>
               <CalendarDays className="h-4 w-4 text-brand-primary" />
@@ -82,7 +82,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          <Card className="glass-card hover-lift border-brand-secondary/20">
+          <Card className="bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover-lift">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Your Rating</CardTitle>
               <Star className="h-4 w-4 text-brand-secondary" />
@@ -96,7 +96,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          <Card className="glass-card hover-lift border-brand-primary/20">
+          <Card className="bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover-lift">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Skills Offered</CardTitle>
               <TrendingUp className="h-4 w-4 text-brand-primary" />
