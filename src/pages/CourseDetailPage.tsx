@@ -117,7 +117,7 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
 
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
             {/* Left Column - Hero Content */}
-            <div className="lg:col-span-8">
+            <div className="lg:col-span-8 animate-fade-in">
               {/* Course Title */}
               <h1 className="text-educational-h1 lg:text-[3rem] lg:leading-[3.5rem] font-heading font-extrabold text-white mb-4">
                 {course.title}
