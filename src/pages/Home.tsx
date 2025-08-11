@@ -465,7 +465,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-brand-primary rounded-2xl flex items-center justify-center mx-auto shadow-lg">
+              <div className="w-16 h-16 bg-brand-primary rounded-2xl flex items-center justify-center mx-auto shadow-lg hover:shadow-glow transition-shadow">
                 <span className="text-2xl font-bold text-white">1</span>
               </div>
               <h3 className="text-xl font-semibold text-foreground">Offer Your Skills</h3>
@@ -475,8 +475,8 @@ export default function Home() {
             </div>
 
             <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-brand-secondary rounded-2xl flex items-center justify-center mx-auto shadow-lg">
-                <span className="text-2xl font-bold text-white">2</span>
+              <div className="w-16 h-16 bg-brand-secondary rounded-2xl flex items-center justify-center mx-auto shadow-lg hover:shadow-glow transition-shadow">
+                <span className="text-2xl font-bold text-foreground">2</span>
               </div>
               <h3 className="text-xl font-semibold text-foreground">Earn Credits</h3>
               <p className="text-muted-foreground">
@@ -485,8 +485,8 @@ export default function Home() {
             </div>
 
             <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-brand-amber rounded-2xl flex items-center justify-center mx-auto shadow-lg">
-                <span className="text-2xl font-bold text-neutral-900">3</span>
+              <div className="w-16 h-16 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-2xl flex items-center justify-center mx-auto shadow-lg hover:shadow-glow transition-shadow">
+                <span className="text-2xl font-bold text-white">3</span>
               </div>
               <h3 className="text-xl font-semibold text-foreground">Learn Anything</h3>
               <p className="text-muted-foreground">
