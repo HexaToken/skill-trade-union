@@ -163,13 +163,13 @@ export function Footer({ className }: FooterProps) {
             <div className="flex items-center gap-4">
               {/* Language selector */}
               <Select defaultValue="en">
-                <SelectTrigger className="w-32 h-9 glass-card border-0">
+                <SelectTrigger className="w-32 h-9 bg-white dark:bg-card border border-border rounded-lg shadow-sm border-0">
                   <div className="flex items-center gap-2">
                     <Globe className="w-4 h-4" />
                     <SelectValue />
                   </div>
                 </SelectTrigger>
-                <SelectContent className="glass-card">
+                <SelectContent className="bg-white dark:bg-card border border-border rounded-lg shadow-sm">
                   {languages.map((lang) => (
                     <SelectItem key={lang.code} value={lang.code}>
                       {lang.name}
@@ -187,7 +187,7 @@ export function Footer({ className }: FooterProps) {
                     <span className="sr-only">Toggle theme</span>
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="glass-card">
+                <DropdownMenuContent align="end" className="bg-white dark:bg-card border border-border rounded-lg shadow-sm">
                   <DropdownMenuItem onClick={() => setTheme('light')}>
                     <Sun className="mr-2 h-4 w-4" />
                     Light
