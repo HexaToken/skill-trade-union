@@ -103,7 +103,7 @@ All colors MUST be HSL.
 
     --border: 51 65 85; /* #334155 - Medium slate for borders */
     --input: 51 65 85;
-    --ring: 0 86% 41%;
+    --ring: 214 100% 41%;
 
     /* Dark Coursera/Udemy adjustments */
     --glass-bg: rgba(30, 41, 59, 0.95);
