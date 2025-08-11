@@ -50,7 +50,7 @@ All colors MUST be HSL.
     --neo-gradient: linear-gradient(135deg, rgba(0, 86, 210, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
 
     /* Brand palette - Coursera/Udemy colors */
-    --brand-primary: 0 86% 41%; /* #0056D2 - Deep blue */
+    --brand-primary: 214 100% 41%; /* #0056D2 - Deep blue */
     --brand-secondary: 189 95% 43%; /* #06B6D4 - Light cyan */
     --brand-neutral: 100 116 139; /* #64748B - Slate gray */
     --brand-success: 142 71% 45%; /* #22C55E - Keep green for success */
