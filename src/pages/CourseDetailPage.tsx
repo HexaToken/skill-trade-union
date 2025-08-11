@@ -35,7 +35,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/component
 import { cn } from '@/lib/utils';
 import { courseDetailData, relatedCourses } from '@/data/courseData';
 import BookingModalUnified from '@/components/BookingModalUnified';
-// import InstantHelpDrawer from '@/components/InstantHelpDrawer';
+import InstantHelpDrawer from '@/components/InstantHelpDrawer';
 
 interface CourseDetailPageProps {
   className?: string;
