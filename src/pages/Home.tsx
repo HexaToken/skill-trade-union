@@ -346,15 +346,15 @@ export default function Home() {
       </section>
 
       {/* ExpertMatch AI Promo */}
-      <section className="py-16 bg-gradient-to-r from-brand-amber/10 to-brand-green/10 border-y">
+      <section className="py-16 bg-gradient-to-r from-brand-amber/10 via-background to-brand-secondary/10 border-y">
         <div className="page-container">
           <div className="max-w-4xl mx-auto text-center space-y-6">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-amber to-brand-green rounded-2xl">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-amber to-brand-secondary rounded-2xl shadow-lg">
               <Zap className="w-8 h-8 text-white" />
             </div>
-            
+
             <div className="space-y-4">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
                 Instant Help with ExpertMatch AI
               </h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -363,31 +363,31 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-              <div className="space-y-3">
+              <div className="space-y-3 p-6 bg-card rounded-xl shadow-sm border hover:shadow-md transition-shadow">
                 <div className="w-12 h-12 bg-brand-primary/10 rounded-lg flex items-center justify-center mx-auto">
                   <TrendingUp className="w-6 h-6 text-brand-primary" />
                 </div>
-                <h3 className="font-semibold">AI-Powered Matching</h3>
+                <h3 className="font-semibold text-foreground">AI-Powered Matching</h3>
                 <p className="text-sm text-muted-foreground">
                   Advanced algorithms find the perfect expert for your specific need
                 </p>
               </div>
-              
-              <div className="space-y-3">
+
+              <div className="space-y-3 p-6 bg-card rounded-xl shadow-sm border hover:shadow-md transition-shadow">
                 <div className="w-12 h-12 bg-brand-secondary/10 rounded-lg flex items-center justify-center mx-auto">
                   <Zap className="w-6 h-6 text-brand-secondary" />
                 </div>
-                <h3 className="font-semibold">Instant Availability</h3>
+                <h3 className="font-semibold text-foreground">Instant Availability</h3>
                 <p className="text-sm text-muted-foreground">
                   Connect with experts available right now, no waiting required
                 </p>
               </div>
-              
-              <div className="space-y-3">
-                <div className="w-12 h-12 bg-brand-green/10 rounded-lg flex items-center justify-center mx-auto">
-                  <Star className="w-6 h-6 text-brand-green" />
+
+              <div className="space-y-3 p-6 bg-card rounded-xl shadow-sm border hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-brand-amber/10 rounded-lg flex items-center justify-center mx-auto">
+                  <Star className="w-6 h-6 text-brand-amber" />
                 </div>
-                <h3 className="font-semibold">Per-Minute Billing</h3>
+                <h3 className="font-semibold text-foreground">Per-Minute Billing</h3>
                 <p className="text-sm text-muted-foreground">
                   Fair pricing - pay only for actual time used during your session
                 </p>
@@ -396,7 +396,7 @@ export default function Home() {
 
             <InstantHelpDrawer
               trigger={
-                <Button size="lg" className="bg-gradient-to-r from-brand-amber to-brand-green hover:from-brand-amber/90 hover:to-brand-green/90 text-white border-0 px-8 py-6">
+                <Button size="lg" className="bg-gradient-to-r from-brand-amber to-brand-secondary hover:from-brand-amber/90 hover:to-brand-secondary/90 text-white border-0 px-8 py-6 shadow-lg hover:shadow-xl transition-all duration-200">
                   <Zap className="w-5 h-5 mr-2" />
                   Try ExpertMatch AI
                 </Button>
