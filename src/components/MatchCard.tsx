@@ -30,9 +30,9 @@ export default function MatchCard({
   const hasInstantAvailable = user.id === 'user-1' || user.id === 'user-2';
   
   const getMatchScoreColor = (score: number) => {
-    if (score >= 90) return 'text-green-600 bg-green-50 border-green-200';
-    if (score >= 80) return 'text-yellow-600 bg-yellow-50 border-yellow-200';
-    return 'text-orange-600 bg-orange-50 border-orange-200';
+    if (score >= 90) return 'text-brand-success bg-brand-success/10 border-brand-success/20';
+    if (score >= 80) return 'text-brand-secondary bg-brand-secondary/10 border-brand-secondary/20';
+    return 'text-brand-primary bg-brand-primary/10 border-brand-primary/20';
   };
 
   const formatDistance = (distanceKm?: number) => {
