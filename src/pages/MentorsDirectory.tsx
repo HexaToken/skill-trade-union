@@ -214,20 +214,26 @@ const MentorsDirectory = () => {
       <div
         className="sticky top-0 z-40 backdrop-blur-sm border-b border-[#E2E8F0] dark:border-[#334155]"
         style={{
-          backgroundColor: '#F8FAFC',
-          background: '#F8FAFC',
-          backgroundImage: 'none',
-          backgroundSize: 'auto',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'initial'
+          backgroundColor: '#ffffff !important',
+          background: '#ffffff !important',
+          backgroundImage: 'none !important',
+          backgroundSize: 'auto !important',
+          backgroundRepeat: 'no-repeat !important',
+          backgroundPosition: 'initial !important',
+          backgroundAttachment: 'initial !important',
+          backgroundOrigin: 'initial !important',
+          backgroundClip: 'initial !important'
         }}
       >
         <div
           className="container mx-auto px-4 py-4"
           style={{
-            backgroundColor: '#F8FAFC',
-            background: '#F8FAFC',
-            backgroundImage: 'none'
+            backgroundColor: '#ffffff !important',
+            background: '#ffffff !important',
+            backgroundImage: 'none !important',
+            backgroundSize: 'auto !important',
+            backgroundRepeat: 'no-repeat !important',
+            backgroundPosition: 'initial !important'
           }}
         >
           <div className="flex flex-col lg:flex-row gap-4 items-center">
