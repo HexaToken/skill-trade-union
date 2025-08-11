@@ -459,7 +459,7 @@ export default function MapPage() {
         )}>
           <div className="h-full overflow-y-auto">
             {/* Panel Header */}
-            <div className="p-4 border-b bg-muted/30">
+            <div className="p-4 border-b border-border bg-muted/30">
               <div className="flex items-center justify-between">
                 <h3 className="font-semibold">Global Insights</h3>
                 <Button
