@@ -472,7 +472,7 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
           {/* Right Column - Sidebar */}
           <div className="lg:col-span-4 space-y-6">
             {/* Enrollment Card */}
-            <Card className="bg-white dark:bg-[#1E293B] border border-transparent dark:border-[rgba(255,255,255,0.06)] shadow-lg sticky top-6">
+            <Card className="bg-white dark:bg-[#1E293B] border border-transparent dark:border-[rgba(255,255,255,0.06)] shadow-lg lg:sticky lg:top-6 animate-fade-in">
               <CardContent className="p-6">
                 {/* Price */}
                 <div className="text-center mb-6">
