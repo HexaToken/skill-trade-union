@@ -93,7 +93,7 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
     return total + moduleMinutes;
   }, 0) || 0;
 
-  const totalLessons = course.curriculum.reduce((total, module) => total + module.lessons.length, 0);
+  const totalLessons = course.curriculum?.reduce((total, module) => total + module.lessons.length, 0) || 0;
 
   const formatDuration = (minutes: number) => {
     const hours = Math.floor(minutes / 60);
