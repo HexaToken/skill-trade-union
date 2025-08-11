@@ -323,7 +323,7 @@ export default function Matches() {
                     variant="outline"
                     size="sm"
                     onClick={handleClearFilters}
-                    className="text-xs border-educational-cyan text-educational-cyan hover:bg-educational-cyan hover:text-white rounded-xl transition-all duration-200"
+                    className="text-xs border-[#06B6D4] text-[#06B6D4] hover:bg-[#06B6D4] hover:text-white rounded-xl transition-all duration-200"
                   >
                     Clear Filters
                   </Button>
@@ -353,8 +353,8 @@ export default function Matches() {
                     onClick={() => setViewMode('list')}
                     className={`rounded-r-none border-r-0 ${
                       viewMode === 'list'
-                        ? 'bg-educational-blue text-white hover:bg-educational-blue/90'
-                        : 'hover:bg-educational-blue/10 hover:text-educational-blue'
+                        ? 'bg-[#0056D2] text-white hover:bg-[#004BB8]'
+                        : 'hover:bg-[#0056D2]/10 hover:text-[#0056D2]'
                     }`}
                   >
                     <List className="w-4 h-4" />
@@ -365,8 +365,8 @@ export default function Matches() {
                     onClick={() => setViewMode('map')}
                     className={`rounded-l-none ${
                       viewMode === 'map'
-                        ? 'bg-educational-cyan text-white hover:bg-educational-cyan/90'
-                        : 'hover:bg-educational-cyan/10 hover:text-educational-cyan'
+                        ? 'bg-[#06B6D4] text-white hover:bg-[#0891B2]'
+                        : 'hover:bg-[#06B6D4]/10 hover:text-[#06B6D4]'
                     }`}
                   >
                     <Map className="w-4 h-4" />

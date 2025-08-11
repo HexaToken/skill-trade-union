@@ -481,3 +481,25 @@ All colors MUST be HSL.
     }
   }
 }
+
+/* Fix mentors page yellow background override */
+.mentors-page .mentors-search-section,
+.mentors-page .mentors-search-section *,
+.mentors-search-section,
+.mentors-search-section * {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+  background-size: auto !important;
+  background-repeat: no-repeat !important;
+  background-position: initial !important;
+  background-attachment: initial !important;
+}
+
+.dark .mentors-page .mentors-search-section,
+.dark .mentors-page .mentors-search-section *,
+.dark .mentors-search-section,
+.dark .mentors-search-section * {
+  background: #0F172A !important;
+  background-color: #0F172A !important;
+}

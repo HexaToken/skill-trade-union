@@ -42,6 +42,7 @@ import {
 import { cn } from '@/lib/utils';
 import { currentUser, users } from '@/data/mockData';
 import { courses } from '@/mock/enhanced-data';
+import OfflineTradeButton from './OfflineTradeButton';
 
 interface SearchSuggestion {
   type: 'person' | 'course';
@@ -70,6 +71,7 @@ export default function GlobalSearchHeader() {
     { label: 'Mentors', href: '/mentors', icon: Award },
     { label: 'Profile Demo', href: '/mentor/marcus-chen', icon: User },
     { label: 'Challenges', href: '/challenges', icon: Target },
+    { label: 'Skill Sprints', href: '/skill-sprints', icon: Zap },
     { label: 'Map', href: '/map', icon: Map },
     { label: 'Donate', href: '/donate', icon: Heart },
   ];
@@ -637,7 +639,16 @@ export default function GlobalSearchHeader() {
                       My Courses
                     </Link>
                   </DropdownMenuItem>
-                  
+
+                  <DropdownMenuItem className="p-0">
+                    <OfflineTradeButton
+                      variant="ghost"
+                      size="sm"
+                      className="w-full justify-start font-normal text-sm h-8"
+                      showIcon={true}
+                    />
+                  </DropdownMenuItem>
+
                   <DropdownMenuItem asChild>
                     <Link to="/settings">
                       <Settings className="mr-2 h-4 w-4" />

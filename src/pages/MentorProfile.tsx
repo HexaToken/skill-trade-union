@@ -48,6 +48,7 @@ import {
 } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import BookingModalUnified from '@/components/BookingModalUnified';
+import OfflineTradeButton from '@/components/OfflineTradeButton';
 
 // Mock mentor data
 const mockMentors = [
@@ -948,6 +949,16 @@ export default function MentorProfile() {
                   >
                     Book with Credits
                   </Button>
+
+                  {/* Offline Trade Button */}
+                  <OfflineTradeButton
+                    variant="outline"
+                    size="lg"
+                    prefilledCounterparty={mentor.id}
+                    className="w-full text-[#0056D2] border-[#0056D2]/30 hover:bg-[#0056D2]/10"
+                  >
+                    Log Offline Trade
+                  </OfflineTradeButton>
                 </CardContent>
               </Card>
 
