@@ -87,7 +87,7 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
     setExpandAllModules(!expandAllModules);
   };
 
-  const totalDuration = course.curriculum.reduce((total, module) => {
+  const totalDuration = course.curriculum?.reduce((total, module) => {
     const [hours, minutes] = module.duration.split('h ');
     const moduleMinutes = parseInt(hours) * 60 + parseInt(minutes.replace('m', ''));
     return total + moduleMinutes;
