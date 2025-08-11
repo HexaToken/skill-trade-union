@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import Matches from "./pages/Matches";
+import SearchResults from "./pages/SearchResults";
 import Classes from "./pages/Classes";
 import ClassDetail from "./pages/ClassDetail";
 import SkillPaths from "./pages/SkillPaths";
