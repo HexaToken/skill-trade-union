@@ -145,24 +145,24 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 border-b bg-card">
+      <section className="py-20 border-b bg-gradient-to-r from-white via-slate-50 to-white dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
         <div className="page-container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               const colors = [
-                'bg-brand-primary/10 text-brand-primary',
-                'bg-brand-secondary/10 text-brand-secondary',
-                'bg-brand-primary/10 text-brand-primary',
-                'bg-brand-secondary/10 text-brand-secondary'
+                'bg-gradient-to-br from-educational-blue to-blue-600 text-white',
+                'bg-gradient-to-br from-educational-cyan to-cyan-600 text-white',
+                'bg-gradient-to-br from-purple-500 to-purple-600 text-white',
+                'bg-gradient-to-br from-emerald-500 to-emerald-600 text-white'
               ];
               return (
-                <div key={stat.label} className="text-center space-y-3">
-                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg ${colors[index % colors.length]}`}>
-                    <Icon className="w-6 h-6" />
+                <div key={stat.label} className="text-center space-y-4 hover-lift group">
+                  <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 ${colors[index % colors.length]} group-hover:scale-110`}>
+                    <Icon className="w-8 h-8" />
                   </div>
-                  <div className="text-3xl font-bold font-heading text-brand-primary">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  <div className="text-4xl font-bold font-heading text-slate-800 dark:text-white group-hover:text-educational-blue transition-colors">{stat.value}</div>
+                  <div className="text-sm font-medium text-slate-600 dark:text-slate-300 uppercase tracking-wide">{stat.label}</div>
                 </div>
               );
             })}
