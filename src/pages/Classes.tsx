@@ -590,11 +590,11 @@ export default function Classes() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-muted/30 py-8 border-b">
+      <div className="bg-gradient-to-r from-background via-background to-brand-primary/5 py-8 border-b">
         <div className="page-container">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-3xl font-heading font-bold mb-2">All Classes</h1>
+              <h1 className="text-3xl font-heading font-bold mb-2 text-foreground">All Classes</h1>
               <p className="text-muted-foreground">
                 {sortedClasses.length} results found
               </p>
