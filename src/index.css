@@ -180,7 +180,7 @@ All colors MUST be HSL.
   .shadow-soft { box-shadow: var(--shadow-soft); }
   .shadow-glow { box-shadow: var(--shadow-glow); }
 
-  /* Enhanced Glass Effects - Warm EduTech */
+  /* Enhanced Glass Effects - Coursera/Udemy */
   .glass {
     background: var(--glass-bg);
     backdrop-filter: blur(var(--neo-blur));
@@ -190,27 +190,27 @@ All colors MUST be HSL.
   }
 
   .glass-card {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(16px);
     border: 1px solid rgba(0, 0, 0, 0.05);
     @apply rounded-xl shadow-soft;
   }
 
   .dark .glass-card {
-    background: rgba(59, 28, 88, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(30, 41, 59, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   .glass-header {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     @apply transition-all duration-300;
   }
 
   .dark .glass-header {
-    background: rgba(59, 28, 88, 0.95);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(30, 41, 59, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   /* Motion & Interactions - Warm EduTech */
