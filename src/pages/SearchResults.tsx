@@ -594,21 +594,21 @@ export default function SearchResults() {
                       <X className="w-3 h-3 ml-1" />
                     </Badge>
                   ))}
-                  {filters.level && (
+                  {filters.level && filters.level !== 'all' && (
                     <Badge
                       variant="secondary"
                       className="bg-[#0056D2]/10 text-[#0056D2] hover:bg-[#0056D2]/20 cursor-pointer"
-                      onClick={() => updateFilter('level', '')}
+                      onClick={() => updateFilter('level', 'all')}
                     >
                       {filters.level}
                       <X className="w-3 h-3 ml-1" />
                     </Badge>
                   )}
-                  {filters.location && (
+                  {filters.location && filters.location !== 'all' && (
                     <Badge
                       variant="secondary"
                       className="bg-[#0056D2]/10 text-[#0056D2] hover:bg-[#0056D2]/20 cursor-pointer"
-                      onClick={() => updateFilter('location', '')}
+                      onClick={() => updateFilter('location', 'all')}
                     >
                       {filters.location}
                       <X className="w-3 h-3 ml-1" />
