@@ -323,7 +323,7 @@ export default function GlobalSearchHeader() {
 
               {/* Logo */}
               <Link
-                to={currentUser ? "/dashboard" : "/"}
+                to="/"
                 className="flex items-center gap-3 hover:scale-105 transition-transform duration-200"
               >
                 <div className="w-8 h-8 bg-gradient-to-br from-[#0056D2] to-[#06B6D4] rounded-lg flex items-center justify-center shadow-lg">
