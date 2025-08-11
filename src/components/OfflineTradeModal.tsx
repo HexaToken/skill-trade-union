@@ -609,6 +609,35 @@ const OfflineTradeModal: React.FC<OfflineTradeModalProps> = ({
             </div>
           )}
 
+          {/* Step 2: Verification Method */}
+          {currentStep === 2 && (
+            <Step2Verification
+              verificationForm={verificationForm}
+              onVerificationChange={(field, value) =>
+                setVerificationForm(prev => ({ ...prev, [field]: value }))
+              }
+              detailsForm={detailsForm}
+              isHighValue={isHighValue}
+              pin={generatePin()}
+              qrToken={generateQRToken()}
+            />
+          )}
+
+          {/* Step 3: Review & Submit */}
+          {currentStep === 3 && selectedCounterparty && (
+            <Step3Review
+              detailsForm={detailsForm}
+              verificationForm={verificationForm}
+              onVerificationChange={(field, value) =>
+                setVerificationForm(prev => ({ ...prev, [field]: value }))
+              }
+              initiator={getUserById(currentUserId)!}
+              counterparty={selectedCounterparty}
+              calculatedCredits={calculatedCredits}
+              isHighValue={isHighValue}
+            />
+          )}
+
           {/* Navigation */}
           <div className="flex justify-between pt-6 border-t">
             <Button
