@@ -57,6 +57,10 @@ const Dashboard = () => {
                 <Plus className="w-4 h-4 mr-2" />
                 Offer Skill
               </Button>
+              <OfflineTradeButton
+                variant="outline"
+                className="text-[#0056D2] border-[#0056D2]/30 hover:bg-[#0056D2]/10 shadow-sm font-semibold"
+              />
             </div>
           </div>
 
