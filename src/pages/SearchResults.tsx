@@ -323,7 +323,7 @@ export default function SearchResults() {
             <SelectValue placeholder="Any level" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Any level</SelectItem>
+            <SelectItem value="all">Any level</SelectItem>
             <SelectItem value="beginner">Beginner</SelectItem>
             <SelectItem value="intermediate">Intermediate</SelectItem>
             <SelectItem value="advanced">Advanced</SelectItem>
