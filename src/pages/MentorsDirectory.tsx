@@ -351,8 +351,13 @@ const MentorsDirectory = () => {
           mentorData={{
             id: selectedMentor.id,
             name: selectedMentor.name,
-            avatar: selectedMentor.avatar,
-            creditsPerHour: selectedMentor.creditsPerHour,
+            avatarUrl: selectedMentor.avatar,
+            rate: selectedMentor.creditsPerHour,
+            availability: ["Available"],
+            verified: selectedMentor.verifiedID,
+            skillTested: selectedMentor.skillTested,
+            location: selectedMentor.location,
+            timezone: "UTC",
           }}
         />
       )}
