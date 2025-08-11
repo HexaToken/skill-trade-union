@@ -71,6 +71,7 @@ export default function GlobalSearchHeader() {
     { label: 'Mentors', href: '/mentors', icon: Award },
     { label: 'Profile Demo', href: '/mentor/marcus-chen', icon: User },
     { label: 'Challenges', href: '/challenges', icon: Target },
+    { label: 'Skill Sprints', href: '/skill-sprints', icon: Zap },
     { label: 'Map', href: '/map', icon: Map },
     { label: 'Donate', href: '/donate', icon: Heart },
   ];
