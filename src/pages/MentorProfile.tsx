@@ -943,9 +943,10 @@ export default function MentorProfile() {
                   </div>
 
                   {/* Book Button */}
-                  <Button 
-                    size="lg" 
+                  <Button
+                    size="lg"
                     className="w-full bg-[#0056D2] hover:bg-[#004BB8] text-white font-semibold"
+                    onClick={() => setIsBookingModalOpen(true)}
                   >
                     Book with Credits
                   </Button>
