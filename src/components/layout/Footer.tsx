@@ -150,13 +150,13 @@ export function Footer({ className }: FooterProps) {
         </div>
 
         {/* Lower bar */}
-        <div className="py-6 border-t border-border/50">
+        <div className="py-8 border-t border-slate-200 dark:border-slate-700 bg-gradient-to-r from-white to-slate-50/50 dark:from-slate-800 dark:to-slate-900/50">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Copyright */}
-            <div className="flex items-center gap-4 text-sm text-muted-foreground">
-              <span>© 2025 SkillSwap</span>
-              <span className="hidden md:inline">•</span>
-              <span>Trade skills, not cash.</span>
+            <div className="flex items-center gap-4 text-sm text-slate-600 dark:text-slate-300">
+              <span className="font-medium">© 2025 SkillSwap</span>
+              <span className="hidden md:inline text-educational-cyan">•</span>
+              <span className="italic">Trade skills, not cash.</span>
             </div>
 
             {/* Controls */}
