@@ -185,10 +185,10 @@ export default function Home() {
                 key={category.id}
                 variant={selectedCategory === category.id ? "default" : "outline"}
                 size="lg"
-                className={`hover-scale transition-all duration-200 ${
+                className={`hover-scale transition-all duration-200 shadow-sm hover:shadow-md ${
                   selectedCategory === category.id
                     ? 'bg-brand-primary hover:bg-brand-primary/90 text-white'
-                    : 'bg-card hover:bg-card/80 text-muted-foreground hover:text-foreground hover:border-brand-secondary/50'
+                    : 'bg-card hover:bg-card/80 text-brand-neutral hover:text-foreground hover:border-brand-secondary hover:shadow-glow'
                 }`}
                 onClick={() => setSelectedCategory(category.id === selectedCategory ? null : category.id)}
                 asChild
