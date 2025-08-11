@@ -336,7 +336,7 @@ export default function MapPage() {
         {/* Map Component */}
         <div className="flex-1 relative bg-muted/30">
           {/* Map Placeholder with Interactive Elements */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-slate-900 dark:to-slate-800">
+          <div className="absolute inset-0 bg-gradient-to-br from-neutral-50 to-blue-50 dark:from-slate-900 dark:to-slate-800">
             {/* Mock World Map Overlay */}
             <div className="absolute inset-0 opacity-20">
               <svg viewBox="0 0 1000 500" className="w-full h-full">
