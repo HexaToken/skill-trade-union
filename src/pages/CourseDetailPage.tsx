@@ -85,6 +85,10 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
     return `${hours}h ${mins}m`;
   };
 
+  const handleRelatedCourseClick = (courseSlug: string) => {
+    navigate(`/classes/${courseSlug}`);
+  };
+
   return (
     <div className={cn("min-h-screen bg-[#F9FAFB] dark:bg-[#0F172A]", className)}>
       {/* Hero Header */}
