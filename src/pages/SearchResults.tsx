@@ -260,8 +260,10 @@ export default function SearchResults() {
     });
   };
 
-  const hasActiveFilters = filters.categories.length > 0 || 
-    filters.level || filters.location || filters.availability ||
+  const hasActiveFilters = filters.categories.length > 0 ||
+    (filters.level && filters.level !== 'all') ||
+    (filters.location && filters.location !== 'all') ||
+    (filters.availability && filters.availability !== 'all') ||
     filters.verifiedOnly || filters.skillTested || filters.onlineOnly ||
     (filters.creditsRange[0] !== 0 || filters.creditsRange[1] !== 50);
 
