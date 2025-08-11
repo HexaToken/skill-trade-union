@@ -190,7 +190,7 @@ export default function SearchResults() {
         
         // Apply filters
         if (filters.categories.length > 0 && !filters.categories.includes(course.category || '')) return;
-        if (filters.level) {
+        if (filters.level && filters.level !== 'all') {
           const levelMap = { beginner: 1, intermediate: 2, advanced: 3 };
           if ((course.level || 0) !== levelMap[filters.level]) return;
         }
