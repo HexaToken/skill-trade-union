@@ -103,7 +103,7 @@ export function Footer({ className }: FooterProps) {
   ];
 
   return (
-    <footer className={cn('bg-neutral-100 dark:bg-foreground border-t border-border/50', className)}>
+    <footer className={cn('bg-gray-50 dark:bg-slate-800 border-t border-border/50', className)}>
       {/* Glowing top divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-brand-primary to-brand-secondary opacity-20" />
       
