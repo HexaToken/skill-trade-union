@@ -408,11 +408,11 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-16">
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-900">
         <div className="page-container">
-          <div className="text-center space-y-6 mb-12">
-            <h2 className="text-3xl font-heading font-bold">What Our Community Says</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+          <div className="text-center space-y-6 mb-16">
+            <h2 className="text-4xl font-heading font-bold text-slate-800 dark:text-white">What Our Community Says</h2>
+            <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
               Real stories from learners and teachers who've transformed their skills through SkillSwap
             </p>
           </div>
