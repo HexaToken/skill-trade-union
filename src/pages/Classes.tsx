@@ -396,20 +396,26 @@ export default function Classes() {
     );
   };
 
-  const FilterSection = ({ title, children, isExpanded, onToggle }: { 
-    title: string; 
-    children: React.ReactNode; 
-    isExpanded: boolean; 
+  const FilterSection = ({ title, children, isExpanded, onToggle }: {
+    title: string;
+    children: React.ReactNode;
+    isExpanded: boolean;
     onToggle: () => void;
   }) => (
     <Collapsible open={isExpanded} onOpenChange={onToggle}>
-      <CollapsibleTrigger className="filter-group w-full">
+      <CollapsibleTrigger className="group w-full hover:bg-slate-50 dark:hover:bg-slate-800/50 p-3 rounded-lg transition-colors">
         <div className="flex items-center justify-between w-full">
-          <h3 className="filter-title">{title}</h3>
-          {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+          <h3 className="font-heading font-bold text-base text-[#1E293B] dark:text-[#F1F5F9] text-left">
+            {title}
+          </h3>
+          {isExpanded ? (
+            <ChevronUp className="w-4 h-4 text-[#94A3B8] group-hover:text-[#0056D2] transition-colors" />
+          ) : (
+            <ChevronDown className="w-4 h-4 text-[#94A3B8] group-hover:text-[#0056D2] transition-colors" />
+          )}
         </div>
       </CollapsibleTrigger>
-      <CollapsibleContent className="pb-4">
+      <CollapsibleContent className="pt-2 pb-4 px-3">
         {children}
       </CollapsibleContent>
     </Collapsible>
