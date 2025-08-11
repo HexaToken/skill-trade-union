@@ -64,17 +64,17 @@ export default function SkillCard({
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-muted flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+            <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-brand-primary/10 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
               {skill.icon}
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-semibold truncate">{skill.name}</h3>
+              <h3 className="font-semibold truncate text-brand-primary">{skill.name}</h3>
               <p className="text-sm text-muted-foreground truncate">{skill.category}</p>
             </div>
           </div>
-          
+
           {variant === 'featured' && (
-            <Badge variant="secondary" className="bg-brand-primary/10 text-brand-primary border-brand-primary/20">
+            <Badge variant="secondary" className="bg-brand-secondary/10 text-brand-secondary border-brand-secondary/20">
               Featured
             </Badge>
           )}
