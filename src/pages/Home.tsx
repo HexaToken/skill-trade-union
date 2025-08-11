@@ -71,38 +71,39 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white dark:bg-slate-900">
-        <div className="absolute inset-0 bg-grid-black/[0.02] bg-[size:50px_50px]" />
-        <div className="relative page-container py-20 md:py-32">
+      <section className="relative overflow-hidden bg-gradient-to-br from-purple-50 via-white to-cyan-50 dark:from-slate-800 dark:via-slate-900 dark:to-cyan-900/20">
+        <div className="absolute inset-0 bg-grid-black/[0.02] dark:bg-grid-white/[0.02] bg-[size:50px_50px]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-educational-blue/5 via-transparent to-educational-cyan/5" />
+        <div className="relative page-container py-24 md:py-36">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             {/* Hero Badge */}
-            <Badge className="bg-brand-primary/10 text-brand-primary border-brand-primary/20 px-4 py-2 hover:bg-brand-primary/15 transition-colors">
+            <Badge className="bg-gradient-to-r from-educational-blue/10 to-educational-cyan/10 text-educational-blue border-educational-blue/20 px-6 py-3 hover:bg-gradient-to-r hover:from-educational-blue/15 hover:to-educational-cyan/15 transition-all duration-300 rounded-full shadow-lg hover:shadow-xl animate-float">
               <Zap className="w-4 h-4 mr-2" />
               Now with ExpertMatch AI - Get instant help!
             </Badge>
 
             {/* Hero Title */}
-            <div className="space-y-4">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
+            <div className="space-y-6">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold leading-tight text-foreground tracking-tight">
                 Trade{' '}
-                <span className="text-brand-primary">skills</span>,{' '}
-                <span className="text-brand-secondary">not cash</span>
+                <span className="text-transparent bg-gradient-to-r from-educational-blue to-educational-cyan bg-clip-text animate-gradient-shift">skills</span>,{' '}
+                <span className="text-transparent bg-gradient-to-r from-educational-cyan to-purple-500 bg-clip-text">not cash</span>
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed font-medium">
                 Learn anything, teach anything. Join the world's largest skill-sharing community where knowledge flows freely.
               </p>
             </div>
 
             {/* Hero Actions */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="text-lg px-8 py-6 hover-scale bg-brand-primary hover:bg-gradient-to-r hover:from-brand-primary hover:to-brand-secondary text-white shadow-lg hover:shadow-glow" asChild>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <Button size="lg" className="text-lg px-10 py-7 hover-scale bg-educational-blue hover:bg-gradient-to-r hover:from-educational-blue hover:to-educational-cyan text-white shadow-xl hover:shadow-2xl rounded-2xl transition-all duration-300 font-semibold" asChild>
                 <Link to="/matches">
                   Find a Match
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>
 
-              <Button size="lg" className="text-lg px-8 py-6 hover-scale bg-brand-secondary hover:bg-brand-secondary/90 text-white shadow-lg" asChild>
+              <Button size="lg" className="text-lg px-10 py-7 hover-scale bg-educational-cyan hover:bg-educational-cyan/90 text-white shadow-xl hover:shadow-2xl rounded-2xl transition-all duration-300 font-semibold" asChild>
                 <Link to="/onboarding">
                   Offer a Skill
                 </Link>
@@ -110,7 +111,7 @@ export default function Home() {
 
               <InstantHelpDrawer
                 trigger={
-                  <Button size="lg" className="text-lg px-8 py-6 hover-scale bg-gradient-to-r from-brand-primary to-brand-secondary hover:from-brand-secondary hover:to-brand-primary text-white shadow-lg hover:shadow-glow">
+                  <Button size="lg" className="text-lg px-10 py-7 hover-scale bg-gradient-to-r from-educational-blue to-educational-cyan hover:from-educational-cyan hover:to-purple-500 text-white shadow-xl hover:shadow-2xl rounded-2xl transition-all duration-300 font-semibold animate-pulse-glow">
                     <Zap className="w-5 h-5 mr-2" />
                     Need Help Now?
                   </Button>
@@ -119,24 +120,24 @@ export default function Home() {
             </div>
 
             {/* Trust Indicators */}
-            <div className="flex flex-wrap justify-center gap-8 pt-8 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                  <Star className="w-4 h-4 text-green-600" />
+            <div className="flex flex-wrap justify-center gap-10 pt-12 text-sm text-slate-600 dark:text-slate-300">
+              <div className="flex items-center gap-3 bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-lg border border-white/20">
+                <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <Star className="w-5 h-5 text-white" />
                 </div>
-                <span>ID Verified Members</span>
+                <span className="font-medium">ID Verified Members</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <Award className="w-4 h-4 text-blue-600" />
+              <div className="flex items-center gap-3 bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-lg border border-white/20">
+                <div className="w-10 h-10 bg-gradient-to-br from-educational-blue to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                  <Award className="w-5 h-5 text-white" />
                 </div>
-                <span>Skill Tested Experts</span>
+                <span className="font-medium">Skill Tested Experts</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                  <Heart className="w-4 h-4 text-purple-600" />
+              <div className="flex items-center gap-3 bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-lg border border-white/20">
+                <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <Heart className="w-5 h-5 text-white" />
                 </div>
-                <span>Community Driven</span>
+                <span className="font-medium">Community Driven</span>
               </div>
             </div>
           </div>
