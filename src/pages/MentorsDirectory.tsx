@@ -374,17 +374,19 @@ interface FiltersSidebarProps {
 
 const FiltersSidebar: React.FC<FiltersSidebarProps> = ({ filters, onFilterChange, onClearAll }) => {
   return (
-    <Card className="h-fit">
-      <CardHeader>
-        <CardTitle className="text-lg">Filters</CardTitle>
+    <Card className="h-fit shadow-sm border-[#0056D2]/10 dark:border-[#06B6D4]/20">
+      <CardHeader className="pb-4">
+        <CardTitle className="text-lg font-heading bg-gradient-to-r from-[#0056D2] to-[#06B6D4] bg-clip-text text-transparent">
+          Filters
+        </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Category Filter */}
         <div>
-          <h3 className="font-medium mb-3">Category</h3>
-          <div className="space-y-2">
+          <h3 className="font-semibold mb-3 text-[#0F172A] dark:text-[#F1F5F9] font-heading text-sm uppercase tracking-wide">Category</h3>
+          <div className="space-y-3">
             {CATEGORIES.map((category) => (
-              <label key={category} className="flex items-center space-x-2 cursor-pointer">
+              <label key={category} className="flex items-center space-x-3 cursor-pointer group hover:bg-[#0056D2]/5 p-2 rounded-lg transition-all duration-200">
                 <input
                   type="checkbox"
                   checked={filters.category.includes(category)}
@@ -395,22 +397,22 @@ const FiltersSidebar: React.FC<FiltersSidebarProps> = ({ filters, onFilterChange
                       onFilterChange('category', filters.category.filter(c => c !== category));
                     }
                   }}
-                  className="rounded"
+                  className="h-4 w-4 rounded border-2 border-[#0056D2]/30 text-[#0056D2] focus:ring-[#0056D2] focus:ring-offset-0"
                 />
-                <span className="text-sm">{category}</span>
+                <span className="text-sm text-[#334155] dark:text-[#E2E8F0] group-hover:text-[#0056D2] transition-colors">{category}</span>
               </label>
             ))}
           </div>
         </div>
 
-        <Separator />
+        <Separator className="bg-[#0056D2]/10" />
 
         {/* Skills Filter */}
         <div>
-          <h3 className="font-medium mb-3">Skills</h3>
-          <div className="space-y-2">
+          <h3 className="font-semibold mb-3 text-[#0F172A] dark:text-[#F1F5F9] font-heading text-sm uppercase tracking-wide">Skills</h3>
+          <div className="space-y-3">
             {SKILLS.map((skill) => (
-              <label key={skill} className="flex items-center space-x-2 cursor-pointer">
+              <label key={skill} className="flex items-center space-x-3 cursor-pointer group hover:bg-[#0056D2]/5 p-2 rounded-lg transition-all duration-200">
                 <input
                   type="checkbox"
                   checked={filters.skills.includes(skill)}
@@ -421,20 +423,74 @@ const FiltersSidebar: React.FC<FiltersSidebarProps> = ({ filters, onFilterChange
                       onFilterChange('skills', filters.skills.filter(s => s !== skill));
                     }
                   }}
-                  className="rounded"
+                  className="h-4 w-4 rounded border-2 border-[#0056D2]/30 text-[#0056D2] focus:ring-[#0056D2] focus:ring-offset-0"
                 />
-                <span className="text-sm">{skill}</span>
+                <span className="text-sm text-[#334155] dark:text-[#E2E8F0] group-hover:text-[#0056D2] transition-colors">{skill}</span>
               </label>
             ))}
           </div>
         </div>
 
-        <Separator />
+        <Separator className="bg-[#0056D2]/10" />
 
-        {/* Clear Filters */}
-        <div className="flex gap-2">
-          <Button size="sm" className="flex-1 bg-[#0056D2] hover:bg-[#004BB8] text-white">Apply Filters</Button>
-          <Button variant="outline" size="sm" onClick={onClearAll} className="flex-1 text-[#06B6D4] border-[#06B6D4]/20 hover:bg-[#06B6D4]/10">
+        {/* Level Filter */}
+        <div>
+          <h3 className="font-semibold mb-3 text-[#0F172A] dark:text-[#F1F5F9] font-heading text-sm uppercase tracking-wide">Experience Level</h3>
+          <div className="space-y-3">
+            {LEVELS.map((level) => (
+              <label key={level} className="flex items-center space-x-3 cursor-pointer group hover:bg-[#0056D2]/5 p-2 rounded-lg transition-all duration-200">
+                <input
+                  type="checkbox"
+                  checked={filters.level.includes(level)}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      onFilterChange('level', [...filters.level, level]);
+                    } else {
+                      onFilterChange('level', filters.level.filter(l => l !== level));
+                    }
+                  }}
+                  className="h-4 w-4 rounded border-2 border-[#0056D2]/30 text-[#0056D2] focus:ring-[#0056D2] focus:ring-offset-0"
+                />
+                <span className="text-sm text-[#334155] dark:text-[#E2E8F0] group-hover:text-[#0056D2] transition-colors">{level}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <Separator className="bg-[#0056D2]/10" />
+
+        {/* Verification Filter */}
+        <div>
+          <h3 className="font-semibold mb-3 text-[#0F172A] dark:text-[#F1F5F9] font-heading text-sm uppercase tracking-wide">Verification</h3>
+          <div className="space-y-3">
+            <label className="flex items-center space-x-3 cursor-pointer group hover:bg-[#0056D2]/5 p-2 rounded-lg transition-all duration-200">
+              <input
+                type="checkbox"
+                checked={filters.verified}
+                onChange={(e) => onFilterChange('verified', e.target.checked)}
+                className="h-4 w-4 rounded border-2 border-[#0056D2]/30 text-[#0056D2] focus:ring-[#0056D2] focus:ring-offset-0"
+              />
+              <span className="text-sm text-[#334155] dark:text-[#E2E8F0] group-hover:text-[#0056D2] transition-colors flex items-center gap-2">
+                <Shield className="h-3 w-3" />
+                Verified mentors only
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <Separator className="bg-[#0056D2]/10" />
+
+        {/* Action Buttons */}
+        <div className="flex gap-2 pt-2">
+          <Button size="sm" className="flex-1 bg-[#0056D2] hover:bg-[#004BB8] text-white font-semibold shadow-sm transition-all duration-200">
+            Apply Filters
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={onClearAll}
+            className="flex-1 text-[#06B6D4] border-[#06B6D4]/30 hover:bg-[#06B6D4]/10 hover:border-[#06B6D4]/50 transition-all duration-200"
+          >
             Clear All
           </Button>
         </div>
@@ -451,57 +507,79 @@ interface MentorCardProps {
 
 const FeaturedMentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) => {
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+    <Card className="overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group border-[#0056D2]/10 bg-gradient-to-br from-white to-[#0056D2]/2 dark:from-[#1E293B] dark:to-[#0056D2]/5">
       <CardContent className="p-6">
-        <div className="flex items-start gap-4">
-          <Avatar className="h-16 w-16">
-            <AvatarImage src={mentor.avatar} alt={mentor.name} />
-            <AvatarFallback className="bg-[#0056D2]/10 text-[#0056D2] font-medium">{mentor.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-          </Avatar>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between">
-              <div>
-                <h3 className="font-semibold text-lg truncate">{mentor.name}</h3>
-                <p className="text-sm text-muted-foreground mb-2">{mentor.headline}</p>
+        <div className="flex items-start gap-5">
+          <div className="relative">
+            <Avatar className="h-20 w-20 ring-2 ring-[#0056D2]/20 ring-offset-2">
+              <AvatarImage src={mentor.avatar} alt={mentor.name} />
+              <AvatarFallback className="bg-[#0056D2]/10 text-[#0056D2] font-bold text-lg">{mentor.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+            </Avatar>
+            {mentor.isFeatured && (
+              <div className="absolute -top-1 -right-1 h-6 w-6 bg-gradient-to-r from-[#0056D2] to-[#06B6D4] rounded-full flex items-center justify-center">
+                <Star className="h-3 w-3 text-white fill-white" />
               </div>
-              <div className="flex gap-1">
+            )}
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between mb-3">
+              <div>
+                <h3 className="font-heading font-bold text-xl text-[#0F172A] dark:text-[#F1F5F9] group-hover:text-[#0056D2] transition-colors">{mentor.name}</h3>
+                <p className="text-sm text-[#64748B] dark:text-[#94A3B8] font-medium">{mentor.headline}</p>
+              </div>
+              <div className="flex gap-1.5">
                 {mentor.verifiedID && (
-                  <Badge variant="secondary" className="text-xs">
+                  <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 text-xs font-medium">
                     <Shield className="h-3 w-3 mr-1" />
-                    ID
+                    ID Verified
                   </Badge>
                 )}
                 {mentor.skillTested && (
-                  <Badge variant="secondary" className="text-xs">
+                  <Badge className="bg-blue-100 text-blue-700 border-blue-200 text-xs font-medium">
                     <CheckCircle className="h-3 w-3 mr-1" />
-                    Skill
+                    Skill Tested
                   </Badge>
                 )}
               </div>
             </div>
-            
-            <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
-              <div className="flex items-center gap-1">
-                <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                <span>{mentor.rating}</span>
-                <span>({mentor.reviews})</span>
+
+            <div className="flex items-center gap-4 text-sm text-[#64748B] dark:text-[#94A3B8] mb-4">
+              <div className="flex items-center gap-1.5">
+                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                <span className="font-semibold text-[#0F172A] dark:text-[#F1F5F9]">{mentor.rating}</span>
+                <span>({mentor.reviews} reviews)</span>
               </div>
-              <span>•</span>
-              <span>{mentor.sessions} sessions</span>
-              <span>•</span>
+              <span className="text-[#CBD5E1]">•</span>
+              <span className="font-medium">{mentor.sessions} sessions</span>
+              <span className="text-[#CBD5E1]">•</span>
               <div className="flex items-center gap-1">
                 <MapPin className="h-3 w-3" />
                 <span>{mentor.location}</span>
               </div>
             </div>
 
+            {/* Languages */}
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-xs font-medium text-[#64748B] dark:text-[#94A3B8]">Languages:</span>
+              <div className="flex gap-1">
+                {mentor.languages.map((lang) => (
+                  <Badge key={lang} variant="outline" className="text-xs bg-[#06B6D4]/10 text-[#06B6D4] border-[#06B6D4]/30">
+                    {lang}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
             <div className="flex items-center justify-between">
-              <div className="font-semibold text-[#0056D2]">
-                {mentor.creditsPerHour} credits/hour
+              <div className="flex items-center gap-2">
+                <span className="text-2xl font-bold text-[#0056D2]">{mentor.creditsPerHour}</span>
+                <span className="text-sm text-[#64748B] dark:text-[#94A3B8]">credits/hour</span>
               </div>
               <div className="flex gap-2">
-                <Button variant="outline" size="sm">View Profile</Button>
-                <Button size="sm" className="bg-[#0056D2] hover:bg-[#004BB8] text-white" onClick={() => onBookNow(mentor)}>
+                <Button variant="outline" size="sm" className="text-[#06B6D4] border-[#06B6D4]/30 hover:bg-[#06B6D4]/10 hover:border-[#06B6D4]/50">
+                  View Profile
+                </Button>
+                <Button size="sm" className="bg-[#0056D2] hover:bg-[#004BB8] text-white font-semibold shadow-sm hover:shadow-md transition-all duration-200" onClick={() => onBookNow(mentor)}>
                   Book Now
                 </Button>
               </div>
@@ -516,69 +594,72 @@ const FeaturedMentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) =>
 // Regular Mentor Card Component
 const MentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) => {
   return (
-    <Card className="overflow-hidden hover:shadow-md transition-shadow group">
-      <CardContent className="p-6">
+    <Card className="overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group border-[#0056D2]/10 h-full">
+      <CardContent className="p-6 h-full flex flex-col">
         <div className="flex items-start gap-4 mb-4">
-          <Avatar className="h-12 w-12">
-            <AvatarImage src={mentor.avatar} alt={mentor.name} />
-            <AvatarFallback className="bg-[#0056D2]/10 text-[#0056D2] font-medium">{mentor.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-          </Avatar>
+          <div className="relative">
+            <Avatar className="h-14 w-14 ring-1 ring-[#0056D2]/20">
+              <AvatarImage src={mentor.avatar} alt={mentor.name} />
+              <AvatarFallback className="bg-[#0056D2]/10 text-[#0056D2] font-bold">{mentor.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+            </Avatar>
+          </div>
           <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between">
+            <div className="flex items-start justify-between mb-2">
               <div>
-                <h3 className="font-semibold group-hover:text-[#0056D2] transition-colors truncate">
+                <h3 className="font-heading font-bold text-lg text-[#0F172A] dark:text-[#F1F5F9] group-hover:text-[#0056D2] transition-colors line-clamp-1">
                   {mentor.name}
                 </h3>
-                <p className="text-sm text-muted-foreground">{mentor.headline}</p>
+                <p className="text-sm text-[#64748B] dark:text-[#94A3B8] font-medium line-clamp-1">{mentor.headline}</p>
               </div>
-              <div className="flex gap-1">
+              <div className="flex gap-1 ml-2">
                 {mentor.verifiedID && (
-                  <Badge variant="secondary" className="text-xs">
-                    <Shield className="h-3 w-3" />
-                  </Badge>
+                  <div className="w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center">
+                    <Shield className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
+                  </div>
                 )}
                 {mentor.skillTested && (
-                  <Badge variant="secondary" className="text-xs">
-                    <CheckCircle className="h-3 w-3" />
-                  </Badge>
+                  <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                    <CheckCircle className="h-3 w-3 text-blue-600 dark:text-blue-400" />
+                  </div>
                 )}
               </div>
             </div>
           </div>
         </div>
 
-        <div className="flex items-center gap-3 text-sm text-muted-foreground mb-3">
+        <div className="flex items-center gap-3 text-sm text-[#64748B] dark:text-[#94A3B8] mb-3">
           <div className="flex items-center gap-1">
             <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-            <span>{mentor.rating}</span>
+            <span className="font-semibold text-[#0F172A] dark:text-[#F1F5F9]">{mentor.rating}</span>
             <span>({mentor.reviews})</span>
           </div>
-          <span>•</span>
-          <span>{mentor.sessions} sessions</span>
+          <span className="text-[#CBD5E1]">•</span>
+          <span className="font-medium">{mentor.sessions} sessions</span>
         </div>
 
-        <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+        <p className="text-sm text-[#64748B] dark:text-[#94A3B8] mb-4 line-clamp-2 flex-1">
           {mentor.blurb}
         </p>
 
-        <div className="flex flex-wrap gap-1 mb-4">
+        <div className="flex flex-wrap gap-1.5 mb-4">
           {mentor.tags.slice(0, 3).map((tag) => (
-            <Badge key={tag} variant="outline" className="text-xs">
+            <Badge key={tag} variant="outline" className="text-xs bg-[#0056D2]/5 text-[#0056D2] border-[#0056D2]/20 font-medium">
               {tag}
             </Badge>
           ))}
         </div>
 
-        <div className="flex items-center justify-between">
-          <div className="font-semibold text-[#0056D2]">
-            {mentor.creditsPerHour} credits/hour
+        <div className="flex items-center justify-between pt-2 border-t border-[#0056D2]/10">
+          <div className="flex items-center gap-2">
+            <span className="text-xl font-bold text-[#0056D2]">{mentor.creditsPerHour}</span>
+            <span className="text-xs text-[#64748B] dark:text-[#94A3B8]">credits/hr</span>
           </div>
           <div className="flex gap-2">
-            <Button variant="ghost" size="sm" className="text-[#06B6D4] hover:text-[#0891B2] hover:bg-[#06B6D4]/10">
-              View Profile
+            <Button variant="ghost" size="sm" className="text-[#06B6D4] hover:text-[#0891B2] hover:bg-[#06B6D4]/10 font-medium">
+              View
             </Button>
-            <Button size="sm" className="bg-[#0056D2] hover:bg-[#004BB8] text-white" onClick={() => onBookNow(mentor)}>
-              Book Now
+            <Button size="sm" className="bg-[#0056D2] hover:bg-[#004BB8] text-white font-semibold shadow-sm hover:shadow-md transition-all duration-200" onClick={() => onBookNow(mentor)}>
+              Book
             </Button>
           </div>
         </div>
