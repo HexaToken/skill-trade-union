@@ -625,7 +625,7 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
           <h2 className="text-educational-h1 font-heading text-[#0F172A] dark:text-[#F1F5F9] mb-8">
             You might also like
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:overflow-x-auto md:pb-4">
             {relatedCourses.map((relatedCourse) => (
               <Card
                 key={relatedCourse.id}
