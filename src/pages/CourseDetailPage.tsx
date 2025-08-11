@@ -324,7 +324,7 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
                     onOpenChange={() => toggleModule(module.id)}
                   >
                     <CollapsibleTrigger className="w-full">
-                      <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors border border-slate-200 dark:border-slate-700">
+                      <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 border border-slate-200 dark:border-slate-700 hover:border-[#06B6D4]/30">
                         <div className="flex items-center gap-4">
                           <div className="text-left">
                             <h4 className="font-semibold text-[#0F172A] dark:text-[#F1F5F9] text-educational-body">
