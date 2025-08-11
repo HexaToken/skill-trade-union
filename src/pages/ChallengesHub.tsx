@@ -168,18 +168,6 @@ const ChallengesHub = () => {
   const upcomingSprints = mockSprints.filter(s => s.status === 'upcoming');
   const pastSprints = mockSprints.filter(s => s.status === 'past');
 
-  const getThemeColor = (theme: string) => {
-    const colors = {
-      Design: 'bg-pink-100 text-pink-700 border-pink-200 dark:bg-pink-900/20 dark:text-pink-300 dark:border-pink-800',
-      Development: 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800',
-      Language: 'bg-green-100 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800',
-      Business: 'bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-800',
-      Marketing: 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-800',
-      Music: 'bg-yellow-100 text-yellow-700 border-yellow-200 dark:bg-yellow-900/20 dark:text-yellow-300 dark:border-yellow-800'
-    };
-    return colors[theme as keyof typeof colors] || colors.Design;
-  };
-
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Banner */}
