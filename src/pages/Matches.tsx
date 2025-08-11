@@ -290,20 +290,20 @@ export default function Matches() {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 min-w-0">
-          <div className="p-6">
+        <main className="flex-1 min-w-0 bg-gradient-to-br from-white to-slate-50/50 dark:from-slate-900 dark:to-slate-800/50">
+          <div className="p-8">
             {/* Results Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-lg">
+              <div className="flex items-center gap-6">
+                <div className="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
                   {isLoading ? (
-                    <div className="flex items-center gap-2">
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Searching...</span>
+                    <div className="flex items-center gap-3">
+                      <Loader2 className="w-5 h-5 animate-spin text-educational-blue" />
+                      <span className="font-medium">Searching...</span>
                     </div>
                   ) : (
-                    <span>
-                      {sortedMatches.length} {sortedMatches.length === 1 ? 'match' : 'matches'} found
+                    <span className="font-semibold text-slate-800 dark:text-white">
+                      <span className="text-educational-blue">{sortedMatches.length}</span> {sortedMatches.length === 1 ? 'match' : 'matches'} found
                     </span>
                   )}
                 </div>
@@ -313,7 +313,7 @@ export default function Matches() {
                     variant="outline"
                     size="sm"
                     onClick={handleClearFilters}
-                    className="text-xs"
+                    className="text-xs border-educational-cyan text-educational-cyan hover:bg-educational-cyan hover:text-white rounded-xl transition-all duration-200"
                   >
                     Clear Filters
                   </Button>
