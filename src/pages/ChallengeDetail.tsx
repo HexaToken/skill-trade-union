@@ -309,7 +309,7 @@ const ChallengeDetail = () => {
       <div className="sticky top-0 z-40 bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-sm border-b">
         <div className="container mx-auto px-4">
           <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-            <TabsList className="grid w-full grid-cols-5 h-12">
+            <TabsList className="grid w-full grid-cols-5 h-12 bg-[#F8FAFC] dark:bg-[#1E293B]">
               <TabsTrigger value="overview" className="text-xs sm:text-sm">Overview</TabsTrigger>
               <TabsTrigger value="leaderboard" className="text-xs sm:text-sm">Leaderboard</TabsTrigger>
               <TabsTrigger value="progress" className="text-xs sm:text-sm">My Progress</TabsTrigger>
