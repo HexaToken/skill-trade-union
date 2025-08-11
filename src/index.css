@@ -56,21 +56,21 @@ All colors MUST be HSL.
     --brand-amber: 45 93% 47%; /* #FBBF24 - Warm gold */
     --brand-red: 0 84% 60%; /* #EF4444 - Keep red for destructive */
 
-    /* Neutrals from spec */
-    --neutral-900: 11 18 32; /* #0B1220 */
-    --neutral-800: 17 24 39; /* #111827 */
-    --neutral-600: 55 71 81; /* #374151 */
-    --neutral-400: 158 163 175; /* #9CA3AF */
-    --neutral-100: 243 247 251; /* #F3F4F6 */
+    /* Neutrals - Warm EduTech */
+    --neutral-900: 31 41 55; /* #1F2937 - Headings */
+    --neutral-800: 55 65 81; /* #374151 - Body text */
+    --neutral-600: 107 114 128; /* #6B7280 - Muted */
+    --neutral-400: 156 163 175; /* #9CA3AF - Light gray */
+    --neutral-100: 243 244 246; /* #F3F4F6 - Background */
     --neutral-50: 255 255 255; /* #FFFFFF */
 
-    /* Enhanced Effects */
+    /* Enhanced Effects - Warm EduTech */
     --gradient-brand: linear-gradient(135deg, hsl(var(--brand-primary)) 0%, hsl(var(--brand-secondary)) 100%);
-    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
-    --shadow-neo: 0 8px 32px rgba(124, 58, 237, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
-    --shadow-elev: 0 10px 30px -12px hsl(var(--brand-primary) / 0.35);
-    --shadow-soft: 0 2px 10px -4px rgba(0, 0, 0, 0.1);
-    --shadow-glow: 0 0 20px rgba(124, 58, 237, 0.3);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 100%);
+    --shadow-neo: 0 4px 16px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-elev: 0 10px 30px -12px hsl(var(--brand-primary) / 0.25);
+    --shadow-soft: 0 2px 10px -4px rgba(0, 0, 0, 0.05);
+    --shadow-glow: 0 0 20px rgba(107, 33, 168, 0.25);
   }
 
   .dark {
