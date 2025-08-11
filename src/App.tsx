@@ -82,6 +82,7 @@ const App = () => (
             <Route path="/mentor/:mentorSlug" element={<Layout><MentorProfile /></Layout>} />
             <Route path="/challenges" element={<Layout><ChallengesHub /></Layout>} />
             <Route path="/challenges/:sprintSlug" element={<Layout><ChallengeDetail /></Layout>} />
+            <Route path="/skill-sprints" element={<Layout><SkillSprintPage /></Layout>} />
 
             {/* Offline Trading */}
             <Route path="/trade/:tradeId/confirm" element={<Layout><OfflineTradeConfirmPage /></Layout>} />
