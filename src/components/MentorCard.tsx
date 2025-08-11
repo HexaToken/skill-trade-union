@@ -21,9 +21,9 @@ interface MentorCardProps {
 }
 
 const tierConfig = {
-  Silver: { color: 'bg-gray-100 text-gray-800 border-gray-300', icon: '🥈' },
-  Gold: { color: 'bg-brand-secondary/10 text-brand-secondary border-brand-secondary/20', icon: '🥇' },
-  Platinum: { color: 'bg-purple-100 text-purple-800 border-purple-300', icon: '💎' }
+  Silver: { color: 'bg-slate-50 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600', icon: '🥈' },
+  Gold: { color: 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-700', icon: '🥇' },
+  Platinum: { color: 'bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-700', icon: '💎' }
 };
 
 export default function MentorCard({
