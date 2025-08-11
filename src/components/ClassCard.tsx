@@ -65,7 +65,7 @@ export default function ClassCard({
             <p className="text-sm text-muted-foreground truncate">{teacher?.name}</p>
             <div className="flex items-center gap-2 mt-1">
               <div className="flex items-center gap-1">
-                <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                 <span className="text-xs font-medium">{course.ratingAvg}</span>
               </div>
               <span className="text-xs text-muted-foreground">{course.pricePerSeat} credits</span>
@@ -161,7 +161,7 @@ export default function ClassCard({
           <div className="flex-1 min-w-0">
             <p className="text-sm font-medium truncate">{teacher?.name}</p>
             <div className="flex items-center gap-1">
-              <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+              <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
               <span className="text-xs font-medium">{teacher?.ratingAvg}</span>
               <span className="text-xs text-muted-foreground">({teacher?.ratingCount})</span>
             </div>
@@ -173,7 +173,7 @@ export default function ClassCard({
         <div className="flex items-center justify-between text-sm">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1">
-              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+              <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
               <span className="font-medium">{course.ratingAvg}</span>
               <span className="text-muted-foreground">({course.ratingCount})</span>
             </div>
