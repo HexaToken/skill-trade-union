@@ -71,12 +71,12 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-brand-primary/10 via-background to-brand-secondary/10">
+      <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-brand-primary/5">
         <div className="absolute inset-0 bg-grid-black/[0.02] bg-[size:50px_50px]" />
         <div className="relative page-container py-20 md:py-32">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             {/* Hero Badge */}
-            <Badge className="bg-brand-primary/10 text-brand-primary border-brand-primary/20 px-4 py-2">
+            <Badge className="bg-brand-primary/10 text-brand-primary border-brand-primary/20 px-4 py-2 hover:bg-brand-primary/15 transition-colors">
               <Zap className="w-4 h-4 mr-2" />
               Now with ExpertMatch AI - Get instant help!
             </Badge>
@@ -84,8 +84,9 @@ export default function Home() {
             {/* Hero Title */}
             <div className="space-y-4">
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight">
-                Trade skills,{' '}
-                <span className="text-gradient">not cash</span>
+                Trade{' '}
+                <span className="text-brand-primary">skills</span>,{' '}
+                <span className="text-brand-secondary">not cash</span>
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Learn anything, teach anything. Join the world's largest skill-sharing community where knowledge flows freely.
@@ -94,14 +95,14 @@ export default function Home() {
 
             {/* Hero Actions */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="text-lg px-8 py-6 hover-scale" asChild>
+              <Button size="lg" className="text-lg px-8 py-6 hover-scale bg-brand-primary hover:bg-brand-primary/90 text-white" asChild>
                 <Link to="/matches">
                   Find a Match
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>
-              
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6 hover-scale" asChild>
+
+              <Button size="lg" className="text-lg px-8 py-6 hover-scale bg-brand-secondary hover:bg-brand-secondary/90 text-white" asChild>
                 <Link to="/onboarding">
                   Offer a Skill
                 </Link>
@@ -109,7 +110,7 @@ export default function Home() {
 
               <InstantHelpDrawer
                 trigger={
-                  <Button size="lg" variant="secondary" className="text-lg px-8 py-6 hover-scale bg-gradient-to-r from-brand-amber/20 to-brand-green/20 border-brand-amber/50 text-brand-amber hover:from-brand-amber/30 hover:to-brand-green/30">
+                  <Button size="lg" variant="outline" className="text-lg px-8 py-6 hover-scale bg-brand-amber hover:bg-brand-amber/90 text-neutral-900 border-brand-amber/50 hover:border-brand-amber">
                     <Zap className="w-5 h-5 mr-2" />
                     Need Help Now?
                   </Button>
