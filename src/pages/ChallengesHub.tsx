@@ -406,15 +406,21 @@ const SprintCardFeatured: React.FC<{ sprint: Sprint }> = ({ sprint }) => {
 const SprintGrid: React.FC<{ sprints: Sprint[] }> = ({ sprints }) => {
   if (sprints.length === 0) {
     return (
-      <div className="text-center py-12">
-        <Trophy className="h-16 w-16 text-[#64748B] mx-auto mb-4" />
-        <h3 className="text-xl font-semibold text-[#0F172A] dark:text-[#F1F5F9] mb-2">
+      <div className="text-center py-16">
+        <div className="w-20 h-20 bg-gradient-to-br from-[#0056D2]/10 to-[#06B6D4]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+          <Trophy className="h-10 w-10 text-[#0056D2]" />
+        </div>
+        <h3 className="text-2xl font-heading font-bold text-[#0F172A] dark:text-[#F1F5F9] mb-3">
           No sprints match your filters
         </h3>
-        <p className="text-[#64748B] dark:text-[#94A3B8] mb-4">
+        <p className="text-[#64748B] dark:text-[#94A3B8] mb-6 max-w-md mx-auto">
           Try adjusting your filters or check back later for new challenges.
         </p>
-        <Button variant="outline" onClick={() => window.location.reload()}>
+        <Button
+          variant="outline"
+          onClick={() => window.location.reload()}
+          className="text-[#0056D2] border-[#0056D2]/30 hover:bg-[#0056D2]/10 font-medium"
+        >
           Clear Filters
         </Button>
       </div>
