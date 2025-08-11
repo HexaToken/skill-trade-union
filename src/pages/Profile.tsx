@@ -45,7 +45,7 @@ import type { User } from '@/models/types';
 
 const tierConfig = {
   Silver: { color: 'bg-gray-100 text-gray-800 border-gray-300', icon: '🥈', rate: 15 },
-  Gold: { color: 'bg-yellow-100 text-yellow-800 border-yellow-300', icon: '🥇', rate: 25 },
+  Gold: { color: 'bg-brand-secondary/10 text-brand-secondary border-yellow-300', icon: '🥇', rate: 25 },
   Platinum: { color: 'bg-purple-100 text-purple-800 border-purple-300', icon: '💎', rate: 40 }
 };
 
