@@ -590,7 +590,7 @@ export default function Classes() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-gradient-to-r from-background via-background to-brand-primary/5 py-8 border-b">
+      <div className="bg-neutral-100 dark:bg-slate-800 py-8 border-b">
         <div className="page-container">
           <div className="flex items-center justify-between mb-6">
             <div>
