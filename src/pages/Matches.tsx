@@ -211,7 +211,7 @@ export default function Matches() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="border-b bg-gradient-to-r from-card via-card to-brand-primary/5">
+      <div className="border-b bg-neutral-100 dark:bg-slate-800">
         <div className="page-container py-6">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
