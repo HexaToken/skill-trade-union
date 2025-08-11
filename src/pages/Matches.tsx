@@ -400,20 +400,9 @@ export default function Matches() {
             {viewMode === 'list' ? (
               <div className="space-y-6">
                 {isLoading ? (
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     {Array.from({ length: 3 }).map((_, i) => (
-                      <Card key={i} className="animate-pulse">
-                        <CardContent className="p-6">
-                          <div className="flex gap-4">
-                            <div className="w-16 h-16 bg-muted rounded-full" />
-                            <div className="flex-1 space-y-3">
-                              <div className="h-4 bg-muted rounded w-1/3" />
-                              <div className="h-3 bg-muted rounded w-1/2" />
-                              <div className="h-3 bg-muted rounded w-3/4" />
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
+                      <MatchCard key={i} variant="skeleton" />
                     ))}
                   </div>
                 ) : sortedMatches.length > 0 ? (
