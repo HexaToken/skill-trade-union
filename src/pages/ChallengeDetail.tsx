@@ -310,11 +310,11 @@ const ChallengeDetail = () => {
         <div className="container mx-auto px-4">
           <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
             <TabsList className="grid w-full grid-cols-5 h-12 bg-[#F8FAFC] dark:bg-[#1E293B]">
-              <TabsTrigger value="overview" className="text-xs sm:text-sm">Overview</TabsTrigger>
-              <TabsTrigger value="leaderboard" className="text-xs sm:text-sm">Leaderboard</TabsTrigger>
-              <TabsTrigger value="progress" className="text-xs sm:text-sm">My Progress</TabsTrigger>
-              <TabsTrigger value="rules" className="text-xs sm:text-sm">Rules & Rewards</TabsTrigger>
-              <TabsTrigger value="activity" className="text-xs sm:text-sm">Activity</TabsTrigger>
+              <TabsTrigger value="overview" className="text-xs sm:text-sm data-[state=active]:bg-[#0056D2] data-[state=active]:text-white">Overview</TabsTrigger>
+              <TabsTrigger value="leaderboard" className="text-xs sm:text-sm data-[state=active]:bg-[#0056D2] data-[state=active]:text-white">Leaderboard</TabsTrigger>
+              <TabsTrigger value="progress" className="text-xs sm:text-sm data-[state=active]:bg-[#0056D2] data-[state=active]:text-white">My Progress</TabsTrigger>
+              <TabsTrigger value="rules" className="text-xs sm:text-sm data-[state=active]:bg-[#0056D2] data-[state=active]:text-white">Rules & Rewards</TabsTrigger>
+              <TabsTrigger value="activity" className="text-xs sm:text-sm data-[state=active]:bg-[#0056D2] data-[state=active]:text-white">Activity</TabsTrigger>
             </TabsList>
           </Tabs>
         </div>
