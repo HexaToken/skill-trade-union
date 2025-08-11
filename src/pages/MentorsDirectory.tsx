@@ -302,11 +302,11 @@ const MentorsDirectory = () => {
             {featuredMentors.length > 0 && (
               <div className="mb-12">
                 <div className="flex items-center gap-3 mb-6">
-                  <Star className="h-6 w-6 text-yellow-400 fill-yellow-400" />
+                  <Star className="h-6 w-6 text-[#0056D2] fill-[#0056D2]" />
                   <h2 className="text-2xl font-heading font-bold bg-gradient-to-r from-[#0056D2] to-[#06B6D4] bg-clip-text text-transparent">
                     Featured Mentors
                   </h2>
-                  <Badge className="bg-yellow-100 text-yellow-700 border-yellow-200 text-xs font-medium">
+                  <Badge className="bg-[#0056D2]/10 text-[#0056D2] border-[#0056D2]/20 text-xs font-medium">
                     Top Rated
                   </Badge>
                 </div>
@@ -534,7 +534,7 @@ const FeaturedMentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) =>
               </AvatarFallback>
             </Avatar>
             {mentor.isFeatured && (
-              <div className="absolute -top-2 -right-2 h-7 w-7 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center shadow-lg">
+              <div className="absolute -top-2 -right-2 h-7 w-7 bg-gradient-to-r from-[#0056D2] to-[#06B6D4] rounded-full flex items-center justify-center shadow-lg">
                 <Star className="h-4 w-4 text-white fill-white" />
               </div>
             )}
@@ -567,7 +567,7 @@ const FeaturedMentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) =>
 
             <div className="flex items-center flex-wrap gap-3 text-sm text-[#64748B] dark:text-[#94A3B8] mb-4">
               <div className="flex items-center gap-1.5">
-                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                <Star className="h-4 w-4 fill-[#0056D2] text-[#0056D2]" />
                 <span className="font-semibold text-[#0F172A] dark:text-[#F1F5F9]">{mentor.rating}</span>
                 <span>({mentor.reviews})</span>
               </div>
@@ -660,7 +660,7 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) => {
 
         <div className="flex items-center flex-wrap gap-2 text-sm text-[#64748B] dark:text-[#94A3B8] mb-3">
           <div className="flex items-center gap-1">
-            <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+            <Star className="h-3 w-3 fill-[#0056D2] text-[#0056D2]" />
             <span className="font-semibold text-[#0F172A] dark:text-[#F1F5F9]">{mentor.rating}</span>
             <span>({mentor.reviews})</span>
           </div>
