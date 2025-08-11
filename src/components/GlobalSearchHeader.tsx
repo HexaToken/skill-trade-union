@@ -509,6 +509,23 @@ export default function GlobalSearchHeader() {
               </div>
             </div>
 
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center gap-1 ml-8">
+              {navItems.map((item) => (
+                <Button
+                  key={item.href}
+                  variant="ghost"
+                  size="sm"
+                  className="text-[#334155] dark:text-[#E2E8F0] hover:text-[#0056D2] hover:bg-[#0056D2]/10 transition-all duration-200"
+                  asChild
+                >
+                  <Link to={item.href}>
+                    {item.label}
+                  </Link>
+                </Button>
+              ))}
+            </nav>
+
             {/* Right: Quick Links */}
             <div className="flex items-center gap-2">
               {/* Add Skill Offer (Desktop) */}
