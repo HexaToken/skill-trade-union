@@ -89,13 +89,13 @@ export default function SkillCard({
         <div className="flex items-center justify-between text-xs">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1">
-              <TrendingUp className="w-3 h-3" />
+              <TrendingUp className="w-3 h-3 text-brand-secondary" />
               <span className="text-muted-foreground">Demand:</span>
-              <span className="font-medium">{skill.demandScore}%</span>
+              <span className="font-medium text-brand-secondary">{skill.demandScore}%</span>
             </div>
-            
-            <Badge 
-              variant="secondary"
+
+            <Badge
+              variant="outline"
               className={difficulty.color}
               size="sm"
             >
@@ -104,7 +104,7 @@ export default function SkillCard({
           </div>
 
           <div className="flex items-center gap-1 text-muted-foreground">
-            <span className="font-medium">{skill.baseRateCredits}</span>
+            <span className="font-medium text-brand-primary">{skill.baseRateCredits}</span>
             <span>credits/hr</span>
           </div>
         </div>
