@@ -48,27 +48,27 @@ export default function ClassCard({
       <Card className={cn('hover-lift cursor-pointer', className)} onClick={() => onViewDetails?.(course.id)}>
         <div className="flex items-center gap-4 p-4">
           <div className="relative">
-            <img 
-              src={course.thumbnailUrl} 
+            <img
+              src={course.thumbnailUrl}
               alt={course.title}
-              className="w-20 h-14 object-cover rounded-lg"
+              className="w-20 h-14 object-cover rounded-xl"
             />
             {course.badges.includes('recorded') && (
-              <Badge size="sm" className="absolute -top-1 -right-1 bg-brand-primary">
+              <Badge size="sm" className="absolute -top-1 -right-1 bg-[#0056D2] text-white">
                 <Play className="w-3 h-3" />
               </Badge>
             )}
           </div>
-          
+
           <div className="flex-1 min-w-0">
-            <h3 className="font-medium truncate">{course.title}</h3>
-            <p className="text-sm text-muted-foreground truncate">{teacher?.name}</p>
+            <h3 className="font-semibold truncate text-[#0F172A] dark:text-[#F1F5F9]">{course.title}</h3>
+            <p className="text-sm text-[#334155] dark:text-[#E2E8F0] truncate">{teacher?.name}</p>
             <div className="flex items-center gap-2 mt-1">
               <div className="flex items-center gap-1">
                 <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
-                <span className="text-xs font-medium">{course.ratingAvg}</span>
+                <span className="text-xs font-medium text-[#0F172A] dark:text-[#F1F5F9]">{course.ratingAvg}</span>
               </div>
-              <span className="text-xs text-muted-foreground">{course.pricePerSeat} credits</span>
+              <span className="text-xs text-[#06B6D4] font-medium">{course.pricePerSeat} credits</span>
             </div>
           </div>
         </div>
