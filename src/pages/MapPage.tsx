@@ -374,7 +374,7 @@ export default function MapPage() {
                     </div>
                     
                     {/* Count Badge */}
-                    <div className="absolute -top-2 -right-2 bg-brand-secondary text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+                    <div className="absolute -top-2 -right-2 bg-brand-secondary text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center shadow-md">
                       {Math.floor(marker.count / 100)}
                     </div>
                   </div>
