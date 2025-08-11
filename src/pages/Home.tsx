@@ -316,7 +316,7 @@ export default function Home() {
                     </p>
                     
                     <div className="flex items-center justify-center gap-1">
-                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
                       <span className="font-medium">{mentor.ratingAvg}</span>
                       <span className="text-sm text-muted-foreground">({mentor.ratingCount})</span>
                     </div>
@@ -422,7 +422,7 @@ export default function Home() {
                 <CardContent className="p-6 space-y-4">
                   <div className="flex items-center gap-1">
                     {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
                   
