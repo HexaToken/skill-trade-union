@@ -681,10 +681,19 @@ export default function Classes() {
       </div>
 
       {/* Main Content */}
-      <div className="catalog-layout page-container py-12 bg-gradient-to-br from-white via-slate-50/30 to-white dark:from-slate-900 dark:via-slate-800/30 dark:to-slate-900">
-        {/* Left Filter Rail - Desktop */}
-        <div className="hidden lg:block catalog-filters">
-          <div className="bg-white dark:bg-[#1E293B] rounded-xl border border-transparent dark:border-[rgba(255,255,255,0.06)] shadow-[0_1px_3px_rgba(0,0,0,0.05)] p-6">
+      <div className="flex min-h-screen bg-[#F9FAFB] dark:bg-[#0F172A]">
+        {/* Left Filter Sidebar - Desktop */}
+        <div className="hidden lg:block w-[280px] bg-white dark:bg-[#1E293B] border-r border-slate-200 dark:border-slate-700 p-6">
+          <div className="sticky top-6">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-lg font-bold text-[#0056D2] font-heading">Filters</h2>
+              <button
+                onClick={clearFilters}
+                className="text-sm text-[#06B6D4] hover:underline transition-colors"
+              >
+                Clear All
+              </button>
+            </div>
             <FiltersPanel />
           </div>
         </div>
