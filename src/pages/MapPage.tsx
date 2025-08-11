@@ -627,7 +627,7 @@ export default function MapPage() {
                               <p className="text-sm text-muted-foreground">{skill.mentors} mentors</p>
                             </div>
                           </div>
-                          <Badge variant="secondary" className="text-green-700 bg-green-100">
+                          <Badge variant="secondary" className="text-green-700 bg-green-50 border-green-200">
                             +{skill.growth}%
                           </Badge>
                         </div>
