@@ -52,6 +52,7 @@ const App = () => (
             {/* Core app pages */}
             <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
             <Route path="/matches" element={<Layout><Matches /></Layout>} />
+            <Route path="/search" element={<Layout><SearchResults /></Layout>} />
             <Route path="/wallet" element={<Layout><Wallet /></Layout>} />
             <Route path="/profile/:id?" element={<Layout><Profile /></Layout>} />
             
