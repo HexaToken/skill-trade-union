@@ -77,7 +77,8 @@ const App = () => (
             <Route path="/paths/:id" element={<Layout><Placeholder title="Skill Path Detail" desc="Complete learning path with progress tracking." /></Layout>} />
             <Route path="/mentors" element={<Layout><MentorsDirectory /></Layout>} />
             <Route path="/mentor/:mentorSlug" element={<Layout><MentorProfile /></Layout>} />
-            <Route path="/challenges" element={<Layout><Placeholder title="Challenges" desc="Join community challenges and climb leaderboards." /></Layout>} />
+            <Route path="/challenges" element={<Layout><ChallengesHub /></Layout>} />
+            <Route path="/challenges/:sprintSlug" element={<Layout><ChallengeDetail /></Layout>} />
             <Route path="/map" element={<Layout><Placeholder title="Global Skill Map" desc="Explore trending skills by region. Coming soon!" /></Layout>} />
             
             {/* Community & giving */}
