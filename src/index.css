@@ -75,45 +75,45 @@ All colors MUST be HSL.
   }
 
   .dark {
-    /* Dark mode Warm EduTech */
-    --background: 46 26 71; /* #2E1A47 - Deep plum */
-    --foreground: 249 250 251; /* #F9FAFB - Light text for headings */
+    /* Dark mode Coursera/Udemy Hybrid */
+    --background: 15 23 42; /* #0F172A - Deep navy */
+    --foreground: 241 245 249; /* #F1F5F9 - Light text for headings */
 
-    --card: 59 28 88; /* #3B1C58 - Plum surface */
-    --card-foreground: 229 231 235; /* #E5E7EB - Body text */
+    --card: 30 41 59; /* #1E293B - Dark slate */
+    --card-foreground: 226 232 240; /* #E2E8F0 - Body text */
 
-    --popover: 59 28 88;
-    --popover-foreground: 229 231 235;
+    --popover: 30 41 59;
+    --popover-foreground: 226 232 240;
 
-    --primary: 262 83% 39%; /* #6B21A8 - Keep rich violet */
+    --primary: 0 86% 41%; /* #0056D2 - Keep deep blue */
     --primary-foreground: 255 255 255;
 
-    --secondary: 25 95% 53%; /* #F97316 - Keep coral-orange */
-    --secondary-foreground: 255 255 255;
+    --secondary: 189 95% 43%; /* #06B6D4 - Keep light cyan */
+    --secondary-foreground: 15 23 42; /* Deep navy for cyan background */
 
-    --muted: 59 28 88;
-    --muted-foreground: 156 163 175; /* #9CA3AF - Muted text */
+    --muted: 30 41 59; /* #1E293B - Dark slate for muted sections */
+    --muted-foreground: 148 163 184; /* #94A3B8 - Muted text */
 
-    --accent: 45 93% 47%; /* #FBBF24 - Keep warm gold */
-    --accent-foreground: 31 41 55;
+    --accent: 189 95% 43%; /* #06B6D4 - Light cyan accent */
+    --accent-foreground: 15 23 42;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 255 255 255;
 
-    --border: 75 85 99; /* #4B5563 - Medium gray for borders */
-    --input: 75 85 99;
-    --ring: 262 83% 39%;
+    --border: 51 65 85; /* #334155 - Medium slate for borders */
+    --input: 51 65 85;
+    --ring: 0 86% 41%;
 
-    /* Dark Warm EduTech adjustments */
-    --glass-bg: rgba(59, 28, 88, 0.95);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-    --neo-gradient: linear-gradient(135deg, rgba(107, 33, 168, 0.15) 0%, rgba(249, 115, 22, 0.15) 100%);
+    /* Dark Coursera/Udemy adjustments */
+    --glass-bg: rgba(30, 41, 59, 0.95);
+    --glass-border: rgba(255, 255, 255, 0.06);
+    --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --neo-gradient: linear-gradient(135deg, rgba(0, 86, 210, 0.15) 0%, rgba(6, 182, 212, 0.15) 100%);
 
     /* Enhanced shadows for dark mode */
-    --shadow-neo: 0 8px 32px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(107, 33, 168, 0.2);
+    --shadow-neo: 0 4px 16px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 86, 210, 0.2);
     --shadow-soft: 0 2px 10px -4px rgba(0, 0, 0, 0.3);
-    --shadow-glow: 0 0 20px rgba(107, 33, 168, 0.4);
+    --shadow-glow: 0 0 20px rgba(6, 182, 212, 0.3);
   }
 }
 
