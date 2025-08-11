@@ -111,10 +111,10 @@ export default function SkillCard({
 
         {showActions && (
           <div className="flex gap-2 pt-2">
-            <Button size="sm" className="flex-1">
+            <Button size="sm" className="flex-1 bg-brand-primary hover:bg-brand-primary/90">
               Learn
             </Button>
-            <Button size="sm" variant="outline" className="flex-1">
+            <Button size="sm" variant="outline" className="flex-1 border-brand-secondary text-brand-secondary hover:bg-brand-secondary/10">
               Teach
             </Button>
           </div>
