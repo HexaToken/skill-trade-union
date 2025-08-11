@@ -96,7 +96,7 @@ export default function ClassCard({
         variant === 'featured' && 'bg-gradient-to-br from-blue-50/50 to-cyan-50/50 dark:from-blue-900/20 dark:to-cyan-900/20',
         className
       )}
-      onClick={() => onViewDetails?.(course.id)}
+      onClick={handleViewDetails}
     >
       {/* Thumbnail */}
       <div className="relative aspect-video overflow-hidden">
