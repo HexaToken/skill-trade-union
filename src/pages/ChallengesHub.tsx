@@ -170,7 +170,7 @@ const ChallengesHub = () => {
   const pastSprints = mockSprints.filter(s => s.status === 'past');
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white dark:bg-[#0F172A]">
       {/* Hero Banner */}
       <div className="bg-gradient-to-r from-[#0056D2] to-[#06B6D4] text-white">
         <div className="container mx-auto px-4 py-16 lg:py-24">
