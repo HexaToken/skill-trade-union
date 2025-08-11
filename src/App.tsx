@@ -66,6 +66,7 @@ const App = () => (
             {/* Learning & discovery */}
             <Route path="/classes" element={<Layout><Classes /></Layout>} />
             <Route path="/classes/:id" element={<Layout><ClassDetail /></Layout>} />
+            <Route path="/create" element={<Layout><Placeholder title="Create Class" desc="Share your skills by creating a new class. Set your schedule, price, and curriculum." /></Layout>} />
             <Route path="/paths" element={<Layout><SkillPaths /></Layout>} />
             <Route path="/paths/:id" element={<Layout><Placeholder title="Skill Path Detail" desc="Complete learning path with progress tracking." /></Layout>} />
             <Route path="/mentors" element={<Layout><Placeholder title="Mentor Marketplace" desc="Find long-term mentors with tiered credit rates." /></Layout>} />
