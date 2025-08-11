@@ -34,7 +34,7 @@ import BookingModalUnified from '@/components/BookingModalUnified';
 
 const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedBooking, setSelectedBooking] = useState<{type: 'mentor' | 'course', id: string} | null>(null);
+  const [selectedBooking, setSelectedBooking] = useState<{type: 'mentor' | 'course', data: any} | null>(null);
   const [activeSkillIcon, setActiveSkillIcon] = useState(0);
 
   // Animation for skill icons swapping
