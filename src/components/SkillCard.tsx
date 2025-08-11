@@ -111,11 +111,11 @@ export default function SkillCard({
         </div>
 
         {showActions && (
-          <div className="flex gap-3 pt-3">
-            <Button size="sm" className="flex-1 bg-educational-blue hover:bg-educational-blue/90 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 font-semibold">
+          <div className="flex gap-2 pt-2">
+            <Button size="sm" className="flex-1 bg-blue-600 hover:bg-blue-700 text-white">
               Learn
             </Button>
-            <Button size="sm" variant="outline" className="flex-1 border-educational-cyan text-educational-cyan hover:bg-educational-cyan hover:text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 font-semibold">
+            <Button size="sm" variant="outline" className="flex-1 border-cyan-500 text-cyan-600 hover:bg-cyan-50 dark:hover:bg-cyan-900/20">
               Teach
             </Button>
           </div>
