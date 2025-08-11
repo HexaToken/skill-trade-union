@@ -455,11 +455,11 @@ export default function Home() {
       </section>
 
       {/* How It Works */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-20 bg-gradient-to-br from-cyan-50/50 via-white to-blue-50/30 dark:from-cyan-900/20 dark:via-slate-900 dark:to-blue-900/20">
         <div className="page-container">
-          <div className="text-center space-y-6 mb-12">
-            <h2 className="text-3xl font-heading font-bold">How SkillSwap Works</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+          <div className="text-center space-y-6 mb-16">
+            <h2 className="text-4xl font-heading font-bold text-slate-800 dark:text-white">How SkillSwap Works</h2>
+            <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
               Simple steps to start sharing and learning skills in our community
             </p>
           </div>
