@@ -44,7 +44,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import { classes, users, skills } from '@/data/courseData';
+import { classes, users, skills } from '@/data/mockData';
 import type { SearchFilters } from '@/models/course-types';
 
 interface FilterState extends SearchFilters {
