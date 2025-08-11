@@ -548,7 +548,7 @@ export default function Classes() {
                   }}
                 />
                 <div className="flex items-center gap-1">
-                  <Star className="w-3 h-3 fill-brand-warning text-brand-warning" />
+                  <Star className="w-3 h-3 fill-brand-amber text-brand-amber" />
                   <span className="text-sm">{rating} & up</span>
                 </div>
               </div>
