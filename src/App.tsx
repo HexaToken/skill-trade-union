@@ -9,7 +9,7 @@ import Footer from "@/components/layout/Footer";
 import SkipLinks from "@/components/SkipLinks";
 
 // Import all pages
-import Home from "./pages/Home";
+import HomePage from "./pages/HomePage";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import Matches from "./pages/Matches";
