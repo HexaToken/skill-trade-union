@@ -34,7 +34,7 @@ export function WalletWidget({ variant = 'mini', className }: WalletWidgetProps)
         asChild
       >
         <Link to="/wallet">
-          <Wallet className="h-4 w-4 text-brand-primary" />
+          <Wallet className="h-4 w-4 text-brand-amber" />
           <span className="font-medium tabular-nums">
             {wallet.credits.toLocaleString()}
           </span>
