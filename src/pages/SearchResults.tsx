@@ -250,9 +250,9 @@ export default function SearchResults() {
     setFilters({
       type: 'all',
       categories: [],
-      level: '',
-      location: '',
-      availability: '',
+      level: 'all',
+      location: 'all',
+      availability: 'all',
       creditsRange: [0, 50],
       verifiedOnly: false,
       skillTested: false,
