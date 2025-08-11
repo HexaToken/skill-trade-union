@@ -391,7 +391,7 @@ const ChallengeDetail = () => {
                         <span>Maintain daily streaks for bonus points</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <Star className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" />
+                        <Star className="h-4 w-4 text-[#0056D2] mt-0.5 flex-shrink-0" />
                         <span>Receive 5-star reviews to earn extra credits</span>
                       </li>
                       <li className="flex items-start gap-2">
@@ -583,7 +583,7 @@ const ChallengeDetail = () => {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="text-center p-4 bg-gradient-to-r from-[#0056D2]/5 to-[#06B6D4]/5 rounded-lg">
-                      <Trophy className="h-8 w-8 text-yellow-500 mx-auto mb-2" />
+                      <Trophy className="h-8 w-8 text-[#0056D2] mx-auto mb-2" />
                       <h4 className="font-bold text-[#0F172A] dark:text-[#F1F5F9]">Participation Reward</h4>
                       <p className="text-2xl font-bold text-[#0056D2]">+{sprint.rewards.participation} credits</p>
                       <p className="text-xs text-[#64748B] dark:text-[#94A3B8]">Complete ≥3 sessions</p>
@@ -592,10 +592,10 @@ const ChallengeDetail = () => {
                     <div className="space-y-2">
                       <h4 className="font-semibold text-[#0F172A] dark:text-[#F1F5F9]">Category Winners</h4>
                       <div className="grid grid-cols-3 gap-2 text-center">
-                        <div className="p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-800">
+                        <div className="p-3 bg-[#0056D2]/10 dark:bg-[#0056D2]/20 rounded-lg border border-[#0056D2]/20 dark:border-[#0056D2]/30">
                           <div className="text-2xl mb-1">🥇</div>
-                          <div className="font-bold text-yellow-700 dark:text-yellow-300">+{sprint.rewards.first}</div>
-                          <div className="text-xs text-yellow-600 dark:text-yellow-400">1st Place</div>
+                          <div className="font-bold text-[#0056D2] dark:text-[#0056D2]">+{sprint.rewards.first}</div>
+                          <div className="text-xs text-[#0056D2]/80 dark:text-[#0056D2]/80">1st Place</div>
                         </div>
                         <div className="p-3 bg-gray-50 dark:bg-gray-800/20 rounded-lg border border-gray-200 dark:border-gray-700">
                           <div className="text-2xl mb-1">🥈</div>
