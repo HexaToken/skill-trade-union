@@ -163,11 +163,11 @@ export default function ClassCard({
             <p className="text-sm font-semibold truncate text-[#0F172A] dark:text-[#F1F5F9]">{teacher?.name}</p>
             <div className="flex items-center gap-1">
               <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
-              <span className="text-xs font-medium">{teacher?.ratingAvg}</span>
-              <span className="text-xs text-muted-foreground">({teacher?.ratingCount})</span>
+              <span className="text-xs font-medium text-[#0F172A] dark:text-[#F1F5F9]">{teacher?.ratingAvg}</span>
+              <span className="text-xs text-[#334155] dark:text-[#E2E8F0]">({teacher?.ratingCount})</span>
             </div>
           </div>
-          <span className="text-sm text-muted-foreground">{course.language}</span>
+          <span className="text-sm text-[#334155] dark:text-[#E2E8F0]">{course.language}</span>
         </div>
 
         {/* Rating and enrollment */}
@@ -175,17 +175,17 @@ export default function ClassCard({
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1">
               <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-              <span className="font-medium">{course.ratingAvg}</span>
-              <span className="text-muted-foreground">({course.ratingCount})</span>
+              <span className="font-semibold text-[#0F172A] dark:text-[#F1F5F9]">{course.ratingAvg}</span>
+              <span className="text-[#334155] dark:text-[#E2E8F0]">({course.ratingCount})</span>
             </div>
-            
-            <div className="flex items-center gap-1 text-muted-foreground">
+
+            <div className="flex items-center gap-1 text-[#334155] dark:text-[#E2E8F0]">
               <Users className="w-3 h-3" />
               <span>{course.enrolled?.toLocaleString() || course.currentSeats} enrolled</span>
             </div>
           </div>
-          
-          <div className="font-semibold text-brand-primary">
+
+          <div className="font-bold text-[#06B6D4]">
             {course.pricePerSeat} credits
           </div>
         </div>
@@ -193,14 +193,14 @@ export default function ClassCard({
         {/* Seats progress */}
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Available Seats</span>
-            <span className="font-medium">
+            <span className="text-[#334155] dark:text-[#E2E8F0]">Available Seats</span>
+            <span className="font-semibold text-[#0F172A] dark:text-[#F1F5F9]">
               {seatsRemaining} of {course.maxSeats} remaining
             </span>
           </div>
           <Progress value={seatsPercentage} className="h-2" />
           {seatsRemaining <= 3 && seatsRemaining > 0 && (
-            <Badge variant="destructive" size="sm">
+            <Badge variant="destructive" size="sm" className="bg-red-500 text-white">
               Limited seats!
             </Badge>
           )}
