@@ -397,9 +397,27 @@ const HomePage = () => {
                             <span>4.8</span>
                           </div>
                         </div>
-                        <Button 
+                        <Button
                           className="w-full"
-                          onClick={() => setSelectedBooking({type: 'course', id: course.id})}
+                          onClick={() => setSelectedBooking({
+                            type: 'course',
+                            data: {
+                              id: course.id,
+                              title: course.title,
+                              image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=225&fit=crop',
+                              instructor: mockData.users.find(u => u.id === course.teacherId)?.name || 'Unknown',
+                              rating: 4.8,
+                              ratingCount: 156,
+                              price: course.pricePerSeat,
+                              duration: '6 weeks',
+                              level: 'Intermediate',
+                              certificates: true,
+                              liveSupport: true,
+                              community: true,
+                              description: course.description,
+                              schedule: course.schedule
+                            }
+                          })}
                         >
                           Enroll Now
                         </Button>
