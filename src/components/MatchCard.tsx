@@ -1,190 +1,293 @@
-import { Star, MapPin, Clock, MessageCircle, Video, Calendar, Zap } from 'lucide-react';
+import React from 'react';
+import { Star, MapPin, MessageCircle, Zap, CheckCircle, FlaskConical } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { cn } from '@/lib/utils';
-import type { MatchResult } from '@/models/types';
-import { skills } from '@/data/mockData';
 
 interface MatchCardProps {
-  match: MatchResult;
+  // Core user data
+  name: string;
+  location: string;
+  avatarUrl: string;
+  rating: number;
+  reviews: number;
+  
+  // Availability & location
+  availabilityNote?: string;
+  sameCity?: boolean;
+  
+  // Skill information
+  skillTitle: string;
+  category: string;
+  creditsPerHour: number;
+  level: string;
+  
+  // Description & verification
+  blurb: string;
+  chips?: Array<{ label: string; tone?: "neutral" | "success" | "warning" }>;
+  verifiedID?: boolean;
+  skillTested?: boolean;
+  matchPercent?: number;
+  
+  // Actions
+  onViewProfile?: () => void;
+  onBook?: () => void;
+  onInstantCall?: () => void;
+  
+  // Variants
+  variant?: 'default' | 'compact' | 'skeleton';
+  showInstant?: boolean;
   className?: string;
-  onViewProfile?: (userId: string) => void;
-  onBook?: (userId: string, skillId: string) => void;
-  onMessage?: (userId: string) => void;
-  onInstantHelp?: (userId: string, skillId: string) => void;
 }
 
-export default function MatchCard({ 
-  match, 
-  className, 
+export default function MatchCard({
+  name = "Marcus Chen",
+  location = "San Francisco, USA",
+  avatarUrl,
+  rating = 4.8,
+  reviews = 89,
+  availabilityNote = "Available in 4d",
+  sameCity = true,
+  skillTitle = "Logo Design",
+  category = "Design",
+  creditsPerHour = 15,
+  level = "Level 1",
+  blurb = "Full-stack developer and guitar enthusiast. Building the future, one line of code at a time.",
+  chips = [],
+  verifiedID = true,
+  skillTested = true,
+  matchPercent = 92,
   onViewProfile,
   onBook,
-  onMessage,
-  onInstantHelp
+  onInstantCall,
+  variant = 'default',
+  showInstant = true,
+  className
 }: MatchCardProps) {
-  const { user, skill, matchScore, reasons, distance, nextAvailable } = match;
   
-  // Check if user has instant availability (mock check)
-  const hasInstantAvailable = user.id === 'user-1' || user.id === 'user-2';
-  
-  const getMatchScoreColor = (score: number) => {
-    if (score >= 90) return 'text-brand-success bg-brand-success/10 border-brand-success/20';
-    if (score >= 80) return 'text-brand-secondary bg-brand-secondary/10 border-brand-secondary/20';
-    return 'text-brand-primary bg-brand-primary/10 border-brand-primary/20';
-  };
+  // Skeleton variant
+  if (variant === 'skeleton') {
+    return (
+      <Card className={cn('animate-pulse', className)}>
+        <CardHeader className="p-6">
+          <div className="flex items-start gap-4">
+            <div className="w-14 h-14 bg-slate-200 dark:bg-slate-700 rounded-full"></div>
+            <div className="flex-1 space-y-2">
+              <div className="h-5 bg-slate-200 dark:bg-slate-700 rounded w-3/4"></div>
+              <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-1/2"></div>
+            </div>
+            <div className="h-6 w-16 bg-slate-200 dark:bg-slate-700 rounded-full"></div>
+          </div>
+        </CardHeader>
+        <CardContent className="p-6 pt-0 space-y-4">
+          <div className="h-12 bg-slate-200 dark:bg-slate-700 rounded-xl"></div>
+          <div className="space-y-2">
+            <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-full"></div>
+            <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-4/5"></div>
+          </div>
+          <div className="flex gap-2">
+            <div className="h-8 bg-slate-200 dark:bg-slate-700 rounded flex-1"></div>
+            <div className="h-8 bg-slate-200 dark:bg-slate-700 rounded flex-1"></div>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
 
-  const formatDistance = (distanceKm?: number) => {
-    if (!distanceKm) return 'Same city';
-    if (distanceKm < 1) return `${Math.round(distanceKm * 1000)}m away`;
-    if (distanceKm < 100) return `${Math.round(distanceKm)}km away`;
-    return `${Math.round(distanceKm / 100) * 100}km+ away`;
-  };
-
-  const formatNextAvailable = (dateStr?: string) => {
-    if (!dateStr) return 'Available now';
-    const date = new Date(dateStr);
-    const now = new Date();
-    const diffHours = Math.ceil((date.getTime() - now.getTime()) / (1000 * 60 * 60));
+  const renderChips = () => {
+    const allChips = [...(chips || [])];
     
-    if (diffHours < 24) return `Available in ${diffHours}h`;
-    if (diffHours < 168) return `Available in ${Math.ceil(diffHours / 24)}d`;
-    return date.toLocaleDateString();
+    // Add verification chips
+    if (verifiedID) {
+      allChips.push({ label: "✓ ID Verified", tone: "success" });
+    }
+    if (skillTested) {
+      allChips.push({ label: "🧪 Skill Tested", tone: "neutral" });
+    }
+    
+    return allChips.map((chip, index) => {
+      const toneStyles = {
+        warning: "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-700",
+        success: "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-700",
+        neutral: "bg-slate-50 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600"
+      };
+      
+      return (
+        <Badge
+          key={index}
+          variant="outline"
+          size="sm"
+          className={cn(
+            "text-xs font-medium",
+            toneStyles[chip.tone || 'neutral']
+          )}
+        >
+          {chip.label}
+        </Badge>
+      );
+    });
   };
 
   return (
-    <Card className={cn('hover-lift group', className)}>
-      <CardHeader className="pb-4">
-        <div className="flex items-start gap-4">
-          <Avatar className="w-16 h-16 border-2 border-muted">
-            <AvatarImage src={user.avatarUrl} alt={user.name} />
-            <AvatarFallback className="text-lg">
-              {user.name.split(' ').map(n => n[0]).join('')}
+    <Card 
+      className={cn(
+        'group cursor-pointer transition-all duration-300',
+        variant === 'compact' && 'p-4',
+        className
+      )}
+      role="article"
+      aria-label={`Match card for ${name}`}
+    >
+      <CardHeader className={cn("pb-4", variant === 'compact' && "p-0 pb-3")}>
+        {/* Match Percentage Pill */}
+        {matchPercent && (
+          <div className="absolute top-4 right-4">
+            <Badge className="bg-emerald-600 text-white border-0 px-3 py-1 text-xs font-semibold rounded-full">
+              {matchPercent}% Match
+            </Badge>
+          </div>
+        )}
+        
+        {/* Header Row */}
+        <div className="flex items-start gap-4 pr-20">
+          <Avatar className={cn(
+            "ring-2 ring-slate-100 dark:ring-slate-700 transition-all duration-200",
+            variant === 'compact' ? "w-12 h-12" : "w-14 h-14"
+          )}>
+            <AvatarImage src={avatarUrl} alt={name} />
+            <AvatarFallback className="text-lg font-semibold">
+              {name.split(' ').map(n => n[0]).join('')}
             </AvatarFallback>
           </Avatar>
           
           <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between">
-              <div className="flex-1 min-w-0">
-                <h3 className="font-semibold text-lg truncate">{user.name}</h3>
-                <p className="text-sm text-muted-foreground flex items-center gap-1">
-                  <MapPin className="w-3 h-3" />
-                  {user.location.city}, {user.location.country}
-                </p>
-              </div>
-              
-              <Badge 
-                variant="outline" 
-                className={cn('border font-medium', getMatchScoreColor(matchScore))}
-              >
-                {matchScore}% Match
-              </Badge>
+            <div className="flex items-start justify-between mb-1">
+              <h3 className={cn(
+                "font-bold text-[#0F172A] dark:text-[#F1F5F9] font-heading truncate",
+                variant === 'compact' ? "text-lg" : "text-xl"
+              )}>
+                {name}
+              </h3>
             </div>
             
-            <div className="flex items-center gap-4 mt-2 text-sm">
+            <div className="flex items-center gap-2 text-sm text-[#334155] dark:text-[#E2E8F0] mb-2">
+              <MapPin className="w-4 h-4 text-slate-400" />
+              <span className="truncate">{location}</span>
+              {sameCity && (
+                <Badge size="sm" className="bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-700 text-xs">
+                  Same city
+                </Badge>
+              )}
+            </div>
+            
+            <div className="flex items-center gap-4 text-sm">
               <div className="flex items-center gap-1">
                 <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                <span className="font-medium">{user.ratingAvg}</span>
-                <span className="text-muted-foreground">({user.ratingCount})</span>
+                <span className="font-semibold text-[#0F172A] dark:text-[#F1F5F9]">{rating}</span>
+                <span className="text-slate-500">({reviews})</span>
               </div>
               
-              <div className="flex items-center gap-1 text-muted-foreground">
-                <Clock className="w-3 h-3" />
-                {formatNextAvailable(nextAvailable)}
-              </div>
-              
-              <div className="text-muted-foreground">
-                {formatDistance(distance)}
-              </div>
+              {availabilityNote && (
+                <span className="text-[#06B6D4] font-medium">
+                  {availabilityNote}
+                </span>
+              )}
             </div>
           </div>
         </div>
       </CardHeader>
 
-      <CardContent className="space-y-4">
-        {/* Primary Skill */}
-        <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg">
-          <span className="text-2xl">{skill.icon}</span>
-          <div className="flex-1">
-            <h4 className="font-medium">{skill.name}</h4>
-            <p className="text-sm text-muted-foreground">
-              {skill.baseRateCredits} credits/hour • {skill.category}
-            </p>
+      <CardContent className={cn("space-y-4", variant === 'compact' && "p-0 space-y-3")}>
+        {/* Skill Strip */}
+        <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-purple-100 via-blue-50 to-cyan-100 dark:from-slate-800 dark:via-blue-900/20 dark:to-cyan-900/20 p-4 border border-slate-200 dark:border-slate-700">
+          <div className="flex items-center justify-between">
+            <div className="flex-1">
+              <h4 className="font-bold text-[#0F172A] dark:text-[#F1F5F9] text-lg mb-1">
+                {skillTitle}
+              </h4>
+              <p className="text-sm text-[#06B6D4] font-medium">
+                {creditsPerHour} credits/hour • {category}
+              </p>
+            </div>
+            <Badge className="bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600 text-xs font-semibold">
+              {level}
+            </Badge>
           </div>
-          <Badge variant="secondary">
-            Level {user.skillsOffered.find(s => s.skillId === skill.id)?.level || 1}
-          </Badge>
         </div>
 
-        {/* Bio */}
-        <p className="text-sm text-muted-foreground line-clamp-2">
-          {user.bio}
-        </p>
+        {/* Blurb */}
+        {variant !== 'compact' && (
+          <p className="text-[#334155] dark:text-[#E2E8F0] leading-relaxed">
+            {blurb}
+          </p>
+        )}
 
-        {/* Match Reasons */}
-        <div className="flex flex-wrap gap-1">
-          {reasons.map((reason, index) => (
-            <Badge key={index} variant="outline" size="sm">
-              {reason}
-            </Badge>
-          ))}
-        </div>
-
-        {/* Verification Badges */}
-        {user.verification.idVerified && (
-          <div className="flex items-center gap-2">
-            <Badge variant="secondary" className="bg-green-50 text-green-700 border-green-200">
-              ✓ ID Verified
-            </Badge>
-            {user.verification.testsPassed.length > 0 && (
-              <Badge variant="secondary" className="bg-blue-50 text-blue-700 border-blue-200">
-                ✓ Skill Tested
-              </Badge>
-            )}
+        {/* Chips Row */}
+        {((chips && chips.length > 0) || verifiedID || skillTested) && (
+          <div className="flex flex-wrap gap-2">
+            {renderChips()}
           </div>
         )}
 
-        {/* Actions */}
-        <div className="flex gap-2 pt-2">
+        {/* Actions Row */}
+        <div className={cn(
+          "flex gap-3",
+          "sm:flex-row flex-col",
+          "md:items-center"
+        )}>
           <Button
             variant="outline"
-            size="sm"
-            className="flex-1"
-            onClick={() => onViewProfile?.(user.id)}
+            className="flex-1 border-[#06B6D4] text-[#06B6D4] hover:bg-[#06B6D4] hover:text-white transition-all duration-200 font-semibold"
+            onClick={onViewProfile}
+            aria-label={`View profile of ${name}`}
           >
             View Profile
           </Button>
           
           <Button
-            size="sm"
-            className="flex-1"
-            onClick={() => onBook?.(user.id, skill.id)}
+            className="flex-1 bg-[#0056D2] hover:bg-[#004BB8] text-white transition-all duration-200 font-semibold"
+            onClick={onBook}
+            aria-label={`Book session with ${name}`}
           >
-            <Calendar className="w-4 h-4 mr-1" />
             Book
           </Button>
           
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
-            onClick={() => onMessage?.(user.id)}
+            className={cn(
+              "hover:bg-slate-100 dark:hover:bg-slate-800 p-2",
+              "hidden sm:flex md:inline-flex"
+            )}
+            onClick={() => {/* Handle message */}}
+            aria-label={`Send message to ${name}`}
           >
             <MessageCircle className="w-4 h-4" />
           </Button>
         </div>
 
-        {/* Instant Help CTA - ExpertMatch AI */}
-        {hasInstantAvailable && (
-          <Button
-            variant="secondary"
-            size="sm"
-            className="w-full bg-gradient-to-r from-brand-amber/20 to-brand-green/20 border-brand-amber/50 text-brand-amber hover:from-brand-amber/30 hover:to-brand-green/30"
-            onClick={() => onInstantHelp?.(user.id, skill.id)}
+        {/* Instant Call Bar */}
+        {showInstant && (
+          <div 
+            className="relative overflow-hidden rounded-xl bg-gradient-to-r from-[#0056D2] to-[#06B6D4] p-4 cursor-pointer hover:from-[#004BB8] hover:to-[#0891B2] transition-all duration-300 group/instant"
+            onClick={onInstantCall}
+            role="button"
+            tabIndex={0}
+            aria-label="Start instant call for immediate help"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                onInstantCall?.();
+              }
+            }}
           >
-            <Zap className="w-4 h-4 mr-2" />
-            Need help now? Start Instant Call
-          </Button>
+            <div className="flex items-center justify-center gap-2 text-white font-semibold">
+              <Zap className="w-5 h-5 group-hover/instant:animate-pulse" />
+              <span>Need help now? Start Instant Call</span>
+            </div>
+          </div>
         )}
       </CardContent>
     </Card>
