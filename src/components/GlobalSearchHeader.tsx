@@ -42,6 +42,7 @@ import {
 import { cn } from '@/lib/utils';
 import { currentUser, users } from '@/data/mockData';
 import { courses } from '@/mock/enhanced-data';
+import OfflineTradeButton from './OfflineTradeButton';
 
 interface SearchSuggestion {
   type: 'person' | 'course';
