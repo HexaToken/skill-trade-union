@@ -202,9 +202,19 @@ export default function Matches() {
     console.log('Starting instant help with:', userId, skillId);
   };
 
+  const formatNextAvailable = (dateStr: string) => {
+    const date = new Date(dateStr);
+    const now = new Date();
+    const diffHours = Math.ceil((date.getTime() - now.getTime()) / (1000 * 60 * 60));
+
+    if (diffHours < 24) return `Available in ${diffHours}h`;
+    if (diffHours < 168) return `Available in ${Math.ceil(diffHours / 24)}d`;
+    return date.toLocaleDateString();
+  };
+
   const hasActiveFilters = Object.keys(filters).some(key => {
     const value = filters[key as keyof AdvancedSearchFilters];
-    return value !== undefined && value !== '' && 
+    return value !== undefined && value !== '' &&
            (Array.isArray(value) ? value.length > 0 : true);
   });
 
