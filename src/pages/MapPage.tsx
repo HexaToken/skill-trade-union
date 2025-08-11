@@ -111,14 +111,14 @@ export default function MapPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div 
+      <div
         className="relative bg-gradient-to-br from-brand-primary via-brand-primary/90 to-brand-secondary bg-cover bg-center"
         style={{
-          backgroundImage: `linear-gradient(135deg, rgba(0, 86, 210, 0.95), rgba(6, 182, 212, 0.85)), url('/placeholder.svg')`,
+          background: `linear-gradient(135deg, hsl(var(--brand-primary)) 0%, hsl(var(--brand-secondary)) 100%)`,
           minHeight: '400px'
         }}
       >
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-black/10" />
         
         <div className="relative page-container py-12 md:py-32">
           <div className="max-w-4xl">
