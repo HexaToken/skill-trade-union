@@ -211,7 +211,7 @@ const MentorsDirectory = () => {
       </div>
 
       {/* Sticky Search & Controls */}
-      <div className="sticky top-0 z-40 bg-white dark:bg-[#0F172A] backdrop-blur-sm border-b border-[#E2E8F0] dark:border-[#334155]">
+      <div className="sticky top-0 z-40 bg-white dark:bg-[#0F172A] backdrop-blur-sm border-b border-[#E2E8F0] dark:border-[#334155]" style={{backgroundColor: 'white'}}>
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col lg:flex-row gap-4 items-center">
             {/* Search Input */}
@@ -603,7 +603,7 @@ const FeaturedMentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) =>
                 <span className="text-sm text-[#64748B] dark:text-[#94A3B8]">credits/hr</span>
               </div>
               <div className="flex gap-2">
-                <Button variant="outline" size="sm" className="text-[#06B6D4] border-[#06B6D4]/30 hover:bg-[#06B6D4]/10 hover:border-[#06B6D4]/50 font-medium">
+                <Button variant="outline" size="sm" className="text-[#06B6D4] border-[#06B6D4]/30 hover:bg-[#06B6D4]/10 hover:border-[#06B6D4]/50 font-medium bg-white dark:bg-[#1E293B]">
                   View
                 </Button>
                 <Button size="sm" className="bg-[#0056D2] hover:bg-[#004BB8] text-white font-semibold shadow-sm hover:shadow-md transition-all duration-200" onClick={() => onBookNow(mentor)}>
@@ -691,7 +691,7 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) => {
             <span className="text-xs text-[#64748B] dark:text-[#94A3B8] font-medium">credits/hr</span>
           </div>
           <div className="flex gap-2">
-            <Button variant="ghost" size="sm" className="text-[#06B6D4] hover:text-[#0891B2] hover:bg-[#06B6D4]/10 font-medium text-xs px-3">
+            <Button variant="ghost" size="sm" className="text-[#06B6D4] hover:text-[#0891B2] hover:bg-[#06B6D4]/10 font-medium text-xs px-3 bg-transparent">
               View
             </Button>
             <Button size="sm" className="bg-[#0056D2] hover:bg-[#004BB8] text-white font-semibold shadow-sm hover:shadow-md transition-all duration-200 text-xs px-4" onClick={() => onBookNow(mentor)}>
