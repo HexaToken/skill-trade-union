@@ -505,7 +505,7 @@ const SprintCard: React.FC<{ sprint: Sprint }> = ({ sprint }) => {
             <Button
               variant="outline"
               size="sm"
-              className="flex-1 text-[#06B6D4] border-[#06B6D4]/30 hover:bg-[#06B6D4]/10"
+              className="flex-1 text-[#0c0e0e] border-[#24565f]/30 hover:bg-[#06B6D4]/10"
               onClick={() => navigate(`/challenges/${sprint.slug}?tab=leaderboard`)}
             >
               <Award className="h-4 w-4 mr-1" />
