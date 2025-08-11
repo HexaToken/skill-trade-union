@@ -77,12 +77,13 @@ export default function ClassCard({
   }
 
   return (
-    <Card 
+    <Card
       className={cn(
-        'hover-lift transition-all duration-200 group overflow-hidden',
-        variant === 'featured' && 'border-brand-primary/50 bg-gradient-to-br from-brand-primary/5 to-brand-secondary/5',
+        'hover-lift transition-all duration-300 group overflow-hidden cursor-pointer',
+        variant === 'featured' && 'bg-gradient-to-br from-blue-50/50 to-cyan-50/50 dark:from-blue-900/20 dark:to-cyan-900/20',
         className
       )}
+      onClick={() => onViewDetails?.(course.id)}
     >
       {/* Thumbnail */}
       <div className="relative aspect-video overflow-hidden">
