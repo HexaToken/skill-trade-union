@@ -65,9 +65,10 @@ export default {
 				brand: {
 					primary: 'hsl(var(--brand-primary))',
 					secondary: 'hsl(var(--brand-secondary))',
-					green: 'hsl(var(--brand-green))',
-					amber: 'hsl(var(--brand-amber))',
-					red: 'hsl(var(--brand-red))'
+					neutral: 'hsl(var(--brand-neutral))',
+					success: 'hsl(var(--brand-success))',
+					warning: 'hsl(var(--brand-warning))',
+					danger: 'hsl(var(--brand-danger))'
 				}
 			},
 			borderRadius: {
