@@ -432,7 +432,7 @@ All colors MUST be HSL.
     @apply inline-flex items-center px-3 py-1 rounded-lg text-sm font-medium bg-brand-success/10 text-brand-success border border-brand-success/20;
   }
 
-  /* Filter and search styling - Warm EduTech */
+  /* Filter and search styling - Coursera/Udemy */
   .filter-group {
     @apply space-y-4 p-4 border-b border-border hover:bg-brand-primary/5 transition-colors;
   }
@@ -441,9 +441,9 @@ All colors MUST be HSL.
     @apply font-semibold text-sm text-foreground mb-3;
   }
 
-  /* Curriculum and lesson styling - Warm EduTech */
+  /* Curriculum and lesson styling - Coursera/Udemy */
   .curriculum-header {
-    @apply bg-gradient-to-r from-muted to-muted/50 p-4 font-semibold border-b border-border;
+    @apply bg-neutral-100 dark:bg-slate-800 p-4 font-semibold border-b border-border;
   }
 
   .lesson-preview {
