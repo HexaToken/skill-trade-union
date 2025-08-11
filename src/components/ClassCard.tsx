@@ -194,7 +194,7 @@ export default function ClassCard({
 
             <div className="flex items-center gap-1 text-[#334155] dark:text-[#E2E8F0]">
               <Users className="w-3 h-3" />
-              <span>{course.enrolled?.toLocaleString() || course.currentSeats} enrolled</span>
+              <span>{(course.enrolled || course.currentSeats || 0).toLocaleString()} enrolled</span>
             </div>
           </div>
 
