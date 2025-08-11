@@ -301,11 +301,19 @@ const MentorsDirectory = () => {
             {/* Featured Mentors */}
             {featuredMentors.length > 0 && (
               <div className="mb-12">
-                <h2 className="text-2xl font-heading font-semibold mb-6">Featured Mentors</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="flex items-center gap-3 mb-6">
+                  <Star className="h-6 w-6 text-yellow-400 fill-yellow-400" />
+                  <h2 className="text-2xl font-heading font-bold bg-gradient-to-r from-[#0056D2] to-[#06B6D4] bg-clip-text text-transparent">
+                    Featured Mentors
+                  </h2>
+                  <Badge className="bg-yellow-100 text-yellow-700 border-yellow-200 text-xs font-medium">
+                    Top Rated
+                  </Badge>
+                </div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {featuredMentors.map((mentor) => (
-                    <FeaturedMentorCard 
-                      key={mentor.id} 
+                    <FeaturedMentorCard
+                      key={mentor.id}
                       mentor={mentor}
                       onBookNow={handleBookNow}
                     />
@@ -316,19 +324,27 @@ const MentorsDirectory = () => {
 
             {/* Results Header */}
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-heading font-semibold">
-                All Mentors ({allMentors.length})
-              </h2>
+              <div className="flex items-center gap-3">
+                <h2 className="text-xl font-heading font-bold text-[#0F172A] dark:text-[#F1F5F9]">
+                  All Mentors
+                </h2>
+                <Badge variant="outline" className="bg-[#0056D2]/10 text-[#0056D2] border-[#0056D2]/20 font-medium">
+                  {allMentors.length} available
+                </Badge>
+              </div>
+              <div className="text-sm text-[#64748B] dark:text-[#94A3B8]">
+                Sorted by relevance
+              </div>
             </div>
 
             {/* Mentors Grid */}
             {isLoading ? (
               <MentorGridSkeleton />
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
                 {allMentors.map((mentor) => (
-                  <MentorCard 
-                    key={mentor.id} 
+                  <MentorCard
+                    key={mentor.id}
                     mentor={mentor}
                     onBookNow={handleBookNow}
                   />
@@ -507,80 +523,91 @@ interface MentorCardProps {
 
 const FeaturedMentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) => {
   return (
-    <Card className="overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group border-[#0056D2]/10 bg-gradient-to-br from-white to-[#0056D2]/2 dark:from-[#1E293B] dark:to-[#0056D2]/5">
+    <Card className="glass-card hover-lift transition-all duration-300 group border-[#0056D2]/15 bg-gradient-to-br from-white via-[#0056D2]/1 to-[#06B6D4]/2 dark:from-[#1E293B] dark:via-[#0056D2]/5 dark:to-[#06B6D4]/3">
       <CardContent className="p-6">
         <div className="flex items-start gap-5">
           <div className="relative">
-            <Avatar className="h-20 w-20 ring-2 ring-[#0056D2]/20 ring-offset-2">
-              <AvatarImage src={mentor.avatar} alt={mentor.name} />
-              <AvatarFallback className="bg-[#0056D2]/10 text-[#0056D2] font-bold text-lg">{mentor.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+            <Avatar className="h-20 w-20 ring-2 ring-[#0056D2]/20 ring-offset-2 ring-offset-background">
+              <AvatarImage src={mentor.avatar} alt={mentor.name} className="object-cover" />
+              <AvatarFallback className="bg-gradient-to-br from-[#0056D2]/10 to-[#06B6D4]/10 text-[#0056D2] font-bold text-lg">
+                {mentor.name.split(' ').map(n => n[0]).join('')}
+              </AvatarFallback>
             </Avatar>
             {mentor.isFeatured && (
-              <div className="absolute -top-1 -right-1 h-6 w-6 bg-gradient-to-r from-[#0056D2] to-[#06B6D4] rounded-full flex items-center justify-center">
-                <Star className="h-3 w-3 text-white fill-white" />
+              <div className="absolute -top-2 -right-2 h-7 w-7 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center shadow-lg">
+                <Star className="h-4 w-4 text-white fill-white" />
               </div>
             )}
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between mb-3">
-              <div>
-                <h3 className="font-heading font-bold text-xl text-[#0F172A] dark:text-[#F1F5F9] group-hover:text-[#0056D2] transition-colors">{mentor.name}</h3>
-                <p className="text-sm text-[#64748B] dark:text-[#94A3B8] font-medium">{mentor.headline}</p>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-heading font-bold text-xl text-[#0F172A] dark:text-[#F1F5F9] group-hover:text-[#0056D2] transition-colors truncate">
+                  {mentor.name}
+                </h3>
+                <p className="text-sm text-[#64748B] dark:text-[#94A3B8] font-medium truncate">
+                  {mentor.headline}
+                </p>
               </div>
-              <div className="flex gap-1.5">
+              <div className="flex flex-col gap-1 ml-3">
                 {mentor.verifiedID && (
-                  <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 text-xs font-medium">
+                  <Badge className="bg-emerald-50 text-emerald-700 border-emerald-200 text-xs font-medium dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-800">
                     <Shield className="h-3 w-3 mr-1" />
-                    ID Verified
+                    Verified
                   </Badge>
                 )}
                 {mentor.skillTested && (
-                  <Badge className="bg-blue-100 text-blue-700 border-blue-200 text-xs font-medium">
+                  <Badge className="bg-blue-50 text-blue-700 border-blue-200 text-xs font-medium dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800">
                     <CheckCircle className="h-3 w-3 mr-1" />
-                    Skill Tested
+                    Tested
                   </Badge>
                 )}
               </div>
             </div>
 
-            <div className="flex items-center gap-4 text-sm text-[#64748B] dark:text-[#94A3B8] mb-4">
+            <div className="flex items-center flex-wrap gap-3 text-sm text-[#64748B] dark:text-[#94A3B8] mb-4">
               <div className="flex items-center gap-1.5">
                 <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                 <span className="font-semibold text-[#0F172A] dark:text-[#F1F5F9]">{mentor.rating}</span>
-                <span>({mentor.reviews} reviews)</span>
+                <span>({mentor.reviews})</span>
               </div>
-              <span className="text-[#CBD5E1]">•</span>
+              <span className="text-[#CBD5E1] hidden sm:inline">•</span>
               <span className="font-medium">{mentor.sessions} sessions</span>
-              <span className="text-[#CBD5E1]">•</span>
+              <span className="text-[#CBD5E1] hidden sm:inline">•</span>
               <div className="flex items-center gap-1">
                 <MapPin className="h-3 w-3" />
-                <span>{mentor.location}</span>
+                <span className="truncate">{mentor.location}</span>
               </div>
             </div>
 
             {/* Languages */}
             <div className="flex items-center gap-2 mb-4">
               <span className="text-xs font-medium text-[#64748B] dark:text-[#94A3B8]">Languages:</span>
-              <div className="flex gap-1">
-                {mentor.languages.map((lang) => (
+              <div className="flex gap-1 flex-wrap">
+                {mentor.languages.slice(0, 2).map((lang) => (
                   <Badge key={lang} variant="outline" className="text-xs bg-[#06B6D4]/10 text-[#06B6D4] border-[#06B6D4]/30">
                     {lang}
                   </Badge>
                 ))}
+                {mentor.languages.length > 2 && (
+                  <Badge variant="outline" className="text-xs bg-gray-50 text-gray-600 border-gray-200">
+                    +{mentor.languages.length - 2}
+                  </Badge>
+                )}
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between pt-2 border-t border-[#0056D2]/10">
               <div className="flex items-center gap-2">
                 <span className="text-2xl font-bold text-[#0056D2]">{mentor.creditsPerHour}</span>
-                <span className="text-sm text-[#64748B] dark:text-[#94A3B8]">credits/hour</span>
+                <span className="text-sm text-[#64748B] dark:text-[#94A3B8]">credits/hr</span>
               </div>
               <div className="flex gap-2">
-                <Button variant="outline" size="sm" className="text-[#06B6D4] border-[#06B6D4]/30 hover:bg-[#06B6D4]/10 hover:border-[#06B6D4]/50">
-                  View Profile
+                <Button variant="outline" size="sm" className="text-[#06B6D4] border-[#06B6D4]/30 hover:bg-[#06B6D4]/10 hover:border-[#06B6D4]/50 font-medium">
+                  View
                 </Button>
                 <Button size="sm" className="bg-[#0056D2] hover:bg-[#004BB8] text-white font-semibold shadow-sm hover:shadow-md transition-all duration-200" onClick={() => onBookNow(mentor)}>
-                  Book Now
+                  Book
                 </Button>
               </div>
             </div>
