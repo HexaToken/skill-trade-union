@@ -408,16 +408,16 @@ All colors MUST be HSL.
     @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
   }
 
-  /* Course detail layout */
+  /* Course detail layout - Warm EduTech */
   .course-header {
-    @apply bg-muted/30 py-12;
+    @apply bg-gradient-to-r from-background via-background to-brand-primary/5 py-12;
   }
 
   .course-content {
     @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
-  /* Progress and completion styling */
+  /* Progress and completion styling - Warm EduTech */
   .progress-bar {
     @apply bg-muted rounded-full h-2;
   }
@@ -427,7 +427,7 @@ All colors MUST be HSL.
   }
 
   .completion-badge {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-brand-green/10 text-brand-green border border-brand-green/20;
+    @apply inline-flex items-center px-3 py-1 rounded-lg text-sm font-medium bg-brand-green/10 text-brand-green border border-brand-green/20;
   }
 
   /* Filter and search styling */
