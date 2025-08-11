@@ -382,7 +382,7 @@ const SprintCardFeatured: React.FC<{ sprint: Sprint }> = ({ sprint }) => {
           </Button>
           <Button
             variant="outline"
-            className="text-[#06B6D4] border-[#06B6D4]/30 hover:bg-[#06B6D4]/10"
+            className="text-[#0c0e0e] border-[#24565f]/30 hover:bg-[#06B6D4]/10"
             onClick={() => navigate(`/challenges/${sprint.slug}?tab=leaderboard`)}
           >
             Leaderboard
