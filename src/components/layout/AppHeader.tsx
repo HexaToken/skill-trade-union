@@ -8,7 +8,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const AppHeader = () => {
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-card/98 backdrop-blur supports-[backdrop-filter]:bg-card/95 shadow-soft">
+    <header className="sticky top-0 z-40 w-full border-b bg-white/98 dark:bg-slate-900/98 backdrop-blur supports-[backdrop-filter]:bg-white/95 dark:supports-[backdrop-filter]:bg-slate-900/95 shadow-sm">
       <div className="container mx-auto flex h-14 items-center gap-3">
         <SidebarTrigger className="mr-1" />
         <Link to="/" className="flex items-center font-semibold text-lg tracking-tight">
