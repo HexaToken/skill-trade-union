@@ -698,8 +698,8 @@ export default function Classes() {
           </div>
         </div>
 
-        {/* Results */}
-        <div className="catalog-content">
+        {/* Course Grid Container */}
+        <div className="flex-1 p-6 lg:p-8">
           {/* Active Filters Display */}
           {activeFiltersCount > 0 && (
             <div className="flex flex-wrap gap-3 mb-8 p-4 bg-white dark:bg-[#1E293B] rounded-xl border border-transparent dark:border-[rgba(255,255,255,0.06)] shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
