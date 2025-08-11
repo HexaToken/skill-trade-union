@@ -125,7 +125,7 @@ export default function ClassCard({
 
         {variant === 'featured' && (
           <div className="absolute top-3 right-3">
-            <Badge className="bg-brand-primary text-white border-0">Featured</Badge>
+            <Badge className="bg-gradient-to-r from-orange-400 to-amber-400 text-white border-0 shadow-lg">Featured</Badge>
           </div>
         )}
       </div>
@@ -133,8 +133,8 @@ export default function ClassCard({
       <CardHeader className="pb-3">
         <div className="space-y-2">
           <div className="flex items-start justify-between gap-2">
-            <h3 
-              className="font-semibold text-lg line-clamp-2 cursor-pointer hover:text-brand-primary transition-colors"
+            <h3
+              className="font-bold text-lg line-clamp-2 cursor-pointer hover:text-[#0056D2] transition-colors text-[#0F172A] dark:text-[#F1F5F9] font-heading"
               onClick={() => onViewDetails?.(course.id)}
             >
               {course.title}
@@ -143,8 +143,8 @@ export default function ClassCard({
               {difficulty.label}
             </Badge>
           </div>
-          
-          <p className="text-sm text-muted-foreground line-clamp-2">
+
+          <p className="text-sm text-[#334155] dark:text-[#E2E8F0] line-clamp-2 leading-relaxed">
             {course.subtitle || course.description}
           </p>
         </div>
@@ -153,14 +153,14 @@ export default function ClassCard({
       <CardContent className="space-y-4">
         {/* Teacher info */}
         <div className="flex items-center gap-3">
-          <Avatar className="w-8 h-8">
+          <Avatar className="w-8 h-8 ring-2 ring-slate-100 dark:ring-slate-700">
             <AvatarImage src={teacher?.avatarUrl} alt={teacher?.name} />
-            <AvatarFallback className="text-xs">
+            <AvatarFallback className="text-xs bg-[#0056D2]/10 text-[#0056D2]">
               {teacher?.name?.split(' ').map(n => n[0]).join('')}
             </AvatarFallback>
           </Avatar>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium truncate">{teacher?.name}</p>
+            <p className="text-sm font-semibold truncate text-[#0F172A] dark:text-[#F1F5F9]">{teacher?.name}</p>
             <div className="flex items-center gap-1">
               <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
               <span className="text-xs font-medium">{teacher?.ratingAvg}</span>
