@@ -143,8 +143,8 @@ export default function MapPage() {
         </div>
       </div>
 
-      {/* Filters Section */}
-      <div className="border-b bg-card/50 backdrop-blur sticky top-0 z-40">
+      {/* Filters Section - Desktop */}
+      <div className="hidden md:block border-b bg-card/50 backdrop-blur sticky top-0 z-40">
         <div className="page-container py-4">
           <div className="flex flex-wrap items-center gap-4">
             {/* Timeframe */}
@@ -183,7 +183,7 @@ export default function MapPage() {
                 />
                 <Label htmlFor="in-person" className="text-sm">In-person</Label>
               </div>
-              
+
               <div className="flex items-center gap-2">
                 <Switch
                   id="online"
@@ -192,7 +192,7 @@ export default function MapPage() {
                 />
                 <Label htmlFor="online" className="text-sm">Online</Label>
               </div>
-              
+
               <div className="flex items-center gap-2">
                 <Switch
                   id="verified"
@@ -201,7 +201,7 @@ export default function MapPage() {
                 />
                 <Label htmlFor="verified" className="text-sm">Verified Only</Label>
               </div>
-              
+
               <div className="flex items-center gap-2">
                 <Switch
                   id="challenges"
