@@ -43,6 +43,7 @@ interface CourseDetailPageProps {
 
 export default function CourseDetailPage({ className }: CourseDetailPageProps) {
   const { courseSlug } = useParams<{ courseSlug: string }>();
+  const navigate = useNavigate();
   const [expandedModules, setExpandedModules] = useState<string[]>(['m1']);
   const [isSaved, setIsSaved] = useState(false);
   const [showBookingModal, setShowBookingModal] = useState(false);
