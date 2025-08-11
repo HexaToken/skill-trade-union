@@ -456,7 +456,7 @@ const FeaturedMentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) =>
         <div className="flex items-start gap-4">
           <Avatar className="h-16 w-16">
             <AvatarImage src={mentor.avatar} alt={mentor.name} />
-            <AvatarFallback>{mentor.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+            <AvatarFallback className="bg-[#0056D2]/10 text-[#0056D2] font-medium">{mentor.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
           </Avatar>
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between">
@@ -496,12 +496,12 @@ const FeaturedMentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) =>
             </div>
 
             <div className="flex items-center justify-between">
-              <div className="font-semibold text-brand-primary">
+              <div className="font-semibold text-[#0056D2]">
                 {mentor.creditsPerHour} credits/hour
               </div>
               <div className="flex gap-2">
                 <Button variant="outline" size="sm">View Profile</Button>
-                <Button size="sm" onClick={() => onBookNow(mentor)}>
+                <Button size="sm" className="bg-[#0056D2] hover:bg-[#004BB8] text-white" onClick={() => onBookNow(mentor)}>
                   Book Now
                 </Button>
               </div>
