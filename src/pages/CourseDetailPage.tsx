@@ -198,7 +198,7 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
           <div className="lg:col-span-8 space-y-8">
             
             {/* What You'll Learn */}
-            <Card className="bg-white dark:bg-[#1E293B] border border-transparent dark:border-[rgba(255,255,255,0.06)] shadow-lg">
+            <Card className="bg-white dark:bg-[#1E293B] border border-transparent dark:border-[rgba(255,255,255,0.06)] shadow-lg animate-fade-in">
               <CardHeader>
                 <CardTitle className="text-educational-h2 font-heading text-[#0F172A] dark:text-[#F1F5F9]">
                   What You'll Learn
