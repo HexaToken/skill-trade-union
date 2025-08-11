@@ -26,7 +26,7 @@ import {
   Book,
   Menu,
   ArrowRight,
-  Fire,
+  Flame,
   Lightbulb
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
