@@ -69,7 +69,7 @@ export default function SkillCard({
             </div>
             <div className="flex-1 min-w-0">
               <h3 className="font-semibold truncate text-brand-primary">{skill.name}</h3>
-              <p className="text-sm text-muted-foreground truncate">{skill.category}</p>
+              <p className="text-sm text-brand-neutral truncate">{skill.category}</p>
             </div>
           </div>
 
