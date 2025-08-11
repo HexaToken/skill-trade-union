@@ -197,78 +197,103 @@ const ChallengesHub = () => {
       </div>
 
       <div className="container mx-auto px-4 py-12">
-        {/* Filters */}
-        <div className="flex flex-col lg:flex-row gap-4 items-center justify-between mb-8">
-          <div className="flex flex-wrap gap-3">
-            <Select value={filters.status} onValueChange={(value) => setFilters(prev => ({ ...prev, status: value }))}>
-              <SelectTrigger className="w-40">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Sprints</SelectItem>
-                <SelectItem value="active">Active</SelectItem>
-                <SelectItem value="upcoming">Upcoming</SelectItem>
-                <SelectItem value="past">Past</SelectItem>
-              </SelectContent>
-            </Select>
+        {/* Filters Section */}
+        <div className="glass-card border-[#0056D2]/10 mb-8">
+          <div className="p-6">
+            <div className="flex items-center gap-2 mb-4">
+              <Filter className="h-5 w-5 text-[#0056D2]" />
+              <h2 className="text-lg font-heading font-semibold text-[#0F172A] dark:text-[#F1F5F9]">Filter Challenges</h2>
+            </div>
 
-            <Select value={filters.sort} onValueChange={(value) => setFilters(prev => ({ ...prev, sort: value }))}>
-              <SelectTrigger className="w-48">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="participants">Most Participants</SelectItem>
-                <SelectItem value="starting-soon">Starting Soon</SelectItem>
-                <SelectItem value="newest">Newest</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+            <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
+              <div className="flex flex-wrap gap-3">
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-[#64748B] dark:text-[#94A3B8]">Status</Label>
+                  <Select value={filters.status} onValueChange={(value) => setFilters(prev => ({ ...prev, status: value }))}>
+                    <SelectTrigger className="w-40 border-[#0056D2]/20 focus:border-[#0056D2] focus:ring-[#0056D2]">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Sprints</SelectItem>
+                      <SelectItem value="active">Active</SelectItem>
+                      <SelectItem value="upcoming">Upcoming</SelectItem>
+                      <SelectItem value="past">Past</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
 
-          <div className="flex gap-2 flex-wrap">
-            {CATEGORIES.map((category) => (
-              <Button
-                key={category}
-                variant={filters.category.includes(category) ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => {
-                  setFilters(prev => ({
-                    ...prev,
-                    category: prev.category.includes(category)
-                      ? prev.category.filter(c => c !== category)
-                      : [...prev.category, category]
-                  }));
-                }}
-                className={cn(
-                  'text-xs',
-                  filters.category.includes(category)
-                    ? 'bg-[#0056D2] hover:bg-[#004BB8]'
-                    : 'text-[#0056D2] border-[#0056D2]/30 hover:bg-[#0056D2]/10'
-                )}
-              >
-                {category}
-              </Button>
-            ))}
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-[#64748B] dark:text-[#94A3B8]">Sort by</Label>
+                  <Select value={filters.sort} onValueChange={(value) => setFilters(prev => ({ ...prev, sort: value }))}>
+                    <SelectTrigger className="w-48 border-[#0056D2]/20 focus:border-[#0056D2] focus:ring-[#0056D2]">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="participants">Most Participants</SelectItem>
+                      <SelectItem value="starting-soon">Starting Soon</SelectItem>
+                      <SelectItem value="newest">Newest</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              <div className="w-full lg:w-auto">
+                <Label className="text-sm font-medium text-[#64748B] dark:text-[#94A3B8] mb-2 block">Categories</Label>
+                <div className="flex gap-2 flex-wrap">
+                  {CATEGORIES.map((category) => (
+                    <Button
+                      key={category}
+                      variant={filters.category.includes(category) ? 'default' : 'outline'}
+                      size="sm"
+                      onClick={() => {
+                        setFilters(prev => ({
+                          ...prev,
+                          category: prev.category.includes(category)
+                            ? prev.category.filter(c => c !== category)
+                            : [...prev.category, category]
+                        }));
+                      }}
+                      className={cn(
+                        'text-xs font-medium transition-all duration-200',
+                        filters.category.includes(category)
+                          ? 'bg-[#0056D2] hover:bg-[#004BB8] text-white shadow-sm'
+                          : 'text-[#0056D2] border-[#0056D2]/30 hover:bg-[#0056D2]/10 hover:border-[#0056D2]/50'
+                      )}
+                    >
+                      {category}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Featured Active Sprint */}
         {activeSprint && (
           <div className="mb-12">
-            <h2 className="text-2xl font-heading font-bold text-[#0F172A] dark:text-[#F1F5F9] mb-6 flex items-center gap-2">
-              <Trophy className="h-6 w-6 text-yellow-500" />
-              Featured Sprint
-            </h2>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center shadow-lg">
+                <Trophy className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-heading font-bold bg-gradient-to-r from-[#0056D2] to-[#06B6D4] bg-clip-text text-transparent">
+                  Featured Sprint
+                </h2>
+                <p className="text-sm text-[#64748B] dark:text-[#94A3B8]">Top-rated challenge of the week</p>
+              </div>
+            </div>
             <SprintCardFeatured sprint={activeSprint} />
           </div>
         )}
 
         {/* Sprint Grid */}
         <Tabs value={filters.status === 'all' ? 'all' : filters.status} className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-8">
-            <TabsTrigger value="all">All Sprints</TabsTrigger>
-            <TabsTrigger value="active">Active</TabsTrigger>
-            <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
-            <TabsTrigger value="past">Past</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-4 mb-8 bg-[#0056D2]/5 border border-[#0056D2]/20">
+            <TabsTrigger value="all" className="data-[state=active]:bg-[#0056D2] data-[state=active]:text-white font-medium">All Sprints</TabsTrigger>
+            <TabsTrigger value="active" className="data-[state=active]:bg-[#0056D2] data-[state=active]:text-white font-medium">Active</TabsTrigger>
+            <TabsTrigger value="upcoming" className="data-[state=active]:bg-[#0056D2] data-[state=active]:text-white font-medium">Upcoming</TabsTrigger>
+            <TabsTrigger value="past" className="data-[state=active]:bg-[#0056D2] data-[state=active]:text-white font-medium">Past</TabsTrigger>
           </TabsList>
 
           <TabsContent value="all" className="space-y-8">
