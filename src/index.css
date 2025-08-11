@@ -80,7 +80,7 @@ All colors MUST be HSL.
     --background: 15 23 42; /* #0F172A - Deep navy */
     --foreground: 241 245 249; /* #F1F5F9 - Light text for headings */
 
-    --card: 30 41 59; /* #1E293B - Dark slate */
+    --card: 30 41 59; /* #1E293B - Dark slate for cards */
     --card-foreground: 226 232 240; /* #E2E8F0 - Body text */
 
     --popover: 30 41 59;
