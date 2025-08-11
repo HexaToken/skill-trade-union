@@ -21,6 +21,7 @@ import Wallet from "./pages/Wallet";
 import Profile from "./pages/Profile";
 import Onboarding from "./pages/Onboarding";
 import Placeholder from "./pages/Placeholder";
+import MentorProfile from "./pages/MentorProfile";
 
 const queryClient = new QueryClient();
 
