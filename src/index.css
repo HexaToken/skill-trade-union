@@ -24,7 +24,7 @@ All colors MUST be HSL.
     --primary: 214 100% 41%; /* #0056D2 - Deep blue */
     --primary-foreground: 255 255 255;
 
-    --secondary: 189 95% 43%; /* #06B6D4 - Light cyan */
+    --secondary: 189 94% 43%; /* #06B6D4 - Light cyan */
     --secondary-foreground: 15 23 42; /* Deep navy for cyan background */
 
     --muted: 248 250 252; /* #F8FAFC - Soft gray */
