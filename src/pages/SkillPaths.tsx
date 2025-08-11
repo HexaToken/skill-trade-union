@@ -314,7 +314,7 @@ export default function SkillPaths() {
             </div>
             <div>
               <div className="text-3xl font-bold text-brand-secondary mb-2">
-                {skillPaths.reduce((acc, path) => acc + path.studentsCount, 0).toLocaleString()}
+                {skillPaths.reduce((acc, path) => acc + (path.studentsCount || 0), 0).toLocaleString()}
               </div>
               <div className="text-sm text-muted-foreground">Students Enrolled</div>
             </div>
