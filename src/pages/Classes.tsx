@@ -722,15 +722,19 @@ export default function Classes() {
             </div>
           )}
 
-          {/* Class Grid/List */}
+          {/* Course Cards Grid */}
           {sortedClasses.length > 0 ? (
             <div className={cn(
-              viewMode === 'grid' 
-                ? 'academic-grid' 
+              viewMode === 'grid'
+                ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
                 : 'space-y-4'
             )}>
               {sortedClasses.map((course) => (
-                <ClassCard key={course.id} course={course} variant={viewMode} />
+                <ClassCard
+                  key={course.id}
+                  course={course}
+                  variant={viewMode === 'grid' ? 'default' : 'horizontal'}
+                />
               ))}
             </div>
           ) : (
