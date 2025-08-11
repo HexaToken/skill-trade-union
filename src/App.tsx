@@ -26,6 +26,8 @@ import MentorProfile from "./pages/MentorProfile";
 import MentorsDirectory from "./pages/MentorsDirectory";
 import ChallengesHub from "./pages/ChallengesHub";
 import ChallengeDetail from "./pages/ChallengeDetail";
+import OfflineTradeConfirmPage from "./pages/OfflineTradeConfirmPage";
+import OfflineTradeReceipt from "./pages/OfflineTradeReceipt";
 
 const queryClient = new QueryClient();
 
