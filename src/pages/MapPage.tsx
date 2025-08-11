@@ -750,7 +750,7 @@ export default function MapPage() {
                 {mapData.fastestGrowingSkills.map((skill, index) => (
                   <div
                     key={index}
-                    className="flex items-center gap-2 bg-white dark:bg-slate-800 border rounded-full px-4 py-2 hover:shadow-md transition-all cursor-pointer"
+                    className="flex items-center gap-2 bg-card border border-border rounded-full px-4 py-2 hover:shadow-md transition-all cursor-pointer"
                   >
                     <span className="font-medium text-sm">{skill.name}</span>
                     <Badge variant="secondary" className="text-green-700 bg-green-100">
