@@ -140,9 +140,9 @@ export default function SearchResults() {
         // Boost relevance if search matches
         if (searchQuery) {
           const query = searchQuery.toLowerCase();
-          if (user.name.toLowerCase().includes(query) ||
-              user.skillTitle.toLowerCase().includes(query) ||
-              user.category.toLowerCase().includes(query)) {
+          if ((user.name?.toLowerCase() || '').includes(query) ||
+              (user.skillTitle?.toLowerCase() || '').includes(query) ||
+              (user.category?.toLowerCase() || '').includes(query)) {
             relevanceScore += 30;
           }
         }
