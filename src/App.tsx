@@ -50,6 +50,7 @@ const App = () => (
           <Routes>
             {/* Home page */}
             <Route path="/" element={<Layout><Home /></Layout>} />
+            <Route path="/Home" element={<Navigate to="/" replace />} />
             
             {/* Core app pages */}
             <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
