@@ -672,27 +672,29 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
       </div>
 
       {/* Booking Modal */}
-      {/* <BookingModalUnified
-        isOpen={showBookingModal}
-        onClose={() => setShowBookingModal(false)}
-        mode="course"
-        course={{
-          id: course.id,
-          title: course.title,
-          image: course.thumbnail,
-          credits: course.credits,
-          instructor: instructor.name,
-          category: course.category,
-          duration: course.duration,
-          nextCohortDate: course.cohort?.nextStart,
-          selfPaced: course.isSelfPaced
-        }}
-        userBalance={720} // Mock user balance
-        onBookingConfirm={(bookingData) => {
-          console.log('Booking confirmed:', bookingData);
-          setShowBookingModal(false);
-        }}
-      /> */}
+      {showBookingModal && (
+        <BookingModalUnified
+          isOpen={showBookingModal}
+          onClose={() => setShowBookingModal(false)}
+          mode="course"
+          course={{
+            id: course.id,
+            title: course.title,
+            image: course.thumbnail,
+            credits: course.credits,
+            instructor: instructor.name,
+            category: course.category,
+            duration: course.duration,
+            nextCohortDate: course.cohort?.nextStart,
+            selfPaced: course.isSelfPaced
+          }}
+          userBalance={720} // Mock user balance
+          onBookingConfirm={(bookingData) => {
+            console.log('Booking confirmed:', bookingData);
+            setShowBookingModal(false);
+          }}
+        />
+      )}
 
       {/* Instant Help Drawer */}
       {/* <InstantHelpDrawer
