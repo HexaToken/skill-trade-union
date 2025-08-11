@@ -65,7 +65,7 @@ export default function SkillCard({
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-educational-blue/10 to-educational-cyan/10 flex items-center justify-center text-2xl group-hover:scale-110 transition-all duration-300 shadow-md">
+            <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-200">
               {skill.icon}
             </div>
             <div className="flex-1 min-w-0">
