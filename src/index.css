@@ -90,13 +90,13 @@ All colors MUST be HSL.
     --primary-foreground: 255 255 255;
 
     --secondary: 189 94% 43%; /* #06B6D4 - Keep light cyan */
-    --secondary-foreground: 15 23 42; /* Deep navy for cyan background */
+    --secondary-foreground: 255 255 255; /* White text for better contrast */
 
     --muted: 30 41 59; /* #1E293B - Dark slate for muted sections */
     --muted-foreground: 148 163 184; /* #94A3B8 - Muted text */
 
     --accent: 189 94% 43%; /* #06B6D4 - Light cyan accent */
-    --accent-foreground: 15 23 42;
+    --accent-foreground: 255 255 255; /* White text for better contrast */
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 255 255 255;
