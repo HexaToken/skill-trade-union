@@ -418,27 +418,37 @@ export default function Classes() {
   const FiltersPanel = () => (
     <div className="space-y-6">
 
-      {/* Category */}
-      <FilterSection 
-        title="Category" 
+      <FilterSection
+        title="Category"
         isExpanded={expandedSections.category}
         onToggle={() => toggleSection('category')}
       >
-        <div className="space-y-3">
-          {Array.from(new Set(skills.map(s => s.category))).map(category => (
-            <label key={category} className="filter-option cursor-pointer">
-              <div className="flex items-center gap-2">
-                <Checkbox
-                  checked={filters.category === category}
-                  onCheckedChange={(checked) => {
-                    updateFilter('category', checked ? category : '');
-                  }}
-                />
-                <span className="text-sm">{category}</span>
+        <div className="space-y-2">
+          {[
+            { name: 'Technology', count: 12 },
+            { name: 'Design', count: 8 },
+            { name: 'Business', count: 15 },
+            { name: 'Languages', count: 6 },
+            { name: 'Creative', count: 10 }
+          ].map(category => (
+            <label key={category.name} className="group cursor-pointer block">
+              <div className="flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/50 p-2 rounded-lg transition-colors">
+                <div className="flex items-center gap-3">
+                  <Checkbox
+                    checked={filters.category === category.name}
+                    onCheckedChange={(checked) => {
+                      updateFilter('category', checked ? category.name : '');
+                    }}
+                    className="rounded border-2 data-[state=checked]:bg-[#0056D2] data-[state=checked]:border-[#0056D2] focus:ring-2 focus:ring-[#0056D2] focus:ring-offset-2"
+                  />
+                  <span className="text-sm text-[#1E293B] dark:text-[#F1F5F9] font-medium">
+                    {category.name}
+                  </span>
+                </div>
+                <span className="text-xs text-[#94A3B8] font-medium">
+                  {category.count}
+                </span>
               </div>
-              <span className="text-xs text-muted-foreground">
-                {classes.filter(c => c.category === category).length}
-              </span>
             </label>
           ))}
         </div>
