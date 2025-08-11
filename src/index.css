@@ -86,7 +86,7 @@ All colors MUST be HSL.
     --popover: 30 41 59;
     --popover-foreground: 226 232 240;
 
-    --primary: 0 86% 41%; /* #0056D2 - Keep deep blue */
+    --primary: 214 100% 41%; /* #0056D2 - Keep deep blue */
     --primary-foreground: 255 255 255;
 
     --secondary: 189 95% 43%; /* #06B6D4 - Keep light cyan */
