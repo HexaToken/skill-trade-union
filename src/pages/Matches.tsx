@@ -341,7 +341,11 @@ export default function Matches() {
                     variant={viewMode === 'list' ? 'default' : 'ghost'}
                     size="sm"
                     onClick={() => setViewMode('list')}
-                    className="rounded-r-none border-r"
+                    className={`rounded-r-none border-r-0 ${
+                      viewMode === 'list'
+                        ? 'bg-educational-blue text-white hover:bg-educational-blue/90'
+                        : 'hover:bg-educational-blue/10 hover:text-educational-blue'
+                    }`}
                   >
                     <List className="w-4 h-4" />
                   </Button>
@@ -349,7 +353,11 @@ export default function Matches() {
                     variant={viewMode === 'map' ? 'default' : 'ghost'}
                     size="sm"
                     onClick={() => setViewMode('map')}
-                    className="rounded-l-none"
+                    className={`rounded-l-none ${
+                      viewMode === 'map'
+                        ? 'bg-educational-cyan text-white hover:bg-educational-cyan/90'
+                        : 'hover:bg-educational-cyan/10 hover:text-educational-cyan'
+                    }`}
                   >
                     <Map className="w-4 h-4" />
                   </Button>
