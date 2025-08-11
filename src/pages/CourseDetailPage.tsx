@@ -82,7 +82,7 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
     if (expandAllModules) {
       setExpandedModules([]);
     } else {
-      setExpandedModules(course.curriculum.map(m => m.id));
+      setExpandedModules(course.curriculum?.map(m => m.id) || []);
     }
     setExpandAllModules(!expandAllModules);
   };
