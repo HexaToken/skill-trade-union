@@ -171,34 +171,34 @@ export default function Home() {
       </section>
 
       {/* Category Rail */}
-      <section className="py-12 border-b">
+      <section className="py-16 border-b bg-gradient-to-b from-white to-slate-50/50 dark:from-slate-900 dark:to-slate-800/50">
         <div className="page-container">
           <div className="text-center space-y-6">
-            <h2 className="text-3xl font-heading font-bold">Explore by Category</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <h2 className="text-4xl font-heading font-bold text-slate-800 dark:text-white">Explore by Category</h2>
+            <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
               Discover skills across diverse categories or dive deep into your area of expertise
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-3 mt-8">
+          <div className="flex flex-wrap justify-center gap-4 mt-12">
             {categories.map((category) => (
               <Button
                 key={category.id}
                 variant={selectedCategory === category.id ? "default" : "outline"}
                 size="lg"
-                className={`hover-scale transition-all duration-200 shadow-sm hover:shadow-md ${
+                className={`hover-scale transition-all duration-300 shadow-lg hover:shadow-xl rounded-2xl border-2 ${
                   selectedCategory === category.id
-                    ? 'bg-brand-primary hover:bg-brand-primary/90 text-white'
-                    : 'bg-card hover:bg-card/80 text-brand-neutral hover:text-foreground hover:border-brand-secondary hover:shadow-glow'
+                    ? 'bg-gradient-to-r from-educational-blue to-educational-cyan hover:from-educational-cyan hover:to-purple-500 text-white border-transparent shadow-xl'
+                    : 'bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm hover:bg-white dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 hover:text-educational-blue border-slate-200 dark:border-slate-600 hover:border-educational-cyan/50 hover:shadow-2xl hover:-translate-y-1'
                 }`}
                 onClick={() => setSelectedCategory(category.id === selectedCategory ? null : category.id)}
                 asChild
               >
                 <Link to={`/matches?category=${category.name}`}>
-                  <span className="text-lg mr-2">{category.icon}</span>
-                  {category.name}
+                  <span className="text-xl mr-3">{category.icon}</span>
+                  <span className="font-medium">{category.name}</span>
                   {category.popular && (
-                    <Badge size="sm" variant="secondary" className="ml-2 bg-brand-secondary/10 text-brand-secondary border-brand-secondary/20">
+                    <Badge size="sm" variant="secondary" className="ml-3 bg-gradient-to-r from-orange-100 to-amber-100 text-orange-600 border-orange-200 font-medium">
                       Popular
                     </Badge>
                   )}
