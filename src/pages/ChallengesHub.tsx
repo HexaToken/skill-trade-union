@@ -211,7 +211,7 @@ const ChallengesHub = () => {
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-[#64748B] dark:text-[#94A3B8]">Status</Label>
                   <Select value={filters.status} onValueChange={(value) => setFilters(prev => ({ ...prev, status: value }))}>
-                    <SelectTrigger className="w-40 border-[#0056D2]/20 focus:border-[#0056D2] focus:ring-[#0056D2]">
+                    <SelectTrigger className="w-40 bg-white border-[#0056D2]/20 focus:border-[#0056D2] focus:ring-[#0056D2] text-[#0F172A]">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
