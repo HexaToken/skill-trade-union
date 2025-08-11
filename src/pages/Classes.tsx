@@ -717,13 +717,20 @@ export default function Classes() {
               ))}
             </div>
           ) : (
-            <Card className="p-12 text-center">
-              <BookOpen className="w-16 h-16 mx-auto mb-4 text-muted-foreground opacity-50" />
-              <h3 className="text-lg font-semibold mb-2">No classes found</h3>
-              <p className="text-muted-foreground mb-6">
-                Try adjusting your filters or search terms.
+            <Card className="p-12 text-center bg-white dark:bg-[#1E293B] border border-transparent dark:border-[rgba(255,255,255,0.06)]">
+              <div className="w-16 h-16 mx-auto mb-6 bg-[#0056D2]/10 rounded-2xl flex items-center justify-center">
+                <BookOpen className="w-8 h-8 text-[#0056D2]" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-[#0F172A] dark:text-[#F1F5F9] font-heading">No classes found</h3>
+              <p className="text-[#334155] dark:text-[#E2E8F0] mb-8 max-w-md mx-auto leading-relaxed">
+                Try adjusting your filters or search terms to discover more learning opportunities.
               </p>
-              <Button onClick={clearFilters}>Clear all filters</Button>
+              <Button
+                onClick={clearFilters}
+                className="bg-[#0056D2] hover:bg-[#004BB8] text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+              >
+                Clear all filters
+              </Button>
             </Card>
           )}
         </div>
