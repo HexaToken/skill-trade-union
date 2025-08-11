@@ -346,7 +346,7 @@ export default function Home() {
       </section>
 
       {/* ExpertMatch AI Promo */}
-      <section className="py-16 bg-gradient-to-r from-brand-amber/10 via-background to-brand-secondary/10 border-y">
+      <section className="py-16 bg-gradient-to-r from-blue-50/50 via-background to-cyan-50/50 dark:from-slate-800/50 dark:via-background dark:to-cyan-900/20 border-y">
         <div className="page-container">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-amber to-brand-secondary rounded-2xl shadow-lg">
