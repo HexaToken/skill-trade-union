@@ -26,10 +26,10 @@ interface InstantHelpDrawerProps {
 type Step = 'request' | 'matching' | 'experts' | 'payment' | 'connecting';
 
 const urgencyOptions = [
-  { value: 'low', label: 'Low - Can wait a few hours', color: 'bg-brand-green/10 text-brand-green border-brand-green/20' },
-  { value: 'medium', label: 'Medium - Need help today', color: 'bg-brand-amber/10 text-brand-amber border-brand-amber/20' },
-  { value: 'high', label: 'High - Need help within 1 hour', color: 'bg-brand-secondary/10 text-brand-secondary border-brand-secondary/20' },
-  { value: 'critical', label: 'Critical - Emergency help needed', color: 'bg-brand-red/10 text-brand-red border-brand-red/20' }
+  { value: 'low', label: 'Low - Can wait a few hours', color: 'bg-brand-success/10 text-brand-success border-brand-success/20' },
+  { value: 'medium', label: 'Medium - Need help today', color: 'bg-brand-secondary/10 text-brand-secondary border-brand-secondary/20' },
+  { value: 'high', label: 'High - Need help within 1 hour', color: 'bg-brand-primary/10 text-brand-primary border-brand-primary/20' },
+  { value: 'critical', label: 'Critical - Emergency help needed', color: 'bg-brand-danger/10 text-brand-danger border-brand-danger/20' }
 ];
 
 export default function InstantHelpDrawer({ 
