@@ -108,23 +108,28 @@ export default function SearchResults() {
   };
 
   // Mock data transformation for search results
-  const mockUsers = users.slice(0, 12).map(user => ({
-    name: user.name || 'Unknown User',
-    location: (user.location?.city || 'Unknown') + ', ' + (user.location?.country || 'Unknown'),
-    avatarUrl: user.avatarUrl || '',
-    rating: user.ratingAvg || 4.0,
-    reviews: user.ratingCount || 0,
-    availabilityNote: 'Available in 2h',
-    sameCity: Math.random() > 0.7,
-    skillTitle: user.skills?.[0]?.name || 'Web Development',
-    category: user.skills?.[0]?.category || 'Technology',
-    creditsPerHour: user.skills?.[0]?.rate || 25,
-    level: 'Level 2',
-    blurb: user.bio || 'Experienced professional ready to help you learn.',
-    verifiedID: Math.random() > 0.5,
-    skillTested: Math.random() > 0.6,
-    matchPercent: Math.floor(Math.random() * 30) + 70
-  }));
+  const mockUsers = users.slice(0, 12).map(user => {
+    const primarySkill = user.skillsOffered?.[0];
+    const skillData = skills.find(s => s.id === primarySkill?.skillId);
+
+    return {
+      name: user.name || 'Unknown User',
+      location: (user.location?.city || 'Unknown') + ', ' + (user.location?.country || 'Unknown'),
+      avatarUrl: user.avatarUrl || '',
+      rating: user.ratingAvg || 4.0,
+      reviews: user.ratingCount || 0,
+      availabilityNote: 'Available in 2h',
+      sameCity: Math.random() > 0.7,
+      skillTitle: skillData?.name || 'Web Development',
+      category: skillData?.category || 'Technology',
+      creditsPerHour: skillData?.baseRateCredits || 25,
+      level: 'Level 2',
+      blurb: user.bio || 'Experienced professional ready to help you learn.',
+      verifiedID: Math.random() > 0.5,
+      skillTested: Math.random() > 0.6,
+      matchPercent: Math.floor(Math.random() * 30) + 70
+    };
+  });
 
   const mockCourses = courses.slice(0, 8).map(course => ({
     ...course,
