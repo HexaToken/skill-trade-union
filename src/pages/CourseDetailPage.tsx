@@ -34,7 +34,7 @@ import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { cn } from '@/lib/utils';
 import { courseDetailData, relatedCourses } from '@/data/courseData';
-// import BookingModalUnified from '@/components/BookingModalUnified';
+import BookingModalUnified from '@/components/BookingModalUnified';
 // import InstantHelpDrawer from '@/components/InstantHelpDrawer';
 
 interface CourseDetailPageProps {
