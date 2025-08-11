@@ -192,17 +192,17 @@ const MentorsDirectory = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-educational-blue-50 to-educational-cyan-50 dark:from-dark border-b">
+      <div className="bg-gradient-to-r from-[#0056D2]/5 to-[#06B6D4]/5 dark:from-[#0F172A] dark:to-[#1E293B] border-b">
         <div className="container mx-auto px-4 py-12 lg:py-16">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4">
+            <h1 className="text-4xl lg:text-5xl font-heading font-bold bg-gradient-to-r from-[#0056D2] to-[#06B6D4] bg-clip-text text-transparent mb-4">
               Find Your Mentor
             </h1>
             <p className="text-lg lg:text-xl text-muted-foreground mb-6">
               Search a global network of experts ready to teach, guide, and collaborate.
             </p>
             <div className="text-sm text-muted-foreground">
-              <Badge variant="secondary" className="font-medium">
+              <Badge variant="secondary" className="bg-[#0056D2]/10 text-[#0056D2] border-[#0056D2]/20 font-medium">
                 {allMentors.length.toLocaleString()} mentors available
               </Badge>
             </div>
@@ -273,7 +273,7 @@ const MentorsDirectory = () => {
           {activeFilters.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-4">
               {activeFilters.map((filter, index) => (
-                <Badge key={index} variant="secondary" className="text-xs">
+                <Badge key={index} variant="secondary" className="text-xs bg-[#0056D2]/10 text-[#0056D2] border-[#0056D2]/20">
                   {filter}
                   <X className="h-3 w-3 ml-1" />
                 </Badge>
@@ -433,8 +433,8 @@ const FiltersSidebar: React.FC<FiltersSidebarProps> = ({ filters, onFilterChange
 
         {/* Clear Filters */}
         <div className="flex gap-2">
-          <Button size="sm" className="flex-1">Apply Filters</Button>
-          <Button variant="outline" size="sm" onClick={onClearAll} className="flex-1">
+          <Button size="sm" className="flex-1 bg-[#0056D2] hover:bg-[#004BB8] text-white">Apply Filters</Button>
+          <Button variant="outline" size="sm" onClick={onClearAll} className="flex-1 text-[#06B6D4] border-[#06B6D4]/20 hover:bg-[#06B6D4]/10">
             Clear All
           </Button>
         </div>
