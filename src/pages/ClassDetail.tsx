@@ -44,7 +44,7 @@ import type { Course } from '@/models/expert-types';
 
 const difficultyLabels = {
   1: { label: 'Beginner', color: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200', description: 'No prior experience required' },
-  2: { label: 'Intermediate', color: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200', description: 'Some basic knowledge helpful' },
+  2: { label: 'Intermediate', color: 'bg-brand-secondary/10 text-brand-secondary dark:bg-brand-secondary/20 dark:text-brand-secondary', description: 'Some basic knowledge helpful' },
   3: { label: 'Advanced', color: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200', description: 'Significant experience required' }
 };
 
