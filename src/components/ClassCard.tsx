@@ -97,17 +97,17 @@ export default function ClassCard({
         <div className="absolute top-3 left-3 flex gap-1">
           {course.badges.map((badge) => {
             const badgeConfig = {
-              group: { icon: Users, label: 'Group Class', color: 'bg-blue-500' },
-              materials: { icon: BookOpen, label: 'Materials', color: 'bg-green-500' },
+              group: { icon: Users, label: 'Group Class', color: 'bg-[#0056D2]' },
+              materials: { icon: BookOpen, label: 'Materials', color: 'bg-emerald-500' },
               recorded: { icon: Play, label: 'Recorded', color: 'bg-purple-500' },
-              certificate: { icon: Award, label: 'Certificate', color: 'bg-brand-secondary' }
+              certificate: { icon: Award, label: 'Certificate', color: 'bg-[#06B6D4]' }
             }[badge];
-            
+
             if (!badgeConfig) return null;
             const Icon = badgeConfig.icon;
-            
+
             return (
-              <Badge key={badge} className={cn('text-white border-0', badgeConfig.color)} size="sm">
+              <Badge key={badge} className={cn('text-white border-0 shadow-lg', badgeConfig.color)} size="sm">
                 <Icon className="w-3 h-3 mr-1" />
                 {badgeConfig.label}
               </Badge>
