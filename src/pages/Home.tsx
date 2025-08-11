@@ -102,7 +102,7 @@ export default function Home() {
                 </Link>
               </Button>
 
-              <Button size="lg" className="text-lg px-8 py-6 hover-scale bg-brand-secondary hover:bg-brand-secondary/90 text-foreground shadow-lg" asChild>
+              <Button size="lg" className="text-lg px-8 py-6 hover-scale bg-brand-secondary hover:bg-brand-secondary/90 text-white shadow-lg" asChild>
                 <Link to="/onboarding">
                   Offer a Skill
                 </Link>
