@@ -99,13 +99,13 @@ export function Footer({ className }: FooterProps) {
     { code: 'de', name: 'Deutsch' },
     { code: 'pt', name: 'Português' },
     { code: 'ja', name: '日本語' },
-    { code: 'zh', name: '中文' }
+    { code: 'zh', name: '��文' }
   ];
 
   return (
-    <footer className={cn('bg-gray-50 dark:bg-slate-800 border-t border-border/50', className)}>
+    <footer className={cn('bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 border-t border-slate-200 dark:border-slate-700', className)}>
       {/* Glowing top divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-brand-primary to-brand-secondary opacity-20" />
+      <div className="h-1 bg-gradient-to-r from-educational-blue via-educational-cyan to-purple-500 opacity-60" />
       
       <div className="page-container">
         {/* Upper section with columns */}
