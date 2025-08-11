@@ -105,7 +105,7 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
           {/* Breadcrumbs */}
-          <nav className="flex items-center space-x-2 text-sm text-slate-300 mb-6">
+          <nav className="flex items-center space-x-2 text-sm text-slate-300 mb-6 animate-fade-in">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-4 h-4" />
             <Link to="/classes" className="hover:text-white transition-colors">Classes</Link>
