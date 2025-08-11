@@ -242,16 +242,16 @@ export default function Home() {
       </section>
 
       {/* Featured Classes */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50/30 dark:from-slate-800 dark:to-cyan-900/20">
         <div className="page-container">
-          <div className="flex items-center justify-between mb-8">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-heading font-bold">Featured Classes</h2>
-              <p className="text-muted-foreground">
+          <div className="flex items-center justify-between mb-12">
+            <div className="space-y-3">
+              <h2 className="text-4xl font-heading font-bold text-slate-800 dark:text-white">Featured Classes</h2>
+              <p className="text-lg text-slate-600 dark:text-slate-300">
                 Join structured learning experiences with expert instructors
               </p>
             </div>
-            <Button variant="outline" asChild>
+            <Button variant="outline" className="border-educational-cyan text-educational-cyan hover:bg-educational-cyan hover:text-white rounded-xl px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300" asChild>
               <Link to="/classes">
                 Browse All Classes
                 <ArrowRight className="ml-2 w-4 h-4" />
