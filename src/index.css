@@ -213,10 +213,10 @@ All colors MUST be HSL.
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   }
 
-  /* Motion & Interactions - Warm EduTech */
+  /* Motion & Interactions - Coursera/Udemy */
   .hover-scale { @apply transition-transform duration-200 hover:scale-[1.02]; }
   .hover-lift {
-    @apply transition-all duration-200 hover:shadow-md hover:-translate-y-1;
+    @apply transition-all duration-200 hover:shadow-elev hover:-translate-y-1;
   }
   .hover-glow { @apply transition-all duration-200 hover:shadow-glow; }
 
@@ -224,17 +224,17 @@ All colors MUST be HSL.
   .text-gradient { @apply bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent; }
   .text-neo { @apply font-medium tracking-tight; }
 
-  /* Button Enhancements - Warm EduTech */
+  /* Button Enhancements - Coursera/Udemy */
   .btn-neo {
     background: var(--gradient-brand);
-    @apply text-white font-medium px-6 py-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5;
+    @apply text-white font-medium px-6 py-3 rounded-lg shadow-neo hover:shadow-glow transition-all duration-200 hover:-translate-y-0.5;
   }
 
   .btn-glass {
     background: var(--glass-bg);
     backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
-    @apply rounded-lg shadow-soft hover:shadow-md transition-all duration-200;
+    @apply rounded-lg shadow-soft hover:shadow-neo transition-all duration-200;
   }
 
   /* Layout Utilities */
