@@ -430,22 +430,22 @@ All colors MUST be HSL.
     @apply inline-flex items-center px-3 py-1 rounded-lg text-sm font-medium bg-brand-green/10 text-brand-green border border-brand-green/20;
   }
 
-  /* Filter and search styling */
+  /* Filter and search styling - Warm EduTech */
   .filter-group {
-    @apply space-y-4 p-4 border-b border-border;
+    @apply space-y-4 p-4 border-b border-border hover:bg-brand-primary/5 transition-colors;
   }
 
   .filter-title {
     @apply font-semibold text-sm text-foreground mb-3;
   }
 
-  /* Curriculum and lesson styling */
+  /* Curriculum and lesson styling - Warm EduTech */
   .curriculum-header {
-    @apply bg-muted p-4 font-semibold border-b border-border;
+    @apply bg-gradient-to-r from-muted to-muted/50 p-4 font-semibold border-b border-border;
   }
 
   .lesson-preview {
-    @apply text-brand-primary text-sm font-medium;
+    @apply text-brand-primary text-sm font-medium hover:text-brand-primary/80 transition-colors;
   }
 
   .lesson-duration {
