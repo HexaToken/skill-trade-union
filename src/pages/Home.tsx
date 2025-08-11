@@ -363,7 +363,7 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-              <div className="space-y-3 p-6 bg-card rounded-xl shadow-sm border hover:shadow-md transition-shadow">
+              <div className="space-y-3 p-6 bg-card rounded-xl shadow-soft border hover:shadow-elev transition-shadow">
                 <div className="w-12 h-12 bg-brand-primary/10 rounded-lg flex items-center justify-center mx-auto">
                   <TrendingUp className="w-6 h-6 text-brand-primary" />
                 </div>
@@ -373,7 +373,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="space-y-3 p-6 bg-card rounded-xl shadow-sm border hover:shadow-md transition-shadow">
+              <div className="space-y-3 p-6 bg-card rounded-xl shadow-soft border hover:shadow-elev transition-shadow">
                 <div className="w-12 h-12 bg-brand-secondary/10 rounded-lg flex items-center justify-center mx-auto">
                   <Zap className="w-6 h-6 text-brand-secondary" />
                 </div>
@@ -383,9 +383,9 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="space-y-3 p-6 bg-card rounded-xl shadow-sm border hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 bg-brand-amber/10 rounded-lg flex items-center justify-center mx-auto">
-                  <Star className="w-6 h-6 text-brand-amber" />
+              <div className="space-y-3 p-6 bg-card rounded-xl shadow-soft border hover:shadow-elev transition-shadow">
+                <div className="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mx-auto">
+                  <Star className="w-6 h-6 text-brand-secondary" />
                 </div>
                 <h3 className="font-semibold text-foreground">Per-Minute Billing</h3>
                 <p className="text-sm text-muted-foreground">
