@@ -697,16 +697,18 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
       )}
 
       {/* Instant Help Drawer */}
-      {/* <InstantHelpDrawer
-        isOpen={showInstantHelp}
-        onClose={() => setShowInstantHelp(false)}
-        context={{
-          type: 'course',
-          courseId: course.id,
-          courseTitle: course.title,
-          topic: course.category
-        }}
-      /> */}
+      {showInstantHelp && (
+        <InstantHelpDrawer
+          isOpen={showInstantHelp}
+          onClose={() => setShowInstantHelp(false)}
+          context={{
+            type: 'course',
+            courseId: course.id,
+            courseTitle: course.title,
+            topic: course.category
+          }}
+        />
+      )}
     </div>
   );
 }
