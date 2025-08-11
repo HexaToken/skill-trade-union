@@ -224,7 +224,7 @@ export default function Matches() {
 
               <InstantHelpDrawer
                 trigger={
-                  <Button className="bg-gradient-to-r from-brand-amber to-brand-secondary hover:from-brand-amber/90 hover:to-brand-secondary/90 text-white border-0 shadow-lg">
+                  <Button className="bg-gradient-to-r from-brand-primary to-brand-secondary hover:from-brand-secondary hover:to-brand-primary text-white border-0 shadow-lg">
                     Need Help Now?
                   </Button>
                 }
