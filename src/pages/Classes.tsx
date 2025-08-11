@@ -588,9 +588,9 @@ export default function Classes() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-slate-50/30 to-white dark:from-slate-900 dark:via-slate-800/30 dark:to-slate-900">
+    <div className="min-h-screen bg-[#F9FAFB] dark:bg-[#0F172A]">
       {/* Header */}
-      <div className="bg-gradient-to-r from-slate-50 to-white dark:from-slate-800 dark:to-slate-900 py-12 border-b border-slate-200 dark:border-slate-700">
+      <div className="bg-white dark:bg-[#1E293B] py-8 border-b border-slate-200 dark:border-slate-700">
         <div className="page-container">
           <div className="flex items-center justify-between mb-8">
             <div>
