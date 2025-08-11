@@ -255,7 +255,7 @@ const ChallengeDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white dark:bg-[#0F172A]">
       {/* Header Band */}
       <div className="border-b bg-gradient-to-r from-[#0056D2]/5 to-[#06B6D4]/5">
         <div className="container mx-auto px-4 py-8">
