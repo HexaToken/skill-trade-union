@@ -45,7 +45,7 @@ export default function ClassCard({
 
   if (variant === 'compact') {
     return (
-      <Card className={cn('bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover-lift cursor-pointer', className)} onClick={() => onViewDetails?.(course.id)}>
+      <Card className={cn('hover-lift cursor-pointer', className)} onClick={() => onViewDetails?.(course.id)}>
         <div className="flex items-center gap-4 p-4">
           <div className="relative">
             <img 
