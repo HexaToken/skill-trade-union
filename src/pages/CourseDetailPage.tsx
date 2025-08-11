@@ -695,7 +695,7 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
       />
 
       {/* Instant Help Drawer */}
-      <InstantHelpDrawer
+      {/* <InstantHelpDrawer
         isOpen={showInstantHelp}
         onClose={() => setShowInstantHelp(false)}
         context={{
@@ -704,7 +704,7 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
           courseTitle: course.title,
           topic: course.category
         }}
-      />
+      /> */}
     </div>
   );
 }
