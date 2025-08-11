@@ -16,7 +16,7 @@ import Matches from "./pages/Matches";
 import SearchResults from "./pages/SearchResults";
 import Classes from "./pages/Classes";
 import ClassDetail from "./pages/ClassDetail";
-import CourseDetailPage from "./pages/CourseDetailPage";
+import CourseDetailPageSimple from "./pages/CourseDetailPageSimple";
 import SkillPaths from "./pages/SkillPaths";
 import Wallet from "./pages/Wallet";
 import Profile from "./pages/Profile";
