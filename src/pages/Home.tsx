@@ -72,98 +72,99 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-white dark:bg-slate-900">
-        <div className="relative page-container py-16 md:py-24">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-8">
-                {/* Hero Badge */}
-                <Badge className="bg-brand-primary/10 text-brand-primary border-brand-primary/20 px-4 py-2 hover:bg-brand-primary/15 transition-colors">
-                  <Zap className="w-4 h-4 mr-2" />
-                  Now with ExpertMatch AI - Get instant help!
-                </Badge>
+        <div className="absolute inset-0 bg-grid-black/[0.02] bg-[size:50px_50px]" />
+        <div className="relative page-container py-20 md:py-32">
+          <div className="max-w-4xl mx-auto text-center space-y-8">
+            {/* Hero Badge */}
+            <Badge className="bg-brand-primary/10 text-brand-primary border-brand-primary/20 px-4 py-2 hover:bg-brand-primary/15 transition-colors">
+              <Zap className="w-4 h-4 mr-2" />
+              Now with ExpertMatch AI - Get instant help!
+            </Badge>
 
-                {/* Hero Title */}
-                <div className="space-y-6">
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight text-foreground">
-                    Master tomorrow's{' '}
-                    <span className="text-brand-primary">skills</span>{' '}
-                    today
-                  </h1>
-                  <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed">
-                    Power up your AI, career, and life skills with the most up-to-date, expert-led learning.
-                  </p>
-                </div>
-
-                {/* Hero Actions */}
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button size="lg" className="text-lg px-8 py-4 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold" asChild>
-                    <Link to="/matches">
-                      Try it free
-                    </Link>
-                  </Button>
-
-                  <Button size="lg" variant="outline" className="text-lg px-8 py-4 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white font-semibold" asChild>
-                    <Link to="/onboarding">
-                      Learn AI
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-
-              {/* Hero Image */}
-              <div className="relative lg:order-last">
-                <div className="aspect-[4/3] bg-gradient-to-br from-blue-50 via-cyan-50 to-purple-50 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 rounded-2xl shadow-xl overflow-hidden">
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets%2Ff4c91f9ec99d4058b7c30d339eebedc5%2Ff5a2524a561b42d4a3580ee146e9750f?format=webp&width=800"
-                    alt="Master tomorrow's skills today"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
+            {/* Hero Title */}
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
+                Trade{' '}
+                <span className="text-brand-primary">skills</span>,{' '}
+                <span className="text-brand-secondary">not cash</span>
+              </h1>
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                Learn anything, teach anything. Join the world's largest skill-sharing community where knowledge flows freely.
+              </p>
             </div>
 
+            {/* Hero Actions */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button size="lg" className="text-lg px-8 py-6 hover-scale bg-brand-primary hover:bg-gradient-to-r hover:from-brand-primary hover:to-brand-secondary text-white shadow-lg hover:shadow-glow" asChild>
+                <Link to="/matches">
+                  Find a Match
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
+              </Button>
+
+              <Button size="lg" className="text-lg px-8 py-6 hover-scale bg-brand-secondary hover:bg-brand-secondary/90 text-foreground shadow-lg" asChild>
+                <Link to="/onboarding">
+                  Offer a Skill
+                </Link>
+              </Button>
+
+              <InstantHelpDrawer
+                trigger={
+                  <Button size="lg" className="text-lg px-8 py-6 hover-scale bg-gradient-to-r from-brand-primary to-brand-secondary hover:from-brand-secondary hover:to-brand-primary text-white shadow-lg hover:shadow-glow">
+                    <Zap className="w-5 h-5 mr-2" />
+                    Need Help Now?
+                  </Button>
+                }
+              />
+            </div>
+
+            {/* Trust Indicators */}
+            <div className="flex flex-wrap justify-center gap-8 pt-8 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                  <Star className="w-4 h-4 text-green-600" />
+                </div>
+                <span>ID Verified Members</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                  <Award className="w-4 h-4 text-blue-600" />
+                </div>
+                <span>Skill Tested Experts</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                  <Heart className="w-4 h-4 text-purple-600" />
+                </div>
+                <span>Community Driven</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Ready to reimagine section */}
-      <section className="py-16 bg-gray-50 dark:bg-slate-800">
+      {/* Stats Section */}
+      <section className="py-16 border-b bg-card">
         <div className="page-container">
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-8">
-              <div className="text-center space-y-4">
-                <h2 className="text-3xl md:text-4xl font-heading font-bold">Ready to reimagine your career?</h2>
-                <p className="text-lg text-muted-foreground">
-                  Get the skills and real-world experience employers want with Career Accelerators.
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="bg-white dark:bg-slate-700 rounded-xl p-6 text-center space-y-4 shadow-sm">
-                  <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center mx-auto">
-                    <span className="text-3xl">💻</span>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => {
+              const Icon = stat.icon;
+              const colors = [
+                'bg-brand-primary/10 text-brand-primary',
+                'bg-brand-secondary/10 text-brand-secondary',
+                'bg-brand-primary/10 text-brand-primary',
+                'bg-brand-secondary/10 text-brand-secondary'
+              ];
+              return (
+                <div key={stat.label} className="text-center space-y-3">
+                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg ${colors[index % colors.length]}`}>
+                    <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="text-xl font-semibold">Programming</h3>
-                  <p className="text-muted-foreground">Master coding languages and frameworks</p>
+                  <div className="text-3xl font-bold font-heading text-brand-primary">{stat.value}</div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </div>
-
-                <div className="bg-white dark:bg-slate-700 rounded-xl p-6 text-center space-y-4 shadow-sm">
-                  <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center mx-auto">
-                    <span className="text-3xl">📱</span>
-                  </div>
-                  <h3 className="text-xl font-semibold">UX Design</h3>
-                  <p className="text-muted-foreground">Create user-centered digital experiences</p>
-                </div>
-
-                <div className="bg-white dark:bg-slate-700 rounded-xl p-6 text-center space-y-4 shadow-sm">
-                  <div className="w-16 h-16 bg-pink-100 dark:bg-pink-900/30 rounded-xl flex items-center justify-center mx-auto">
-                    <span className="text-3xl">📊</span>
-                  </div>
-                  <h3 className="text-xl font-semibold">Data Analytics</h3>
-                  <p className="text-muted-foreground">Turn data into actionable insights</p>
-                </div>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
       </section>
