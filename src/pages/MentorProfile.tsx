@@ -254,6 +254,29 @@ export default function MentorProfile() {
 
   const portfolioCategories = ['all', 'web', 'mobile', 'data'];
 
+  // Convert mentor data for BookingModal
+  const mentorForBooking = {
+    id: mentor.id,
+    name: mentor.name,
+    avatarUrl: mentor.avatarUrl,
+    rate: mentor.creditsPerHour,
+    availability: mentor.availability.flatMap(day =>
+      day.slots.map(slot => `${day.date}T${slot}:00`)
+    ),
+    verified: mentor.verifiedID,
+    skillTested: mentor.skillTested,
+    topMentor: mentor.topMentor,
+    location: mentor.location,
+    timezone: mentor.timezone,
+    skill: mentor.skills[0]?.name
+  };
+
+  const handleBookingConfirm = (bookingData: any) => {
+    console.log('Booking confirmed:', bookingData);
+    // Here you would typically send the booking data to your API
+    // and handle the response
+  };
+
   return (
     <TooltipProvider>
       <div className="min-h-screen bg-white dark:bg-[#0F172A]">
