@@ -1036,6 +1036,16 @@ export default function MentorProfile() {
             )}
           </DialogContent>
         </Dialog>
+
+        {/* Booking Modal */}
+        <BookingModalUnified
+          isOpen={isBookingModalOpen}
+          onClose={() => setIsBookingModalOpen(false)}
+          mode="mentor"
+          mentor={mentorForBooking}
+          userBalance={720} // This would come from user context/state
+          onBookingConfirm={handleBookingConfirm}
+        />
       </div>
     </TooltipProvider>
   );
