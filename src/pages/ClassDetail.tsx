@@ -151,7 +151,7 @@ export default function ClassDetail() {
                       group: { label: 'Group Class', color: 'bg-blue-500 text-white' },
                       materials: { label: 'Materials Included', color: 'bg-green-500 text-white' },
                       recorded: { label: 'Recorded Sessions', color: 'bg-purple-500 text-white' },
-                      certificate: { label: 'Certificate', color: 'bg-yellow-500 text-white' }
+                      certificate: { label: 'Certificate', color: 'bg-brand-secondary text-white' }
                     }[badge];
                     
                     return badgeConfig ? (
