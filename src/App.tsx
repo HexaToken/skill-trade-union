@@ -24,6 +24,8 @@ import Onboarding from "./pages/Onboarding";
 import Placeholder from "./pages/Placeholder";
 import MentorProfile from "./pages/MentorProfile";
 import MentorsDirectory from "./pages/MentorsDirectory";
+import ChallengesHub from "./pages/ChallengesHub";
+import ChallengeDetail from "./pages/ChallengeDetail";
 
 const queryClient = new QueryClient();
 
