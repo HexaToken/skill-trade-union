@@ -672,7 +672,7 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
       </div>
 
       {/* Booking Modal */}
-      <BookingModalUnified
+      {/* <BookingModalUnified
         isOpen={showBookingModal}
         onClose={() => setShowBookingModal(false)}
         mode="course"
@@ -692,7 +692,7 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
           console.log('Booking confirmed:', bookingData);
           setShowBookingModal(false);
         }}
-      />
+      /> */}
 
       {/* Instant Help Drawer */}
       {/* <InstantHelpDrawer
