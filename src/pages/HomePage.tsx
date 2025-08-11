@@ -323,9 +323,24 @@ const HomePage = () => {
                             {person.wallet.credits} credits/hour
                           </div>
                         </div>
-                        <Button 
+                        <Button
                           className="w-full"
-                          onClick={() => setSelectedBooking({type: 'mentor', id: person.id})}
+                          onClick={() => setSelectedBooking({
+                            type: 'mentor',
+                            data: {
+                              id: person.id,
+                              name: person.name,
+                              avatarUrl: person.avatarUrl,
+                              rate: person.skillsOffered[0] ? 15 : 20,
+                              availability: ['Mon 9-5', 'Wed 2-6', 'Fri 10-4'],
+                              verified: person.verification?.idVerified || false,
+                              skillTested: person.verification?.testsPassed?.length > 0,
+                              topMentor: person.badges?.includes('top-mentor'),
+                              location: `${person.location.city}, ${person.location.country}`,
+                              timezone: person.timezone,
+                              skill: person.skillsOffered[0]?.skillId.replace('-', ' ') || 'General'
+                            }
+                          })}
                         >
                           Book Session
                         </Button>
