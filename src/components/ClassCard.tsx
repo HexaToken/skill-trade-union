@@ -210,8 +210,8 @@ export default function ClassCard({
         {showProgress && (
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
-              <span className="text-muted-foreground">Progress</span>
-              <span className="font-medium">{progress}% complete</span>
+              <span className="text-[#334155] dark:text-[#E2E8F0]">Progress</span>
+              <span className="font-semibold text-[#0F172A] dark:text-[#F1F5F9]">{progress}% complete</span>
             </div>
             <Progress value={progress} className="h-2" />
           </div>
@@ -219,8 +219,8 @@ export default function ClassCard({
 
         {/* Next session date */}
         {course.schedule?.length ? (
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Calendar className="w-4 h-4" />
+          <div className="flex items-center gap-2 text-sm text-[#334155] dark:text-[#E2E8F0]">
+            <Calendar className="w-4 h-4 text-[#06B6D4]" />
             <span>
               Next session: {new Date(course.schedule[0].date).toLocaleDateString()}
             </span>
@@ -228,19 +228,19 @@ export default function ClassCard({
         ) : null}
 
         {/* Action buttons */}
-        <div className="flex gap-2 pt-2">
+        <div className="flex gap-3 pt-3">
           <Button
             variant="outline"
             size="sm"
-            className="flex-1"
+            className="flex-1 border-[#06B6D4] text-[#06B6D4] hover:bg-[#06B6D4] hover:text-white transition-all duration-200 font-semibold"
             onClick={() => onViewDetails?.(course.id)}
           >
             View Details
           </Button>
-          
+
           <Button
             size="sm"
-            className="flex-1"
+            className="flex-1 bg-[#0056D2] hover:bg-[#004BB8] text-white font-semibold transition-all duration-200"
             onClick={() => onEnroll?.(course.id)}
             disabled={seatsRemaining === 0}
           >
