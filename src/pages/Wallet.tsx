@@ -82,19 +82,19 @@ export default function WalletPage() {
 
   const getTransactionIcon = (type: string) => {
     switch (type) {
-      case 'earn': return <ArrowUpIcon className="w-4 h-4 text-green-600" />;
-      case 'spend': return <ArrowDownIcon className="w-4 h-4 text-red-600" />;
-      case 'bonus': return <Gift className="w-4 h-4 text-purple-600" />;
-      case 'donation': return <Heart className="w-4 h-4 text-pink-600" />;
-      case 'refund': return <RefreshCw className="w-4 h-4 text-blue-600" />;
-      default: return <CreditCard className="w-4 h-4 text-gray-600" />;
+      case 'earn': return <ArrowUpIcon className="w-4 h-4 text-brand-success" />;
+      case 'spend': return <ArrowDownIcon className="w-4 h-4 text-brand-danger" />;
+      case 'bonus': return <Gift className="w-4 h-4 text-brand-primary" />;
+      case 'donation': return <Heart className="w-4 h-4 text-brand-secondary" />;
+      case 'refund': return <RefreshCw className="w-4 h-4 text-brand-secondary" />;
+      default: return <CreditCard className="w-4 h-4 text-brand-neutral" />;
     }
   };
 
   const getTransactionColor = (type: string, amount: number) => {
-    if (amount > 0) return 'text-green-600';
-    if (amount < 0) return 'text-red-600';
-    return 'text-gray-600';
+    if (amount > 0) return 'text-brand-success';
+    if (amount < 0) return 'text-brand-danger';
+    return 'text-brand-neutral';
   };
 
   const handleDonate = () => {
