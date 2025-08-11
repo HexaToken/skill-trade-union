@@ -604,31 +604,35 @@ export default function Classes() {
               {/* Mobile filters */}
               <Sheet open={isMobileFiltersOpen} onOpenChange={setIsMobileFiltersOpen}>
                 <SheetTrigger asChild>
-                  <Button variant="outline" className="lg:hidden">
+                  <Button variant="outline" className="lg:hidden border-[#06B6D4] text-[#06B6D4] hover:bg-[#06B6D4] hover:text-white rounded-xl">
                     <SlidersHorizontal className="w-4 h-4 mr-2" />
                     Filters
                     {activeFiltersCount > 0 && (
-                      <Badge variant="destructive" className="ml-2 h-5 w-5 p-0 text-xs">
+                      <Badge className="ml-2 h-5 w-5 p-0 text-xs bg-[#0056D2] text-white">
                         {activeFiltersCount}
                       </Badge>
                     )}
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="left" className="w-80 p-0 overflow-y-auto">
+                <SheetContent side="left" className="w-80 p-0 overflow-y-auto bg-white dark:bg-[#1E293B]">
                   <SheetHeader className="p-6 pb-0">
-                    <SheetTitle>Filters</SheetTitle>
+                    <SheetTitle className="text-[#0F172A] dark:text-[#F1F5F9]">Filters</SheetTitle>
                   </SheetHeader>
                   <FiltersPanel />
                 </SheetContent>
               </Sheet>
 
               {/* View mode toggle */}
-              <div className="hidden sm:flex rounded-lg border">
+              <div className="hidden sm:flex rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-[#1E293B] shadow-sm">
                 <Button
                   variant={viewMode === 'grid' ? 'default' : 'ghost'}
                   size="sm"
                   onClick={() => setViewMode('grid')}
-                  className="rounded-r-none"
+                  className={`rounded-r-none border-r-0 ${
+                    viewMode === 'grid'
+                      ? 'bg-[#0056D2] text-white hover:bg-[#004BB8]'
+                      : 'hover:bg-[#0056D2]/10 hover:text-[#0056D2]'
+                  }`}
                 >
                   <Grid3X3 className="w-4 h-4" />
                 </Button>
@@ -636,7 +640,11 @@ export default function Classes() {
                   variant={viewMode === 'list' ? 'default' : 'ghost'}
                   size="sm"
                   onClick={() => setViewMode('list')}
-                  className="rounded-l-none"
+                  className={`rounded-l-none ${
+                    viewMode === 'list'
+                      ? 'bg-[#06B6D4] text-white hover:bg-[#0891B2]'
+                      : 'hover:bg-[#06B6D4]/10 hover:text-[#06B6D4]'
+                  }`}
                 >
                   <List className="w-4 h-4" />
                 </Button>
