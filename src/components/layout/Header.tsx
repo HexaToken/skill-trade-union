@@ -62,7 +62,7 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/50 glass-header">
+    <header className="sticky top-0 z-50 w-full border-b border-border/20 glass-header backdrop-blur-xl bg-white/95 dark:bg-slate-900/95 transition-all duration-300">
       <div className="page-container">
         <div className="flex h-16 items-center justify-between">
           {/* Left section - Logo and nav */}
@@ -150,16 +150,19 @@ export default function Header() {
             </Sheet>
             
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2">
+            <Link to="/" className="flex items-center gap-3 hover-scale">
+              <div className="w-8 h-8 bg-gradient-to-br from-educational-blue to-educational-cyan rounded-lg flex items-center justify-center shadow-lg">
+                <span className="text-white font-bold text-sm">S</span>
+              </div>
               <span className="text-xl md:text-2xl font-heading font-bold text-gradient">
                 SkillSwap
               </span>
             </Link>
             
             {/* Tagline */}
-            <Badge 
-              variant="secondary" 
-              className="hidden sm:inline-flex bg-brand-primary/10 text-brand-primary border-brand-primary/20"
+            <Badge
+              variant="secondary"
+              className="hidden sm:inline-flex bg-gradient-to-r from-educational-blue/10 to-educational-cyan/10 text-educational-blue border-educational-blue/20 hover:border-educational-cyan/30 transition-colors"
             >
               Trade skills, not cash
             </Badge>
@@ -174,8 +177,8 @@ export default function Header() {
                   name="search"
                   placeholder="Search skills, people, or classes..."
                   className={cn(
-                    "w-full pl-10 pr-4 transition-all duration-200",
-                    isSearchFocused && "ring-2 ring-brand-primary ring-offset-2"
+                    "w-full pl-10 pr-4 transition-all duration-200 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-xl",
+                    isSearchFocused && "ring-2 ring-educational-blue ring-offset-2 border-educational-blue"
                   )}
                   onFocus={() => setIsSearchFocused(true)}
                   onBlur={() => setIsSearchFocused(false)}
