@@ -158,8 +158,8 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
 
               {/* CTAs - Mobile Only */}
               <div className="flex flex-col sm:flex-row gap-4 lg:hidden">
-                <Button 
-                  className="bg-gradient-to-r from-[#0056D2] to-[#06B6D4] hover:from-[#004BB8] hover:to-[#0891B2] text-white px-8 py-3 text-lg font-semibold rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300"
+                <Button
+                  className="bg-gradient-to-r from-[#0056D2] to-[#06B6D4] hover:from-[#004BB8] hover:to-[#0891B2] text-white px-8 py-3 text-lg font-semibold rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 transform"
                   onClick={() => setShowBookingModal(true)}
                 >
                   <Coins className="w-5 h-5 mr-2" />
