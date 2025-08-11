@@ -47,11 +47,11 @@ const Dashboard = () => {
             <p className="text-muted-foreground">Here's what's happening with your skills today.</p>
           </div>
           <div className="flex gap-3">
-            <Button onClick={() => navigate('/matches')}>
+            <Button onClick={() => navigate('/matches')} className="bg-brand-primary hover:bg-brand-primary/90">
               <Search className="w-4 h-4 mr-2" />
               Find Match
             </Button>
-            <Button variant="outline" onClick={() => navigate('/sessions')}>
+            <Button variant="outline" onClick={() => navigate('/sessions')} className="border-brand-secondary text-brand-secondary hover:bg-brand-secondary/10">
               <Plus className="w-4 h-4 mr-2" />
               Offer Skill
             </Button>
