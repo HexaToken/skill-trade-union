@@ -112,7 +112,7 @@ const Dashboard = () => {
           {/* Left Column - Main Content */}
           <div className="lg:col-span-2 space-y-8">
             {/* Upcoming Sessions */}
-            <Card className="glass-card">
+            <Card className="bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -171,7 +171,7 @@ const Dashboard = () => {
             </Card>
 
             {/* Suggested Matches */}
-            <Card className="glass-card">
+            <Card className="bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -209,7 +209,7 @@ const Dashboard = () => {
             </Card>
 
             {/* Learning Progress */}
-            <Card className="glass-card">
+            <Card className="bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BookOpen className="w-5 h-5 text-brand-green" />
@@ -251,7 +251,7 @@ const Dashboard = () => {
             />
 
             {/* Active Challenge */}
-            <Card className="glass-card">
+            <Card className="bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Trophy className="w-5 h-5 text-brand-amber" />
@@ -281,7 +281,7 @@ const Dashboard = () => {
             </Card>
 
             {/* Your Skills */}
-            <Card className="glass-card">
+            <Card className="bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Award className="w-5 h-5 text-brand-primary" />
