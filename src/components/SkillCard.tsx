@@ -69,7 +69,7 @@ export default function SkillCard({
               {skill.icon}
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-bold truncate text-slate-800 dark:text-white group-hover:text-educational-blue transition-colors">{skill.name}</h3>
+              <h3 className="font-semibold truncate text-slate-900 dark:text-slate-100">{skill.name}</h3>
               <p className="text-sm text-slate-600 dark:text-slate-300 truncate">{skill.category}</p>
             </div>
           </div>
