@@ -555,13 +555,11 @@ export default function MentorProfile() {
                               />
                             </div>
                             
-                            <Button 
-                              size="sm" 
+                            <Button
+                              size="sm"
                               variant="outline"
                               className="border-[#0056D2] text-[#0056D2] hover:bg-[#0056D2] hover:text-white"
-                              onClick={() => {
-                                document.getElementById('booking-card')?.scrollIntoView({ behavior: 'smooth' });
-                              }}
+                              onClick={() => setIsBookingModalOpen(true)}
                             >
                               Book a Session
                             </Button>
