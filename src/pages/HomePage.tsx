@@ -315,7 +315,7 @@ const HomePage = () => {
                             {person.skillsOffered[0]?.skillId.replace('-', ' ')}
                           </Badge>
                           <div className="flex items-center justify-center space-x-1">
-                            <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                            <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
                             <span className="font-semibold">{person.ratingAvg}</span>
                             <span className="text-gray-500">({person.ratingCount})</span>
                           </div>
@@ -393,7 +393,7 @@ const HomePage = () => {
                         <div className="flex items-center justify-between text-sm text-gray-600">
                           <span>{course.currentSeats}/{course.maxSeats} enrolled</span>
                           <div className="flex items-center space-x-1">
-                            <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                            <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
                             <span>4.8</span>
                           </div>
                         </div>
@@ -524,7 +524,7 @@ const HomePage = () => {
                 title: "AI Matching",
                 description: "Get the best skill partner in seconds with our intelligent matching system",
                 icon: <Zap className="h-8 w-8" />,
-                color: "from-yellow-500 to-orange-500"
+                color: "from-brand-primary to-brand-secondary"
               },
               {
                 title: "Verified Quality",
@@ -612,7 +612,7 @@ const HomePage = () => {
                   </div>
                   <div className="flex items-center space-x-1 mb-3">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                      <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
                   <p className="text-gray-600 dark:text-gray-400">"{testimonial.review}"</p>
@@ -634,7 +634,7 @@ const HomePage = () => {
             >
               <div className="text-center">
                 <motion.div
-                  className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full mb-8"
+                  className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-full mb-8"
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 >
@@ -673,7 +673,7 @@ const HomePage = () => {
                   ))}
                 </div>
 
-                <Button size="lg" variant="outline" className="border-2 border-yellow-500 text-yellow-600 hover:bg-yellow-50">
+                <Button size="lg" variant="outline" className="border-2 border-brand-primary text-brand-primary hover:bg-brand-primary/5">
                   <Crown className="mr-2 h-5 w-5" />
                   Upgrade to Pro
                 </Button>
