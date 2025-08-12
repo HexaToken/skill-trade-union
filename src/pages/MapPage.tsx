@@ -182,8 +182,8 @@ export default function MapPage() {
                 className={cn(
                   "text-sm",
                   inPersonOnly
-                    ? "bg-blue-600 hover:bg-blue-700 text-white"
-                    : "bg-white hover:bg-gray-50 text-gray-700 border-gray-300"
+                    ? "bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-500 dark:hover:bg-blue-600"
+                    : "bg-white hover:bg-gray-50 text-gray-700 border-gray-300 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-gray-200 dark:border-slate-600"
                 )}
               >
                 In-person
@@ -196,8 +196,8 @@ export default function MapPage() {
                 className={cn(
                   "text-sm",
                   onlineOnly
-                    ? "bg-blue-600 hover:bg-blue-700 text-white"
-                    : "bg-white hover:bg-gray-50 text-gray-700 border-gray-300"
+                    ? "bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-500 dark:hover:bg-blue-600"
+                    : "bg-white hover:bg-gray-50 text-gray-700 border-gray-300 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-gray-200 dark:border-slate-600"
                 )}
               >
                 Online
@@ -210,8 +210,8 @@ export default function MapPage() {
                 className={cn(
                   "text-sm",
                   verifiedOnly
-                    ? "bg-blue-600 hover:bg-blue-700 text-white"
-                    : "bg-white hover:bg-gray-50 text-gray-700 border-gray-300"
+                    ? "bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-500 dark:hover:bg-blue-600"
+                    : "bg-white hover:bg-gray-50 text-gray-700 border-gray-300 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-gray-200 dark:border-slate-600"
                 )}
               >
                 Verified Only
@@ -224,8 +224,8 @@ export default function MapPage() {
                 className={cn(
                   "text-sm",
                   challengesOnly
-                    ? "bg-blue-600 hover:bg-blue-700 text-white"
-                    : "bg-white hover:bg-gray-50 text-gray-700 border-gray-300"
+                    ? "bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-500 dark:hover:bg-blue-600"
+                    : "bg-white hover:bg-gray-50 text-gray-700 border-gray-300 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-gray-200 dark:border-slate-600"
                 )}
               >
                 Challenges
