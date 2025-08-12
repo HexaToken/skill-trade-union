@@ -369,7 +369,7 @@ export default function MapPage() {
                     <div className="absolute inset-0 animate-ping bg-brand-primary/20 rounded-full" />
 
                     {/* Marker */}
-                    <div className="relative bg-card dark:bg-slate-800 rounded-full p-3 shadow-lg border-2 border-brand-primary group-hover:border-brand-secondary">
+                    <div className="relative bg-white dark:bg-slate-800 rounded-full p-3 shadow-lg border-2 border-brand-primary group-hover:border-brand-secondary">
                       <IconComponent className="w-6 h-6 text-brand-primary" />
                     </div>
                     
