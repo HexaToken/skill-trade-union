@@ -278,7 +278,7 @@ const HomePage = () => {
 
           <Tabs defaultValue="people" className="space-y-8">
             <div className="flex justify-center">
-              <TabsList className="grid w-[300px] grid-cols-2">
+              <TabsList className="grid w-[300px] grid-cols-2 bg-gray-100 dark:bg-gray-800">
                 <TabsTrigger value="people" className="flex items-center space-x-2">
                   <Users className="h-4 w-4" />
                   <span>People</span>
