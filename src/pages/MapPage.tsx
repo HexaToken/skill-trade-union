@@ -149,24 +149,24 @@ export default function MapPage() {
           <div className="flex flex-wrap items-center gap-4">
             {/* Timeframe */}
             <Select value={selectedTimeframe} onValueChange={setSelectedTimeframe}>
-              <SelectTrigger className="w-40">
+              <SelectTrigger className="w-40 bg-white border-gray-300 text-gray-900 focus:border-brand-primary focus:ring-brand-primary">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="today">Today</SelectItem>
-                <SelectItem value="week">This Week</SelectItem>
-                <SelectItem value="month">This Month</SelectItem>
+              <SelectContent className="bg-white border-gray-200">
+                <SelectItem value="today" className="focus:bg-gray-100">Today</SelectItem>
+                <SelectItem value="week" className="focus:bg-gray-100">This Week</SelectItem>
+                <SelectItem value="month" className="focus:bg-gray-100">This Month</SelectItem>
               </SelectContent>
             </Select>
 
             {/* Skill Category */}
             <Select value={selectedCategories[0]} onValueChange={(value) => setSelectedCategories([value])}>
-              <SelectTrigger className="w-48">
+              <SelectTrigger className="w-48 bg-white border-gray-300 text-gray-900 focus:border-brand-primary focus:ring-brand-primary">
                 <SelectValue placeholder="All Categories" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-white border-gray-200">
                 {skillCategories.map((category) => (
-                  <SelectItem key={category} value={category}>
+                  <SelectItem key={category} value={category} className="focus:bg-gray-100">
                     {category === 'all' ? 'All Categories' : category}
                   </SelectItem>
                 ))}
