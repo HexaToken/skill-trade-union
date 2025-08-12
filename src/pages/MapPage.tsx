@@ -223,8 +223,9 @@ export default function MapPage() {
                 id="heatmap"
                 checked={showHeatmap}
                 onCheckedChange={setShowHeatmap}
+                className="data-[state=checked]:bg-brand-primary"
               />
-              <Label htmlFor="heatmap" className="flex items-center gap-2 text-sm">
+              <Label htmlFor="heatmap" className="flex items-center gap-2 text-sm text-gray-700">
                 <TrendingUp className="w-4 h-4" />
                 Heatmap
               </Label>
