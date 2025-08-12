@@ -570,7 +570,7 @@ export default function MapPage() {
               <TabsContent value="challenges" className="px-4 pb-4 space-y-4">
                 <div className="space-y-3">
                   {mapData.challenges.map((challenge) => (
-                    <div key={challenge.id} className="p-3 bg-muted/50 rounded-lg hover:bg-muted cursor-pointer">
+                    <div key={challenge.id} className="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer border border-gray-100">
                       <div className="flex items-start justify-between mb-2">
                         <h4 className="font-medium text-sm">{challenge.title}</h4>
                         <Badge variant="outline" className="text-xs">
