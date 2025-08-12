@@ -737,7 +737,7 @@ export default function MapPage() {
       </div>
 
       {/* Community Highlight Section */}
-      <div className="border-t border-border bg-gray-50/50">
+      <div className="border-t border-border bg-gray-50/50 dark:bg-slate-900/50">
         <div className="page-container py-12">
           <div className="space-y-8">
             {/* Most Active Cities */}
