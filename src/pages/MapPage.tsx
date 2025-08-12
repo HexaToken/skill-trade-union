@@ -174,46 +174,62 @@ export default function MapPage() {
             </Select>
 
             {/* Type Toggles */}
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2">
-                <Switch
-                  id="in-person"
-                  checked={inPersonOnly}
-                  onCheckedChange={setInPersonOnly}
-                  className="data-[state=checked]:!bg-blue-600 data-[state=unchecked]:!bg-gray-200"
-                />
-                <Label htmlFor="in-person" className="text-sm text-gray-700">In-person</Label>
-              </div>
+            <div className="flex items-center gap-4">
+              <Button
+                variant={inPersonOnly ? "default" : "outline"}
+                size="sm"
+                onClick={() => setInPersonOnly(!inPersonOnly)}
+                className={cn(
+                  "text-sm",
+                  inPersonOnly
+                    ? "bg-blue-600 hover:bg-blue-700 text-white"
+                    : "bg-white hover:bg-gray-50 text-gray-700 border-gray-300"
+                )}
+              >
+                In-person
+              </Button>
 
-              <div className="flex items-center gap-2">
-                <Switch
-                  id="online"
-                  checked={onlineOnly}
-                  onCheckedChange={setOnlineOnly}
-                  className="data-[state=checked]:!bg-blue-600 data-[state=unchecked]:!bg-gray-200"
-                />
-                <Label htmlFor="online" className="text-sm text-gray-700">Online</Label>
-              </div>
+              <Button
+                variant={onlineOnly ? "default" : "outline"}
+                size="sm"
+                onClick={() => setOnlineOnly(!onlineOnly)}
+                className={cn(
+                  "text-sm",
+                  onlineOnly
+                    ? "bg-blue-600 hover:bg-blue-700 text-white"
+                    : "bg-white hover:bg-gray-50 text-gray-700 border-gray-300"
+                )}
+              >
+                Online
+              </Button>
 
-              <div className="flex items-center gap-2">
-                <Switch
-                  id="verified"
-                  checked={verifiedOnly}
-                  onCheckedChange={setVerifiedOnly}
-                  className="data-[state=checked]:!bg-blue-600 data-[state=unchecked]:!bg-gray-200"
-                />
-                <Label htmlFor="verified" className="text-sm text-gray-700">Verified Only</Label>
-              </div>
+              <Button
+                variant={verifiedOnly ? "default" : "outline"}
+                size="sm"
+                onClick={() => setVerifiedOnly(!verifiedOnly)}
+                className={cn(
+                  "text-sm",
+                  verifiedOnly
+                    ? "bg-blue-600 hover:bg-blue-700 text-white"
+                    : "bg-white hover:bg-gray-50 text-gray-700 border-gray-300"
+                )}
+              >
+                Verified Only
+              </Button>
 
-              <div className="flex items-center gap-2">
-                <Switch
-                  id="challenges"
-                  checked={challengesOnly}
-                  onCheckedChange={setChallengesOnly}
-                  className="data-[state=checked]:!bg-blue-600 data-[state=unchecked]:!bg-gray-200"
-                />
-                <Label htmlFor="challenges" className="text-sm text-gray-700">Challenges</Label>
-              </div>
+              <Button
+                variant={challengesOnly ? "default" : "outline"}
+                size="sm"
+                onClick={() => setChallengesOnly(!challengesOnly)}
+                className={cn(
+                  "text-sm",
+                  challengesOnly
+                    ? "bg-blue-600 hover:bg-blue-700 text-white"
+                    : "bg-white hover:bg-gray-50 text-gray-700 border-gray-300"
+                )}
+              >
+                Challenges
+              </Button>
             </div>
 
             {/* Heatmap Toggle */}
