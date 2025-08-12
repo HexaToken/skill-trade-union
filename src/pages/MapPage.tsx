@@ -234,18 +234,20 @@ export default function MapPage() {
 
             {/* Heatmap Toggle */}
             <Separator orientation="vertical" className="h-6" />
-            <div className="flex items-center gap-2">
-              <Switch
-                id="heatmap"
-                checked={showHeatmap}
-                onCheckedChange={setShowHeatmap}
-                className="data-[state=checked]:!bg-blue-600 data-[state=unchecked]:!bg-gray-200"
-              />
-              <Label htmlFor="heatmap" className="flex items-center gap-2 text-sm text-gray-700">
-                <TrendingUp className="w-4 h-4" />
-                Heatmap
-              </Label>
-            </div>
+            <Button
+              variant={showHeatmap ? "default" : "outline"}
+              size="sm"
+              onClick={() => setShowHeatmap(!showHeatmap)}
+              className={cn(
+                "text-sm",
+                showHeatmap
+                  ? "bg-blue-600 hover:bg-blue-700 text-white"
+                  : "bg-white hover:bg-gray-50 text-gray-700 border-gray-300"
+              )}
+            >
+              <TrendingUp className="w-4 h-4 mr-2" />
+              Heatmap
+            </Button>
           </div>
         </div>
       </div>
