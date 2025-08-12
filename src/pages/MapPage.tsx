@@ -664,7 +664,7 @@ export default function MapPage() {
                       {mapData.nearbyMentors.map((mentor) => (
                         <div
                           key={mentor.id}
-                          className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg hover:bg-muted"
+                          className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 border border-gray-100"
                           onClick={() => navigate(`/profile/${mentor.id}`)}
                         >
                           <Avatar className="w-14 h-14">
