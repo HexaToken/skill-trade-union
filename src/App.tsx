@@ -29,6 +29,8 @@ import ChallengeDetail from "./pages/ChallengeDetail";
 import SkillSprintPage from "./pages/SkillSprintPage";
 import OfflineTradeConfirmPage from "./pages/OfflineTradeConfirmPage";
 import OfflineTradeReceipt from "./pages/OfflineTradeReceipt";
+import MapPage from "./pages/MapPage";
+import DonationPage from "./pages/DonationPage";
 
 const queryClient = new QueryClient();
 
@@ -89,10 +91,10 @@ const App = () => (
             <Route path="/trade/:tradeId/receipt" element={<Layout><OfflineTradeReceipt /></Layout>} />
             <Route path="/trade/:tradeId/dispute" element={<Layout><Placeholder title="Trade Dispute" desc="Report an issue with this trade. Our team will review it within 24-48 hours." /></Layout>} />
 
-            <Route path="/map" element={<Layout><Placeholder title="Global Skill Map" desc="Explore trending skills by region. Coming soon!" /></Layout>} />
+            <Route path="/map" element={<Layout><MapPage /></Layout>} />
             
             {/* Community & giving */}
-            <Route path="/donate" element={<Layout><Placeholder title="Donations & Crypto" desc="Donate credits or tip in crypto to programs you love." /></Layout>} />
+            <Route path="/donate" element={<Layout><DonationPage /></Layout>} />
             
             {/* Admin & settings */}
             <Route path="/admin" element={<Layout><Placeholder title="Admin Portal" desc="Moderation, analytics, and platform management." /></Layout>} />
