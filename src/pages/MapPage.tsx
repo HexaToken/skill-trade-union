@@ -507,7 +507,7 @@ export default function MapPage() {
               <TabsContent value="trending" className="px-4 pb-4 space-y-4">
                 <div className="space-y-3">
                   {mapData.trendingSkills.map((skill, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer border border-gray-100">
+                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-slate-800 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer border border-gray-100 dark:border-slate-600">
                       <div className="flex items-center gap-3">
                         <skill.icon className="w-5 h-5 text-brand-primary" />
                         <div>
