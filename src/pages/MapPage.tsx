@@ -614,10 +614,10 @@ export default function MapPage() {
 
                 {/* Mobile Tabs */}
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="h-full">
-                  <TabsList className="grid w-full grid-cols-3 mb-6">
-                    <TabsTrigger value="trending">Trending</TabsTrigger>
-                    <TabsTrigger value="mentors">Mentors</TabsTrigger>
-                    <TabsTrigger value="challenges">Events</TabsTrigger>
+                  <TabsList className="grid w-full grid-cols-3 mb-6 bg-gray-100 p-1">
+                    <TabsTrigger value="trending" className="data-[state=active]:bg-white data-[state=active]:text-gray-900">Trending</TabsTrigger>
+                    <TabsTrigger value="mentors" className="data-[state=active]:bg-white data-[state=active]:text-gray-900">Mentors</TabsTrigger>
+                    <TabsTrigger value="challenges" className="data-[state=active]:bg-white data-[state=active]:text-gray-900">Events</TabsTrigger>
                   </TabsList>
 
                   {/* Mobile Trending Skills Tab */}
