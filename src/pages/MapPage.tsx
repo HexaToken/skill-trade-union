@@ -527,9 +527,9 @@ export default function MapPage() {
               <TabsContent value="mentors" className="px-4 pb-4 space-y-4">
                 <div className="space-y-3">
                   {mapData.nearbyMentors.map((mentor) => (
-                    <div 
+                    <div
                       key={mentor.id}
-                      className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg hover:bg-muted cursor-pointer"
+                      className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer border border-gray-100"
                       onClick={() => navigate(`/profile/${mentor.id}`)}
                     >
                       <Avatar className="w-12 h-12">
