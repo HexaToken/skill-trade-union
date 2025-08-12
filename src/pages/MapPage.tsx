@@ -144,7 +144,7 @@ export default function MapPage() {
       </div>
 
       {/* Filters Section - Desktop */}
-      <div className="hidden md:block border-b border-border bg-card/80 backdrop-blur sticky top-0 z-40">
+      <div className="hidden md:block border-b border-border bg-white/95 backdrop-blur sticky top-0 z-40">
         <div className="page-container py-4">
           <div className="flex flex-wrap items-center gap-4">
             {/* Timeframe */}
