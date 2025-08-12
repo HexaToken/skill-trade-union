@@ -180,8 +180,9 @@ export default function MapPage() {
                   id="in-person"
                   checked={inPersonOnly}
                   onCheckedChange={setInPersonOnly}
+                  className="data-[state=checked]:bg-brand-primary"
                 />
-                <Label htmlFor="in-person" className="text-sm">In-person</Label>
+                <Label htmlFor="in-person" className="text-sm text-gray-700">In-person</Label>
               </div>
 
               <div className="flex items-center gap-2">
@@ -189,8 +190,9 @@ export default function MapPage() {
                   id="online"
                   checked={onlineOnly}
                   onCheckedChange={setOnlineOnly}
+                  className="data-[state=checked]:bg-brand-primary"
                 />
-                <Label htmlFor="online" className="text-sm">Online</Label>
+                <Label htmlFor="online" className="text-sm text-gray-700">Online</Label>
               </div>
 
               <div className="flex items-center gap-2">
@@ -198,8 +200,9 @@ export default function MapPage() {
                   id="verified"
                   checked={verifiedOnly}
                   onCheckedChange={setVerifiedOnly}
+                  className="data-[state=checked]:bg-brand-primary"
                 />
-                <Label htmlFor="verified" className="text-sm">Verified Only</Label>
+                <Label htmlFor="verified" className="text-sm text-gray-700">Verified Only</Label>
               </div>
 
               <div className="flex items-center gap-2">
@@ -207,8 +210,9 @@ export default function MapPage() {
                   id="challenges"
                   checked={challengesOnly}
                   onCheckedChange={setChallengesOnly}
+                  className="data-[state=checked]:bg-brand-primary"
                 />
-                <Label htmlFor="challenges" className="text-sm">Challenges</Label>
+                <Label htmlFor="challenges" className="text-sm text-gray-700">Challenges</Label>
               </div>
             </div>
 
