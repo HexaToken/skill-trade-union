@@ -94,7 +94,7 @@ const App = () => (
             <Route path="/map" element={<Layout><MapPage /></Layout>} />
             
             {/* Community & giving */}
-            <Route path="/donate" element={<Layout><Placeholder title="Donations & Crypto" desc="Donate credits or tip in crypto to programs you love." /></Layout>} />
+            <Route path="/donate" element={<Layout><DonationPage /></Layout>} />
             
             {/* Admin & settings */}
             <Route path="/admin" element={<Layout><Placeholder title="Admin Portal" desc="Moderation, analytics, and platform management." /></Layout>} />
