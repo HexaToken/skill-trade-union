@@ -180,7 +180,7 @@ export default function MapPage() {
                   id="in-person"
                   checked={inPersonOnly}
                   onCheckedChange={setInPersonOnly}
-                  className="data-[state=checked]:bg-blue-600 data-[state=unchecked]:bg-gray-200"
+                  className="data-[state=checked]:!bg-blue-600 data-[state=unchecked]:!bg-gray-200"
                 />
                 <Label htmlFor="in-person" className="text-sm text-gray-700">In-person</Label>
               </div>
