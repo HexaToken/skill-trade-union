@@ -180,7 +180,7 @@ export default function MapPage() {
                   id="in-person"
                   checked={inPersonOnly}
                   onCheckedChange={setInPersonOnly}
-                  className="data-[state=checked]:bg-brand-primary"
+                  className="data-[state=checked]:bg-blue-600 data-[state=unchecked]:bg-gray-200"
                 />
                 <Label htmlFor="in-person" className="text-sm text-gray-700">In-person</Label>
               </div>
@@ -190,7 +190,7 @@ export default function MapPage() {
                   id="online"
                   checked={onlineOnly}
                   onCheckedChange={setOnlineOnly}
-                  className="data-[state=checked]:bg-brand-primary"
+                  className="data-[state=checked]:bg-blue-600 data-[state=unchecked]:bg-gray-200"
                 />
                 <Label htmlFor="online" className="text-sm text-gray-700">Online</Label>
               </div>
@@ -200,7 +200,7 @@ export default function MapPage() {
                   id="verified"
                   checked={verifiedOnly}
                   onCheckedChange={setVerifiedOnly}
-                  className="data-[state=checked]:bg-brand-primary"
+                  className="data-[state=checked]:bg-blue-600 data-[state=unchecked]:bg-gray-200"
                 />
                 <Label htmlFor="verified" className="text-sm text-gray-700">Verified Only</Label>
               </div>
@@ -210,7 +210,7 @@ export default function MapPage() {
                   id="challenges"
                   checked={challengesOnly}
                   onCheckedChange={setChallengesOnly}
-                  className="data-[state=checked]:bg-brand-primary"
+                  className="data-[state=checked]:bg-blue-600 data-[state=unchecked]:bg-gray-200"
                 />
                 <Label htmlFor="challenges" className="text-sm text-gray-700">Challenges</Label>
               </div>
