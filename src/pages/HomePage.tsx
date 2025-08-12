@@ -103,7 +103,7 @@ const HomePage = () => {
                   placeholder="What skill do you want to learn?"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 h-12 text-lg border-2 border-gray-200 focus:border-primary"
+                  className="pl-10 h-12 text-lg border-2 border-gray-200 focus:border-primary bg-white dark:bg-gray-800"
                 />
               </motion.div>
 
