@@ -38,7 +38,7 @@ const HomePage = () => {
   const [activeSkillIcon, setActiveSkillIcon] = useState(0);
 
   // Animation for skill icons swapping
-  const skillIcons = ['🎨', '🎸', '🚲', '💻', '👨‍��'];
+  const skillIcons = ['🎨', '🎸', '🚲', '💻', '👨‍🍳'];
   
   useEffect(() => {
     const interval = setInterval(() => {
@@ -279,11 +279,27 @@ const HomePage = () => {
           <Tabs defaultValue="people" className="space-y-8">
             <div className="flex justify-center">
               <TabsList className="grid w-[300px] grid-cols-2 !bg-gray-200 dark:!bg-gray-700 p-1 h-12 border border-border">
-                <TabsTrigger value="people" className="flex items-center space-x-2 rounded-md mx-0.5 !data-[state=active]:bg-white !dark:data-[state=active]:bg-gray-600 !data-[state=active]:text-blue-600 data-[state=active]:shadow-sm !text-gray-600 !dark:text-gray-300">
+                <TabsTrigger
+                  value="people"
+                  className="flex items-center space-x-2 rounded-md mx-0.5 text-gray-600 dark:text-gray-300"
+                  style={{
+                    '--active-bg': '#ffffff',
+                    '--active-bg-dark': '#4b5563',
+                    '--active-color': '#2563eb'
+                  } as React.CSSProperties}
+                >
                   <Users className="h-4 w-4" />
                   <span>People</span>
                 </TabsTrigger>
-                <TabsTrigger value="courses" className="flex items-center space-x-2 rounded-md mx-0.5 !data-[state=active]:bg-white !dark:data-[state=active]:bg-gray-600 !data-[state=active]:text-blue-600 data-[state=active]:shadow-sm !text-gray-600 !dark:text-gray-300">
+                <TabsTrigger
+                  value="courses"
+                  className="flex items-center space-x-2 rounded-md mx-0.5 text-gray-600 dark:text-gray-300"
+                  style={{
+                    '--active-bg': '#ffffff',
+                    '--active-bg-dark': '#4b5563',
+                    '--active-color': '#2563eb'
+                  } as React.CSSProperties}
+                >
                   <BookOpen className="h-4 w-4" />
                   <span>Courses</span>
                 </TabsTrigger>
@@ -573,7 +589,7 @@ const HomePage = () => {
               {
                 name: "Ava Ramirez",
                 avatar: "https://picsum.photos/seed/ava/80",
-                skillSwapped: "Photography ��� Marketing",
+                skillSwapped: "Photography ↔ Marketing",
                 review: "SkillSwap helped me start my freelance career! The community is incredibly supportive.",
                 rating: 5
               },
