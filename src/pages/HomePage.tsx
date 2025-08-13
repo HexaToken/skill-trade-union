@@ -279,11 +279,11 @@ const HomePage = () => {
           <Tabs defaultValue="people" className="space-y-8">
             <div className="flex justify-center">
               <TabsList className="grid w-[300px] grid-cols-2 bg-muted p-1 h-12">
-                <TabsTrigger value="people" className="flex items-center space-x-2 rounded-md mx-0.5 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm">
+                <TabsTrigger value="people" className="flex items-center space-x-2 rounded-md mx-0.5 data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-sm text-muted-foreground">
                   <Users className="h-4 w-4" />
                   <span>People</span>
                 </TabsTrigger>
-                <TabsTrigger value="courses" className="flex items-center space-x-2 rounded-md mx-0.5 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm">
+                <TabsTrigger value="courses" className="flex items-center space-x-2 rounded-md mx-0.5 data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-sm text-muted-foreground">
                   <BookOpen className="h-4 w-4" />
                   <span>Courses</span>
                 </TabsTrigger>
