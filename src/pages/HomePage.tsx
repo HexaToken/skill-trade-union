@@ -666,7 +666,7 @@ const HomePage = () => {
       </section>
 
       {/* Credits & Membership Teaser */}
-      <section className="py-20 bg-white dark:bg-background">
+      <section className="py-20 !bg-white dark:!bg-slate-900" style={{ backgroundColor: 'white' }}>
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -676,13 +676,16 @@ const HomePage = () => {
             >
               <div className="text-center">
                 <motion.div
-                  className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-full mb-8"
+                  className="inline-flex items-center justify-center w-32 h-32 rounded-full mb-8"
+                  style={{
+                    background: 'linear-gradient(to right, #0056D2, #06B6D4)'
+                  }}
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 >
                   <Coins className="h-16 w-16 text-white" />
                 </motion.div>
-                <h3 className="text-2xl font-bold mb-4">Credit System</h3>
+                <h3 className="text-2xl font-bold mb-4 !text-gray-900 dark:!text-white" style={{ color: '#111827' }}>Credit System</h3>
                 <p className="text-gray-600 dark:text-gray-400">
                   Earn credits by teaching, spend them learning. Simple, fair, and transparent.
                 </p>
@@ -695,7 +698,7 @@ const HomePage = () => {
               viewport={{ once: true }}
             >
               <div className="space-y-6">
-                <h3 className="text-3xl font-bold font-['Poppins']">Ready to Go Pro?</h3>
+                <h3 className="text-3xl font-bold font-['Poppins'] !text-gray-900 dark:!text-white" style={{ color: '#111827' }}>Ready to Go Pro?</h3>
                 <p className="text-xl text-gray-600 dark:text-gray-400">
                   Unlock unlimited matches, priority support, and advanced tools
                 </p>
