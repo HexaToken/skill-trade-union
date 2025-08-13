@@ -536,15 +536,15 @@ const HomePage = () => {
       </section>
 
       {/* Why SkillSwap is Different */}
-      <section className="py-20 bg-white dark:bg-background">
+      <section className="py-20 !bg-white dark:!bg-slate-900" style={{ backgroundColor: 'white' }}>
         <div className="container mx-auto px-4">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold font-['Poppins'] mb-4">Why SkillSwap is Different</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-['Poppins'] mb-4 !text-gray-900 dark:!text-white" style={{ color: '#111827' }}>Why SkillSwap is Different</h2>
             <p className="text-xl text-gray-600 dark:text-gray-400">The future of skill exchange</p>
           </motion.div>
 
@@ -616,7 +616,7 @@ const HomePage = () => {
               {
                 name: "James Wilson",
                 avatar: "https://picsum.photos/seed/james/80", 
-                skillSwapped: "Guitar ↔ Web Design",
+                skillSwapped: "Guitar �� Web Design",
                 review: "Found an amazing mentor who helped me build my first website. The credit system is genius!",
                 rating: 5
               },
