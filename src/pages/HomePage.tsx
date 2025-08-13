@@ -577,7 +577,13 @@ const HomePage = () => {
                 transition={{ delay: index * 0.2 }}
               >
                 <Card className="text-center p-8 h-full hover:shadow-lg transition-shadow">
-                  <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${feature.color} rounded-full mb-6`}>
+                  <div
+                    className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-6"
+                    style={{
+                      background: 'linear-gradient(to right, #0056D2, #06B6D4)',
+                      color: 'white'
+                    }}
+                  >
                     <div className="text-white">
                       {feature.icon}
                     </div>
