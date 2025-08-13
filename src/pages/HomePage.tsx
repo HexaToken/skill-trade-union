@@ -277,6 +277,16 @@ const HomePage = () => {
           </motion.div>
 
           <Tabs defaultValue="people" className="space-y-8">
+            <style jsx>{`
+              [data-state=active] {
+                background-color: white !important;
+                color: #2563eb !important;
+              }
+              .dark [data-state=active] {
+                background-color: #4b5563 !important;
+                color: #2563eb !important;
+              }
+            `}</style>
             <div className="flex justify-center">
               <TabsList className="grid w-[300px] grid-cols-2 !bg-gray-200 dark:!bg-gray-700 p-1 h-12 border border-border">
                 <TabsTrigger
