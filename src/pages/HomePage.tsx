@@ -277,26 +277,6 @@ const HomePage = () => {
           </motion.div>
 
           <Tabs defaultValue="people" className="space-y-8">
-            <style jsx>{`
-              [data-state=active] {
-                background-color: white !important;
-                color: #1d4ed8 !important;
-                font-weight: 600 !important;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
-                border-radius: 6px !important;
-                transform: none !important;
-                max-width: calc(100% - 4px) !important;
-              }
-              .dark [data-state=active] {
-                background-color: #374151 !important;
-                color: #3b82f6 !important;
-                font-weight: 600 !important;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
-                border-radius: 6px !important;
-                transform: none !important;
-                max-width: calc(100% - 4px) !important;
-              }
-            `}</style>
             <div className="flex justify-center mb-8">
               <TabsList className="grid w-[300px] grid-cols-2 !bg-gray-200 dark:!bg-gray-700 p-1 h-12 border border-border">
                 <TabsTrigger
