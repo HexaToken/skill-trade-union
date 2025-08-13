@@ -554,7 +554,7 @@ const HomePage = () => {
                 title: "No Money Required",
                 description: "A pure talent-for-talent economy where your skills are your currency",
                 icon: <Heart className="h-8 w-8" />,
-                color: "from-red-500 to-pink-500"
+                color: "from-brand-primary to-brand-secondary"
               },
               {
                 title: "AI Matching",
@@ -566,7 +566,7 @@ const HomePage = () => {
                 title: "Verified Quality",
                 description: "Ratings, portfolios, and optional ID checks ensure trusted interactions",
                 icon: <Shield className="h-8 w-8" />,
-                color: "from-green-500 to-emerald-500"
+                color: "from-brand-primary to-brand-secondary"
               }
             ].map((feature, index) => (
               <motion.div
