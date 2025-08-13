@@ -556,6 +556,66 @@ All colors MUST be HSL.
   color: #F1F5F9 !important;
 }
 
+/* Global yellow/amber color replacements */
+/* Replace yellow-500 with orange-500 */
+.text-yellow-500 {
+  color: #F97316 !important;
+}
+
+/* Replace yellow backgrounds and borders with orange equivalents */
+.bg-yellow-50 { background-color: #FFF7ED !important; }
+.bg-yellow-100 { background-color: #FFEDD5 !important; }
+.bg-yellow-400 { background-color: #FB923C !important; }
+.bg-yellow-500 { background-color: #F97316 !important; }
+.text-yellow-700 { color: #C2410C !important; }
+.border-yellow-200 { border-color: #FED7AA !important; }
+.border-yellow-300 { border-color: #FDBA74 !important; }
+
+.dark .bg-yellow-800 { background-color: #9A3412 !important; }
+.dark .bg-yellow-900 { background-color: #7C2D12 !important; }
+.dark .border-yellow-800 { border-color: #9A3412 !important; }
+.dark .text-yellow-300 { color: #FDBA74 !important; }
+
+/* Replace amber colors with orange */
+.text-amber-600 { color: #EA580C !important; }
+.text-amber-700 { color: #C2410C !important; }
+.bg-amber-50 { background-color: #FFF7ED !important; }
+.bg-amber-100 { background-color: #FFEDD5 !important; }
+.bg-amber-400 { background-color: #FB923C !important; }
+.bg-amber-500 { background-color: #F97316 !important; }
+.border-amber-200 { border-color: #FED7AA !important; }
+.border-amber-300 { border-color: #FDBA74 !important; }
+.fill-amber-400 { fill: #FB923C !important; }
+.text-amber-400 { color: #FB923C !important; }
+
+.dark .bg-amber-800 { background-color: #9A3412 !important; }
+.dark .bg-amber-900 { background-color: #7C2D12 !important; }
+.dark .border-amber-800 { border-color: #9A3412 !important; }
+.dark .text-amber-300 { color: #FDBA74 !important; }
+
+/* Replace brand-warning (yellow) with orange */
+.text-brand-warning { color: #FB923C !important; }
+.fill-brand-warning { fill: #FB923C !important; }
+.bg-brand-warning { background-color: #FB923C !important; }
+.border-brand-warning { border-color: #FB923C !important; }
+
+/* Replace brand-amber with cyan/blue combination */
+.text-brand-amber { color: #06B6D4 !important; }
+.bg-brand-amber { background-color: #06B6D4 !important; }
+.border-brand-amber { border-color: #06B6D4 !important; }
+
+/* Fix gradients that use brand-amber */
+.from-brand-amber { --tw-gradient-from: #06B6D4 !important; }
+.to-brand-amber { --tw-gradient-to: #06B6D4 !important; }
+
+/* Fix yellow gradient in featured badges */
+.from-yellow-400 { --tw-gradient-from: #FB923C !important; }
+.to-yellow-500 { --tw-gradient-to: #F97316 !important; }
+.from-orange-400.to-amber-400 { --tw-gradient-to: #FB923C !important; }
+
+/* Fix yellow blur effects */
+.bg-yellow-500\/20 { background-color: rgba(251, 146, 60, 0.2) !important; }
+
 /* Custom tab styling for HomePage */
 .home-tabs [data-state=active] {
   background-color: white !important;
