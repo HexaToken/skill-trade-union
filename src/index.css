@@ -518,6 +518,44 @@ All colors MUST be HSL.
   color: white !important;
 }
 
+/* Fix yellow elements in filter left tab */
+[data-page="matches"] aside input {
+  background-color: white !important;
+  border-color: #E2E8F0 !important;
+  color: #0F172A !important;
+}
+
+[data-page="matches"] aside [role="combobox"],
+[data-page="matches"] aside [data-radix-select-trigger] {
+  background-color: white !important;
+  border-color: #E2E8F0 !important;
+  color: #0F172A !important;
+}
+
+[data-page="matches"] aside [data-state="checked"] {
+  background-color: #06B6D4 !important;
+}
+
+[data-page="matches"] aside .badge,
+[data-page="matches"] aside [class*="badge"] {
+  background-color: #F1F5F9 !important;
+  color: #475569 !important;
+  border-color: #E2E8F0 !important;
+}
+
+.dark [data-page="matches"] aside input {
+  background-color: #1E293B !important;
+  border-color: #334155 !important;
+  color: #F1F5F9 !important;
+}
+
+.dark [data-page="matches"] aside [role="combobox"],
+.dark [data-page="matches"] aside [data-radix-select-trigger] {
+  background-color: #1E293B !important;
+  border-color: #334155 !important;
+  color: #F1F5F9 !important;
+}
+
 /* Custom tab styling for HomePage */
 .home-tabs [data-state=active] {
   background-color: white !important;
