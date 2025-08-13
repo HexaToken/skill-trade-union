@@ -282,13 +282,17 @@ const HomePage = () => {
                 background-color: white !important;
                 color: #1d4ed8 !important;
                 font-weight: 600 !important;
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+                margin: 1px !important;
+                border-radius: 6px !important;
               }
               .dark [data-state=active] {
                 background-color: #374151 !important;
                 color: #3b82f6 !important;
                 font-weight: 600 !important;
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+                margin: 1px !important;
+                border-radius: 6px !important;
               }
             `}</style>
             <div className="flex justify-center">
