@@ -505,39 +505,30 @@ All colors MUST be HSL.
 }
 
 /* Fix matches page yellow background override */
-body:has([href="/matches"]) *,
-body[data-pathname="/matches"] *,
-[data-page="matches"] *,
-.matches-container *,
-.page-container:has(.matches-header) * {
-  background-color: transparent !important;
+[data-page="matches"] * {
+  background-color: unset !important;
   background-image: none !important;
 }
 
-/* Force normal backgrounds for key elements */
-body:has([href="/matches"]) input,
-body:has([href="/matches"]) select,
-body:has([href="/matches"]) button,
-body:has([href="/matches"]) [role="combobox"],
-body:has([href="/matches"]) [data-radix-select-trigger],
-[data-page="matches"] input,
-[data-page="matches"] select,
+[data-page="matches"] {
+  background: #ffffff !important;
+}
+
+.dark [data-page="matches"] {
+  background: #0F172A !important;
+}
+
+/* Specific yellow override fixes */
 [data-page="matches"] button,
+[data-page="matches"] input,
 [data-page="matches"] [role="combobox"],
 [data-page="matches"] [data-radix-select-trigger] {
   background: #ffffff !important;
   background-color: #ffffff !important;
-  background-image: none !important;
 }
 
-.dark body:has([href="/matches"]) input,
-.dark body:has([href="/matches"]) select,
-.dark body:has([href="/matches"]) button,
-.dark body:has([href="/matches"]) [role="combobox"],
-.dark body:has([href="/matches"]) [data-radix-select-trigger],
-.dark [data-page="matches"] input,
-.dark [data-page="matches"] select,
 .dark [data-page="matches"] button,
+.dark [data-page="matches"] input,
 .dark [data-page="matches"] [role="combobox"],
 .dark [data-page="matches"] [data-radix-select-trigger] {
   background: #1E293B !important;
