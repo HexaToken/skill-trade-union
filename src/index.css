@@ -506,6 +506,18 @@ All colors MUST be HSL.
 
 /* Remove yellow theme overrides without breaking readability */
 
+/* Fix yellow View Profile button in match cards */
+[data-page="matches"] button[class*="border-"][class*="06B6D4"] {
+  background-color: white !important;
+  color: #06B6D4 !important;
+  border-color: #06B6D4 !important;
+}
+
+[data-page="matches"] button[class*="border-"][class*="06B6D4"]:hover {
+  background-color: #06B6D4 !important;
+  color: white !important;
+}
+
 /* Custom tab styling for HomePage */
 .home-tabs [data-state=active] {
   background-color: white !important;
