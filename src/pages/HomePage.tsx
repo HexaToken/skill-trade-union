@@ -272,18 +272,18 @@ const HomePage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold font-['Poppins'] mb-4">Discover & Learn</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-['Poppins'] mb-4 text-foreground">Discover & Learn</h2>
             <p className="text-xl text-gray-600 dark:text-gray-400">Connect with people or join structured courses</p>
           </motion.div>
 
           <Tabs defaultValue="people" className="space-y-8">
             <div className="flex justify-center">
-              <TabsList className="grid w-[300px] grid-cols-2 bg-muted p-1 h-12">
-                <TabsTrigger value="people" className="flex items-center space-x-2 rounded-md mx-0.5 data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-sm text-muted-foreground">
+              <TabsList className="grid w-[300px] grid-cols-2 !bg-gray-200 dark:!bg-gray-700 p-1 h-12 border border-border">
+                <TabsTrigger value="people" className="flex items-center space-x-2 rounded-md mx-0.5 !data-[state=active]:bg-white !dark:data-[state=active]:bg-gray-600 !data-[state=active]:text-primary data-[state=active]:shadow-sm !text-gray-600 !dark:text-gray-300">
                   <Users className="h-4 w-4" />
                   <span>People</span>
                 </TabsTrigger>
-                <TabsTrigger value="courses" className="flex items-center space-x-2 rounded-md mx-0.5 data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-sm text-muted-foreground">
+                <TabsTrigger value="courses" className="flex items-center space-x-2 rounded-md mx-0.5 !data-[state=active]:bg-white !dark:data-[state=active]:bg-gray-600 !data-[state=active]:text-primary data-[state=active]:shadow-sm !text-gray-600 !dark:text-gray-300">
                   <BookOpen className="h-4 w-4" />
                   <span>Courses</span>
                 </TabsTrigger>
