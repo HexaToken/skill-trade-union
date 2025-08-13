@@ -280,11 +280,15 @@ const HomePage = () => {
             <style jsx>{`
               [data-state=active] {
                 background-color: white !important;
-                color: #2563eb !important;
+                color: #1d4ed8 !important;
+                font-weight: 600 !important;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
               }
               .dark [data-state=active] {
-                background-color: #4b5563 !important;
-                color: #2563eb !important;
+                background-color: #374151 !important;
+                color: #3b82f6 !important;
+                font-weight: 600 !important;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
               }
             `}</style>
             <div className="flex justify-center">
