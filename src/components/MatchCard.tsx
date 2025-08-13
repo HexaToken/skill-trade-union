@@ -184,7 +184,7 @@ export default function MatchCard({
             
             <div className="flex items-center gap-4 text-sm">
               <div className="flex items-center gap-1">
-                <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                <Star className="w-4 h-4 fill-orange-400 text-orange-400" />
                 <span className="font-semibold text-[#0F172A] dark:text-[#F1F5F9]">{rating}</span>
                 <span className="text-slate-500">({reviews})</span>
               </div>
