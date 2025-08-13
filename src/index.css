@@ -519,26 +519,46 @@ All colors MUST be HSL.
 }
 
 /* Specific yellow override fixes */
-[data-page="matches"] button,
-[data-page="matches"] input,
-[data-page="matches"] [role="combobox"],
-[data-page="matches"] [data-radix-select-trigger],
-[data-page="matches"] [data-radix-select-content],
-[data-page="matches"] .badge,
-[data-page="matches"] [class*="badge"] {
+[data-page="matches"] input {
   background: #ffffff !important;
   background-color: #ffffff !important;
   border-color: #E2E8F0 !important;
+  color: #0F172A !important;
 }
 
-.dark [data-page="matches"] button,
-.dark [data-page="matches"] input,
-.dark [data-page="matches"] [role="combobox"],
-.dark [data-page="matches"] [data-radix-select-trigger],
-.dark [data-page="matches"] [data-radix-select-content],
-.dark [data-page="matches"] .badge,
-.dark [data-page="matches"] [class*="badge"] {
+[data-page="matches"] [role="combobox"],
+[data-page="matches"] [data-radix-select-trigger] {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border-color: #E2E8F0 !important;
+  color: #0F172A !important;
+}
+
+[data-page="matches"] button:not([class*="bg-"]) {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border-color: #E2E8F0 !important;
+  color: #0F172A !important;
+}
+
+.dark [data-page="matches"] input {
   background: #1E293B !important;
   background-color: #1E293B !important;
   border-color: #334155 !important;
+  color: #F1F5F9 !important;
+}
+
+.dark [data-page="matches"] [role="combobox"],
+.dark [data-page="matches"] [data-radix-select-trigger] {
+  background: #1E293B !important;
+  background-color: #1E293B !important;
+  border-color: #334155 !important;
+  color: #F1F5F9 !important;
+}
+
+.dark [data-page="matches"] button:not([class*="bg-"]) {
+  background: #1E293B !important;
+  background-color: #1E293B !important;
+  border-color: #334155 !important;
+  color: #F1F5F9 !important;
 }
