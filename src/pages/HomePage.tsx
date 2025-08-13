@@ -118,7 +118,7 @@ const HomePage = () => {
                     Find a Match
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="h-12 px-8 text-lg border-primary text-primary hover:bg-primary/5">
+                <Button asChild variant="outline" size="lg" className="h-12 px-8 text-lg border-primary text-primary hover:bg-primary/5 !border-blue-600 !text-blue-600 !bg-white hover:!bg-blue-50">
                   <Link to="/classes">
                     <BookOpen className="mr-2 h-5 w-5" />
                     Browse Courses
