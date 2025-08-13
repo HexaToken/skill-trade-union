@@ -276,7 +276,7 @@ const HomePage = () => {
             <p className="text-xl text-gray-600 dark:text-gray-400">Connect with people or join structured courses</p>
           </motion.div>
 
-          <Tabs defaultValue="people" className="space-y-8">
+          <Tabs defaultValue="people" className="space-y-8 home-tabs">
             <div className="flex justify-center mb-8">
               <TabsList className="grid w-[300px] grid-cols-2 !bg-gray-200 dark:!bg-gray-700 p-1 h-12 border border-border">
                 <TabsTrigger
