@@ -718,7 +718,16 @@ const HomePage = () => {
                   ))}
                 </div>
 
-                <Button size="lg" variant="outline" className="border-2 border-brand-primary text-brand-primary hover:bg-brand-primary/5">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 !border-blue-600 !text-blue-600 hover:!bg-blue-50 !bg-white"
+                  style={{
+                    borderColor: '#2563eb',
+                    color: '#2563eb',
+                    backgroundColor: 'white'
+                  }}
+                >
                   <Crown className="mr-2 h-5 w-5" />
                   Upgrade to Pro
                 </Button>
