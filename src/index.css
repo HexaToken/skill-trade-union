@@ -503,3 +503,21 @@ All colors MUST be HSL.
   background: #0F172A !important;
   background-color: #0F172A !important;
 }
+
+/* Fix matches page yellow background override */
+.matches-page,
+.matches-page *,
+body:has([data-page="matches"]),
+body:has([data-page="matches"]) * {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
+
+.dark .matches-page,
+.dark .matches-page *,
+.dark body:has([data-page="matches"]),
+.dark body:has([data-page="matches"]) * {
+  background: #0F172A !important;
+  background-color: #0F172A !important;
+}
