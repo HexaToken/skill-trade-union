@@ -103,7 +103,7 @@ const HomePage = () => {
                   placeholder="What skill do you want to learn?"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 h-12 text-lg border-2 border-gray-200 focus:border-primary"
+                  className="pl-10 h-12 text-lg border-2 border-gray-200 focus:border-primary bg-white dark:bg-gray-800"
                 />
               </motion.div>
 
@@ -118,7 +118,7 @@ const HomePage = () => {
                     Find a Match
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="h-12 px-8 text-lg border-cyan-500 text-cyan-600 hover:bg-cyan-50">
+                <Button asChild variant="outline" size="lg" className="h-12 px-8 text-lg border-primary text-primary hover:bg-primary/5 !border-blue-600 !text-blue-600 !bg-white hover:!bg-blue-50">
                   <Link to="/classes">
                     <BookOpen className="mr-2 h-5 w-5" />
                     Browse Courses
@@ -264,7 +264,7 @@ const HomePage = () => {
       </section>
 
       {/* Dual Discovery Section */}
-      <section className="py-20">
+      <section className="py-20 bg-white dark:bg-slate-900 !bg-white dark:!bg-slate-900">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center mb-12"
@@ -272,18 +272,54 @@ const HomePage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold font-['Poppins'] mb-4">Discover & Learn</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-['Poppins'] mb-4 text-foreground">Discover & Learn</h2>
             <p className="text-xl text-gray-600 dark:text-gray-400">Connect with people or join structured courses</p>
           </motion.div>
 
           <Tabs defaultValue="people" className="space-y-8">
-            <div className="flex justify-center">
-              <TabsList className="grid w-[300px] grid-cols-2">
-                <TabsTrigger value="people" className="flex items-center space-x-2">
+            <style jsx>{`
+              [data-state=active] {
+                background-color: white !important;
+                color: #1d4ed8 !important;
+                font-weight: 600 !important;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+                border-radius: 6px !important;
+                transform: none !important;
+                max-width: calc(100% - 4px) !important;
+              }
+              .dark [data-state=active] {
+                background-color: #374151 !important;
+                color: #3b82f6 !important;
+                font-weight: 600 !important;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+                border-radius: 6px !important;
+                transform: none !important;
+                max-width: calc(100% - 4px) !important;
+              }
+            `}</style>
+            <div className="flex justify-center mb-8">
+              <TabsList className="grid w-[300px] grid-cols-2 !bg-gray-200 dark:!bg-gray-700 p-1 h-12 border border-border">
+                <TabsTrigger
+                  value="people"
+                  className="flex items-center space-x-2 rounded-md mx-0.5 text-gray-600 dark:text-gray-300"
+                  style={{
+                    '--active-bg': '#ffffff',
+                    '--active-bg-dark': '#4b5563',
+                    '--active-color': '#2563eb'
+                  } as React.CSSProperties}
+                >
                   <Users className="h-4 w-4" />
                   <span>People</span>
                 </TabsTrigger>
-                <TabsTrigger value="courses" className="flex items-center space-x-2">
+                <TabsTrigger
+                  value="courses"
+                  className="flex items-center space-x-2 rounded-md mx-0.5 text-gray-600 dark:text-gray-300"
+                  style={{
+                    '--active-bg': '#ffffff',
+                    '--active-bg-dark': '#4b5563',
+                    '--active-color': '#2563eb'
+                  } as React.CSSProperties}
+                >
                   <BookOpen className="h-4 w-4" />
                   <span>Courses</span>
                 </TabsTrigger>
@@ -315,7 +351,7 @@ const HomePage = () => {
                             {person.skillsOffered[0]?.skillId.replace('-', ' ')}
                           </Badge>
                           <div className="flex items-center justify-center space-x-1">
-                            <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                            <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
                             <span className="font-semibold">{person.ratingAvg}</span>
                             <span className="text-gray-500">({person.ratingCount})</span>
                           </div>
@@ -350,7 +386,7 @@ const HomePage = () => {
                 ))}
               </div>
               <div className="text-center mt-8">
-                <Button asChild variant="outline" size="lg">
+                <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/5 !border-blue-600 !text-blue-600 !bg-white hover:!bg-blue-50">
                   <Link to="/search">
                     View All People
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -393,7 +429,7 @@ const HomePage = () => {
                         <div className="flex items-center justify-between text-sm text-gray-600">
                           <span>{course.currentSeats}/{course.maxSeats} enrolled</span>
                           <div className="flex items-center space-x-1">
-                            <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                            <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
                             <span>4.8</span>
                           </div>
                         </div>
@@ -489,7 +525,7 @@ const HomePage = () => {
           </div>
 
           <div className="text-center mt-8">
-            <Button asChild variant="outline" size="lg">
+            <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/5 !border-blue-600 !text-blue-600 !bg-white hover:!bg-blue-50">
               <Link to="/challenges">
                 View All Challenges
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -500,15 +536,15 @@ const HomePage = () => {
       </section>
 
       {/* Why SkillSwap is Different */}
-      <section className="py-20">
+      <section className="py-20 !bg-white dark:!bg-slate-900" style={{ backgroundColor: 'white' }}>
         <div className="container mx-auto px-4">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold font-['Poppins'] mb-4">Why SkillSwap is Different</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-['Poppins'] mb-4 !text-gray-900 dark:!text-white" style={{ color: '#111827' }}>Why SkillSwap is Different</h2>
             <p className="text-xl text-gray-600 dark:text-gray-400">The future of skill exchange</p>
           </motion.div>
 
@@ -518,19 +554,19 @@ const HomePage = () => {
                 title: "No Money Required",
                 description: "A pure talent-for-talent economy where your skills are your currency",
                 icon: <Heart className="h-8 w-8" />,
-                color: "from-red-500 to-pink-500"
+                color: "from-brand-primary to-brand-secondary"
               },
               {
                 title: "AI Matching",
                 description: "Get the best skill partner in seconds with our intelligent matching system",
                 icon: <Zap className="h-8 w-8" />,
-                color: "from-yellow-500 to-orange-500"
+                color: "from-brand-primary to-brand-secondary"
               },
               {
                 title: "Verified Quality",
                 description: "Ratings, portfolios, and optional ID checks ensure trusted interactions",
                 icon: <Shield className="h-8 w-8" />,
-                color: "from-green-500 to-emerald-500"
+                color: "from-brand-primary to-brand-secondary"
               }
             ].map((feature, index) => (
               <motion.div
@@ -541,7 +577,13 @@ const HomePage = () => {
                 transition={{ delay: index * 0.2 }}
               >
                 <Card className="text-center p-8 h-full hover:shadow-lg transition-shadow">
-                  <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${feature.color} rounded-full mb-6`}>
+                  <div
+                    className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-6"
+                    style={{
+                      background: 'linear-gradient(to right, #0056D2, #06B6D4)',
+                      color: 'white'
+                    }}
+                  >
                     <div className="text-white">
                       {feature.icon}
                     </div>
@@ -580,7 +622,7 @@ const HomePage = () => {
               {
                 name: "James Wilson",
                 avatar: "https://picsum.photos/seed/james/80", 
-                skillSwapped: "Guitar ↔ Web Design",
+                skillSwapped: "Guitar �� Web Design",
                 review: "Found an amazing mentor who helped me build my first website. The credit system is genius!",
                 rating: 5
               },
@@ -612,7 +654,7 @@ const HomePage = () => {
                   </div>
                   <div className="flex items-center space-x-1 mb-3">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                      <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
                   <p className="text-gray-600 dark:text-gray-400">"{testimonial.review}"</p>
@@ -624,7 +666,7 @@ const HomePage = () => {
       </section>
 
       {/* Credits & Membership Teaser */}
-      <section className="py-20">
+      <section className="py-20 !bg-white dark:!bg-slate-900" style={{ backgroundColor: 'white' }}>
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -634,13 +676,16 @@ const HomePage = () => {
             >
               <div className="text-center">
                 <motion.div
-                  className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full mb-8"
+                  className="inline-flex items-center justify-center w-32 h-32 rounded-full mb-8"
+                  style={{
+                    background: 'linear-gradient(to right, #0056D2, #06B6D4)'
+                  }}
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 >
                   <Coins className="h-16 w-16 text-white" />
                 </motion.div>
-                <h3 className="text-2xl font-bold mb-4">Credit System</h3>
+                <h3 className="text-2xl font-bold mb-4 !text-gray-900 dark:!text-white" style={{ color: '#111827' }}>Credit System</h3>
                 <p className="text-gray-600 dark:text-gray-400">
                   Earn credits by teaching, spend them learning. Simple, fair, and transparent.
                 </p>
@@ -653,7 +698,7 @@ const HomePage = () => {
               viewport={{ once: true }}
             >
               <div className="space-y-6">
-                <h3 className="text-3xl font-bold font-['Poppins']">Ready to Go Pro?</h3>
+                <h3 className="text-3xl font-bold font-['Poppins'] !text-gray-900 dark:!text-white" style={{ color: '#111827' }}>Ready to Go Pro?</h3>
                 <p className="text-xl text-gray-600 dark:text-gray-400">
                   Unlock unlimited matches, priority support, and advanced tools
                 </p>
@@ -673,7 +718,16 @@ const HomePage = () => {
                   ))}
                 </div>
 
-                <Button size="lg" variant="outline" className="border-2 border-yellow-500 text-yellow-600 hover:bg-yellow-50">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 !border-blue-600 !text-blue-600 hover:!bg-blue-50 !bg-white"
+                  style={{
+                    borderColor: '#2563eb',
+                    color: '#2563eb',
+                    backgroundColor: 'white'
+                  }}
+                >
                   <Crown className="mr-2 h-5 w-5" />
                   Upgrade to Pro
                 </Button>
