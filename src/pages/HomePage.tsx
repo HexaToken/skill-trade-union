@@ -264,7 +264,7 @@ const HomePage = () => {
       </section>
 
       {/* Dual Discovery Section */}
-      <section className="py-20 bg-white dark:bg-background">
+      <section className="py-20 bg-white dark:bg-slate-900 !bg-white dark:!bg-slate-900">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center mb-12"
