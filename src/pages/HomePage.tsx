@@ -350,7 +350,7 @@ const HomePage = () => {
                 ))}
               </div>
               <div className="text-center mt-8">
-                <Button asChild variant="outline" size="lg">
+                <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/5">
                   <Link to="/search">
                     View All People
                     <ArrowRight className="ml-2 h-5 w-5" />
