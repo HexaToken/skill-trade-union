@@ -137,17 +137,17 @@ html, body {
 
   /* Links */
   a {
-    color: var(--color-primary);
+    color: var(--primary);
     text-underline-offset: 2px;
   }
 
   a:hover {
-    color: var(--color-secondary);
+    color: var(--secondary);
   }
 
   /* Focus ring */
   :focus-visible {
-    outline: 2px solid var(--color-secondary);
+    outline: 2px solid var(--secondary);
     outline-offset: 2px;
   }
 }
