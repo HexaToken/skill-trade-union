@@ -75,10 +75,13 @@
 
 ### Verification Checklist
 - [ ] Visit `/yellow-test` to verify yellow elements are converted to blue
+- [ ] Click "Run Manual Yellow Scan" to check for remaining yellow elements
+- [ ] Use "Get Console Detector Script" to run comprehensive audit
 - [ ] Toggle theme to ensure light/dark switching works
 - [ ] Check that no yellow colors appear anywhere in the app
 - [ ] Verify buttons use proper primary colors
 - [ ] Confirm badges and pills use semantic tokens
+- [ ] Run `scripts/yellow-audit.js` in console for detailed analysis
 
 ## 📋 Implementation Status
 
