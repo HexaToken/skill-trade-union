@@ -219,7 +219,7 @@ export default function Matches() {
   });
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" data-page="matches">
       {/* Header */}
       <div className="border-b bg-neutral-100 dark:bg-slate-800">
         <div className="page-container py-6">

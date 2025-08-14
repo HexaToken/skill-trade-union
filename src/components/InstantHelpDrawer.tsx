@@ -86,7 +86,7 @@ export default function InstantHelpDrawer({
   const renderRequestForm = () => (
     <div className="space-y-6">
       <div className="text-center space-y-2">
-        <div className="w-16 h-16 bg-gradient-to-br from-brand-amber to-brand-green rounded-full flex items-center justify-center mx-auto">
+        <div className="w-16 h-16 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-full flex items-center justify-center mx-auto">
           <Zap className="w-8 h-8 text-white" />
         </div>
         <h3 className="text-xl font-semibold">Get Instant Expert Help</h3>
@@ -440,7 +440,7 @@ export default function InstantHelpDrawer({
         <SheetHeader className="pb-4">
           <div className="flex items-center justify-between">
             <SheetTitle className="flex items-center gap-2">
-              <Zap className="w-5 h-5 text-brand-amber" />
+              <Zap className="w-5 h-5 text-brand-primary" />
               ExpertMatch AI
             </SheetTitle>
             <Button

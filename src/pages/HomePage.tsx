@@ -276,27 +276,7 @@ const HomePage = () => {
             <p className="text-xl text-gray-600 dark:text-gray-400">Connect with people or join structured courses</p>
           </motion.div>
 
-          <Tabs defaultValue="people" className="space-y-8">
-            <style jsx>{`
-              [data-state=active] {
-                background-color: white !important;
-                color: #1d4ed8 !important;
-                font-weight: 600 !important;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
-                border-radius: 6px !important;
-                transform: none !important;
-                max-width: calc(100% - 4px) !important;
-              }
-              .dark [data-state=active] {
-                background-color: #374151 !important;
-                color: #3b82f6 !important;
-                font-weight: 600 !important;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
-                border-radius: 6px !important;
-                transform: none !important;
-                max-width: calc(100% - 4px) !important;
-              }
-            `}</style>
+          <Tabs defaultValue="people" className="space-y-8 home-tabs">
             <div className="flex justify-center mb-8">
               <TabsList className="grid w-[300px] grid-cols-2 !bg-gray-200 dark:!bg-gray-700 p-1 h-12 border border-border">
                 <TabsTrigger
@@ -351,7 +331,7 @@ const HomePage = () => {
                             {person.skillsOffered[0]?.skillId.replace('-', ' ')}
                           </Badge>
                           <div className="flex items-center justify-center space-x-1">
-                            <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
+                            <Star className="h-4 w-4 fill-orange-400 text-orange-400" />
                             <span className="font-semibold">{person.ratingAvg}</span>
                             <span className="text-gray-500">({person.ratingCount})</span>
                           </div>
@@ -429,7 +409,7 @@ const HomePage = () => {
                         <div className="flex items-center justify-between text-sm text-gray-600">
                           <span>{course.currentSeats}/{course.maxSeats} enrolled</span>
                           <div className="flex items-center space-x-1">
-                            <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
+                            <Star className="h-4 w-4 fill-orange-400 text-orange-400" />
                             <span>4.8</span>
                           </div>
                         </div>
@@ -654,7 +634,7 @@ const HomePage = () => {
                   </div>
                   <div className="flex items-center space-x-1 mb-3">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
+                      <Star key={i} className="h-4 w-4 fill-orange-400 text-orange-400" />
                     ))}
                   </div>
                   <p className="text-gray-600 dark:text-gray-400">"{testimonial.review}"</p>

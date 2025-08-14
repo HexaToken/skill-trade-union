@@ -1,5 +1,24 @@
 import React, { useState, useCallback, useMemo } from "react";
-import { Search, Filter, ChevronDown, X, MapPin, Star, Shield, CheckCircle } from "lucide-react";
+import { 
+  Search, 
+  Filter, 
+  ChevronDown, 
+  ChevronUp,
+  X, 
+  MapPin, 
+  Star, 
+  Shield, 
+  CheckCircle,
+  MessageCircle,
+  Calendar,
+  Globe,
+  Clock,
+  Award,
+  Heart,
+  MoreHorizontal,
+  Copy,
+  Share2
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,8 +28,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useIsMobile } from "@/hooks/use-mobile";
-import BookingModalUnified from "@/components/BookingModalUnified";
+import { cn } from "@/lib/utils";
 
 // Types
 interface Mentor {
@@ -19,6 +40,7 @@ interface Mentor {
   avatar: string;
   headline: string;
   location: string;
+  countryFlag: string;
   languages: string[];
   rating: number;
   reviews: number;
@@ -31,6 +53,7 @@ interface Mentor {
   category: string;
   availability: string;
   isFeatured?: boolean;
+  bio: string;
 }
 
 interface Filters {
@@ -39,8 +62,6 @@ interface Filters {
   level: string[];
   creditsMin: number;
   creditsMax: number;
-  onlineOnly: boolean;
-  availableWithin: string;
   verified: boolean;
   languages: string[];
   location: string;
@@ -52,8 +73,6 @@ const INITIAL_FILTERS: Filters = {
   level: [],
   creditsMin: 5,
   creditsMax: 100,
-  onlineOnly: true,
-  availableWithin: "anytime",
   verified: false,
   languages: [],
   location: "",
@@ -64,7 +83,7 @@ const SORT_OPTIONS = [
   { value: "rating", label: "Highest Rated" },
   { value: "sessions", label: "Most Sessions" },
   { value: "credits", label: "Lowest Credits" },
-  { value: "availability", label: "Availability Soonest" },
+  { value: "availability", label: "Available Soonest" },
 ];
 
 const CATEGORIES = [
@@ -72,7 +91,8 @@ const CATEGORIES = [
 ];
 
 const SKILLS = [
-  "Figma", "React", "Guitar", "Spanish", "Python", "Photoshop", "Excel", "Public Speaking"
+  "Figma", "React", "Guitar", "Spanish", "Python", "Photoshop", "Excel", "Public Speaking",
+  "JavaScript", "UI/UX", "Branding", "French", "Node.js", "Piano", "Content Writing", "Analytics"
 ];
 
 const LEVELS = ["Beginner", "Intermediate", "Advanced"];
@@ -88,15 +108,23 @@ const MentorsDirectory = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedMentor, setSelectedMentor] = useState<Mentor | null>(null);
   const [showBookingModal, setShowBookingModal] = useState(false);
+  const [expandedSections, setExpandedSections] = useState({
+    category: true,
+    skills: true,
+    level: false,
+    verification: false
+  });
+  const [showMoreSkills, setShowMoreSkills] = useState(false);
 
-  // Mock data - In real app this would come from API
+  // Mock data - Enhanced with more details
   const mockMentors: Mentor[] = useMemo(() => [
     {
       id: "m101",
       name: "Ava Ramirez",
       avatar: "https://images.unsplash.com/photo-1494790108755-2616b056a692?w=150&h=150&fit=crop&crop=face",
-      headline: "Brand Designer & Coach",
+      headline: "Brand Designer & Strategy Coach",
       location: "Toronto, CA",
+      countryFlag: "🇨🇦",
       languages: ["English", "Spanish"],
       rating: 4.9,
       reviews: 188,
@@ -104,7 +132,8 @@ const MentorsDirectory = () => {
       creditsPerHour: 25,
       verifiedID: true,
       skillTested: true,
-      blurb: "I help startups create compelling brand identities that resonate with their target audience.",
+      blurb: "I help startups create compelling brand identities that resonate with their target audience and drive business growth.",
+      bio: "Brand designer with 8+ years experience working with Fortune 500 companies and startups. I specialize in creating cohesive brand systems that tell compelling stories and connect with audiences on an emotional level.",
       tags: ["Branding", "Figma", "Strategy"],
       category: "Design",
       availability: "available",
@@ -114,8 +143,9 @@ const MentorsDirectory = () => {
       id: "m42",
       name: "Marcus Chen",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-      headline: "UX Designer & React Developer",
+      headline: "Senior UX Designer & React Developer",
       location: "San Francisco, USA",
+      countryFlag: "🇺🇸",
       languages: ["English", "Chinese"],
       rating: 4.8,
       reviews: 128,
@@ -123,7 +153,8 @@ const MentorsDirectory = () => {
       creditsPerHour: 30,
       verifiedID: true,
       skillTested: true,
-      blurb: "I help startups refine product UX and build React applications with best practices.",
+      blurb: "I help teams design user-centered products and build scalable React applications with modern best practices.",
+      bio: "Full-stack designer and developer with expertise in user research, prototyping, and React development. I've led design teams at tech startups and mentored hundreds of developers.",
       tags: ["UI/UX", "React", "Figma"],
       category: "Development",
       availability: "available",
@@ -135,6 +166,7 @@ const MentorsDirectory = () => {
       avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
       headline: "Full-Stack Developer & Tech Lead",
       location: "London, UK",
+      countryFlag: "🇬🇧",
       languages: ["English"],
       rating: 4.7,
       reviews: 94,
@@ -142,7 +174,8 @@ const MentorsDirectory = () => {
       creditsPerHour: 35,
       verifiedID: true,
       skillTested: false,
-      blurb: "Teaching modern web development with Node.js, React, and cloud deployment strategies.",
+      blurb: "Teaching modern web development with Node.js, React, and cloud deployment strategies for scalable applications.",
+      bio: "Senior full-stack developer with 10+ years experience. I lead engineering teams and specialize in building high-performance web applications using modern JavaScript frameworks.",
       tags: ["JavaScript", "Node.js", "AWS"],
       category: "Development",
       availability: "24h",
@@ -151,8 +184,9 @@ const MentorsDirectory = () => {
       id: "m104",
       name: "Diego Martinez",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-      headline: "Spanish Language Coach",
+      headline: "Spanish Language Coach & Cultural Expert",
       location: "Madrid, Spain",
+      countryFlag: "🇪🇸",
       languages: ["Spanish", "English"],
       rating: 4.9,
       reviews: 156,
@@ -160,7 +194,8 @@ const MentorsDirectory = () => {
       creditsPerHour: 20,
       verifiedID: true,
       skillTested: true,
-      blurb: "Native Spanish speaker helping students achieve fluency through conversational practice.",
+      blurb: "Native Spanish speaker helping students achieve fluency through immersive conversational practice and cultural immersion.",
+      bio: "Certified language instructor with a passion for helping students connect with Spanish-speaking cultures. I use innovative teaching methods that make learning engaging and practical.",
       tags: ["Spanish", "Conversation", "Grammar"],
       category: "Language",
       availability: "available",
@@ -170,13 +205,28 @@ const MentorsDirectory = () => {
   const featuredMentors = mockMentors.filter(mentor => mentor.isFeatured);
   const allMentors = mockMentors;
 
+  const toggleSection = (section: keyof typeof expandedSections) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
+
   const handleSearch = useCallback((query: string) => {
     setSearchQuery(query);
-    // In real app, this would trigger API call
   }, []);
 
   const handleFilterChange = useCallback((key: keyof Filters, value: any) => {
     setFilters(prev => ({ ...prev, [key]: value }));
+  }, []);
+
+  const handleCategoryChip = useCallback((category: string) => {
+    setFilters(prev => ({
+      ...prev,
+      category: prev.category.includes(category) 
+        ? prev.category.filter(c => c !== category)
+        : [...prev.category, category]
+    }));
   }, []);
 
   const handleBookNow = useCallback((mentor: Mentor) => {
@@ -189,124 +239,83 @@ const MentorsDirectory = () => {
     setActiveFilters([]);
   }, []);
 
+  // Calculate active filters count
+  const activeFiltersCount = Object.values(filters).filter(value => {
+    if (Array.isArray(value)) return value.length > 0;
+    if (typeof value === 'boolean') return value;
+    if (typeof value === 'string') return value !== '';
+    return false;
+  }).length;
+
   return (
-    <div className="mentors-page min-h-screen bg-white dark:bg-[#0F172A]">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-[#0056D2]/5 to-[#06B6D4]/5 dark:from-[#0F172A] dark:to-[#1E293B] border-b">
-        <div className="container mx-auto px-4 py-12 lg:py-16">
+    <div className="min-h-screen bg-canvas">
+      {/* Hero Section with Full-Width Gradient */}
+      <div className="relative overflow-hidden bg-gradient-to-r from-primary via-primary-600 to-secondary">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className={"absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\"20\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"white\" fill-opacity=\"0.1\"%3E%3Ccircle cx=\"10\" cy=\"10\" r=\"1\"/%3E%3C/g%3E%3C/svg%3E')]"}></div>
+        </div>
+        
+        <div className="relative page-container py-16 lg:py-24">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl lg:text-5xl font-heading font-bold bg-gradient-to-r from-[#0056D2] to-[#06B6D4] bg-clip-text text-transparent mb-4">
+            <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
               Find Your Mentor
             </h1>
-            <p className="text-lg lg:text-xl text-muted-foreground mb-6">
+            <p className="text-lg lg:text-xl text-white/90 mb-8 leading-relaxed">
               Search a global network of experts ready to teach, guide, and collaborate.
             </p>
-            <div className="text-sm text-muted-foreground">
-              <Badge variant="secondary" className="bg-[#0056D2]/10 text-[#0056D2] border-[#0056D2]/20 font-medium">
-                {allMentors.length.toLocaleString()} mentors available
-              </Badge>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Sticky Search & Controls */}
-      <div
-        className="mentors-search-section sticky top-0 z-40 backdrop-blur-sm border-b border-[#E2E8F0] dark:border-[#334155]"
-        style={{
-          backgroundColor: '#ffffff !important',
-          background: '#ffffff !important',
-          backgroundImage: 'none !important',
-          backgroundSize: 'auto !important',
-          backgroundRepeat: 'no-repeat !important',
-          backgroundPosition: 'initial !important',
-          backgroundAttachment: 'initial !important',
-          backgroundOrigin: 'initial !important',
-          backgroundClip: 'initial !important'
-        }}
-      >
-        <div
-          className="container mx-auto px-4 py-4"
-          style={{
-            backgroundColor: '#ffffff !important',
-            background: '#ffffff !important',
-            backgroundImage: 'none !important',
-            backgroundSize: 'auto !important',
-            backgroundRepeat: 'no-repeat !important',
-            backgroundPosition: 'initial !important'
-          }}
-        >
-          <div className="flex flex-col lg:flex-row gap-4 items-center">
-            {/* Search Input */}
-            <div className="relative flex-1 w-full">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+            
+            {/* Search Bar */}
+            <div className="relative max-w-2xl mx-auto mb-6">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-ink-body" />
               <Input
                 placeholder="Search mentors by skill, name, or keyword"
                 value={searchQuery}
                 onChange={(e) => handleSearch(e.target.value)}
-                className="pl-10 pr-10"
+                className="pl-12 pr-12 h-14 bg-surface border-0 shadow-lg text-lg focus:ring-2 focus:ring-secondary"
               />
               {searchQuery && (
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => handleSearch("")}
-                  className="absolute right-2 top-2 h-6 w-6 p-0"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 hover:bg-elevated"
                 >
                   <X className="h-4 w-4" />
                 </Button>
               )}
             </div>
 
-            {/* Sort Dropdown */}
-            <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-full lg:w-48">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {SORT_OPTIONS.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    {option.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-
-            {/* Mobile Filter Button */}
-            {isMobile && (
-              <Sheet>
-                <SheetTrigger asChild>
-                  <Button variant="outline" className="w-full lg:w-auto">
-                    <Filter className="h-4 w-4 mr-2" />
-                    Filters
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="left" className="w-full sm:w-80">
-                  <FiltersSidebar 
-                    filters={filters}
-                    onFilterChange={handleFilterChange}
-                    onClearAll={clearAllFilters}
-                  />
-                </SheetContent>
-              </Sheet>
-            )}
-          </div>
-
-          {/* Active Filter Pills */}
-          {activeFilters.length > 0 && (
-            <div className="flex flex-wrap gap-2 mt-4">
-              {activeFilters.map((filter, index) => (
-                <Badge key={index} variant="secondary" className="text-xs bg-[#0056D2]/10 text-[#0056D2] border-[#0056D2]/20">
-                  {filter}
-                  <X className="h-3 w-3 ml-1" />
-                </Badge>
+            {/* Quick Filter Category Chips */}
+            <div className="flex flex-wrap justify-center gap-2 mb-6">
+              {CATEGORIES.slice(0, 6).map((category) => (
+                <Button
+                  key={category}
+                  variant={filters.category.includes(category) ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => handleCategoryChip(category)}
+                  className={cn(
+                    "rounded-full font-medium transition-all duration-200",
+                    filters.category.includes(category)
+                      ? "bg-secondary text-white hover:bg-secondary/90 shadow-lg"
+                      : "bg-white/10 text-white border-white/20 hover:bg-white/20 backdrop-blur-sm"
+                  )}
+                >
+                  {category}
+                </Button>
               ))}
             </div>
-          )}
+
+            {/* Available Count Badge */}
+            <Badge className="bg-secondary/20 text-secondary border-secondary/30 px-4 py-2 text-sm font-medium">
+              {allMentors.length} mentors available
+            </Badge>
+          </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
+      {/* Main Content */}
+      <div className="page-container py-12">
         <div className="flex gap-8">
           {/* Desktop Filters Sidebar */}
           {!isMobile && (
@@ -315,25 +324,86 @@ const MentorsDirectory = () => {
                 filters={filters}
                 onFilterChange={handleFilterChange}
                 onClearAll={clearAllFilters}
+                expandedSections={expandedSections}
+                onToggleSection={toggleSection}
+                showMoreSkills={showMoreSkills}
+                onToggleShowMoreSkills={() => setShowMoreSkills(!showMoreSkills)}
               />
             </div>
           )}
 
           {/* Main Content */}
           <div className="flex-1">
+            {/* Controls Row */}
+            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-8">
+              {/* Sort and Mobile Filter */}
+              <div className="flex gap-3 w-full lg:w-auto">
+                <Select value={sortBy} onValueChange={setSortBy}>
+                  <SelectTrigger className="w-48 bg-surface border-border">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="bg-surface border-border">
+                    {SORT_OPTIONS.map((option) => (
+                      <SelectItem key={option.value} value={option.value}>
+                        {option.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+
+                {/* Mobile Filter Button */}
+                {isMobile && (
+                  <Sheet>
+                    <SheetTrigger asChild>
+                      <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
+                        <Filter className="h-4 w-4 mr-2" />
+                        Filters
+                        {activeFiltersCount > 0 && (
+                          <Badge className="ml-2 h-5 w-5 p-0 text-xs bg-secondary text-white">
+                            {activeFiltersCount}
+                          </Badge>
+                        )}
+                      </Button>
+                    </SheetTrigger>
+                    <SheetContent side="left" className="w-full sm:w-80 bg-surface">
+                      <SheetHeader>
+                        <SheetTitle className="text-ink-head">Filters</SheetTitle>
+                      </SheetHeader>
+                      <div className="mt-6">
+                        <FiltersSidebar 
+                          filters={filters}
+                          onFilterChange={handleFilterChange}
+                          onClearAll={clearAllFilters}
+                          expandedSections={expandedSections}
+                          onToggleSection={toggleSection}
+                          showMoreSkills={showMoreSkills}
+                          onToggleShowMoreSkills={() => setShowMoreSkills(!showMoreSkills)}
+                        />
+                      </div>
+                    </SheetContent>
+                  </Sheet>
+                )}
+              </div>
+
+              {/* Results Count */}
+              <div className="text-sm text-ink-body">
+                Showing {allMentors.length} of {allMentors.length} mentors
+              </div>
+            </div>
+
             {/* Featured Mentors */}
             {featuredMentors.length > 0 && (
               <div className="mb-12">
                 <div className="flex items-center gap-3 mb-6">
-                  <Star className="h-6 w-6 text-[#0056D2] fill-[#0056D2]" />
-                  <h2 className="text-2xl font-heading font-bold bg-gradient-to-r from-[#0056D2] to-[#06B6D4] bg-clip-text text-transparent">
+                  <Star className="h-6 w-6 text-secondary fill-secondary" />
+                  <h2 className="text-2xl font-bold text-ink-head">
                     Featured Mentors
                   </h2>
-                  <Badge className="bg-[#0056D2]/10 text-[#0056D2] border-[#0056D2]/20 text-xs font-medium">
+                  <Badge className="bg-secondary/10 text-secondary border-secondary/20 text-xs font-medium">
                     Top Rated
                   </Badge>
                 </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="space-y-6">
                   {featuredMentors.map((mentor) => (
                     <FeaturedMentorCard
                       key={mentor.id}
@@ -345,22 +415,13 @@ const MentorsDirectory = () => {
               </div>
             )}
 
-            {/* Results Header */}
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-3">
-                <h2 className="text-xl font-heading font-bold text-[#0F172A] dark:text-[#F1F5F9]">
-                  All Mentors
-                </h2>
-                <Badge variant="outline" className="bg-[#0056D2]/10 text-[#0056D2] border-[#0056D2]/20 font-medium">
-                  {allMentors.length} available
-                </Badge>
-              </div>
-              <div className="text-sm text-[#64748B] dark:text-[#94A3B8]">
-                Sorted by relevance
-              </div>
+            {/* All Mentors Grid */}
+            <div className="mb-6">
+              <h2 className="text-xl font-bold text-ink-head mb-6">
+                All Mentors
+              </h2>
             </div>
 
-            {/* Mentors Grid */}
             {isLoading ? (
               <MentorGridSkeleton />
             ) : (
@@ -380,52 +441,75 @@ const MentorsDirectory = () => {
 
       {/* Booking Modal */}
       {showBookingModal && selectedMentor && (
-        <BookingModalUnified
-          mode="mentor"
-          isOpen={showBookingModal}
-          onClose={() => {
-            setShowBookingModal(false);
-            setSelectedMentor(null);
-          }}
-          mentorData={{
-            id: selectedMentor.id,
-            name: selectedMentor.name,
-            avatarUrl: selectedMentor.avatar,
-            rate: selectedMentor.creditsPerHour,
-            availability: ["Available"],
-            verified: selectedMentor.verifiedID,
-            skillTested: selectedMentor.skillTested,
-            location: selectedMentor.location,
-            timezone: "UTC",
-          }}
-        />
+        <Dialog open={showBookingModal} onOpenChange={setShowBookingModal}>
+          <DialogContent className="max-w-2xl bg-surface border-border">
+            <DialogHeader>
+              <DialogTitle className="text-ink-head">Book Session with {selectedMentor.name}</DialogTitle>
+            </DialogHeader>
+            <BookingModalContent 
+              mentor={selectedMentor} 
+              onClose={() => setShowBookingModal(false)} 
+            />
+          </DialogContent>
+        </Dialog>
       )}
     </div>
   );
 };
 
-// Filters Sidebar Component
+// Filters Sidebar Component with Accordion
 interface FiltersSidebarProps {
   filters: Filters;
   onFilterChange: (key: keyof Filters, value: any) => void;
   onClearAll: () => void;
+  expandedSections: any;
+  onToggleSection: (section: string) => void;
+  showMoreSkills: boolean;
+  onToggleShowMoreSkills: () => void;
 }
 
-const FiltersSidebar: React.FC<FiltersSidebarProps> = ({ filters, onFilterChange, onClearAll }) => {
+const FiltersSidebar: React.FC<FiltersSidebarProps> = ({ 
+  filters, 
+  onFilterChange, 
+  onClearAll, 
+  expandedSections, 
+  onToggleSection,
+  showMoreSkills,
+  onToggleShowMoreSkills
+}) => {
+  const displayedSkills = showMoreSkills ? SKILLS : SKILLS.slice(0, 8);
+
   return (
-    <Card className="h-fit shadow-sm border-[#0056D2]/10 dark:border-[#06B6D4]/20">
+    <Card className="bg-surface border-border shadow-sm">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-heading bg-gradient-to-r from-[#0056D2] to-[#06B6D4] bg-clip-text text-transparent">
-          Filters
-        </CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle className="text-lg font-bold text-primary">
+            Filters
+          </CardTitle>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onClearAll}
+            className="text-secondary hover:text-secondary/80 hover:bg-secondary/10 px-3"
+          >
+            Clear All
+          </Button>
+        </div>
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Category Filter */}
-        <div>
-          <h3 className="font-semibold mb-3 text-[#0F172A] dark:text-[#F1F5F9] font-heading text-sm uppercase tracking-wide">Category</h3>
-          <div className="space-y-3">
+        <Collapsible open={expandedSections.category} onOpenChange={() => onToggleSection('category')}>
+          <CollapsibleTrigger className="flex items-center justify-between w-full p-2 hover:bg-elevated rounded-lg transition-colors">
+            <h3 className="font-semibold text-ink-head">Category</h3>
+            {expandedSections.category ? (
+              <ChevronUp className="h-4 w-4 text-ink-body" />
+            ) : (
+              <ChevronDown className="h-4 w-4 text-ink-body" />
+            )}
+          </CollapsibleTrigger>
+          <CollapsibleContent className="mt-2 space-y-2">
             {CATEGORIES.map((category) => (
-              <label key={category} className="flex items-center space-x-3 cursor-pointer group hover:bg-[#0056D2]/5 p-2 rounded-lg transition-all duration-200">
+              <label key={category} className="flex items-center space-x-3 cursor-pointer group hover:bg-elevated p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   checked={filters.category.includes(category)}
@@ -436,22 +520,29 @@ const FiltersSidebar: React.FC<FiltersSidebarProps> = ({ filters, onFilterChange
                       onFilterChange('category', filters.category.filter(c => c !== category));
                     }
                   }}
-                  className="h-4 w-4 rounded border-2 border-[#0056D2]/30 text-[#0056D2] focus:ring-[#0056D2] focus:ring-offset-0"
+                  className="h-4 w-4 rounded border-2 border-primary/30 text-primary focus:ring-primary focus:ring-offset-0"
                 />
-                <span className="text-sm text-[#334155] dark:text-[#E2E8F0] group-hover:text-[#0056D2] transition-colors">{category}</span>
+                <span className="text-sm text-ink-body group-hover:text-ink-head transition-colors">{category}</span>
               </label>
             ))}
-          </div>
-        </div>
+          </CollapsibleContent>
+        </Collapsible>
 
-        <Separator className="bg-[#0056D2]/10" />
+        <Separator className="bg-border" />
 
         {/* Skills Filter */}
-        <div>
-          <h3 className="font-semibold mb-3 text-[#0F172A] dark:text-[#F1F5F9] font-heading text-sm uppercase tracking-wide">Skills</h3>
-          <div className="space-y-3">
-            {SKILLS.map((skill) => (
-              <label key={skill} className="flex items-center space-x-3 cursor-pointer group hover:bg-[#0056D2]/5 p-2 rounded-lg transition-all duration-200">
+        <Collapsible open={expandedSections.skills} onOpenChange={() => onToggleSection('skills')}>
+          <CollapsibleTrigger className="flex items-center justify-between w-full p-2 hover:bg-elevated rounded-lg transition-colors">
+            <h3 className="font-semibold text-ink-head">Skills</h3>
+            {expandedSections.skills ? (
+              <ChevronUp className="h-4 w-4 text-ink-body" />
+            ) : (
+              <ChevronDown className="h-4 w-4 text-ink-body" />
+            )}
+          </CollapsibleTrigger>
+          <CollapsibleContent className="mt-2 space-y-2">
+            {displayedSkills.map((skill) => (
+              <label key={skill} className="flex items-center space-x-3 cursor-pointer group hover:bg-elevated p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   checked={filters.skills.includes(skill)}
@@ -462,22 +553,39 @@ const FiltersSidebar: React.FC<FiltersSidebarProps> = ({ filters, onFilterChange
                       onFilterChange('skills', filters.skills.filter(s => s !== skill));
                     }
                   }}
-                  className="h-4 w-4 rounded border-2 border-[#0056D2]/30 text-[#0056D2] focus:ring-[#0056D2] focus:ring-offset-0"
+                  className="h-4 w-4 rounded border-2 border-primary/30 text-primary focus:ring-primary focus:ring-offset-0"
                 />
-                <span className="text-sm text-[#334155] dark:text-[#E2E8F0] group-hover:text-[#0056D2] transition-colors">{skill}</span>
+                <span className="text-sm text-ink-body group-hover:text-ink-head transition-colors">{skill}</span>
               </label>
             ))}
-          </div>
-        </div>
+            {SKILLS.length > 8 && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={onToggleShowMoreSkills}
+                className="text-primary hover:text-primary-600 hover:bg-primary/10 mt-2"
+              >
+                {showMoreSkills ? 'Show Less' : `Show More (${SKILLS.length - 8})`}
+              </Button>
+            )}
+          </CollapsibleContent>
+        </Collapsible>
 
-        <Separator className="bg-[#0056D2]/10" />
+        <Separator className="bg-border" />
 
-        {/* Level Filter */}
-        <div>
-          <h3 className="font-semibold mb-3 text-[#0F172A] dark:text-[#F1F5F9] font-heading text-sm uppercase tracking-wide">Experience Level</h3>
-          <div className="space-y-3">
+        {/* Experience Level Filter */}
+        <Collapsible open={expandedSections.level} onOpenChange={() => onToggleSection('level')}>
+          <CollapsibleTrigger className="flex items-center justify-between w-full p-2 hover:bg-elevated rounded-lg transition-colors">
+            <h3 className="font-semibold text-ink-head">Experience Level</h3>
+            {expandedSections.level ? (
+              <ChevronUp className="h-4 w-4 text-ink-body" />
+            ) : (
+              <ChevronDown className="h-4 w-4 text-ink-body" />
+            )}
+          </CollapsibleTrigger>
+          <CollapsibleContent className="mt-2 space-y-2">
             {LEVELS.map((level) => (
-              <label key={level} className="flex items-center space-x-3 cursor-pointer group hover:bg-[#0056D2]/5 p-2 rounded-lg transition-all duration-200">
+              <label key={level} className="flex items-center space-x-3 cursor-pointer group hover:bg-elevated p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   checked={filters.level.includes(level)}
@@ -488,49 +596,48 @@ const FiltersSidebar: React.FC<FiltersSidebarProps> = ({ filters, onFilterChange
                       onFilterChange('level', filters.level.filter(l => l !== level));
                     }
                   }}
-                  className="h-4 w-4 rounded border-2 border-[#0056D2]/30 text-[#0056D2] focus:ring-[#0056D2] focus:ring-offset-0"
+                  className="h-4 w-4 rounded border-2 border-primary/30 text-primary focus:ring-primary focus:ring-offset-0"
                 />
-                <span className="text-sm text-[#334155] dark:text-[#E2E8F0] group-hover:text-[#0056D2] transition-colors">{level}</span>
+                <span className="text-sm text-ink-body group-hover:text-ink-head transition-colors">{level}</span>
               </label>
             ))}
-          </div>
-        </div>
+          </CollapsibleContent>
+        </Collapsible>
 
-        <Separator className="bg-[#0056D2]/10" />
+        <Separator className="bg-border" />
 
         {/* Verification Filter */}
-        <div>
-          <h3 className="font-semibold mb-3 text-[#0F172A] dark:text-[#F1F5F9] font-heading text-sm uppercase tracking-wide">Verification</h3>
-          <div className="space-y-3">
-            <label className="flex items-center space-x-3 cursor-pointer group hover:bg-[#0056D2]/5 p-2 rounded-lg transition-all duration-200">
+        <Collapsible open={expandedSections.verification} onOpenChange={() => onToggleSection('verification')}>
+          <CollapsibleTrigger className="flex items-center justify-between w-full p-2 hover:bg-elevated rounded-lg transition-colors">
+            <h3 className="font-semibold text-ink-head">Verification</h3>
+            {expandedSections.verification ? (
+              <ChevronUp className="h-4 w-4 text-ink-body" />
+            ) : (
+              <ChevronDown className="h-4 w-4 text-ink-body" />
+            )}
+          </CollapsibleTrigger>
+          <CollapsibleContent className="mt-2 space-y-2">
+            <label className="flex items-center space-x-3 cursor-pointer group hover:bg-elevated p-2 rounded-lg transition-colors">
               <input
                 type="checkbox"
                 checked={filters.verified}
                 onChange={(e) => onFilterChange('verified', e.target.checked)}
-                className="h-4 w-4 rounded border-2 border-[#0056D2]/30 text-[#0056D2] focus:ring-[#0056D2] focus:ring-offset-0"
+                className="h-4 w-4 rounded border-2 border-primary/30 text-primary focus:ring-primary focus:ring-offset-0"
               />
-              <span className="text-sm text-[#334155] dark:text-[#E2E8F0] group-hover:text-[#0056D2] transition-colors flex items-center gap-2">
+              <span className="text-sm text-ink-body group-hover:text-ink-head transition-colors flex items-center gap-2">
                 <Shield className="h-3 w-3" />
                 Verified mentors only
               </span>
             </label>
-          </div>
-        </div>
+          </CollapsibleContent>
+        </Collapsible>
 
-        <Separator className="bg-[#0056D2]/10" />
+        <Separator className="bg-border" />
 
         {/* Action Buttons */}
         <div className="flex gap-2 pt-2">
-          <Button size="sm" className="flex-1 bg-[#0056D2] hover:bg-[#004BB8] text-white font-semibold shadow-sm transition-all duration-200">
+          <Button className="flex-1 bg-primary hover:bg-primary-600 text-white font-semibold">
             Apply Filters
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={onClearAll}
-            className="flex-1 text-[#06B6D4] border-[#06B6D4]/30 hover:bg-[#06B6D4]/10 hover:border-[#06B6D4]/50 transition-all duration-200"
-          >
-            Clear All
           </Button>
         </div>
       </CardContent>
@@ -538,7 +645,7 @@ const FiltersSidebar: React.FC<FiltersSidebarProps> = ({ filters, onFilterChange
   );
 };
 
-// Featured Mentor Card Component
+// Featured Mentor Card Component - Horizontal Spotlight Banner
 interface MentorCardProps {
   mentor: Mentor;
   onBookNow: (mentor: Mentor) => void;
@@ -546,41 +653,45 @@ interface MentorCardProps {
 
 const FeaturedMentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) => {
   return (
-    <Card className="glass-card hover-lift transition-all duration-300 group border-[#0056D2]/15 bg-gradient-to-br from-white via-[#0056D2]/1 to-[#06B6D4]/2 dark:from-[#1E293B] dark:via-[#0056D2]/5 dark:to-[#06B6D4]/3">
+    <Card className="group cursor-pointer overflow-hidden bg-surface border-secondary/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
       <CardContent className="p-6">
-        <div className="flex items-start gap-5">
+        <div className="flex items-start gap-6">
           <div className="relative">
-            <Avatar className="h-20 w-20 ring-2 ring-[#0056D2]/20 ring-offset-2 ring-offset-background">
+            <Avatar className="h-24 w-24 ring-4 ring-secondary/20 ring-offset-2 ring-offset-background">
               <AvatarImage src={mentor.avatar} alt={mentor.name} className="object-cover" />
-              <AvatarFallback className="bg-gradient-to-br from-[#0056D2]/10 to-[#06B6D4]/10 text-[#0056D2] font-bold text-lg">
+              <AvatarFallback className="bg-primary/10 text-primary font-bold text-xl">
                 {mentor.name.split(' ').map(n => n[0]).join('')}
               </AvatarFallback>
             </Avatar>
             {mentor.isFeatured && (
-              <div className="absolute -top-2 -right-2 h-7 w-7 bg-gradient-to-r from-[#0056D2] to-[#06B6D4] rounded-full flex items-center justify-center shadow-lg">
+              <div className="absolute -top-2 -right-2 h-8 w-8 bg-secondary rounded-full flex items-center justify-center shadow-lg">
                 <Star className="h-4 w-4 text-white fill-white" />
               </div>
             )}
           </div>
+          
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between mb-3">
               <div className="flex-1 min-w-0">
-                <h3 className="font-heading font-bold text-xl text-[#0F172A] dark:text-[#F1F5F9] group-hover:text-[#0056D2] transition-colors truncate">
+                <h3 className="font-bold text-xl text-ink-head group-hover:text-primary transition-colors truncate">
                   {mentor.name}
                 </h3>
-                <p className="text-sm text-[#64748B] dark:text-[#94A3B8] font-medium truncate">
+                <p className="text-sm text-ink-body font-medium truncate mb-2">
                   {mentor.headline}
                 </p>
+                <p className="text-sm text-ink-body leading-relaxed line-clamp-2">
+                  {mentor.bio}
+                </p>
               </div>
-              <div className="flex flex-col gap-1 ml-3">
+              <div className="flex flex-col gap-2 ml-4">
                 {mentor.verifiedID && (
-                  <Badge className="bg-emerald-50 text-emerald-700 border-emerald-200 text-xs font-medium dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-800">
+                  <Badge className="bg-success/10 text-success border-success/20 text-xs font-medium">
                     <Shield className="h-3 w-3 mr-1" />
                     Verified
                   </Badge>
                 )}
                 {mentor.skillTested && (
-                  <Badge className="bg-blue-50 text-blue-700 border-blue-200 text-xs font-medium dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800">
+                  <Badge className="bg-primary/10 text-primary border-primary/20 text-xs font-medium">
                     <CheckCircle className="h-3 w-3 mr-1" />
                     Tested
                   </Badge>
@@ -588,49 +699,57 @@ const FeaturedMentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) =>
               </div>
             </div>
 
-            <div className="flex items-center flex-wrap gap-3 text-sm text-[#64748B] dark:text-[#94A3B8] mb-4">
-              <div className="flex items-center gap-1.5">
-                <Star className="h-4 w-4 fill-[#0056D2] text-[#0056D2]" />
-                <span className="font-semibold text-[#0F172A] dark:text-[#F1F5F9]">{mentor.rating}</span>
+            <div className="flex items-center flex-wrap gap-4 text-sm text-ink-body mb-4">
+              <div className="flex items-center gap-1">
+                <div className="flex">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star 
+                      key={i} 
+                      className={cn(
+                        "w-4 h-4",
+                        i < Math.floor(mentor.rating) 
+                          ? "fill-warning text-warning" 
+                          : "text-border"
+                      )}
+                    />
+                  ))}
+                </div>
+                <span className="font-semibold text-ink-head">{mentor.rating}</span>
                 <span>({mentor.reviews})</span>
               </div>
-              <span className="text-[#CBD5E1] hidden sm:inline">•</span>
+              <span>•</span>
               <span className="font-medium">{mentor.sessions} sessions</span>
-              <span className="text-[#CBD5E1] hidden sm:inline">•</span>
+              <span>•</span>
               <div className="flex items-center gap-1">
+                <span className="text-lg">{mentor.countryFlag}</span>
                 <MapPin className="h-3 w-3" />
                 <span className="truncate">{mentor.location}</span>
               </div>
             </div>
 
-            {/* Languages */}
+            {/* Key Skills */}
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-xs font-medium text-[#64748B] dark:text-[#94A3B8]">Languages:</span>
+              <span className="text-xs font-medium text-ink-body">Key skills:</span>
               <div className="flex gap-1 flex-wrap">
-                {mentor.languages.slice(0, 2).map((lang) => (
-                  <Badge key={lang} variant="outline" className="text-xs bg-[#06B6D4]/10 text-[#06B6D4] border-[#06B6D4]/30">
-                    {lang}
+                {mentor.tags.slice(0, 3).map((tag) => (
+                  <Badge key={tag} variant="outline" className="text-xs bg-secondary/10 text-secondary border-secondary/30">
+                    {tag}
                   </Badge>
                 ))}
-                {mentor.languages.length > 2 && (
-                  <Badge variant="outline" className="text-xs bg-gray-50 text-gray-600 border-gray-200">
-                    +{mentor.languages.length - 2}
-                  </Badge>
-                )}
               </div>
             </div>
 
-            <div className="flex items-center justify-between pt-2 border-t border-[#0056D2]/10">
+            <div className="flex items-center justify-between pt-3 border-t border-border">
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold text-[#0056D2]">{mentor.creditsPerHour}</span>
-                <span className="text-sm text-[#64748B] dark:text-[#94A3B8]">credits/hr</span>
+                <span className="text-2xl font-bold text-primary">{mentor.creditsPerHour}</span>
+                <span className="text-sm text-ink-body">credits/hr</span>
               </div>
-              <div className="flex gap-2">
-                <Button variant="outline" size="sm" className="text-[#06B6D4] border-[#06B6D4]/30 hover:bg-[#06B6D4]/10 hover:border-[#06B6D4]/50 font-medium bg-white dark:bg-[#1E293B]">
-                  View
+              <div className="flex gap-3">
+                <Button variant="outline" className="border-secondary text-secondary hover:bg-secondary hover:text-white font-medium">
+                  View Profile
                 </Button>
-                <Button size="sm" className="bg-[#0056D2] hover:bg-[#004BB8] text-white font-semibold shadow-sm hover:shadow-md transition-all duration-200" onClick={() => onBookNow(mentor)}>
-                  Book
+                <Button className="bg-primary hover:bg-primary-600 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200" onClick={() => onBookNow(mentor)}>
+                  Book Session
                 </Button>
               </div>
             </div>
@@ -641,39 +760,50 @@ const FeaturedMentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) =>
   );
 };
 
-// Regular Mentor Card Component
+// Regular Mentor Card Component - Uniform Height with Hover Effects
 const MentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <Card className="glass-card hover-lift transition-all duration-300 group border-[#0056D2]/10 h-full bg-white/50 dark:bg-[#1E293B]/50 backdrop-blur-sm">
-      <CardContent className="p-5 h-full flex flex-col">
-        <div className="flex items-start gap-4 mb-4">
-          <div className="relative">
-            <Avatar className="h-14 w-14 ring-1 ring-[#0056D2]/20 ring-offset-1 ring-offset-background">
+    <Card
+      className="group cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1 bg-surface border-border h-full overflow-hidden"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <CardContent className="p-5 h-full flex flex-col relative">
+        {/* Header with Avatar and Info */}
+        <div className="flex items-start gap-3 mb-4">
+          <div className="relative flex-shrink-0">
+            <Avatar className="h-14 w-14 ring-2 ring-primary/10">
               <AvatarImage src={mentor.avatar} alt={mentor.name} className="object-cover" />
-              <AvatarFallback className="bg-gradient-to-br from-[#0056D2]/10 to-[#06B6D4]/10 text-[#0056D2] font-bold">
+              <AvatarFallback className="bg-primary/10 text-primary font-bold text-sm">
                 {mentor.name.split(' ').map(n => n[0]).join('')}
               </AvatarFallback>
             </Avatar>
           </div>
           <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between mb-2">
+            <div className="flex items-start justify-between">
               <div className="flex-1 min-w-0 pr-2">
-                <h3 className="font-heading font-bold text-lg text-[#0F172A] dark:text-[#F1F5F9] group-hover:text-[#0056D2] transition-colors truncate">
+                <h3 className="font-bold text-base text-ink-head group-hover:text-primary transition-colors truncate">
                   {mentor.name}
                 </h3>
-                <p className="text-sm text-[#64748B] dark:text-[#94A3B8] font-medium truncate">
+                <p className="text-sm text-ink-body font-medium truncate mb-1">
                   {mentor.headline}
                 </p>
+                <div className="flex items-center gap-1">
+                  <span className="text-sm">{mentor.countryFlag}</span>
+                  <span className="text-xs text-ink-body truncate">{mentor.location}</span>
+                </div>
               </div>
               <div className="flex gap-1 flex-shrink-0">
                 {mentor.verifiedID && (
-                  <div className="w-6 h-6 bg-emerald-50 dark:bg-emerald-900/30 rounded-full flex items-center justify-center border border-emerald-200 dark:border-emerald-800">
-                    <Shield className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
+                  <div className="w-5 h-5 bg-success/10 rounded-full flex items-center justify-center border border-success/20">
+                    <Shield className="h-3 w-3 text-success" />
                   </div>
                 )}
                 {mentor.skillTested && (
-                  <div className="w-6 h-6 bg-blue-50 dark:bg-blue-900/30 rounded-full flex items-center justify-center border border-blue-200 dark:border-blue-800">
-                    <CheckCircle className="h-3 w-3 text-blue-600 dark:text-blue-400" />
+                  <div className="w-5 h-5 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
+                    <CheckCircle className="h-3 w-3 text-primary" />
                   </div>
                 )}
               </div>
@@ -681,43 +811,76 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) => {
           </div>
         </div>
 
-        <div className="flex items-center flex-wrap gap-2 text-sm text-[#64748B] dark:text-[#94A3B8] mb-3">
+        {/* Rating and Sessions */}
+        <div className="flex items-center gap-2 text-sm text-ink-body mb-3">
           <div className="flex items-center gap-1">
-            <Star className="h-3 w-3 fill-[#0056D2] text-[#0056D2]" />
-            <span className="font-semibold text-[#0F172A] dark:text-[#F1F5F9]">{mentor.rating}</span>
-            <span>({mentor.reviews})</span>
+            <div className="flex">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star
+                  key={i}
+                  className={cn(
+                    "w-3 h-3",
+                    i < Math.floor(mentor.rating)
+                      ? "fill-warning text-warning"
+                      : "text-border"
+                  )}
+                />
+              ))}
+            </div>
+            <span className="font-semibold text-ink-head text-sm">{mentor.rating}</span>
+            <span className="text-xs">({mentor.reviews})</span>
           </div>
-          <span className="text-[#CBD5E1] hidden sm:inline">•</span>
-          <span className="font-medium">{mentor.sessions} sessions</span>
+          <span className="text-border">•</span>
+          <span className="font-medium text-xs">{mentor.sessions} sessions</span>
         </div>
 
-        <p className="text-sm text-[#64748B] dark:text-[#94A3B8] mb-4 line-clamp-2 flex-1 leading-relaxed">
+        {/* Description */}
+        <p className="text-sm text-ink-body mb-3 line-clamp-2 flex-1 leading-relaxed">
           {mentor.blurb}
         </p>
 
-        <div className="flex flex-wrap gap-1.5 mb-4">
+        {/* Skills Tags */}
+        <div className="flex flex-wrap gap-1 mb-4">
           {mentor.tags.slice(0, 3).map((tag) => (
-            <Badge key={tag} variant="outline" className="text-xs bg-[#0056D2]/5 text-[#0056D2] border-[#0056D2]/25 font-medium hover:bg-[#0056D2]/10 transition-colors">
+            <Badge
+              key={tag}
+              variant="outline"
+              className="text-xs bg-primary/5 text-primary border-primary/25 font-medium hover:bg-primary/10 transition-colors cursor-help"
+              title={`Skill: ${tag}`}
+            >
               {tag}
             </Badge>
           ))}
           {mentor.tags.length > 3 && (
-            <Badge variant="outline" className="text-xs bg-gray-50 text-gray-600 border-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700">
+            <Badge variant="outline" className="text-xs bg-ink-body/5 text-ink-body border-ink-body/25">
               +{mentor.tags.length - 3}
             </Badge>
           )}
         </div>
 
-        <div className="flex items-center justify-between pt-3 border-t border-[#0056D2]/10 mt-auto">
-          <div className="flex items-center gap-2">
-            <span className="text-xl font-bold text-[#0056D2]">{mentor.creditsPerHour}</span>
-            <span className="text-xs text-[#64748B] dark:text-[#94A3B8] font-medium">credits/hr</span>
+        {/* Footer with Price and Actions */}
+        <div className="flex items-center justify-between pt-3 border-t border-border mt-auto">
+          <div className="flex items-baseline gap-1">
+            <span className="text-lg font-bold text-primary">{mentor.creditsPerHour}</span>
+            <span className="text-xs text-ink-body">credits/hr</span>
           </div>
-          <div className="flex gap-2">
-            <Button variant="ghost" size="sm" className="text-[#06B6D4] hover:text-[#0891B2] hover:bg-[#06B6D4]/10 font-medium text-xs px-3 bg-transparent">
-              View
+          <div className="flex gap-2 items-center">
+            <Button
+              variant="ghost"
+              size="sm"
+              className={cn(
+                "text-secondary hover:text-secondary/80 hover:bg-secondary/10 font-medium text-xs px-2 h-8 transition-all duration-200",
+                isHovered ? "opacity-100 translate-x-0" : "opacity-0 translate-x-2"
+              )}
+            >
+              <MessageCircle className="h-3 w-3 mr-1" />
+              Message
             </Button>
-            <Button size="sm" className="bg-[#0056D2] hover:bg-[#004BB8] text-white font-semibold shadow-sm hover:shadow-md transition-all duration-200 text-xs px-4" onClick={() => onBookNow(mentor)}>
+            <Button
+              size="sm"
+              className="bg-primary hover:bg-primary-600 text-white font-semibold shadow-sm hover:shadow-md transition-all duration-200 text-xs px-3 h-8"
+              onClick={() => onBookNow(mentor)}
+            >
               Book
             </Button>
           </div>
@@ -727,18 +890,79 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) => {
   );
 };
 
+// Booking Modal Content
+interface BookingModalContentProps {
+  mentor: Mentor;
+  onClose: () => void;
+}
+
+const BookingModalContent: React.FC<BookingModalContentProps> = ({ mentor, onClose }) => {
+  return (
+    <div className="space-y-6">
+      {/* Mentor Summary */}
+      <div className="flex items-start gap-4 p-4 bg-elevated rounded-lg border border-border">
+        <Avatar className="h-16 w-16">
+          <AvatarImage src={mentor.avatar} alt={mentor.name} />
+          <AvatarFallback className="bg-primary/10 text-primary font-bold">
+            {mentor.name.split(' ').map(n => n[0]).join('')}
+          </AvatarFallback>
+        </Avatar>
+        <div className="flex-1">
+          <h3 className="font-bold text-lg text-ink-head">{mentor.name}</h3>
+          <p className="text-sm text-ink-body">{mentor.headline}</p>
+          <div className="flex items-center gap-2 mt-2">
+            <div className="flex items-center gap-1">
+              <Star className="h-3 w-3 fill-warning text-warning" />
+              <span className="text-sm font-semibold">{mentor.rating}</span>
+            </div>
+            <span className="text-sm text-ink-body">•</span>
+            <span className="text-sm text-ink-body">{mentor.sessions} sessions</span>
+            <span className="text-sm text-ink-body">•</span>
+            <span className="text-sm font-semibold text-primary">{mentor.creditsPerHour} credits/hr</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Calendar Picker Placeholder */}
+      <div className="p-6 bg-elevated rounded-lg border border-border text-center">
+        <Calendar className="h-12 w-12 text-ink-body mx-auto mb-4" />
+        <h4 className="font-semibold text-ink-head mb-2">Select Available Time</h4>
+        <p className="text-sm text-ink-body mb-4">Calendar integration would go here</p>
+        <div className="grid grid-cols-3 gap-2">
+          {['9:00 AM', '2:00 PM', '6:00 PM'].map((time) => (
+            <Button key={time} variant="outline" size="sm" className="border-primary/20 hover:bg-primary/10">
+              {time}
+            </Button>
+          ))}
+        </div>
+      </div>
+
+      {/* Confirm Button */}
+      <div className="flex gap-3">
+        <Button variant="outline" onClick={onClose} className="flex-1">
+          Cancel
+        </Button>
+        <Button className="flex-1 bg-primary hover:bg-primary-600 text-white font-semibold">
+          Confirm Booking
+        </Button>
+      </div>
+    </div>
+  );
+};
+
 // Loading Skeleton Component
 const MentorGridSkeleton = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-      {Array.from({ length: 6 }).map((_, i) => (
-        <Card key={i}>
-          <CardContent className="p-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+      {Array.from({ length: 8 }).map((_, i) => (
+        <Card key={i} className="bg-surface">
+          <CardContent className="p-5">
             <div className="flex items-start gap-4 mb-4">
-              <Skeleton className="h-12 w-12 rounded-full" />
+              <Skeleton className="h-16 w-16 rounded-full" />
               <div className="flex-1 space-y-2">
                 <Skeleton className="h-4 w-24" />
                 <Skeleton className="h-3 w-32" />
+                <Skeleton className="h-3 w-20" />
               </div>
             </div>
             <Skeleton className="h-3 w-full mb-2" />

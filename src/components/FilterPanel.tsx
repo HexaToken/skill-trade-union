@@ -103,7 +103,7 @@ export default function FilterPanel({
         <FilterSection title="Availability">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-brand-amber" />
+              <Zap className="w-4 h-4 text-brand-secondary" />
               <Label htmlFor="instant-available" className="text-sm">
                 Available for instant help
               </Label>
@@ -175,7 +175,7 @@ export default function FilterPanel({
       <FilterSection title="Minimum Rating">
         <div className="space-y-2">
           <div className="flex items-center gap-2">
-            <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+            <Star className="w-4 h-4 fill-orange-400 text-orange-400" />
             <span className="text-sm font-medium">
               {filters.minRating ? `${filters.minRating}+ stars` : 'Any rating'}
             </span>

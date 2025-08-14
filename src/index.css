@@ -5,119 +5,99 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
-All colors MUST be HSL.
-*/
+/* Professional SkillSwap Color System - Light & Dark Themes */
 
-@layer base {
-  :root {
-    /* Coursera/Udemy Hybrid Color System */
-    --background: 255 255 255; /* #FFFFFF - Pure white */
-    --foreground: 15 23 42; /* #0F172A - Deep navy for headings */
+:root {
+  /* Brand */
+  --primary: #0B5FFF;      /* electric academic blue */
+  --primary-600: #084AC7;  /* hover/pressed */
+  --secondary: #12D6DF;    /* tech cyan */
 
-    --card: 255 255 255; /* #FFFFFF - Pure white for cards */
-    --card-foreground: 51 65 85; /* #334155 - Body text */
+  /* Text */
+  --ink-head: #0F172A;
+  --ink-body: #334155;
 
-    --popover: 255 255 255;
-    --popover-foreground: 51 65 85;
+  /* Surfaces */
+  --canvas: #F7F9FC;       /* app background */
+  --surface: #FFFFFF;      /* cards/nav */
+  --elevated: #FFFFFF;     /* modals/dropdowns */
+  --border: #E5E7EB;
 
-    --primary: 214 100% 41%; /* #0056D2 - Deep blue */
-    --primary-foreground: 255 255 255;
+  /* States */
+  --success: #16A34A;
+  --warning: #F59E0B;
+  --danger:  #EF4444;
 
-    --secondary: 189 94% 43%; /* #06B6D4 - Light cyan */
-    --secondary-foreground: 255 255 255; /* White text for better contrast */
+  /* Gradients */
+  --brand-gradient: linear-gradient(90deg, #6C2BD9 0%, #12D6DF 100%);
 
-    --muted: 248 250 252; /* #F8FAFC - Soft gray */
-    --muted-foreground: 100 116 139; /* #64748B - Slate gray */
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 6px 20px rgba(15, 23, 42, 0.08);
 
-    --accent: 189 94% 43%; /* #06B6D4 - Light cyan accent */
-    --accent-foreground: 255 255 255; /* White text for better contrast */
-
-    --destructive: 0 84% 60%; /* #EF4444 - Keep red for destructive */
-    --destructive-foreground: 255 255 255;
-
-    --border: 226 232 240; /* #E2E8F0 - Light border */
-    --input: 226 232 240;
-    --ring: 214 100% 41%;
-
-    --radius: 0.75rem; /* 12px rounded corners */
-
-    /* Coursera/Udemy specific variables */
-    --glass-bg: rgba(255, 255, 255, 0.98);
-    --glass-border: rgba(0, 0, 0, 0.05);
-    --glass-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    --neo-blur: 16px;
-    --neo-gradient: linear-gradient(135deg, rgba(0, 86, 210, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
-
-    /* Brand palette - Coursera/Udemy colors */
-    --brand-primary: 214 100% 41%; /* #0056D2 - Deep blue */
-    --brand-secondary: 189 94% 43%; /* #06B6D4 - Light cyan */
-    --brand-neutral: 100 116 139; /* #64748B - Slate gray */
-    --brand-success: 142 71% 45%; /* #22C55E - Keep green for success */
-    --brand-warning: 45 93% 47%; /* #FBBF24 - Keep amber for warnings */
-    --brand-danger: 0 84% 60%; /* #EF4444 - Keep red for destructive */
-
-    /* Neutrals - Coursera/Udemy */
-    --neutral-900: 15 23 42; /* #0F172A - Deep navy headings */
-    --neutral-800: 51 65 85; /* #334155 - Body text */
-    --neutral-600: 100 116 139; /* #64748B - Slate gray */
-    --neutral-400: 148 163 184; /* #94A3B8 - Light slate */
-    --neutral-100: 248 250 252; /* #F8FAFC - Soft gray background */
-    --neutral-50: 255 255 255; /* #FFFFFF */
-
-    /* Enhanced Effects - Coursera/Udemy */
-    --gradient-brand: linear-gradient(135deg, hsl(var(--brand-primary)) 0%, hsl(var(--brand-secondary)) 100%);
-    --gradient-hero: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
-    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
-    --shadow-neo: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
-    --shadow-elev: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.05);
-    --shadow-glow: 0 0 15px rgba(0, 86, 210, 0.15);
-  }
-
-  .dark {
-    /* Dark mode Coursera/Udemy Hybrid */
-    --background: 15 23 42; /* #0F172A - Deep navy */
-    --foreground: 241 245 249; /* #F1F5F9 - Light text for headings */
-
-    --card: 30 41 59; /* #1E293B - Dark slate for cards */
-    --card-foreground: 226 232 240; /* #E2E8F0 - Body text */
-
-    --popover: 30 41 59;
-    --popover-foreground: 226 232 240;
-
-    --primary: 214 100% 41%; /* #0056D2 - Keep deep blue */
-    --primary-foreground: 255 255 255;
-
-    --secondary: 189 94% 43%; /* #06B6D4 - Keep light cyan */
-    --secondary-foreground: 255 255 255; /* White text for better contrast */
-
-    --muted: 30 41 59; /* #1E293B - Dark slate for muted sections */
-    --muted-foreground: 148 163 184; /* #94A3B8 - Muted text */
-
-    --accent: 189 94% 43%; /* #06B6D4 - Light cyan accent */
-    --accent-foreground: 255 255 255; /* White text for better contrast */
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 255 255 255;
-
-    --border: 51 65 85; /* #334155 - Medium slate for borders */
-    --input: 51 65 85;
-    --ring: 214 100% 41%;
-
-    /* Dark Coursera/Udemy adjustments */
-    --glass-bg: rgba(30, 41, 59, 0.95);
-    --glass-border: rgba(255, 255, 255, 0.06);
-    --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-    --neo-gradient: linear-gradient(135deg, rgba(0, 86, 210, 0.15) 0%, rgba(6, 182, 212, 0.15) 100%);
-
-    /* Enhanced shadows for dark mode */
-    --shadow-neo: 0 4px 16px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 86, 210, 0.2);
-    --shadow-soft: 0 2px 10px -4px rgba(0, 0, 0, 0.3);
-    --shadow-glow: 0 0 20px rgba(6, 182, 212, 0.3);
-  }
+  /* Shadcn/ui compatibility layer */
+  --background: 247 249 252; /* #F7F9FC */
+  --foreground: 15 23 42; /* #0F172A */
+  --card: 255 255 255; /* #FFFFFF */
+  --card-foreground: 51 65 85; /* #334155 */
+  --popover: 255 255 255;
+  --popover-foreground: 51 65 85;
+  --muted: 229 231 235; /* #E5E7EB */
+  --muted-foreground: 51 65 85;
+  --accent: 18 214 223; /* #12D6DF */
+  --accent-foreground: 255 255 255;
+  --destructive: 239 68 68; /* #EF4444 */
+  --destructive-foreground: 255 255 255;
+  --input: 229 231 235;
+  --ring: 11 95 255;
+  --radius: 1rem;
 }
 
+[data-theme="dark"] {
+  --primary: #7AA7FF;
+  --primary-600: #5F86D1;
+  --secondary: #2BE4EE;
+
+  --ink-head: #E5EDF9;
+  --ink-body: #C8D1E2;
+
+  --canvas: #0B1220;
+  --surface: #121A2B;
+  --elevated: #16213A;
+  --border: #233047;
+
+  --success: #22C55E;
+  --warning: #FBBF24;
+  --danger:  #F87171;
+
+  --brand-gradient: linear-gradient(90deg, #8B5CF6 0%, #2BE4EE 100%);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.35);
+
+  /* Shadcn/ui compatibility layer */
+  --background: 11 18 32; /* #0B1220 */
+  --foreground: 229 237 249; /* #E5EDF9 */
+  --card: 18 26 43; /* #121A2B */
+  --card-foreground: 200 209 226; /* #C8D1E2 */
+  --popover: 18 26 43;
+  --popover-foreground: 200 209 226;
+  --muted: 35 48 71; /* #233047 */
+  --muted-foreground: 200 209 226;
+  --accent: 43 228 238; /* #2BE4EE */
+  --accent-foreground: 255 255 255;
+  --destructive: 248 113 113; /* #F87171 */
+  --destructive-foreground: 255 255 255;
+  --input: 35 48 71;
+  --ring: 122 167 255;
+}
+
+/* Base app wiring */
+html, body {
+  background: var(--canvas);
+  color: var(--ink-body);
+}
 
 @layer base {
   * {
@@ -125,14 +105,15 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    /* Clean academic background without gradients */
-    background-color: hsl(var(--background));
+    @apply font-sans antialiased;
+    background: var(--canvas);
+    color: var(--ink-body);
   }
 
   /* Typography Hierarchy */
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-semibold tracking-tight;
+    color: var(--ink-head);
   }
 
   h1 {
@@ -152,354 +133,277 @@ All colors MUST be HSL.
     scroll-behavior: smooth;
   }
 
-  /* Remove scrollbar styling for cleaner look */
-  ::-webkit-scrollbar {
-    width: 6px;
+  /* Links */
+  a {
+    color: var(--primary);
+    text-underline-offset: 2px;
   }
 
-  ::-webkit-scrollbar-track {
-    background: transparent;
+  a:hover {
+    color: var(--secondary);
   }
 
-  ::-webkit-scrollbar-thumb {
-    background: hsl(var(--brand-primary) / 0.3);
-    border-radius: 3px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--brand-primary) / 0.5);
+  /* Focus ring */
+  :focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: 2px;
   }
 }
 
 @layer utilities {
-  /* NeoGlass Flow Utilities */
-  .bg-gradient-brand { background-image: var(--gradient-brand); }
-  .bg-gradient-glass { background-image: var(--gradient-glass); }
-  .shadow-neo { box-shadow: var(--shadow-neo); }
-  .shadow-elev { box-shadow: var(--shadow-elev); }
-  .shadow-soft { box-shadow: var(--shadow-soft); }
-  .shadow-glow { box-shadow: var(--shadow-glow); }
+  /* Color utilities */
+  .text-primary { color: var(--primary); }
+  .text-primary600 { color: var(--primary-600); }
+  .text-secondary { color: var(--secondary); }
+  .text-ink-head { color: var(--ink-head); }
+  .text-ink-body { color: var(--ink-body); }
+  .text-success { color: var(--success); }
+  .text-warning { color: var(--warning); }
+  .text-danger { color: var(--danger); }
 
-  /* Enhanced Glass Effects - Coursera/Udemy */
-  .glass {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--neo-blur));
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--glass-shadow);
-    @apply rounded-xl;
+  .bg-canvas { background-color: var(--canvas); }
+  .bg-surface { background-color: var(--surface); }
+  .bg-elevated { background-color: var(--elevated); }
+  .bg-primary { background-color: var(--primary); }
+  .bg-primary600 { background-color: var(--primary-600); }
+  .bg-secondary { background-color: var(--secondary); }
+
+  .border-border { border-color: var(--border); }
+
+  /* Legacy support for existing classes */
+  .text-inkHead { color: var(--ink-head); }
+  .text-inkBody { color: var(--ink-body); }
+
+  /* Shadow utilities */
+  .shadow-sm { box-shadow: var(--shadow-sm); }
+  .shadow-md { box-shadow: var(--shadow-md); }
+
+  /* Gradient utilities */
+  .bg-brand-gradient { background-image: var(--gradient-brand); }
+
+  /* Border radius utilities */
+  .rounded-card { border-radius: 16px; }
+  .rounded-pill { border-radius: 999px; }
+
+  /* Button utilities */
+  .btn-primary {
+    background: var(--primary);
+    color: white;
+    border-radius: 999px;
+    box-shadow: var(--shadow-sm);
   }
 
-  .glass-card {
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    @apply rounded-xl shadow-soft;
+  .btn-primary:hover {
+    background: var(--primary-600);
   }
 
-  .dark .glass-card {
-    background: rgba(30, 41, 59, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  .glass-header {
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    @apply transition-all duration-300;
-  }
-
-  .dark .glass-header {
-    background: rgba(30, 41, 59, 0.95);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  /* Motion & Interactions - Coursera/Udemy */
-  .hover-scale { @apply transition-transform duration-200 hover:scale-[1.02]; }
-  .hover-lift {
-    @apply transition-all duration-200 hover:shadow-elev hover:-translate-y-1;
-  }
-  .hover-glow { @apply transition-all duration-200 hover:shadow-glow; }
-
-  /* Text Effects */
-  .text-gradient { @apply bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent; }
-  .text-neo { @apply font-medium tracking-tight; }
-
-  /* Button Enhancements - Coursera/Udemy */
-  .btn-neo {
-    background: var(--gradient-brand);
-    @apply text-white font-medium px-6 py-3 rounded-lg shadow-neo hover:shadow-glow transition-all duration-200 hover:-translate-y-0.5;
-  }
-
-  .btn-glass {
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
-    @apply rounded-lg shadow-soft hover:shadow-neo transition-all duration-200;
-  }
-
-  /* Layout Utilities */
+  /* Page container */
   .page-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
-  .section-spacing {
-    @apply py-12 lg:py-16;
+  /* Card styling */
+  .card-surface {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
   }
 
-  /* Animations */
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-
-  .animate-glow {
-    animation: glow 2s ease-in-out infinite alternate;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-  }
-
-  @keyframes glow {
-    from { box-shadow: 0 0 20px rgba(124, 58, 237, 0.3); }
-    to { box-shadow: 0 0 30px rgba(124, 58, 237, 0.6); }
-  }
-
-  /* Focus states for accessibility */
-  .focus-neo {
-    @apply focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-background;
-  }
-
-  /* Enhanced accessibility utilities */
-  .sr-only {
-    position: absolute !important;
-    width: 1px !important;
-    height: 1px !important;
-    padding: 0 !important;
-    margin: -1px !important;
-    overflow: hidden !important;
-    clip: rect(0, 0, 0, 0) !important;
-    white-space: nowrap !important;
-    border: 0 !important;
-  }
-
-  .not-sr-only {
-    position: static !important;
-    width: auto !important;
-    height: auto !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    overflow: visible !important;
-    clip: auto !important;
-    white-space: normal !important;
-  }
-
-  /* Focus-within improvements */
-  .focus-within\:not-sr-only:focus-within {
-    position: static !important;
-    width: auto !important;
-    height: auto !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    overflow: visible !important;
-    clip: auto !important;
-    white-space: normal !important;
-  }
-
-  /* High contrast mode support */
-  @media (prefers-contrast: high) {
-    .glass-card {
-      background: var(--card);
-      border: 2px solid var(--border);
-    }
-
-    .glass-header {
-      background: var(--card);
-      border-bottom: 2px solid var(--border);
-    }
-  }
-
-  /* Reduced motion support */
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
-
-    .hover-lift {
-      transform: none !important;
-    }
-
-    .hover-scale {
-      transform: none !important;
-    }
-  }
-
-  /* Improved focus indicators */
-  .focus-visible-ring:focus:not(:focus-visible) {
-    outline: none;
-    box-shadow: none;
-  }
-
-  .focus-visible-ring:focus-visible {
-    @apply outline-none ring-2 ring-brand-primary ring-offset-2;
-  }
-
-  /* Better text selection */
-  ::selection {
-    background-color: hsl(var(--brand-primary) / 0.2);
-    color: hsl(var(--foreground));
-  }
-
-  /* Ensure interactive elements meet minimum size requirements */
-  button,
-  [role="button"],
-  [type="button"],
-  [type="submit"],
-  [type="reset"],
-  input[type="checkbox"],
-  input[type="radio"],
-  a {
-    min-height: 44px;
-    min-width: 44px;
-    @apply focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2;
-  }
-
-  /* Exception for icon-only buttons that are properly sized */
-  .btn-icon {
-    min-height: 40px;
-    min-width: 40px;
-  }
-
-  /* Academic/Course focused styles */
-  .course-card {
-    @apply bg-white dark:bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-200;
-  }
-
-  .course-card:hover {
-    transform: translateY(-2px);
-  }
-
-  .instructor-card {
-    @apply bg-card border border-border rounded-lg p-4;
-  }
-
-  .filter-rail {
-    @apply bg-card border-r border-border h-full overflow-y-auto;
-  }
-
-  .sticky-panel {
-    @apply bg-card border border-border rounded-lg p-6 sticky top-24;
-  }
-
-  .curriculum-section {
-    @apply border border-border rounded-lg mb-4;
-  }
-
-  .lesson-item {
-    @apply flex items-center justify-between p-4 border-b border-border last:border-b-0 hover:bg-muted/50 transition-colors;
-  }
-
-  .academic-grid {
-    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
-  }
-
-  .catalog-grid {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
-  }
-
-  /* Course detail layout - Coursera/Udemy */
-  .course-header {
-    @apply bg-neutral-100 dark:bg-slate-800 py-12;
-  }
-
-  .course-content {
-    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
-
-  /* Progress and completion styling - Coursera/Udemy */
-  .progress-bar {
-    @apply bg-muted rounded-full h-2;
-  }
-
-  .progress-fill {
-    @apply bg-brand-primary rounded-full h-full transition-all duration-300;
-  }
-
-  .completion-badge {
-    @apply inline-flex items-center px-3 py-1 rounded-lg text-sm font-medium bg-brand-success/10 text-brand-success border border-brand-success/20;
-  }
-
-  /* Filter and search styling - Coursera/Udemy */
-  .filter-group {
-    @apply space-y-4 p-4 border-b border-border hover:bg-brand-primary/5 transition-colors;
-  }
-
-  .filter-title {
-    @apply font-semibold text-sm text-foreground mb-3;
-  }
-
-  /* Curriculum and lesson styling - Coursera/Udemy */
-  .curriculum-header {
-    @apply bg-neutral-100 dark:bg-slate-800 p-4 font-semibold border-b border-border;
-  }
-
-  .lesson-preview {
-    @apply text-brand-primary text-sm font-medium hover:text-brand-primary/80 transition-colors;
-  }
-
-  .lesson-duration {
-    @apply text-muted-foreground text-sm;
-  }
-
-  /* Responsive course layouts */
-  @media (min-width: 1024px) {
-    .course-layout {
-      @apply grid grid-cols-12 gap-8;
-    }
-
-    .course-main {
-      @apply col-span-8;
-    }
-
-    .course-sidebar {
-      @apply col-span-4;
-    }
-
-    .catalog-layout {
-      @apply grid grid-cols-12 gap-8;
-    }
-
-    .catalog-filters {
-      @apply col-span-3;
-    }
-
-    .catalog-content {
-      @apply col-span-9;
-    }
+  /* Text gradient with correct classes */
+  .text-gradient {
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }
 
-/* Fix mentors page yellow background override */
-.mentors-page .mentors-search-section,
-.mentors-page .mentors-search-section *,
-.mentors-search-section,
-.mentors-search-section * {
-  background: #ffffff !important;
-  background-color: #ffffff !important;
-  background-image: none !important;
-  background-size: auto !important;
-  background-repeat: no-repeat !important;
-  background-position: initial !important;
-  background-attachment: initial !important;
+/* Legacy yellow color overrides - keeping these for compatibility */
+.bg-yellow-400,
+.bg-yellow-500,
+.bg-amber-400,
+.bg-amber-500 {
+  background-color: var(--color-primary) !important;
+  color: white !important;
 }
 
-.dark .mentors-page .mentors-search-section,
-.dark .mentors-page .mentors-search-section *,
-.dark .mentors-search-section,
-.dark .mentors-search-section * {
-  background: #0F172A !important;
-  background-color: #0F172A !important;
+.text-yellow-400,
+.text-yellow-500,
+.text-amber-400,
+.text-amber-500 {
+  color: var(--color-primary) !important;
 }
+
+/* === Emergency theming overrides === */
+/* Map common yellows to your warning token (or primary) */
+:root {
+  --theme-warning: #F59E0B;              /* light */
+}
+:root[data-theme="dark"] { --theme-warning: #FBBF24; }
+
+/* Nuclear option: scan for any yellow-ish colors and convert to primary */
+*[style*="yellow"], *[class*="yellow"],
+*[style*="amber"], *[class*="amber"],
+*[style*="#ffc"], *[style*="#ff0"],
+*[style*="#fe0"], *[style*="#fd0"],
+*[style*="rgb(255, 255, 0)"], *[style*="rgb(255, 193, 7)"],
+*[style*="rgb(255, 235, 59)"], *[style*="rgb(254, 240, 138)"] {
+  background-color: var(--color-primary) !important;
+  color: white !important;
+  border-color: var(--color-primary) !important;
+}
+
+/* Inline styles using HEX - comprehensive yellow detection */
+[style*="#f59e0b"], [style*="#F59E0B"],
+[style*="#fbbf24"], [style*="#FBBF24"],
+[style*="#eab308"], [style*="#EAB308"],
+[style*="#ffc107"], [style*="#FFC107"],
+[style*="#facc15"], [style*="#FACC15"],
+[style*="#ffd54f"], [style*="#FFD54F"],
+[style*="#ffeb3b"], [style*="#FFEB3B"],
+[style*="#fff59d"], [style*="#FFF59D"],
+[style*="#ffcc02"], [style*="#FFCC02"],
+[style*="#ffd700"], [style*="#FFD700"],
+[style*="#f9a825"], [style*="#F9A825"],
+[style*="rgb(254, 240, 138)"], [style*="RGB(254, 240, 138)"],
+[style*="rgb(255, 193, 7)"], [style*="RGB(255, 193, 7)"],
+[style*="rgb(251, 191, 36)"], [style*="RGB(251, 191, 36)"],
+[style*="rgb(255, 235, 59)"], [style*="RGB(255, 235, 59)"],
+[style*="rgb(255, 245, 157)"], [style*="RGB(255, 245, 157)"],
+[style*="rgb(255, 213, 79)"], [style*="RGB(255, 213, 79)"] {
+  color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  background-color: var(--color-primary) !important;
+}
+
+/* Tailwind-like utility classes some libraries ship with */
+[class*="text-yellow-"], [class*="bg-yellow-"], [class*="border-yellow-"],
+[class*="text-amber-"], [class*="bg-amber-"], [class*="border-amber-"],
+.text-yellow-400, .text-yellow-500, .text-yellow-600,
+.bg-yellow-400, .bg-yellow-500, .bg-yellow-600,
+.border-yellow-400, .border-yellow-500, .border-yellow-600,
+.text-amber-400, .text-amber-500, .text-amber-600,
+.bg-amber-400, .bg-amber-500, .bg-amber-600,
+.border-amber-400, .border-amber-500, .border-amber-600 {
+  color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  background-color: var(--color-primary) !important;
+}
+
+/* Button-specific overrides */
+button[style*="background-color: rgb(254, 240, 138)"],
+button[style*="background-color: rgb(255, 193, 7)"],
+button[style*="background-color: rgb(251, 191, 36)"],
+button[class*="bg-yellow-"],
+button[class*="bg-amber-"] {
+  background-color: var(--color-primary) !important;
+  color: white !important;
+  border-color: var(--color-primary) !important;
+}
+
+/* Badge and pill overrides */
+.badge[class*="yellow"], .badge[class*="amber"],
+[data-variant="secondary"][class*="yellow"], [data-variant="secondary"][class*="amber"] {
+  background-color: color-mix(in oklab, var(--color-primary) 16%, transparent) !important;
+  color: var(--color-primary) !important;
+  border-color: color-mix(in oklab, var(--color-primary) 32%, transparent) !important;
+}
+
+/* Header & Footer 100% design token enforcement */
+.site-header, header, [role="banner"] {
+  background: var(--surface) !important;
+  color: var(--ink-body) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.site-header .cta, header .cta,
+[role="banner"] .cta,
+header button[class*="primary"],
+header a[class*="primary"] {
+  background: var(--primary) !important;
+  color: #fff !important;
+  border-color: var(--primary) !important;
+}
+
+.site-footer, footer, [role="contentinfo"] {
+  background: var(--surface) !important;
+  color: var(--ink-body) !important;
+  border-top: 1px solid var(--border) !important;
+}
+
+.site-footer a, footer a, [role="contentinfo"] a {
+  color: var(--ink-body) !important;
+}
+
+.site-footer a:hover, footer a:hover, [role="contentinfo"] a:hover {
+  color: var(--ink-head) !important;
+}
+
+/* Ensure nav links use design tokens */
+nav a, [role="navigation"] a {
+  color: var(--ink-body) !important;
+}
+
+nav a:hover, [role="navigation"] a:hover {
+  color: var(--ink-head) !important;
+}
+
+/* === Yellow Kill-Switch (load LAST) === */
+:root { --theme-warning: var(--warning, #F59E0B); }
+
+/* Common hex & palette aliases seen in libs/components */
+[style*="#f59e0b"], [style*="#F59E0B"],
+[style*="#fbbf24"], [style*="#FBBF24"],
+[style*="#eab308"], [style*="#EAB308"],
+[style*="#ffc107"], [style*="#FFC107"],
+[style*="#facc15"], [style*="#FACC15"],
+[style*="yellow"], [style*="amber"] {
+  color: var(--theme-warning) !important;
+  background-color: color-mix(in oklab, var(--theme-warning) 16%, transparent) !important;
+  border-color: var(--theme-warning) !important;
+}
+
+/* Tailwind-like classes */
+[class*="text-yellow-"], [class*="bg-yellow-"], [class*="border-yellow-"],
+[class*="text-amber-"], [class*="bg-amber-"], [class*="border-amber-"] {
+  color: var(--theme-warning) !important;
+  background-color: color-mix(in oklab, var(--theme-warning) 16%, transparent) !important;
+  border-color: var(--theme-warning) !important;
+}
+
+/* SVG fills & strokes (inline attributes and computed styles) */
+svg [fill="#f59e0b"], svg [fill="#F59E0B"],
+svg [fill="#fbbf24"], svg [fill="#FBBF24"],
+svg [fill="#eab308"], svg [fill="#EAB308"],
+svg [fill="#ffc107"], svg [fill="#FFC107"],
+svg [fill="#facc15"], svg [fill="#FACC15"],
+svg [stroke="#f59e0b"], svg [stroke="#F59E0B"],
+svg [stroke="#fbbf24"], svg [stroke="#FBBF24"],
+svg [stroke="#eab308"], svg [stroke="#EAB308"],
+svg [stroke="#ffc107"], svg [stroke="#FFC107"],
+svg [stroke="#facc15"], svg [stroke="#FACC15"] {
+  fill: var(--theme-warning) !important;
+  stroke: var(--theme-warning) !important;
+}
+
+/* Generic fallback: any svg with yellow-ish computed fill/stroke (class hints) */
+svg[class*="yellow"], svg [class*="yellow"],
+svg[class*="amber"],  svg [class*="amber"] {
+  fill: var(--theme-warning) !important;
+  stroke: var(--theme-warning) !important;
+}
+
+/* Additional star ratings and button overrides */
+[class*="icon-"], .rating i, .star {
+  color: var(--warning) !important;  /* keeps stars "gold" but on-theme */
+}
+.btn-primary, .cta {
+  background: var(--primary) !important;
+}
+.btn-primary:hover, .cta:hover {
+  background: var(--primary-600) !important;
+}
+
+/* If yellow is accidentally used as "primary", remap it to your real primary: */
+/* :root { --theme-warning: var(--color-primary); } */

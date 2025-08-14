@@ -7,6 +7,11 @@ import { ThemeProvider } from "@/components/theme-provider";
 import GlobalSearchHeader from "@/components/GlobalSearchHeader";
 import Footer from "@/components/layout/Footer";
 import SkipLinks from "@/components/SkipLinks";
+import "@/utils/yellowDetector";
+import "@/utils/advancedYellowDetector";
+import "@/utils/themeUtils";
+import { ColorSystemDemo } from "@/components/ColorSystemDemo";
+import { YellowProtectionTest } from "@/components/YellowProtectionTest";
 
 // Import all pages
 import HomePage from "./pages/HomePage";
@@ -31,6 +36,7 @@ import OfflineTradeConfirmPage from "./pages/OfflineTradeConfirmPage";
 import OfflineTradeReceipt from "./pages/OfflineTradeReceipt";
 import MapPage from "./pages/MapPage";
 import DonationPage from "./pages/DonationPage";
+import CreditWalletPage from "./pages/CreditWalletPage";
 
 const queryClient = new QueryClient();
 
@@ -65,6 +71,7 @@ const App = () => (
             <Route path="/matches" element={<Layout><Matches /></Layout>} />
             <Route path="/search" element={<Layout><SearchResults /></Layout>} />
             <Route path="/wallet" element={<Layout><Wallet /></Layout>} />
+            <Route path="/credits" element={<Layout><CreditWalletPage /></Layout>} />
             <Route path="/profile/:id?" element={<Layout><Profile /></Layout>} />
             
             {/* Session management */}
@@ -104,6 +111,8 @@ const App = () => (
             <Route path="/onboarding" element={<Layout><Onboarding /></Layout>} />
             
             {/* Support pages */}
+            <Route path="/color-demo" element={<Layout><ColorSystemDemo /></Layout>} />
+            <Route path="/yellow-test" element={<Layout><YellowProtectionTest /></Layout>} />
             <Route path="/about" element={<Layout><Placeholder title="About SkillSwap" desc="Learn about our mission to democratize skill sharing." /></Layout>} />
             <Route path="/how-it-works" element={<Layout><Placeholder title="How It Works" desc="Discover how to trade skills, not cash." /></Layout>} />
             <Route path="/trust-safety" element={<Layout><Placeholder title="Trust & Safety" desc="Our commitment to a safe learning environment." /></Layout>} />

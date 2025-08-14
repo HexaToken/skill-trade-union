@@ -24,6 +24,19 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       "@typescript-eslint/no-unused-vars": "off",
+
+      // Prevent yellow/amber utility classes to avoid color regressions
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector: "Literal[value=/\\b(text|bg|border)-(yellow|amber)-\\d+\\b/]",
+          message: "Use design tokens instead of yellow/amber utilities. Use var(--color-primary), var(--color-warning), etc."
+        },
+        {
+          selector: "TemplateLiteral *[value=/\\b(text|bg|border)-(yellow|amber)-\\d+\\b/]",
+          message: "Use design tokens instead of yellow/amber utilities. Use var(--color-primary), var(--color-warning), etc."
+        }
+      ],
     },
   }
 );

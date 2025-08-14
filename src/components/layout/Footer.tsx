@@ -23,7 +23,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 
 interface FooterProps {
@@ -31,183 +30,74 @@ interface FooterProps {
 }
 
 export function Footer({ className }: FooterProps) {
-  const { theme, setTheme } = useTheme();
+  const toggleTheme = () => {
+    const currentTheme = document.documentElement.dataset.theme;
+    document.documentElement.dataset.theme = currentTheme === 'dark' ? 'light' : 'dark';
+  };
 
-  const footerSections = [
-    {
-      title: 'About',
-      links: [
-        { label: 'About SkillSwap', href: '/about' },
-        { label: 'How It Works', href: '/how-it-works' },
-        { label: 'Trust & Safety', href: '/trust-safety' },
-        { label: 'Careers', href: '/careers' }
-      ]
-    },
-    {
-      title: 'Explore',
-      links: [
-        { label: 'Find Skills', href: '/matches' },
-        { label: 'Join Challenges', href: '/challenges' },
-        { label: 'Global Map', href: '/map' },
-        { label: 'Mentor Marketplace', href: '/mentors' }
-      ]
-    },
-    {
-      title: 'Support',
-      links: [
-        { label: 'Help Center', href: '/help' },
-        { label: 'Contact Us', href: '/contact' },
-        { label: 'Privacy Policy', href: '/privacy' },
-        { label: 'Terms of Service', href: '/terms' }
-      ]
-    },
-    {
-      title: 'Social',
-      links: [
-        { 
-          label: 'LinkedIn', 
-          href: 'https://linkedin.com/company/skillswap',
-          icon: Linkedin,
-          external: true 
-        },
-        { 
-          label: 'X / Twitter', 
-          href: 'https://twitter.com/skillswap',
-          icon: Twitter,
-          external: true 
-        },
-        { 
-          label: 'Instagram', 
-          href: 'https://instagram.com/skillswap',
-          icon: Instagram,
-          external: true 
-        },
-        { 
-          label: 'Discord', 
-          href: 'https://discord.gg/skillswap',
-          icon: MessageCircle,
-          external: true 
-        }
-      ]
+  const setTheme = (theme: 'light' | 'dark' | 'system') => {
+    if (theme === 'system') {
+      const systemPreference = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = systemPreference;
+    } else {
+      document.documentElement.dataset.theme = theme;
     }
-  ];
+  };
 
-  const languages = [
-    { code: 'en', name: 'English' },
-    { code: 'es', name: 'Español' },
-    { code: 'fr', name: 'Français' },
-    { code: 'de', name: 'Deutsch' },
-    { code: 'pt', name: 'Português' },
-    { code: 'ja', name: '日本語' },
-    { code: 'zh', name: '中文' }
-  ];
+  const getCurrentTheme = () => {
+    return document.documentElement.dataset.theme || 'light';
+  };
 
   return (
-    <footer className={cn('bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 border-t border-slate-200 dark:border-slate-700', className)}>
-      {/* Glowing top divider */}
-      <div className="h-1 bg-gradient-to-r from-educational-blue via-educational-cyan to-purple-500 opacity-60" />
-      
-      <div className="page-container">
-        {/* Upper section with columns */}
-        <div className="py-12 lg:py-16">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {footerSections.map((section) => (
-              <div key={section.title} className="space-y-4">
-                <h3 className="font-heading font-bold text-slate-800 dark:text-white">
-                  {section.title}
-                </h3>
-                <ul className="space-y-3">
-                  {section.links.map((link) => {
-                    const Icon = link.icon;
-                    return (
-                      <li key={link.label}>
-                        {link.external ? (
-                          <a
-                            href={link.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-educational-blue transition-colors focus-neo"
-                          >
-                            {Icon && <Icon className="w-4 h-4" />}
-                            {link.label}
-                          </a>
-                        ) : (
-                          <Link
-                            to={link.href}
-                            className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-educational-blue transition-colors focus-neo"
-                          >
-                            {Icon && <Icon className="w-4 h-4" />}
-                            {link.label}
-                          </Link>
-                        )}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            ))}
+    <footer className={cn('mt-16 bg-surface border-t border-border', className)}>
+      <div className="h-[2px] w-full bg-brand-gradient"></div>
+      <div className="mx-auto max-w-7xl px-4 py-12 grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+        <div>
+          <div className="flex items-center gap-2 mb-3">
+            <div className="h-6 w-6 rounded-md bg-brand-gradient"></div>
+            <span className="text-ink-head font-semibold">SkillSwap</span>
           </div>
+          <p className="text-ink-body/80 text-sm">
+            A global "talent-for-talent" exchange powered by AI matching and credits.
+          </p>
         </div>
-
-        {/* Lower bar */}
-        <div className="py-8 border-t border-slate-200 dark:border-slate-700 bg-gradient-to-r from-white to-slate-50/50 dark:from-slate-800 dark:to-slate-900/50">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            {/* Copyright */}
-            <div className="flex items-center gap-4 text-sm text-slate-600 dark:text-slate-300">
-              <span className="font-medium">© 2025 SkillSwap</span>
-              <span className="hidden md:inline text-educational-cyan">•</span>
-              <span className="italic">Trade skills, not cash.</span>
-            </div>
-
-            {/* Controls */}
-            <div className="flex items-center gap-4">
-              {/* Language selector */}
-              <Select defaultValue="en">
-                <SelectTrigger className="w-32 h-9 bg-white dark:bg-card border border-border rounded-lg shadow-sm border-0">
-                  <div className="flex items-center gap-2">
-                    <Globe className="w-4 h-4" />
-                    <SelectValue />
-                  </div>
-                </SelectTrigger>
-                <SelectContent className="bg-white dark:bg-card border border-border rounded-lg shadow-sm">
-                  {languages.map((lang) => (
-                    <SelectItem key={lang.code} value={lang.code}>
-                      {lang.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-
-              {/* Theme toggle */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm" className="h-9 w-9">
-                    <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                    <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                    <span className="sr-only">Toggle theme</span>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="bg-white dark:bg-card border border-border rounded-lg shadow-sm">
-                  <DropdownMenuItem onClick={() => setTheme('light')}>
-                    <Sun className="mr-2 h-4 w-4" />
-                    Light
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setTheme('dark')}>
-                    <Moon className="mr-2 h-4 w-4" />
-                    Dark
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setTheme('system')}>
-                    <Monitor className="mr-2 h-4 w-4" />
-                    System
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-          </div>
-
-          {/* Additional info for mobile */}
-          <div className="mt-4 md:hidden text-xs text-muted-foreground text-center">
-            <p>Building the future of skill sharing, one exchange at a time.</p>
+        <div>
+          <h4 className="text-ink-head font-medium mb-3">Product</h4>
+          <ul className="space-y-2 text-ink-body">
+            <li><Link to="/search" className="hover:text-ink-head">Search & Match</Link></li>
+            <li><Link to="/mentors" className="hover:text-ink-head">Mentors</Link></li>
+            <li><Link to="/classes" className="hover:text-ink-head">Classes</Link></li>
+            <li><Link to="/map" className="hover:text-ink-head">Map</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="text-ink-head font-medium mb-3">Community</h4>
+          <ul className="space-y-2 text-ink-body">
+            <li><Link to="/skill-sprints" className="hover:text-ink-head">Skill Sprints</Link></li>
+            <li><Link to="/donate" className="hover:text-ink-head">Donate</Link></li>
+            <li><Link to="/forums" className="hover:text-ink-head">Forums</Link></li>
+            <li><Link to="/events" className="hover:text-ink-head">Events</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="text-ink-head font-medium mb-3">Company</h4>
+          <ul className="space-y-2 text-ink-body">
+            <li><Link to="/about" className="hover:text-ink-head">About</Link></li>
+            <li><Link to="/careers" className="hover:text-ink-head">Careers</Link></li>
+            <li><Link to="/privacy" className="hover:text-ink-head">Privacy</Link></li>
+            <li><Link to="/terms" className="hover:text-ink-head">Terms</Link></li>
+          </ul>
+        </div>
+      </div>
+      <div className="border-t border-border">
+        <div className="mx-auto max-w-7xl px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-ink-body/70 text-sm">
+            © <span id="y">{new Date().getFullYear()}</span> SkillSwap. All rights reserved.
+          </p>
+          <div className="flex gap-4 text-ink-body/80">
+            <a href="#" aria-label="Twitter" className="hover:text-ink-head">𝕏</a>
+            <a href="#" aria-label="LinkedIn" className="hover:text-ink-head">in</a>
+            <a href="#" aria-label="Instagram" className="hover:text-ink-head">IG</a>
           </div>
         </div>
       </div>

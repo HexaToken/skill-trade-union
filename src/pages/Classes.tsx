@@ -14,6 +14,8 @@ import {
   SlidersHorizontal,
   Grid3X3,
   List,
+  Heart,
+  Award,
   TrendingUp
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -22,8 +24,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Checkbox } from '@/components/ui/checkbox';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Slider } from '@/components/ui/slider';
 import { 
   Select,
   SelectContent,
@@ -78,7 +78,6 @@ export default function Classes() {
   });
 
   const [sortBy, setSortBy] = useState(searchParams.get('sort') || 'most-popular');
-  const [isLoading, setIsLoading] = useState(false);
 
   // Filter section states
   const [expandedSections, setExpandedSections] = useState({
@@ -200,10 +199,8 @@ export default function Classes() {
         return b.ratingAvg - a.ratingAvg;
       case 'newest':
         return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-      case 'price-low':
+      case 'lowest-credits':
         return a.priceCredits - b.priceCredits;
-      case 'price-high':
-        return b.priceCredits - a.priceCredits;
       default:
         return 0;
     }
@@ -213,7 +210,6 @@ export default function Classes() {
     if (Array.isArray(value)) return value.length > 0;
     if (typeof value === 'string') return value !== '';
     if (typeof value === 'boolean') return value;
-    if (Array.isArray(value)) return value[0] !== 0 || value[1] !== 500; // price/duration ranges
     return false;
   }).length;
 
@@ -228,51 +224,67 @@ export default function Classes() {
 
   const ClassCard = ({ course, variant = 'grid' }: { course: typeof classes[0], variant?: 'grid' | 'list' }) => {
     const instructor = users.find(u => u.id === course.instructorId);
+    const [isWishlisted, setIsWishlisted] = useState(false);
     
     if (variant === 'list') {
       return (
-        <Card className="course-card group cursor-pointer" onClick={() => window.open(`/classes/${course.id}`, '_blank')}>
+        <Card className="group cursor-pointer hover:shadow-md transition-all duration-200 border-border bg-surface">
           <CardContent className="p-0">
             <div className="flex gap-4">
-              <div className="relative w-64 h-36 shrink-0">
+              <div className="relative w-64 h-36 shrink-0 overflow-hidden">
                 <img 
                   src={course.thumbnailUrl} 
                   alt={course.title}
-                  className="w-full h-full object-cover rounded-l-lg"
+                  className="w-full h-full object-cover rounded-l-lg group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors rounded-l-lg flex items-center justify-center">
-                  <Play className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white text-ink-head hover:bg-white/90"
+                  >
+                    View Details
+                  </Button>
                 </div>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsWishlisted(!isWishlisted);
+                  }}
+                  className="absolute top-3 right-3 p-2 rounded-full bg-black/20 hover:bg-black/40 transition-colors"
+                >
+                  <Heart className={cn("w-4 h-4", isWishlisted ? "fill-red-500 text-red-500" : "text-white")} />
+                </button>
               </div>
               
               <div className="flex-1 p-4">
                 <div className="flex justify-between items-start mb-2">
                   <div className="flex-1">
-                    <h3 className="font-semibold text-lg mb-1 group-hover:text-brand-primary transition-colors line-clamp-2 text-foreground">
+                    <h3 className="font-semibold text-lg mb-1 group-hover:text-primary transition-colors line-clamp-2 text-ink-head">
                       {course.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground mb-2 line-clamp-2">
+                    <p className="text-sm text-ink-body mb-3 line-clamp-2">
                       {course.description}
                     </p>
                   </div>
                   <div className="text-right ml-4">
-                    <div className="text-xl font-bold text-brand-primary">
+                    <div className="text-xl font-bold text-primary">
                       {course.priceCredits} credits
                     </div>
                   </div>
                 </div>
                 
                 {instructor && (
-                  <div className="flex items-center gap-2 mb-2">
+                  <div className="flex items-center gap-2 mb-3">
                     <Avatar className="w-6 h-6">
                       <AvatarImage src={instructor.avatarUrl} alt={instructor.name} />
-                      <AvatarFallback>{instructor.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                      <AvatarFallback className="text-xs">{instructor.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
                     </Avatar>
-                    <span className="text-sm text-muted-foreground">{instructor.name}</span>
+                    <span className="text-sm text-ink-body">{instructor.name}</span>
                   </div>
                 )}
                 
-                <div className="flex items-center gap-4 mb-2">
+                <div className="flex items-center gap-4 mb-3">
                   <div className="flex items-center gap-1">
                     <div className="flex items-center">
                       {Array.from({ length: 5 }).map((_, i) => (
@@ -281,23 +293,23 @@ export default function Classes() {
                           className={cn(
                             "w-3 h-3",
                             i < Math.floor(course.ratingAvg)
-                              ? "fill-brand-secondary text-brand-secondary"
-                              : "text-muted-foreground/30"
+                              ? "fill-warning text-warning"
+                              : "text-border"
                           )}
                         />
                       ))}
                     </div>
-                    <span className="text-sm text-muted-foreground">
-                      {course.ratingAvg} ({course.ratingCount})
+                    <span className="text-sm text-ink-body">
+                      {course.ratingAvg > 0 ? `${course.ratingAvg} (${course.ratingCount})` : 'No ratings yet'}
                     </span>
                   </div>
                   
-                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-1 text-sm text-ink-body">
                     <Clock className="w-4 h-4" />
                     <span>{formatDuration(course.durationMins)}</span>
                   </div>
                   
-                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-1 text-sm text-ink-body">
                     <Users className="w-4 h-4" />
                     <span>{(course.studentsCount || course.currentSeats || 0).toLocaleString()}</span>
                   </div>
@@ -310,8 +322,8 @@ export default function Classes() {
                   <Badge variant="outline" className="text-xs">
                     {course.category}
                   </Badge>
-                  {course.type === 'live' && (
-                    <Badge className="text-xs bg-brand-green text-white">Live</Badge>
+                  {course.studentsCount > 1000 && (
+                    <Badge className="text-xs bg-secondary text-white">Most Popular</Badge>
                   )}
                 </div>
               </div>
@@ -322,36 +334,57 @@ export default function Classes() {
     }
 
     return (
-      <Card className="course-card group cursor-pointer" onClick={() => window.open(`/classes/${course.id}`, '_blank')}>
-        <div className="relative">
+      <Card className="group cursor-pointer hover:shadow-md transition-all duration-200 border-border bg-surface rounded-lg overflow-hidden">
+        <div className="relative overflow-hidden">
           <img 
             src={course.thumbnailUrl} 
             alt={course.title}
-            className="w-full h-40 object-cover rounded-t-lg"
+            className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
           />
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors rounded-t-lg flex items-center justify-center">
-            <Play className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+            <Button
+              variant="secondary"
+              size="sm"
+              className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white text-ink-head hover:bg-white/90"
+            >
+              View Details
+            </Button>
           </div>
-          <Badge className="absolute top-3 left-3 bg-white/90 text-foreground">
-            {course.level}
-          </Badge>
-          {course.type === 'live' && (
-            <Badge className="absolute top-3 right-3 bg-brand-green text-white">Live</Badge>
-          )}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsWishlisted(!isWishlisted);
+            }}
+            className="absolute top-3 right-3 p-2 rounded-full bg-black/20 hover:bg-black/40 transition-colors"
+          >
+            <Heart className={cn("w-4 h-4", isWishlisted ? "fill-red-500 text-red-500" : "text-white")} />
+          </button>
+          <div className="absolute top-3 left-3 flex gap-2">
+            <Badge className="bg-white/90 text-ink-head text-xs">
+              {course.level}
+            </Badge>
+            {course.studentsCount > 1000 && (
+              <Badge className="bg-secondary text-white text-xs">Most Popular</Badge>
+            )}
+          </div>
         </div>
         
         <CardContent className="p-4">
-          <h3 className="font-semibold text-sm mb-2 line-clamp-2 group-hover:text-brand-primary transition-colors">
+          <h3 className="font-semibold text-sm mb-2 line-clamp-2 group-hover:text-primary transition-colors text-ink-head min-h-[2.5rem]">
             {course.title}
           </h3>
           
           {instructor && (
-            <p className="text-xs text-muted-foreground mb-2">
-              {instructor.name}
-            </p>
+            <div className="flex items-center gap-2 mb-3">
+              <Avatar className="w-6 h-6">
+                <AvatarImage src={instructor.avatarUrl} alt={instructor.name} />
+                <AvatarFallback className="text-xs">{instructor.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+              </Avatar>
+              <span className="text-xs text-ink-body">{instructor.name}</span>
+            </div>
           )}
           
-          <div className="flex items-center gap-1 mb-2">
+          <div className="flex items-center gap-1 mb-3">
             <div className="flex items-center">
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star 
@@ -359,22 +392,23 @@ export default function Classes() {
                   className={cn(
                     "w-3 h-3",
                     i < Math.floor(course.ratingAvg)
-                      ? "fill-brand-secondary text-brand-secondary"
-                      : "text-muted-foreground/30"
+                      ? "fill-warning text-warning"
+                      : "text-border"
                   )}
                 />
               ))}
             </div>
-            <span className="text-xs text-muted-foreground">
-              {course.ratingAvg} ({course.ratingCount})
+            <span className="text-xs text-ink-body">
+              {course.ratingAvg > 0 ? `${course.ratingAvg} (${course.ratingCount})` : 'No ratings yet'}
             </span>
           </div>
           
-          <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
+          <div className="flex items-center gap-2 text-xs text-ink-body mb-3">
             <div className="flex items-center gap-1">
               <Clock className="w-3 h-3" />
-              <span>{formatDuration(course.durationMins)}</span>
+              <span>{course.durationMins ? formatDuration(course.durationMins) : 'Self-paced'}</span>
             </div>
+            <span>•</span>
             <div className="flex items-center gap-1">
               <Users className="w-3 h-3" />
               <span>{(course.studentsCount || course.currentSeats || 0).toLocaleString()}</span>
@@ -386,7 +420,7 @@ export default function Classes() {
               {course.category}
             </Badge>
             <div className="text-right">
-              <div className="text-sm font-bold text-brand-primary">
+              <div className="text-sm font-bold text-primary">
                 {course.priceCredits} credits
               </div>
             </div>
@@ -403,15 +437,15 @@ export default function Classes() {
     onToggle: () => void;
   }) => (
     <Collapsible open={isExpanded} onOpenChange={onToggle}>
-      <CollapsibleTrigger className="group w-full hover:bg-slate-50 dark:hover:bg-slate-800/50 p-3 rounded-lg transition-colors">
+      <CollapsibleTrigger className="group w-full hover:bg-elevated p-3 rounded-lg transition-colors">
         <div className="flex items-center justify-between w-full">
-          <h3 className="font-heading font-bold text-base text-[#1E293B] dark:text-[#F1F5F9] text-left">
+          <h3 className="font-semibold text-base text-ink-head text-left">
             {title}
           </h3>
           {isExpanded ? (
-            <ChevronUp className="w-4 h-4 text-[#94A3B8] group-hover:text-[#0056D2] transition-colors" />
+            <ChevronUp className="w-4 h-4 text-ink-body group-hover:text-primary transition-colors" />
           ) : (
-            <ChevronDown className="w-4 h-4 text-[#94A3B8] group-hover:text-[#0056D2] transition-colors" />
+            <ChevronDown className="w-4 h-4 text-ink-body group-hover:text-primary transition-colors" />
           )}
         </div>
       </CollapsibleTrigger>
@@ -423,7 +457,6 @@ export default function Classes() {
 
   const FiltersPanel = () => (
     <div className="space-y-6">
-
       <FilterSection
         title="Category"
         isExpanded={expandedSections.category}
@@ -438,20 +471,20 @@ export default function Classes() {
             { name: 'Creative', count: 10 }
           ].map(category => (
             <label key={category.name} className="group cursor-pointer block">
-              <div className="flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/50 p-2 rounded-lg transition-colors">
+              <div className="flex items-center justify-between hover:bg-elevated p-2 rounded-lg transition-colors">
                 <div className="flex items-center gap-3">
                   <Checkbox
                     checked={filters.category === category.name}
                     onCheckedChange={(checked) => {
                       updateFilter('category', checked ? category.name : '');
                     }}
-                    className="rounded border-2 data-[state=checked]:bg-[#0056D2] data-[state=checked]:border-[#0056D2] focus:ring-2 focus:ring-[#0056D2] focus:ring-offset-2"
+                    className="rounded border-2 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
                   />
-                  <span className="text-sm text-[#1E293B] dark:text-[#F1F5F9] font-medium">
+                  <span className="text-sm text-ink-head font-medium">
                     {category.name}
                   </span>
                 </div>
-                <span className="text-xs text-[#94A3B8] font-medium">
+                <span className="text-xs text-ink-body font-medium">
                   {category.count}
                 </span>
               </div>
@@ -467,12 +500,12 @@ export default function Classes() {
       >
         <div className="space-y-2">
           {[
-            { name: 'Beginner', count: 18, color: 'text-emerald-600' },
-            { name: 'Intermediate', count: 14, color: 'text-amber-600' },
-            { name: 'Advanced', count: 9, color: 'text-red-600' }
+            { name: 'Beginner', count: 18 },
+            { name: 'Intermediate', count: 14 },
+            { name: 'Advanced', count: 9 }
           ].map(level => (
             <label key={level.name} className="group cursor-pointer block">
-              <div className="flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/50 p-2 rounded-lg transition-colors">
+              <div className="flex items-center justify-between hover:bg-elevated p-2 rounded-lg transition-colors">
                 <div className="flex items-center gap-3">
                   <Checkbox
                     checked={filters.level?.includes(level.name) || false}
@@ -484,13 +517,13 @@ export default function Classes() {
                         updateFilter('level', currentLevels.filter(l => l !== level.name));
                       }
                     }}
-                    className="rounded border-2 data-[state=checked]:bg-[#0056D2] data-[state=checked]:border-[#0056D2] focus:ring-2 focus:ring-[#0056D2] focus:ring-offset-2"
+                    className="rounded border-2 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
                   />
-                  <span className={`text-sm font-medium ${level.color} dark:text-[#F1F5F9]`}>
+                  <span className="text-sm font-medium text-ink-head">
                     {level.name}
                   </span>
                 </div>
-                <span className="text-xs text-[#94A3B8] font-medium">
+                <span className="text-xs text-ink-body font-medium">
                   {level.count}
                 </span>
               </div>
@@ -512,7 +545,7 @@ export default function Classes() {
             { name: 'German', count: 5 }
           ].map(language => (
             <label key={language.name} className="group cursor-pointer block">
-              <div className="flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/50 p-2 rounded-lg transition-colors">
+              <div className="flex items-center justify-between hover:bg-elevated p-2 rounded-lg transition-colors">
                 <div className="flex items-center gap-3">
                   <Checkbox
                     checked={filters.language?.includes(language.name) || false}
@@ -524,13 +557,13 @@ export default function Classes() {
                         updateFilter('language', currentLanguages.filter(l => l !== language.name));
                       }
                     }}
-                    className="rounded border-2 data-[state=checked]:bg-[#0056D2] data-[state=checked]:border-[#0056D2] focus:ring-2 focus:ring-[#0056D2] focus:ring-offset-2"
+                    className="rounded border-2 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
                   />
-                  <span className="text-sm text-[#1E293B] dark:text-[#F1F5F9] font-medium">
+                  <span className="text-sm text-ink-head font-medium">
                     {language.name}
                   </span>
                 </div>
-                <span className="text-xs text-[#94A3B8] font-medium">
+                <span className="text-xs text-ink-body font-medium">
                   {language.count}
                 </span>
               </div>
@@ -542,108 +575,109 @@ export default function Classes() {
   );
 
   return (
-    <div className="min-h-screen bg-[#F9FAFB] dark:bg-[#0F172A]">
-      {/* Header */}
-      <div className="bg-white dark:bg-[#1E293B] py-8 border-b border-slate-200 dark:border-slate-700">
+    <div className="min-h-screen bg-canvas">
+      {/* Hero Section */}
+      <div className="bg-surface py-8 border-b border-border">
         <div className="page-container">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-4xl font-heading font-bold mb-3 text-[#0F172A] dark:text-[#F1F5F9]">All Classes</h1>
-              <p className="text-lg text-[#334155] dark:text-[#E2E8F0]">
+              <h1 className="text-4xl font-bold mb-3 text-ink-head">All Classes</h1>
+              <p className="text-lg text-ink-body">
                 Discover {sortedClasses.length} learning opportunities from expert instructors
               </p>
             </div>
-            
-            <div className="flex items-center gap-4">
-              {/* Mobile filters */}
-              <Sheet open={isMobileFiltersOpen} onOpenChange={setIsMobileFiltersOpen}>
-                <SheetTrigger asChild>
-                  <Button variant="outline" className="lg:hidden border-[#06B6D4] text-[#06B6D4] hover:bg-[#06B6D4] hover:text-white rounded-xl">
-                    <SlidersHorizontal className="w-4 h-4 mr-2" />
-                    Filters
-                    {activeFiltersCount > 0 && (
-                      <Badge className="ml-2 h-5 w-5 p-0 text-xs bg-[#0056D2] text-white">
-                        {activeFiltersCount}
-                      </Badge>
-                    )}
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="left" className="w-80 p-0 overflow-y-auto bg-white dark:bg-[#1E293B]">
-                  <SheetHeader className="p-6 pb-0">
-                    <SheetTitle className="text-[#0F172A] dark:text-[#F1F5F9]">Filters</SheetTitle>
-                  </SheetHeader>
-                  <FiltersPanel />
-                </SheetContent>
-              </Sheet>
-
-              {/* View mode toggle */}
-              <div className="hidden sm:flex rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-[#1E293B] shadow-sm">
-                <Button
-                  variant={viewMode === 'grid' ? 'default' : 'ghost'}
-                  size="sm"
-                  onClick={() => setViewMode('grid')}
-                  className={`rounded-r-none border-r-0 ${
-                    viewMode === 'grid'
-                      ? 'bg-[#0056D2] text-white hover:bg-[#004BB8]'
-                      : 'hover:bg-[#0056D2]/10 hover:text-[#0056D2]'
-                  }`}
-                >
-                  <Grid3X3 className="w-4 h-4" />
-                </Button>
-                <Button
-                  variant={viewMode === 'list' ? 'default' : 'ghost'}
-                  size="sm"
-                  onClick={() => setViewMode('list')}
-                  className={`rounded-l-none ${
-                    viewMode === 'list'
-                      ? 'bg-[#06B6D4] text-white hover:bg-[#0891B2]'
-                      : 'hover:bg-[#06B6D4]/10 hover:text-[#06B6D4]'
-                  }`}
-                >
-                  <List className="w-4 h-4" />
-                </Button>
-              </div>
-            </div>
           </div>
 
-          {/* Search and Sort */}
-          <div className="flex flex-col sm:flex-row gap-4">
+          {/* Toolbar */}
+          <div className="flex flex-col lg:flex-row gap-4 mb-6">
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-ink-body" />
               <Input
-                placeholder="Search classes..."
-                className="pl-10"
+                placeholder="Search classes or instructors…"
+                className="pl-10 h-12 bg-elevated border-border focus:border-primary"
                 value={filters.query}
                 onChange={(e) => updateFilter('query', e.target.value)}
               />
             </div>
             
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-full sm:w-64">
+              <SelectTrigger className="w-full lg:w-64 h-12 bg-elevated border-border">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-elevated border-border">
                 <SelectItem value="most-popular">Most Popular</SelectItem>
                 <SelectItem value="highest-rated">Highest Rated</SelectItem>
                 <SelectItem value="newest">Newest</SelectItem>
-                <SelectItem value="price-low">Price: Low to High</SelectItem>
-                <SelectItem value="price-high">Price: High to Low</SelectItem>
+                <SelectItem value="lowest-credits">Lowest Credits</SelectItem>
               </SelectContent>
             </Select>
+
+            {/* Mobile filters */}
+            <Sheet open={isMobileFiltersOpen} onOpenChange={setIsMobileFiltersOpen}>
+              <SheetTrigger asChild>
+                <Button variant="outline" className="lg:hidden border-primary text-primary hover:bg-primary hover:text-white h-12">
+                  <SlidersHorizontal className="w-4 h-4 mr-2" />
+                  Filters
+                  {activeFiltersCount > 0 && (
+                    <Badge className="ml-2 h-5 w-5 p-0 text-xs bg-primary text-white">
+                      {activeFiltersCount}
+                    </Badge>
+                  )}
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-80 p-0 overflow-y-auto bg-surface">
+                <SheetHeader className="p-6 pb-0">
+                  <SheetTitle className="text-ink-head">Filters</SheetTitle>
+                </SheetHeader>
+                <div className="p-6">
+                  <FiltersPanel />
+                </div>
+              </SheetContent>
+            </Sheet>
+
+            {/* View mode toggle */}
+            <div className="hidden lg:flex rounded-lg border border-border bg-elevated shadow-sm">
+              <Button
+                variant={viewMode === 'grid' ? 'default' : 'ghost'}
+                size="sm"
+                onClick={() => setViewMode('grid')}
+                className={cn(
+                  "rounded-r-none border-r-0 h-12",
+                  viewMode === 'grid'
+                    ? 'bg-primary text-white hover:bg-primary-600'
+                    : 'hover:bg-primary/10 hover:text-primary'
+                )}
+              >
+                <Grid3X3 className="w-4 h-4" />
+              </Button>
+              <Button
+                variant={viewMode === 'list' ? 'default' : 'ghost'}
+                size="sm"
+                onClick={() => setViewMode('list')}
+                className={cn(
+                  "rounded-l-none h-12",
+                  viewMode === 'list'
+                    ? 'bg-secondary text-white hover:bg-secondary/90'
+                    : 'hover:bg-secondary/10 hover:text-secondary'
+                )}
+              >
+                <List className="w-4 h-4" />
+              </Button>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="flex min-h-screen bg-[#F9FAFB] dark:bg-[#0F172A]">
+      {/* Main Layout */}
+      <div className="flex min-h-screen bg-canvas">
         {/* Left Filter Sidebar - Desktop */}
-        <div className="hidden lg:block w-[280px] bg-white dark:bg-[#1E293B] border-r border-slate-200 dark:border-slate-700 p-6">
+        <div className="hidden lg:block w-[280px] bg-surface border-r border-border p-6">
           <div className="sticky top-6">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-bold text-[#0056D2] font-heading">Filters</h2>
+              <h2 className="text-lg font-bold text-primary">Filters</h2>
               <button
                 onClick={clearFilters}
-                className="text-sm text-[#06B6D4] hover:underline transition-colors"
+                className="text-sm text-secondary hover:underline transition-colors"
               >
                 Clear All
               </button>
@@ -656,19 +690,19 @@ export default function Classes() {
         <div className="flex-1 p-6 lg:p-8">
           {/* Active Filters Display */}
           {activeFiltersCount > 0 && (
-            <div className="flex flex-wrap gap-3 mb-8 p-4 bg-white dark:bg-[#1E293B] rounded-xl border border-transparent dark:border-[rgba(255,255,255,0.06)] shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
+            <div className="flex flex-wrap gap-3 mb-8 p-4 bg-surface rounded-lg border border-border shadow-sm">
               {filters.category && (
-                <Badge variant="secondary" className="flex items-center gap-2 bg-[#06B6D4]/10 text-[#06B6D4] border-[#06B6D4]/20 px-3 py-1 rounded-lg">
+                <Badge variant="secondary" className="flex items-center gap-2 bg-secondary/10 text-secondary border-secondary/20 px-3 py-1 rounded-lg">
                   Category: {filters.category}
-                  <button onClick={() => updateFilter('category', '')} className="hover:bg-[#06B6D4]/20 rounded-full p-0.5 transition-colors">
+                  <button onClick={() => updateFilter('category', '')} className="hover:bg-secondary/20 rounded-full p-0.5 transition-colors">
                     <X className="w-3 h-3" />
                   </button>
                 </Badge>
               )}
               {filters.level && filters.level.length > 0 && (
-                <Badge variant="secondary" className="flex items-center gap-2 bg-[#0056D2]/10 text-[#0056D2] border-[#0056D2]/20 px-3 py-1 rounded-lg">
+                <Badge variant="secondary" className="flex items-center gap-2 bg-primary/10 text-primary border-primary/20 px-3 py-1 rounded-lg">
                   Level: {filters.level.join(', ')}
-                  <button onClick={() => updateFilter('level', [])} className="hover:bg-[#0056D2]/20 rounded-full p-0.5 transition-colors">
+                  <button onClick={() => updateFilter('level', [])} className="hover:bg-primary/20 rounded-full p-0.5 transition-colors">
                     <X className="w-3 h-3" />
                   </button>
                 </Badge>
@@ -680,33 +714,55 @@ export default function Classes() {
           {sortedClasses.length > 0 ? (
             <div className={cn(
               viewMode === 'grid'
-                ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
+                ? 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6'
                 : 'space-y-4'
             )}>
               {sortedClasses.map((course) => (
-                <ClassCard
-                  key={course.id}
-                  course={course}
-                  variant={viewMode === 'grid' ? 'default' : 'horizontal'}
-                />
+                <Link 
+                  key={course.id} 
+                  to={`/classes/${course.id}`}
+                  className="block"
+                >
+                  <ClassCard
+                    course={course}
+                    variant={viewMode}
+                  />
+                </Link>
               ))}
             </div>
           ) : (
-            <Card className="p-12 text-center bg-white dark:bg-[#1E293B] border border-transparent dark:border-[rgba(255,255,255,0.06)]">
-              <div className="w-16 h-16 mx-auto mb-6 bg-[#0056D2]/10 rounded-2xl flex items-center justify-center">
-                <BookOpen className="w-8 h-8 text-[#0056D2]" />
+            <Card className="p-12 text-center bg-surface border-border">
+              <div className="w-16 h-16 mx-auto mb-6 bg-primary/10 rounded-2xl flex items-center justify-center">
+                <BookOpen className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-[#0F172A] dark:text-[#F1F5F9] font-heading">No classes found</h3>
-              <p className="text-[#334155] dark:text-[#E2E8F0] mb-8 max-w-md mx-auto leading-relaxed">
+              <h3 className="text-xl font-bold mb-3 text-ink-head">No classes found</h3>
+              <p className="text-ink-body mb-8 max-w-md mx-auto leading-relaxed">
                 Try adjusting your filters or search terms to discover more learning opportunities.
               </p>
               <Button
                 onClick={clearFilters}
-                className="bg-[#0056D2] hover:bg-[#004BB8] text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+                className="bg-primary hover:bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
               >
                 Clear all filters
               </Button>
             </Card>
+          )}
+
+          {/* Pagination */}
+          {sortedClasses.length > 0 && (
+            <div className="flex justify-center mt-12">
+              <div className="flex items-center gap-2">
+                <Button variant="outline" className="border-border hover:bg-primary hover:text-white hover:border-primary">
+                  Previous
+                </Button>
+                <Button className="bg-primary hover:bg-primary-600 text-white">1</Button>
+                <Button variant="outline" className="border-border hover:bg-primary hover:text-white hover:border-primary">2</Button>
+                <Button variant="outline" className="border-border hover:bg-primary hover:text-white hover:border-primary">3</Button>
+                <Button variant="outline" className="border-border hover:bg-primary hover:text-white hover:border-primary">
+                  Next
+                </Button>
+              </div>
+            </div>
           )}
         </div>
       </div>
