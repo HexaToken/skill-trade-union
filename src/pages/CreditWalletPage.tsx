@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import { 
-  Coins, 
-  TrendingUp, 
-  History, 
-  HelpCircle, 
+import React, { useState, useEffect } from 'react';
+import {
+  Coins,
+  TrendingUp,
+  History,
+  HelpCircle,
   ExternalLink,
   Filter,
   Search,
-  Calendar
+  Calendar,
+  RefreshCw
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -19,66 +20,12 @@ import CreditBalancePill from '@/components/CreditBalancePill';
 import EarnCreditsPanel from '@/components/EarnCreditsPanel';
 import SpendCreditsPanel from '@/components/SpendCreditsPanel';
 import CreditTxnItem from '@/components/CreditTxnItem';
+import WalletProvider, { useWallet } from '@/components/providers/WalletProvider';
+import { useWalletStore } from '@/stores/wallet-store';
+import { useDonations } from '@/hooks/use-credit-operations';
+import { creditService } from '@/services/credit-api';
 import { Link, useNavigate } from 'react-router-dom';
-
-// Mock data - in real app this would come from API/context
-const mockWalletData = {
-  balance: 245,
-  upcomingDeductions: [
-    {
-      id: 'h1',
-      title: 'Session with Marcus Chen',
-      date: '2025-01-20T15:00:00Z',
-      amount: 15
-    }
-  ],
-  recentTransactions: [
-    {
-      id: 't1',
-      type: 'earn' as const,
-      title: 'Taught: Logo critique session',
-      subtitle: 'Completed 30-min design review',
-      amount: 10,
-      balanceAfter: 245,
-      timestamp: '2025-01-15T18:00:00Z',
-      skill: 'Design',
-      partnerName: 'Sarah Wilson',
-      details: {
-        baseAmount: 10,
-        sessionLink: '/session/abc123',
-        receiptLink: '/receipt/txn_001'
-      }
-    },
-    {
-      id: 't2',
-      type: 'spend' as const,
-      title: 'Enrolled: Brand Strategy Essentials',
-      subtitle: 'Advanced course enrollment',
-      amount: -150,
-      balanceAfter: 235,
-      timestamp: '2025-01-14T10:10:00Z',
-      skill: 'Marketing',
-      partnerName: 'Alex Thompson',
-      details: {
-        baseAmount: 150,
-        receiptLink: '/receipt/txn_002'
-      }
-    },
-    {
-      id: 't3',
-      type: 'earn' as const,
-      title: 'Skill Sprint: Design Challenge',
-      subtitle: 'Completed daily design challenge',
-      amount: 5,
-      balanceAfter: 385,
-      timestamp: '2025-01-13T09:30:00Z',
-      skill: 'Design',
-      details: {
-        baseAmount: 5
-      }
-    }
-  ]
-};
+import { useToast } from '@/hooks/use-toast';
 
 const mockSuggestedMentors = [
   {
