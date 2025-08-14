@@ -28,7 +28,7 @@ export default {
 				elevated: 'var(--color-elevated)',
 				inkHead: 'var(--color-ink-head)',
 				inkBody: 'var(--color-ink-body)',
-				border: 'var(--color-border)',
+				border: 'hsl(var(--border))',
 				success: 'var(--color-success)',
 				warning: 'var(--color-warning)',
 				danger: 'var(--color-danger)',
