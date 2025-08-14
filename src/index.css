@@ -31,6 +31,10 @@
   /* Gradients */
   --brand-gradient: linear-gradient(90deg, #6C2BD9 0%, #12D6DF 100%);
 
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 6px 20px rgba(15, 23, 42, 0.08);
+
   /* Shadcn/ui compatibility layer */
   --background: 247 249 252; /* #F7F9FC */
   --foreground: 15 23 42; /* #0F172A */
