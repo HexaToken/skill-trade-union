@@ -250,7 +250,7 @@ export default function GlobalSearchHeader() {
                       onClick={() => setShowMobileMenu(false)}
                     >
                       <div className="h-6 w-6 rounded-md bg-brand-gradient"></div>
-                      <span className="text-inkHead font-semibold">SkillSwap</span>
+                      <span className="text-ink-head font-semibold">SkillSwap</span>
                     </Link>
                   </SheetTitle>
                 </SheetHeader>
@@ -263,7 +263,7 @@ export default function GlobalSearchHeader() {
                       <input
                         type="text"
                         placeholder="Search skills, mentors, or courses…"
-                        className="w-full h-full pl-3 bg-transparent border-0 focus:ring-0 text-sm text-inkBody placeholder:text-inkBody/50 focus:outline-none"
+                        className="w-full h-full pl-3 bg-transparent border-0 focus:ring-0 text-sm text-ink-body placeholder:text-ink-body/50 focus:outline-none"
                         onClick={() => {
                           setShowMobileMenu(false);
                           setShowMobileSearch(true);
@@ -281,7 +281,7 @@ export default function GlobalSearchHeader() {
                           key={item.href}
                           to={item.href}
                           onClick={() => setShowMobileMenu(false)}
-                          className="flex items-center gap-3 px-3 py-3 rounded-xl text-inkBody hover:text-inkHead transition-all duration-200"
+                          className="flex items-center gap-3 px-3 py-3 rounded-xl text-ink-body hover:text-ink-head transition-all duration-200"
                         >
                           <Icon className="w-5 h-5" />
                           {item.label}
@@ -300,7 +300,7 @@ export default function GlobalSearchHeader() {
                         </AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="font-medium text-inkHead">{currentUser.name}</p>
+                        <p className="font-medium text-ink-head">{currentUser.name}</p>
                         <div className="flex items-center gap-1">
                           <Wallet className="w-3 h-3 text-secondary" />
                           <span className="text-sm font-medium text-secondary">
@@ -335,17 +335,17 @@ export default function GlobalSearchHeader() {
               className="flex items-center gap-2"
             >
               <div className="h-6 w-6 rounded-md bg-brand-gradient"></div>
-              <span className="text-inkHead font-semibold">SkillSwap</span>
+              <span className="text-ink-head font-semibold">SkillSwap</span>
             </Link>
           </div>
 
           {/* Center: Global search (Desktop) */}
           <div className="hidden md:flex flex-1 max-w-xl mx-6">
             <div className="flex items-center gap-2 w-full bg-elevated/40 border border-border rounded-pill px-3 h-10">
-              <Search className="text-inkBody/60 w-5 h-5" />
+              <Search className="text-ink-body/60 w-5 h-5" />
               <input 
                 ref={searchRef}
-                className="bg-transparent flex-1 text-sm text-inkBody placeholder:text-inkBody/50 focus:outline-none"
+                className="bg-transparent flex-1 text-sm text-ink-body placeholder:text-ink-body/50 focus:outline-none"
                 placeholder="Search skills, mentors, or courses…"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -363,7 +363,7 @@ export default function GlobalSearchHeader() {
                   onClick={clearSearch}
                   className="p-1 hover:bg-elevated/60 rounded-full transition-colors"
                 >
-                  <X className="w-4 h-4 text-inkBody/60" />
+                  <X className="w-4 h-4 text-ink-body/60" />
                 </button>
               )}
             </div>
@@ -378,7 +378,7 @@ export default function GlobalSearchHeader() {
                   {/* People Section */}
                   {peopleResults.length > 0 && (
                     <div className="mb-4">
-                      <div className="px-3 py-2 text-xs font-medium text-inkBody/60 uppercase tracking-wider">
+                      <div className="px-3 py-2 text-xs font-medium text-ink-body/60 uppercase tracking-wider">
                         People
                       </div>
                       {peopleResults.map((person, index) => {
@@ -402,14 +402,14 @@ export default function GlobalSearchHeader() {
                             </Avatar>
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-2">
-                                <p className="font-medium text-inkHead truncate">
+                                <p className="font-medium text-ink-head truncate">
                                   {person.name}
                                 </p>
                                 {person.verified && (
                                   <CheckCircle className="w-4 h-4 text-success" />
                                 )}
                               </div>
-                              <p className="text-sm text-inkBody">
+                              <p className="text-sm text-ink-body">
                                 {person.skill}
                               </p>
                             </div>
@@ -427,7 +427,7 @@ export default function GlobalSearchHeader() {
                   {/* Courses Section */}
                   {courseResults.length > 0 && (
                     <div className="mb-2">
-                      <div className="px-3 py-2 text-xs font-medium text-inkBody/60 uppercase tracking-wider">
+                      <div className="px-3 py-2 text-xs font-medium text-ink-body/60 uppercase tracking-wider">
                         Courses
                       </div>
                       {courseResults.map((course, index) => {
@@ -451,10 +451,10 @@ export default function GlobalSearchHeader() {
                               />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <p className="font-medium text-inkHead truncate">
+                              <p className="font-medium text-ink-head truncate">
                                 {course.name}
                               </p>
-                              <p className="text-sm text-inkBody">
+                              <p className="text-sm text-ink-body">
                                 by {course.instructor}
                               </p>
                             </div>
@@ -482,10 +482,10 @@ export default function GlobalSearchHeader() {
                   {/* Empty State */}
                   {suggestions.length === 0 && searchQuery.length >= 2 && (
                     <div className="p-6 text-center">
-                      <p className="text-inkBody mb-1">
+                      <p className="text-ink-body mb-1">
                         No matches found for "{searchQuery}"
                       </p>
-                      <p className="text-sm text-inkBody/60">
+                      <p className="text-sm text-ink-body/60">
                         Try another keyword or browse categories
                       </p>
                     </div>
@@ -497,12 +497,12 @@ export default function GlobalSearchHeader() {
 
           {/* Right: Actions */}
           <nav className="flex items-center gap-3">
-            <Link to="/matches" className="text-inkBody hover:text-inkHead">Find a Match</Link>
-            <Link to="/classes" className="text-inkBody hover:text-inkHead">Classes</Link>
-            <Link to="/mentors" className="text-inkBody hover:text-inkHead">Mentors</Link>
-            <Link to="/challenges" className="text-inkBody hover:text-inkHead">Challenges</Link>
-            <Link to="/map" className="text-inkBody hover:text-inkHead">Map</Link>
-            <Link to="/donate" className="text-inkBody hover:text-inkHead">Donate</Link>
+            <Link to="/matches" className="text-ink-body hover:text-ink-head">Find a Match</Link>
+            <Link to="/classes" className="text-ink-body hover:text-ink-head">Classes</Link>
+            <Link to="/mentors" className="text-ink-body hover:text-ink-head">Mentors</Link>
+            <Link to="/challenges" className="text-ink-body hover:text-ink-head">Challenges</Link>
+            <Link to="/map" className="text-ink-body hover:text-ink-head">Map</Link>
+            <Link to="/donate" className="text-ink-body hover:text-ink-head">Donate</Link>
 
             {/* Credit pill */}
             <CreditBalancePill
@@ -523,7 +523,7 @@ export default function GlobalSearchHeader() {
             <button 
               onClick={toggleTheme}
               aria-label="Toggle theme" 
-              className="ml-1 text-inkBody hover:text-inkHead"
+              className="ml-1 text-ink-body hover:text-ink-head"
             >
               🌓
             </button>
@@ -543,7 +543,7 @@ export default function GlobalSearchHeader() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setShowMobileSearch(false)}
-                className="text-inkHead hover:bg-elevated/60"
+                className="text-ink-head hover:bg-elevated/60"
               >
                 <X className="w-5 h-5" />
               </Button>
@@ -557,7 +557,7 @@ export default function GlobalSearchHeader() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    className="w-full h-full pl-12 pr-12 bg-transparent border-0 focus:ring-0 rounded-pill text-inkHead placeholder:text-inkBody/50"
+                    className="w-full h-full pl-12 pr-12 bg-transparent border-0 focus:ring-0 rounded-pill text-ink-head placeholder:text-ink-body/50"
                     autoFocus
                   />
                   {searchQuery && (
@@ -565,7 +565,7 @@ export default function GlobalSearchHeader() {
                       onClick={clearSearch}
                       className="absolute right-4 p-1 hover:bg-elevated/60 rounded-full transition-colors"
                     >
-                      <X className="w-4 h-4 text-inkBody/60" />
+                      <X className="w-4 h-4 text-ink-body/60" />
                     </button>
                   )}
                 </div>
@@ -576,7 +576,7 @@ export default function GlobalSearchHeader() {
             <div className="flex-1 overflow-y-auto p-4">
               {peopleResults.length > 0 && (
                 <div className="mb-6">
-                  <h3 className="text-sm font-medium text-inkBody/60 uppercase tracking-wider mb-3">
+                  <h3 className="text-sm font-medium text-ink-body/60 uppercase tracking-wider mb-3">
                     People
                   </h3>
                   <div className="space-y-2">
@@ -594,14 +594,14 @@ export default function GlobalSearchHeader() {
                         </Avatar>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
-                            <p className="font-medium text-inkHead truncate">
+                            <p className="font-medium text-ink-head truncate">
                               {person.name}
                             </p>
                             {person.verified && (
                               <CheckCircle className="w-4 h-4 text-success" />
                             )}
                           </div>
-                          <p className="text-sm text-inkBody">{person.skill}</p>
+                          <p className="text-sm text-ink-body">{person.skill}</p>
                           <p className="text-sm text-secondary font-medium">
                             {person.credits} credits/hr
                           </p>
@@ -614,7 +614,7 @@ export default function GlobalSearchHeader() {
 
               {courseResults.length > 0 && (
                 <div className="mb-6">
-                  <h3 className="text-sm font-medium text-inkBody/60 uppercase tracking-wider mb-3">
+                  <h3 className="text-sm font-medium text-ink-body/60 uppercase tracking-wider mb-3">
                     Courses
                   </h3>
                   <div className="space-y-2">
@@ -632,10 +632,10 @@ export default function GlobalSearchHeader() {
                           />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="font-medium text-inkHead truncate mb-1">
+                          <p className="font-medium text-ink-head truncate mb-1">
                             {course.name}
                           </p>
-                          <p className="text-sm text-inkBody">by {course.instructor}</p>
+                          <p className="text-sm text-ink-body">by {course.instructor}</p>
                           <p className="text-sm text-secondary font-medium">
                             {course.credits} credits
                           </p>
@@ -648,10 +648,10 @@ export default function GlobalSearchHeader() {
 
               {suggestions.length === 0 && searchQuery.length >= 2 && (
                 <div className="text-center py-12">
-                  <p className="text-inkBody mb-2">
+                  <p className="text-ink-body mb-2">
                     No matches found for "{searchQuery}"
                   </p>
-                  <p className="text-sm text-inkBody/60">
+                  <p className="text-sm text-ink-body/60">
                     Try another keyword or browse categories
                   </p>
                 </div>
