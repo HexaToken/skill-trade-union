@@ -27,47 +27,6 @@ import { creditService } from '@/services/credit-api';
 import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 
-const mockSuggestedMentors = [
-  {
-    id: 'm1',
-    name: 'Marcus Chen',
-    skill: 'Full-Stack Development',
-    rate: 25,
-    rating: 4.9,
-    avatar: 'https://picsum.photos/seed/marcus/100',
-    featured: true,
-    onBook: () => console.log('Book Marcus Chen')
-  },
-  {
-    id: 'm2',
-    name: 'Sarah Wilson',
-    skill: 'UX Design',
-    rate: 20,
-    rating: 4.8,
-    avatar: 'https://picsum.photos/seed/sarah/100',
-    onBook: () => console.log('Book Sarah Wilson')
-  }
-];
-
-const mockFeaturedCourses = [
-  {
-    id: 'c1',
-    title: 'Advanced React Patterns',
-    instructor: 'Alex Thompson',
-    cost: 150,
-    rating: 4.9,
-    featured: true,
-    onEnroll: () => console.log('Enroll in React course')
-  },
-  {
-    id: 'c2',
-    title: 'Design Systems Fundamentals',
-    instructor: 'Elena Rodriguez',
-    cost: 120,
-    rating: 4.7,
-    onEnroll: () => console.log('Enroll in Design Systems course')
-  }
-];
 
 function CreditWalletPageContent() {
   const navigate = useNavigate();
