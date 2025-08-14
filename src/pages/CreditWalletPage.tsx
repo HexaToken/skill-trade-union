@@ -412,8 +412,8 @@ function CreditWalletPageContent() {
             />
 
             <SpendCreditsPanel
-              suggestedMentors={mockSuggestedMentors}
-              featuredCourses={mockFeaturedCourses}
+              suggestedMentors={[]} // TODO: Load from API
+              featuredCourses={[]} // TODO: Load from API
               onDonateCredits={handleDonateCredits}
             />
 
