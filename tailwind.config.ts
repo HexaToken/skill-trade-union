@@ -135,5 +135,9 @@ export default {
 			}
 		}
 	},
+	// Explicitly disable yellow and amber color palettes to prevent accidental usage
+	corePlugins: {
+		// Keep all core plugins except we'll override colors
+	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
