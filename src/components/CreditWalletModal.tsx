@@ -89,7 +89,10 @@ export default function CreditWalletModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className={cn("max-w-4xl max-h-[90vh] overflow-hidden", className)}>
+      <DialogContent
+        className={cn("max-w-4xl max-h-[90vh] overflow-hidden", className)}
+        data-testid="credit-wallet-modal"
+      >
         <DialogHeader className="pb-4">
           <DialogTitle className="flex items-center gap-2 text-xl">
             <Coins className="w-6 h-6 text-brand-primary" />
