@@ -249,15 +249,24 @@ html, body {
   border-color: var(--color-primary) !important;
 }
 
-/* Inline styles using HEX */
+/* Inline styles using HEX - comprehensive yellow detection */
 [style*="#f59e0b"], [style*="#F59E0B"],
 [style*="#fbbf24"], [style*="#FBBF24"],
 [style*="#eab308"], [style*="#EAB308"],
 [style*="#ffc107"], [style*="#FFC107"],
 [style*="#facc15"], [style*="#FACC15"],
+[style*="#ffd54f"], [style*="#FFD54F"],
+[style*="#ffeb3b"], [style*="#FFEB3B"],
+[style*="#fff59d"], [style*="#FFF59D"],
+[style*="#ffcc02"], [style*="#FFCC02"],
+[style*="#ffd700"], [style*="#FFD700"],
+[style*="#f9a825"], [style*="#F9A825"],
 [style*="rgb(254, 240, 138)"], [style*="RGB(254, 240, 138)"],
 [style*="rgb(255, 193, 7)"], [style*="RGB(255, 193, 7)"],
-[style*="rgb(251, 191, 36)"], [style*="RGB(251, 191, 36)"] {
+[style*="rgb(251, 191, 36)"], [style*="RGB(251, 191, 36)"],
+[style*="rgb(255, 235, 59)"], [style*="RGB(255, 235, 59)"],
+[style*="rgb(255, 245, 157)"], [style*="RGB(255, 245, 157)"],
+[style*="rgb(255, 213, 79)"], [style*="RGB(255, 213, 79)"] {
   color: var(--color-primary) !important;
   border-color: var(--color-primary) !important;
   background-color: var(--color-primary) !important;
