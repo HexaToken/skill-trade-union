@@ -814,6 +814,39 @@ body[data-pathname="/credits"] .bg-yellow-500 {
   border-color: #475569 !important;
 }
 
+/* Specific fixes for EarnCreditsPanel yellow elements */
+[data-page="credits"] .grid > div {
+  border-color: #E2E8F0 !important;
+  background-color: #ffffff !important;
+}
+
+.dark [data-page="credits"] .grid > div {
+  border-color: #475569 !important;
+  background-color: #1E293B !important;
+}
+
+/* Force normal badge colors in credit areas */
+[data-page="credits"] [data-variant="secondary"] span,
+[data-testid="credit-wallet-modal"] [data-variant="secondary"] span {
+  background-color: #F1F5F9 !important;
+  color: #475569 !important;
+  border-color: #E2E8F0 !important;
+}
+
+.dark [data-page="credits"] [data-variant="secondary"] span,
+.dark [data-testid="credit-wallet-modal"] [data-variant="secondary"] span {
+  background-color: #334155 !important;
+  color: #E2E8F0 !important;
+  border-color: #475569 !important;
+}
+
+/* Override any remaining secondary variants in credit components */
+[data-page="credits"] .bg-secondary *,
+[data-testid="credit-wallet-modal"] .bg-secondary * {
+  background-color: inherit !important;
+  color: inherit !important;
+}
+
 /* Fix yellow page background on matches page */
 [data-page="matches"] {
   background-color: #ffffff !important;
