@@ -237,6 +237,18 @@ html, body {
 }
 :root[data-theme="dark"] { --theme-warning: #FBBF24; }
 
+/* Nuclear option: scan for any yellow-ish colors and convert to primary */
+*[style*="yellow"], *[class*="yellow"],
+*[style*="amber"], *[class*="amber"],
+*[style*="#ffc"], *[style*="#ff0"],
+*[style*="#fe0"], *[style*="#fd0"],
+*[style*="rgb(255, 255, 0)"], *[style*="rgb(255, 193, 7)"],
+*[style*="rgb(255, 235, 59)"], *[style*="rgb(254, 240, 138)"] {
+  background-color: var(--color-primary) !important;
+  color: white !important;
+  border-color: var(--color-primary) !important;
+}
+
 /* Inline styles using HEX */
 [style*="#f59e0b"], [style*="#F59E0B"],
 [style*="#fbbf24"], [style*="#FBBF24"],
