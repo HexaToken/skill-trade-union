@@ -101,6 +101,111 @@ html, body {
   color: var(--color-ink-body);
 }
 
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-canvas text-inkBody font-sans antialiased;
+  }
+
+  /* Typography Hierarchy */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold tracking-tight text-inkHead;
+  }
+
+  h1 {
+    @apply text-4xl lg:text-5xl xl:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl lg:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl lg:text-3xl;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Links */
+  a {
+    color: var(--color-primary);
+    text-underline-offset: 2px;
+  }
+
+  a:hover {
+    color: var(--color-secondary);
+  }
+
+  /* Focus ring */
+  :focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  /* Color utilities */
+  .text-primary { color: var(--color-primary); }
+  .text-primary600 { color: var(--color-primary-600); }
+  .text-secondary { color: var(--color-secondary); }
+  .text-inkHead { color: var(--color-ink-head); }
+  .text-inkBody { color: var(--color-ink-body); }
+  .text-success { color: var(--color-success); }
+  .text-warning { color: var(--color-warning); }
+  .text-danger { color: var(--color-danger); }
+
+  .bg-canvas { background-color: var(--color-canvas); }
+  .bg-surface { background-color: var(--color-surface); }
+  .bg-elevated { background-color: var(--color-elevated); }
+  .bg-primary { background-color: var(--color-primary); }
+  .bg-primary600 { background-color: var(--color-primary-600); }
+  .bg-secondary { background-color: var(--color-secondary); }
+
+  .border-border { border-color: var(--color-border); }
+
+  /* Shadow utilities */
+  .shadow-sm { box-shadow: var(--shadow-sm); }
+  .shadow-md { box-shadow: var(--shadow-md); }
+
+  /* Gradient utilities */
+  .bg-brand-gradient { background-image: var(--gradient-brand); }
+
+  /* Border radius utilities */
+  .rounded-card { border-radius: 16px; }
+  .rounded-pill { border-radius: 999px; }
+
+  /* Button utilities */
+  .btn-primary {
+    background: var(--color-primary);
+    color: white;
+    border-radius: 999px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .btn-primary:hover {
+    background: var(--color-primary-600);
+  }
+
+  /* Page container */
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Card styling */
+  .card-surface {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+  }
+}
+
 
 @layer base {
   * {
