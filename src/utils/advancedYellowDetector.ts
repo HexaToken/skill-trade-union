@@ -65,7 +65,7 @@ export class AdvancedYellowDetector {
 
   private getPrimaryColor(): string {
     return getComputedStyle(document.documentElement)
-      .getPropertyValue('--color-primary')
+      .getPropertyValue('--primary')
       .trim() || '#0B5FFF';
   }
 
