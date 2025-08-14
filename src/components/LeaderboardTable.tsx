@@ -70,11 +70,11 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
   const getRankIcon = (rank: number) => {
     switch (rank) {
       case 1:
-        return <Trophy className="h-5 w-5 text-yellow-500" />;
+        return <Trophy className="h-5 w-5 text-orange-500" />;
       case 2:
         return <Medal className="h-5 w-5 text-gray-400" />;
       case 3:
-        return <Award className="h-5 w-5 text-amber-600" />;
+        return <Award className="h-5 w-5 text-orange-600" />;
       default:
         return <span className="text-sm font-bold text-[#64748B] dark:text-[#94A3B8]">#{rank}</span>;
     }
@@ -109,7 +109,7 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
       <Card className={cn('mb-6', className)}>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-[#0F172A] dark:text-[#F1F5F9]">
-            <Trophy className="h-5 w-5 text-yellow-500" />
+            <Trophy className="h-5 w-5 text-orange-500" />
             Sprint Winners
           </CardTitle>
         </CardHeader>
@@ -120,9 +120,9 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
                 key={item.user.id}
                 className={cn(
                   'text-center p-4 rounded-lg border-2',
-                  index === 0 && 'border-yellow-200 bg-yellow-50 dark:border-yellow-800 dark:bg-yellow-900/20',
+                  index === 0 && 'border-orange-200 bg-orange-50 dark:border-orange-800 dark:bg-orange-900/20',
                   index === 1 && 'border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-800/20',
-                  index === 2 && 'border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-900/20'
+                  index === 2 && 'border-orange-200 bg-orange-50 dark:border-orange-800 dark:bg-orange-900/20'
                 )}
               >
                 <div className="flex justify-center mb-3">
@@ -147,9 +147,9 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
                   variant="secondary"
                   className={cn(
                     'text-xs',
-                    index === 0 && 'bg-yellow-100 text-yellow-700 border-yellow-300',
+                    index === 0 && 'bg-orange-100 text-orange-700 border-orange-300',
                     index === 1 && 'bg-gray-100 text-gray-700 border-gray-300',
-                    index === 2 && 'bg-amber-100 text-amber-700 border-amber-300'
+                    index === 2 && 'bg-orange-100 text-orange-700 border-orange-300'
                   )}
                 >
                   {index === 0 ? '+100' : index === 1 ? '+50' : '+25'} credits
