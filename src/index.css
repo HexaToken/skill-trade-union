@@ -1123,3 +1123,32 @@ body[data-pathname="/donate"] .bg-yellow-500 {
   background-color: #0056D2 !important;
   color: white !important;
 }
+
+/* Global aggressive yellow override for any remaining yellow elements */
+button[style*="background-color: rgb(254, 240, 138)"],
+button[style*="background-color: rgb(255, 193, 7)"],
+button[style*="background-color: rgb(255, 235, 59)"],
+*[style*="background-color: rgb(254, 240, 138)"],
+*[style*="background-color: rgb(255, 193, 7)"],
+*[style*="background-color: rgb(255, 235, 59)"] {
+  background-color: #0056D2 !important;
+  color: white !important;
+  border-color: #0056D2 !important;
+}
+
+/* Specific targeting for yellow utility classes anywhere */
+.bg-yellow-400,
+.bg-yellow-500,
+.bg-amber-400,
+.bg-amber-500 {
+  background-color: #0056D2 !important;
+  color: white !important;
+}
+
+/* Force yellow text colors to be readable */
+.text-yellow-400,
+.text-yellow-500,
+.text-amber-400,
+.text-amber-500 {
+  color: #0056D2 !important;
+}
