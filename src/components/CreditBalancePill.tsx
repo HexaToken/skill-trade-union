@@ -1,78 +1,42 @@
 import React from 'react';
-import { Coins, Loader2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { useWalletStore } from '@/stores/wallet-store';
 import { cn } from '@/lib/utils';
 
 interface CreditBalancePillProps {
-  balance: number;
-  isLoading?: boolean;
-  isLowBalance?: boolean;
+  balance?: number;
   onClick?: () => void;
+  loading?: boolean;
   className?: string;
 }
 
-export default function CreditBalancePill({ 
-  balance, 
-  isLoading = false, 
-  isLowBalance = false, 
+export function CreditBalancePill({
+  balance: propBalance,
   onClick,
-  className 
+  loading: propLoading = false,
+  className
 }: CreditBalancePillProps) {
-  const formatBalance = (amount: number) => {
-    if (amount >= 1000) {
-      return `${(amount / 1000).toFixed(1)}k`;
-    }
-    return amount.toString();
-  };
+  // Use wallet store if balance not provided as prop
+  const { balance: storeBalance, isLoading: storeLoading } = useWalletStore();
 
-  const pill = (
-    <Button
-      variant="ghost"
-      size="sm"
+  const balance = propBalance ?? storeBalance;
+  const loading = propLoading || storeLoading;
+
+  return (
+    <button
       onClick={onClick}
+      aria-label={`Credit balance: ${balance} credits`}
       className={cn(
-        "flex items-center gap-2 h-9 px-3 rounded-full border transition-all duration-200",
-        "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-600",
-        "hover:bg-slate-50 dark:hover:bg-slate-700",
-        "text-slate-700 dark:text-slate-200",
-        "shadow-sm hover:shadow-md",
+        "inline-flex items-center gap-2 rounded-full bg-card text-card-foreground px-3 py-1 shadow-sm hover:shadow-md transition-shadow",
+        "border border-border hover:border-brand-primary/50",
         className
       )}
-      aria-label={`Credit balance: ${balance} credits`}
     >
-      <div className="flex items-center gap-1.5">
-        {isLowBalance && (
-          <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" />
-        )}
-        
-        <Coins className="w-4 h-4 text-brand-primary" />
-        
-        {isLoading ? (
-          <Loader2 className="w-4 h-4 animate-spin text-brand-primary" />
-        ) : (
-          <span className="font-semibold text-sm">
-            {formatBalance(balance)}
-          </span>
-        )}
-      </div>
-    </Button>
+      <span className="text-lg">🪙</span>
+      <span className="font-medium">
+        {loading ? "…" : balance}
+      </span>
+    </button>
   );
-
-  if (isLowBalance) {
-    return (
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            {pill}
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Low balance - consider earning more credits</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-    );
-  }
-
-  return pill;
 }
+
+export default CreditBalancePill;
