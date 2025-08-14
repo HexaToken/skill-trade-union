@@ -576,7 +576,6 @@ export default function GlobalSearchHeader() {
               {/* Credits Balance */}
               <CreditBalancePill
                 balance={currentUser.wallet.credits}
-                isLowBalance={currentUser.wallet.credits < 20}
                 onClick={() => setShowCreditWallet(true)}
               />
 
