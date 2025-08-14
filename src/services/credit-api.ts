@@ -269,9 +269,20 @@ export const creditApi = {
 
   // 4) Earn Credits
   async earnCredits(request: EarnRequest): Promise<EarnResponse> {
+    // Validate amount
+    if (!validateCreditAmount(request.amount)) {
+      throw new Error('Invalid credit amount');
+    }
+
+    // Sanitize metadata
+    const sanitizedRequest = {
+      ...request,
+      metadata: sanitizeMetadata(request.metadata),
+    };
+
     return apiRequest<EarnResponse>('/earn', {
       method: 'POST',
-      body: JSON.stringify(request),
+      body: JSON.stringify(sanitizedRequest),
     }, true);
   },
 
