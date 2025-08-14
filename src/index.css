@@ -719,6 +719,42 @@ body[data-pathname="/credits"] .bg-yellow-500 {
   background: #0F172A !important;
 }
 
+/* Fix yellow badges in credit components */
+[data-page="credits"] .badge,
+[data-page="credits"] [class*="badge"],
+[data-testid="credit-wallet-modal"] .badge,
+[data-testid="credit-wallet-modal"] [class*="badge"] {
+  background-color: #F1F5F9 !important;
+  color: #475569 !important;
+  border-color: #E2E8F0 !important;
+}
+
+.dark [data-page="credits"] .badge,
+.dark [data-page="credits"] [class*="badge"],
+.dark [data-testid="credit-wallet-modal"] .badge,
+.dark [data-testid="credit-wallet-modal"] [class*="badge"] {
+  background-color: #334155 !important;
+  color: #E2E8F0 !important;
+  border-color: #475569 !important;
+}
+
+/* Override any yellow variant badges */
+[data-page="credits"] [data-variant="secondary"],
+[data-testid="credit-wallet-modal"] [data-variant="secondary"],
+[data-page="credits"] .bg-secondary,
+[data-testid="credit-wallet-modal"] .bg-secondary {
+  background-color: #F1F5F9 !important;
+  color: #475569 !important;
+}
+
+.dark [data-page="credits"] [data-variant="secondary"],
+.dark [data-testid="credit-wallet-modal"] [data-variant="secondary"],
+.dark [data-page="credits"] .bg-secondary,
+.dark [data-testid="credit-wallet-modal"] .bg-secondary {
+  background-color: #334155 !important;
+  color: #E2E8F0 !important;
+}
+
 /* Fix yellow page background on matches page */
 [data-page="matches"] {
   background-color: #ffffff !important;
