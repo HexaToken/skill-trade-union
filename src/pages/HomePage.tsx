@@ -634,7 +634,7 @@ const HomePage = () => {
                   </div>
                   <div className="flex items-center space-x-1 mb-3">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
+                      <Star key={i} className="h-4 w-4 fill-orange-400 text-orange-400" />
                     ))}
                   </div>
                   <p className="text-gray-600 dark:text-gray-400">"{testimonial.review}"</p>
