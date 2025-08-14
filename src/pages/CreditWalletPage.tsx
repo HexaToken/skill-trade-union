@@ -171,7 +171,7 @@ export default function CreditWalletPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" data-page="credits">
       {/* Header */}
       <div className="border-b bg-card">
         <div className="page-container py-6">
