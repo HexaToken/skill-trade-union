@@ -331,7 +331,7 @@ const HomePage = () => {
                             {person.skillsOffered[0]?.skillId.replace('-', ' ')}
                           </Badge>
                           <div className="flex items-center justify-center space-x-1">
-                            <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
+                            <Star className="h-4 w-4 fill-orange-400 text-orange-400" />
                             <span className="font-semibold">{person.ratingAvg}</span>
                             <span className="text-gray-500">({person.ratingCount})</span>
                           </div>
