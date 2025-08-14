@@ -5,7 +5,7 @@ import { AdvancedYellowDetector, runAdvancedYellowDetection } from '@/utils/adva
 export function YellowProtectionTest() {
   return (
     <div className="page-container py-8">
-      <h1 className="text-inkHead mb-8">Yellow Protection System Test</h1>
+      <h1 className="text-ink-head mb-8">Yellow Protection System Test</h1>
       
       <div className="grid gap-6 md:grid-cols-2">
         {/* Test inline styles (should be overridden) */}
