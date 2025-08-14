@@ -43,7 +43,7 @@ export default function CreditBalancePill({
     >
       <div className="flex items-center gap-1.5">
         {isLowBalance && (
-          <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
+          <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" />
         )}
         
         <Coins className="w-4 h-4 text-brand-primary" />
