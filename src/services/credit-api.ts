@@ -190,10 +190,15 @@ async function apiRequest<T>(
   }, 30000); // 30 second guard timeout
 }
 
-// Mock auth token getter - replace with actual auth implementation
+// Mock auth functions - replace with actual auth implementation
 function getAuthToken(): string {
   // TODO: Get from auth context/localStorage
   return 'mock_jwt_token';
+}
+
+function getCurrentUserId(): string {
+  // TODO: Get from auth context
+  return 'user_123';
 }
 
 // Credit API Service
