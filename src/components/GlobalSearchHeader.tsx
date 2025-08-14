@@ -85,6 +85,14 @@ export default function GlobalSearchHeader() {
   const searchRef = useRef<HTMLInputElement>(null);
   const suggestionsRef = useRef<HTMLDivElement>(null);
 
+  // Initialize theme from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem('theme');
+    if (saved) {
+      document.documentElement.setAttribute('data-theme', saved);
+    }
+  }, []);
+
   // Theme toggle function with localStorage persistence
   const toggleTheme = () => {
     const root = document.documentElement;
