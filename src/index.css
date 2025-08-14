@@ -963,3 +963,122 @@ body:has([data-page="matches"]) {
   transform: none !important;
   max-width: calc(100% - 4px) !important;
 }
+
+/* Aggressive fixes for remaining Credit Wallet yellow elements */
+
+/* Fix yellow page header stripe under navbar */
+[data-page="credits"] > div:first-child,
+[data-page="credits"] .border-b {
+  background-color: #ffffff !important;
+  background-image: none !important;
+  background: #ffffff !important;
+}
+
+.dark [data-page="credits"] > div:first-child,
+.dark [data-page="credits"] .border-b {
+  background-color: #0F172A !important;
+  background-image: none !important;
+  background: #0F172A !important;
+}
+
+/* Fix all TabsList in Credit Wallet */
+[data-page="credits"] [role="tablist"] {
+  background-color: #F8FAFC !important;
+  background-image: none !important;
+}
+
+.dark [data-page="credits"] [role="tablist"] {
+  background-color: #1E293B !important;
+  background-image: none !important;
+}
+
+/* Force normal tab colors */
+[data-page="credits"] [role="tab"] {
+  background-color: transparent !important;
+  color: #64748B !important;
+}
+
+[data-page="credits"] [role="tab"][data-state="active"] {
+  background-color: #ffffff !important;
+  color: #0056D2 !important;
+}
+
+.dark [data-page="credits"] [role="tab"] {
+  background-color: transparent !important;
+  color: #94A3B8 !important;
+}
+
+.dark [data-page="credits"] [role="tab"][data-state="active"] {
+  background-color: #334155 !important;
+  color: #06B6D4 !important;
+}
+
+/* Fix specific yellow badges in earn credits panel */
+[data-component="earn-credits-panel"] [data-variant="secondary"],
+[data-component="earn-credits-panel"] .bg-secondary,
+[data-component="earn-credits-panel"] .badge {
+  background-color: #E2E8F0 !important;
+  color: #475569 !important;
+  border-color: #CBD5E1 !important;
+  border: 1px solid #CBD5E1 !important;
+}
+
+.dark [data-component="earn-credits-panel"] [data-variant="secondary"],
+.dark [data-component="earn-credits-panel"] .bg-secondary,
+.dark [data-component="earn-credits-panel"] .badge {
+  background-color: #475569 !important;
+  color: #E2E8F0 !important;
+  border-color: #64748B !important;
+  border: 1px solid #64748B !important;
+}
+
+/* Force Badge component to not use secondary variant colors in credits */
+[data-page="credits"] [class*="badge"][class*="secondary"] {
+  background-color: #E2E8F0 !important;
+  color: #475569 !important;
+  border-color: #CBD5E1 !important;
+}
+
+.dark [data-page="credits"] [class*="badge"][class*="secondary"] {
+  background-color: #475569 !important;
+  color: #E2E8F0 !important;
+  border-color: #64748B !important;
+}
+
+/* Override any remaining CSS variables that might be yellow */
+[data-page="credits"] {
+  --secondary: 226 232 240 !important; /* slate-200 */
+}
+
+.dark [data-page="credits"] {
+  --secondary: 71 85 105 !important; /* slate-600 */
+}
+
+/* Nuclear option - target any inline styles or computed yellow colors */
+[data-page="credits"] *[style*="background"],
+[data-page="credits"] *[style*="Background"],
+[data-page="credits"] *[style*="color"] {
+  background-image: none !important;
+}
+
+/* Fix any computed yellow/amber in credit wallet */
+[data-page="credits"] *:not([class*="text-emerald"]):not([class*="text-red"]):not([class*="text-brand"]) {
+  background-image: none !important;
+}
+
+/* Specific CSS custom property overrides */
+[data-page="credits"] * {
+  --tw-bg-opacity: 1 !important;
+}
+
+/* Override any CSS variables that could produce yellow */
+[data-page="credits"] {
+  --amber-50: #FFF7ED !important;
+  --amber-100: #FFEDD5 !important;
+  --amber-400: #FB923C !important;
+  --amber-500: #F97316 !important;
+  --yellow-50: #FFF7ED !important;
+  --yellow-100: #FFEDD5 !important;
+  --yellow-400: #FB923C !important;
+  --yellow-500: #F97316 !important;
+}
