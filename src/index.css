@@ -343,3 +343,51 @@ nav a, [role="navigation"] a {
 nav a:hover, [role="navigation"] a:hover {
   color: var(--color-ink-head) !important;
 }
+
+/* === Yellow Kill-Switch (load LAST) === */
+:root { --theme-warning: var(--color-warning, #F59E0B); }
+
+/* Common hex & palette aliases seen in libs/components */
+[style*="#f59e0b"], [style*="#F59E0B"],
+[style*="#fbbf24"], [style*="#FBBF24"],
+[style*="#eab308"], [style*="#EAB308"],
+[style*="#ffc107"], [style*="#FFC107"],
+[style*="#facc15"], [style*="#FACC15"],
+[style*="yellow"], [style*="amber"] {
+  color: var(--theme-warning) !important;
+  background-color: color-mix(in oklab, var(--theme-warning) 16%, transparent) !important;
+  border-color: var(--theme-warning) !important;
+}
+
+/* Tailwind-like classes */
+[class*="text-yellow-"], [class*="bg-yellow-"], [class*="border-yellow-"],
+[class*="text-amber-"], [class*="bg-amber-"], [class*="border-amber-"] {
+  color: var(--theme-warning) !important;
+  background-color: color-mix(in oklab, var(--theme-warning) 16%, transparent) !important;
+  border-color: var(--theme-warning) !important;
+}
+
+/* SVG fills & strokes (inline attributes and computed styles) */
+svg [fill="#f59e0b"], svg [fill="#F59E0B"],
+svg [fill="#fbbf24"], svg [fill="#FBBF24"],
+svg [fill="#eab308"], svg [fill="#EAB308"],
+svg [fill="#ffc107"], svg [fill="#FFC107"],
+svg [fill="#facc15"], svg [fill="#FACC15"],
+svg [stroke="#f59e0b"], svg [stroke="#F59E0B"],
+svg [stroke="#fbbf24"], svg [stroke="#FBBF24"],
+svg [stroke="#eab308"], svg [stroke="#EAB308"],
+svg [stroke="#ffc107"], svg [stroke="#FFC107"],
+svg [stroke="#facc15"], svg [stroke="#FACC15"] {
+  fill: var(--theme-warning) !important;
+  stroke: var(--theme-warning) !important;
+}
+
+/* Generic fallback: any svg with yellow-ish computed fill/stroke (class hints) */
+svg[class*="yellow"], svg [class*="yellow"],
+svg[class*="amber"],  svg [class*="amber"] {
+  fill: var(--theme-warning) !important;
+  stroke: var(--theme-warning) !important;
+}
+
+/* If yellow is accidentally used as "primary", remap it to your real primary: */
+/* :root { --theme-warning: var(--color-primary); } */
