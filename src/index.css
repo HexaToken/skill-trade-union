@@ -53,24 +53,24 @@
 }
 
 :root[data-theme="dark"] {
-  /* Dark Theme */
-  --color-primary: #7AA7FF;
-  --color-primary-600: #5F86D1;
-  --color-secondary: #2BE4EE;
+  /* Dark Theme - Simplified naming */
+  --primary: #7AA7FF;
+  --primary-600: #5F86D1;
+  --secondary: #2BE4EE;
 
-  --color-ink-head: #E5EDF9;
-  --color-ink-body: #C8D1E2;
+  --ink-head: #E5EDF9;
+  --ink-body: #C8D1E2;
 
-  --color-canvas: #0B1220;
-  --color-surface: #121A2B;
-  --color-elevated: #16213A;
-  --color-border: #233047;
+  --canvas: #0B1220;
+  --surface: #121A2B;
+  --elevated: #16213A;
+  --border: #233047;
 
-  --color-success: #22C55E;
-  --color-warning: #FBBF24;
-  --color-danger: #F87171;
+  --success: #22C55E;
+  --warning: #FBBF24;
+  --danger: #F87171;
 
-  --gradient-brand: linear-gradient(90deg, #8B5CF6 0%, #2BE4EE 100%);
+  --brand-gradient: linear-gradient(90deg, #8B5CF6 0%, #2BE4EE 100%);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
   --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.35);
 
