@@ -497,10 +497,12 @@ export default function GlobalSearchHeader() {
 
           {/* Right: Actions */}
           <nav className="flex items-center gap-3">
-            <Link to="/mentors" className="text-inkBody hover:text-inkHead">Mentors</Link>
+            <Link to="/matches" className="text-inkBody hover:text-inkHead">Find a Match</Link>
             <Link to="/classes" className="text-inkBody hover:text-inkHead">Classes</Link>
+            <Link to="/mentors" className="text-inkBody hover:text-inkHead">Mentors</Link>
+            <Link to="/challenges" className="text-inkBody hover:text-inkHead">Challenges</Link>
             <Link to="/map" className="text-inkBody hover:text-inkHead">Map</Link>
-            <Link to="/skill-sprints" className="text-inkBody hover:text-inkHead">Sprints</Link>
+            <Link to="/donate" className="text-inkBody hover:text-inkHead">Donate</Link>
 
             {/* Credit pill */}
             <CreditBalancePill
