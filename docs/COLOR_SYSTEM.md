@@ -84,15 +84,15 @@ Use this guide to ensure consistent color usage across the application.
 
 | Use Case | Correct Token | Tailwind Class |
 |----------|---------------|----------------|
-| Primary button | `var(--color-primary)` | `bg-primary` |
+| Primary button | `var(--primary)` | `bg-primary` |
 | Button text | `#ffffff` | `text-white` |
-| Card background | `var(--color-surface)` | `bg-surface` |
-| Heading text | `var(--color-ink-head)` | `text-inkHead` |
-| Body text | `var(--color-ink-body)` | `text-inkBody` |
-| Border | `var(--color-border)` | `border-border` |
-| Success state | `var(--color-success)` | `text-success` |
-| Warning state | `var(--color-warning)` | `text-warning` |
-| Error state | `var(--color-danger)` | `text-danger` |
+| Card background | `var(--surface)` | `bg-surface` |
+| Heading text | `var(--ink-head)` | `text-ink-head` |
+| Body text | `var(--ink-body)` | `text-ink-body` |
+| Border | `var(--border)` | `border-border` |
+| Success state | `var(--success)` | `text-success` |
+| Warning state | `var(--warning)` | `text-warning` |
+| Error state | `var(--danger)` | `text-danger` |
 
 ## 🌙 Theme Support
 
