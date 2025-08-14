@@ -28,7 +28,10 @@ export default {
 				elevated: 'var(--color-elevated)',
 				inkHead: 'var(--color-ink-head)',
 				inkBody: 'var(--color-ink-body)',
+				// Shadcn/ui border for compatibility
 				border: 'hsl(var(--border))',
+				// Our custom border color
+				'border-custom': 'var(--color-border)',
 				success: 'var(--color-success)',
 				warning: 'var(--color-warning)',
 				danger: 'var(--color-danger)',
