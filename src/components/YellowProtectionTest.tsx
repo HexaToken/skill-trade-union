@@ -118,26 +118,53 @@ export function YellowProtectionTest() {
                 }}
                 className="btn-primary w-full"
               >
-                🔍 Run Manual Yellow Scan
+                🔍 Run Basic Yellow Scan
               </Button>
 
               <Button
                 onClick={() => {
-                  // Browser console inline style detector
-                  const script = `
-[...document.querySelectorAll('[style]')]
-  .filter(n => /#f59e0b|#fbbf24|#eab308|#ffc107|#facc15|yellow|amber/i.test(n.getAttribute('style')))
-  .map(n => ({el:n, style:n.getAttribute('style')}))
-                  `;
-                  console.log('🔍 Running inline style checker...');
-                  console.log('Copy and paste this into console to find yellow inline styles:');
-                  console.log(script);
-                  alert('Check console for inline style detector script!');
+                  const detector = AdvancedYellowDetector.getInstance();
+                  const result = detector.scanAndMark();
+                  alert(`Advanced HSV scan complete!\nFound ${result.total} yellowish elements.\nCheck console for details and red outlines on page.`);
+                }}
+                className="btn-primary w-full"
+              >
+                🎯 Run Advanced HSV Yellow Scan
+              </Button>
+
+              <Button
+                onClick={() => {
+                  const detector = AdvancedYellowDetector.getInstance();
+                  const fixed = detector.fixDetectedElements();
+                  alert(`Fixed ${fixed} yellow elements by converting to blue!`);
                 }}
                 variant="outline"
                 className="w-full"
               >
-                📋 Get Console Detector Script
+                🔧 Fix Detected Yellow Elements
+              </Button>
+
+              <Button
+                onClick={() => {
+                  const detector = AdvancedYellowDetector.getInstance();
+                  detector.clearOutlines();
+                  alert('Cleared all red outlines');
+                }}
+                variant="outline"
+                className="w-full"
+              >
+                🧹 Clear Red Outlines
+              </Button>
+
+              <Button
+                onClick={() => {
+                  const result = runAdvancedYellowDetection();
+                  alert(`Console script complete!\nFound ${result.total} yellowish elements.\nCheck console for details.`);
+                }}
+                variant="outline"
+                className="w-full"
+              >
+                📋 Run Original Console Script
               </Button>
             </div>
 
