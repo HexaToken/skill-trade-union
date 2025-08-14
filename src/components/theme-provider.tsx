@@ -33,6 +33,7 @@ export function ThemeProvider({
   useEffect(() => {
     const root = window.document.documentElement
 
+    // Remove any existing theme classes for compatibility
     root.classList.remove("light", "dark")
 
     if (theme === "system") {
@@ -41,11 +42,11 @@ export function ThemeProvider({
         ? "dark"
         : "light"
 
-      root.dataset.theme = systemTheme
+      root.setAttribute('data-theme', systemTheme)
       return
     }
 
-    root.dataset.theme = theme
+    root.setAttribute('data-theme', theme)
   }, [theme])
 
   const value = {
