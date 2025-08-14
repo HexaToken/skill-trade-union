@@ -69,11 +69,60 @@ const mockFeaturedCourses = [
   }
 ];
 
-export default function CreditWalletPage() {
+function CreditWalletPageContent() {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [activeTab, setActiveTab] = useState('overview');
   const [historyFilter, setHistoryFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [allTransactions, setAllTransactions] = useState<any[]>([]);
+  const [isLoadingTransactions, setIsLoadingTransactions] = useState(false);
+
+  // Use wallet store for state management
+  const {
+    balance,
+    holds,
+    recentTransactions,
+    isLoading,
+    error,
+    fetchWallet,
+    refreshBalance
+  } = useWalletStore();
+
+  const { donateCredits, isDonating } = useDonations();
+
+  // Load wallet data on mount
+  useEffect(() => {
+    fetchWallet();
+  }, [fetchWallet]);
+
+  // Load full transaction history when needed
+  const loadTransactionHistory = async () => {
+    if (isLoadingTransactions) return;
+
+    setIsLoadingTransactions(true);
+    try {
+      const response = await creditService.getTransactions({
+        limit: 50, // Load more for history view
+      });
+      setAllTransactions(response.items);
+    } catch (error) {
+      toast({
+        title: "Failed to Load History",
+        description: error instanceof Error ? error.message : 'Could not load transaction history',
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoadingTransactions(false);
+    }
+  };
+
+  // Load transaction history when switching to history tab
+  useEffect(() => {
+    if (activeTab === 'history' && allTransactions.length === 0) {
+      loadTransactionHistory();
+    }
+  }, [activeTab]);
 
   const getBalanceEquivalent = (balance: number) => {
     const standardSessionCost = 35;
@@ -81,13 +130,16 @@ export default function CreditWalletPage() {
     return `≈ ${sessions} standard 30-min sessions`;
   };
 
-  const filteredTransactions = mockWalletData.recentTransactions.filter(txn => {
+  // Use all transactions for history tab, recent for overview
+  const transactionsToFilter = activeTab === 'history' ? allTransactions : recentTransactions;
+
+  const filteredTransactions = transactionsToFilter.filter(txn => {
     const matchesFilter = historyFilter === 'all' || txn.type === historyFilter;
-    const matchesSearch = searchQuery === '' || 
+    const matchesSearch = searchQuery === '' ||
       txn.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      txn.partnerName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      txn.skill?.toLowerCase().includes(searchQuery.toLowerCase());
-    
+      txn.meta?.partnerName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      txn.meta?.skill?.toLowerCase().includes(searchQuery.toLowerCase());
+
     return matchesFilter && matchesSearch;
   });
 
@@ -100,21 +152,53 @@ export default function CreditWalletPage() {
         navigate('/challenges');
         break;
       case 'refer':
-        // Open referral modal/page
+        // TODO: Open referral modal/page
+        toast({
+          title: "Coming Soon",
+          description: "Referral system will be available soon!",
+        });
         break;
       case 'trade':
-        navigate('/trade');
+        // TODO: Navigate to trade confirmation page
+        toast({
+          title: "Coming Soon",
+          description: "Offline trade confirmation will be available soon!",
+        });
         break;
       case 'test':
-        // Open skill test modal/page
+        // TODO: Open skill test modal/page
+        toast({
+          title: "Coming Soon",
+          description: "Skill tests will be available soon!",
+        });
         break;
       default:
         console.log('Earn credits action:', action);
     }
   };
 
-  const handleDonateCredits = () => {
-    navigate('/donate');
+  const handleDonateCredits = async () => {
+    try {
+      const success = await donateCredits(
+        10, // Default donation amount
+        { type: 'platform' },
+        'Supporting the SkillSwap community'
+      );
+
+      if (success) {
+        // Refresh wallet after successful donation
+        await refreshBalance();
+      }
+    } catch (error) {
+      // Error handling is done in the hook
+    }
+  };
+
+  const handleRefresh = async () => {
+    await fetchWallet();
+    if (activeTab === 'history') {
+      await loadTransactionHistory();
+    }
   };
 
   return (
