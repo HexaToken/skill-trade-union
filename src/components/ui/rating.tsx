@@ -56,7 +56,7 @@ export function Rating({
                   sizeClasses[size],
                   "transition-colors",
                   isFilled 
-                    ? "fill-brand-warning text-brand-warning" 
+                    ? "fill-orange-400 text-orange-400" 
                     : "fill-muted text-muted-foreground"
                 )}
               />
@@ -64,7 +64,7 @@ export function Rating({
                 <Star 
                   className={cn(
                     sizeClasses[size],
-                    "absolute inset-0 fill-brand-warning text-brand-warning",
+                    "absolute inset-0 fill-orange-400 text-orange-400",
                     "clip-path-[polygon(0_0,50%_0,50%_100%,0_100%)]"
                   )}
                   style={{ clipPath: "polygon(0 0, 50% 0, 50% 100%, 0 100%)" }}
