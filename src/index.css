@@ -230,12 +230,56 @@ html, body {
   color: var(--color-primary) !important;
 }
 
-/* Button overrides for yellow backgrounds */
+/* === Emergency theming overrides === */
+/* Map common yellows to your warning token (or primary) */
+:root {
+  --theme-warning: #F59E0B;              /* light */
+}
+:root[data-theme="dark"] { --theme-warning: #FBBF24; }
+
+/* Inline styles using HEX */
+[style*="#f59e0b"], [style*="#F59E0B"],
+[style*="#fbbf24"], [style*="#FBBF24"],
+[style*="#eab308"], [style*="#EAB308"],
+[style*="#ffc107"], [style*="#FFC107"],
+[style*="#facc15"], [style*="#FACC15"],
+[style*="rgb(254, 240, 138)"], [style*="RGB(254, 240, 138)"],
+[style*="rgb(255, 193, 7)"], [style*="RGB(255, 193, 7)"],
+[style*="rgb(251, 191, 36)"], [style*="RGB(251, 191, 36)"] {
+  color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  background-color: var(--color-primary) !important;
+}
+
+/* Tailwind-like utility classes some libraries ship with */
+[class*="text-yellow-"], [class*="bg-yellow-"], [class*="border-yellow-"],
+[class*="text-amber-"], [class*="bg-amber-"], [class*="border-amber-"],
+.text-yellow-400, .text-yellow-500, .text-yellow-600,
+.bg-yellow-400, .bg-yellow-500, .bg-yellow-600,
+.border-yellow-400, .border-yellow-500, .border-yellow-600,
+.text-amber-400, .text-amber-500, .text-amber-600,
+.bg-amber-400, .bg-amber-500, .bg-amber-600,
+.border-amber-400, .border-amber-500, .border-amber-600 {
+  color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  background-color: var(--color-primary) !important;
+}
+
+/* Button-specific overrides */
 button[style*="background-color: rgb(254, 240, 138)"],
 button[style*="background-color: rgb(255, 193, 7)"],
-*[style*="background-color: rgb(254, 240, 138)"],
-*[style*="background-color: rgb(255, 193, 7)"] {
+button[style*="background-color: rgb(251, 191, 36)"],
+button[class*="bg-yellow-"],
+button[class*="bg-amber-"] {
   background-color: var(--color-primary) !important;
   color: white !important;
   border-color: var(--color-primary) !important;
+}
+
+/* Badge and pill overrides */
+.badge[class*="yellow"], .badge[class*="amber"],
+[data-variant="secondary"][class*="yellow"], [data-variant="secondary"][class*="amber"] {
+  background-color: color-mix(in oklab, var(--color-primary) 16%, transparent) !important;
+  color: var(--color-primary) !important;
+  border-color: color-mix(in oklab, var(--color-primary) 32%, transparent) !important;
 }
