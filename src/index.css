@@ -8,26 +8,28 @@
 /* Professional SkillSwap Color System - Light & Dark Themes */
 
 :root {
-  /* Light Theme (Default) - Simplified naming */
-  --primary: #0B5FFF;
-  --primary-600: #084AC7;
-  --secondary: #12D6DF;
+  /* Brand */
+  --primary: #0B5FFF;      /* electric academic blue */
+  --primary-600: #084AC7;  /* hover/pressed */
+  --secondary: #12D6DF;    /* tech cyan */
 
+  /* Text */
   --ink-head: #0F172A;
   --ink-body: #334155;
 
-  --canvas: #F7F9FC;
-  --surface: #FFFFFF;
-  --elevated: #FFFFFF;
+  /* Surfaces */
+  --canvas: #F7F9FC;       /* app background */
+  --surface: #FFFFFF;      /* cards/nav */
+  --elevated: #FFFFFF;     /* modals/dropdowns */
   --border: #E5E7EB;
 
+  /* States */
   --success: #16A34A;
   --warning: #F59E0B;
-  --danger: #EF4444;
+  --danger:  #EF4444;
 
+  /* Gradients */
   --brand-gradient: linear-gradient(90deg, #6C2BD9 0%, #12D6DF 100%);
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
-  --shadow-md: 0 6px 20px rgba(15, 23, 42, 0.08);
 
   /* Shadcn/ui compatibility layer */
   --background: 247 249 252; /* #F7F9FC */
