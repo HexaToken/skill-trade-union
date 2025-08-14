@@ -236,9 +236,20 @@ export const creditApi = {
 
   // 3) Spend Credits
   async spendCredits(request: SpendRequest): Promise<SpendResponse> {
+    // Validate amount
+    if (!validateCreditAmount(request.amount)) {
+      throw new Error('Invalid credit amount');
+    }
+
+    // Sanitize metadata
+    const sanitizedRequest = {
+      ...request,
+      metadata: sanitizeMetadata(request.metadata),
+    };
+
     return apiRequest<SpendResponse>('/spend', {
       method: 'POST',
-      body: JSON.stringify(request),
+      body: JSON.stringify(sanitizedRequest),
     }, true);
   },
 
