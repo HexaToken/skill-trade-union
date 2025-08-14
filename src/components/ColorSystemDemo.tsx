@@ -11,8 +11,8 @@ export function ColorSystemDemo() {
         {/* Primary Colors */}
         <Card className="card-surface">
           <CardHeader>
-            <CardTitle className="text-inkHead">Primary Colors</CardTitle>
-            <CardDescription className="text-inkBody">Main brand colors</CardDescription>
+            <CardTitle className="text-ink-head">Primary Colors</CardTitle>
+            <CardDescription className="text-ink-body">Main brand colors</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
@@ -32,18 +32,18 @@ export function ColorSystemDemo() {
         {/* Surface Colors */}
         <Card className="card-surface">
           <CardHeader>
-            <CardTitle className="text-inkHead">Surface Colors</CardTitle>
-            <CardDescription className="text-inkBody">Background and surface colors</CardDescription>
+            <CardTitle className="text-ink-head">Surface Colors</CardTitle>
+            <CardDescription className="text-ink-body">Background and surface colors</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <div className="h-12 bg-canvas border border-border rounded-lg flex items-center justify-center text-inkHead font-medium">
+              <div className="h-12 bg-canvas border border-border rounded-lg flex items-center justify-center text-ink-head font-medium">
                 Canvas
               </div>
-              <div className="h-12 bg-surface border border-border rounded-lg flex items-center justify-center text-inkHead font-medium">
+              <div className="h-12 bg-surface border border-border rounded-lg flex items-center justify-center text-ink-head font-medium">
                 Surface
               </div>
-              <div className="h-12 bg-elevated border border-border rounded-lg flex items-center justify-center text-inkHead font-medium">
+              <div className="h-12 bg-elevated border border-border rounded-lg flex items-center justify-center text-ink-head font-medium">
                 Elevated
               </div>
             </div>
@@ -53,13 +53,13 @@ export function ColorSystemDemo() {
         {/* Text Colors */}
         <Card className="card-surface">
           <CardHeader>
-            <CardTitle className="text-inkHead">Text Colors</CardTitle>
-            <CardDescription className="text-inkBody">Typography color hierarchy</CardDescription>
+            <CardTitle className="text-ink-head">Text Colors</CardTitle>
+            <CardDescription className="text-ink-body">Typography color hierarchy</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <div className="text-inkHead font-semibold">Ink Head - Headings</div>
-              <div className="text-inkBody">Ink Body - Regular text</div>
+              <div className="text-ink-head font-semibold">Ink Head - Headings</div>
+              <div className="text-ink-body">Ink Body - Regular text</div>
               <div className="text-primary">Primary - Links & accents</div>
               <div className="text-secondary">Secondary - Highlights</div>
             </div>
@@ -69,8 +69,8 @@ export function ColorSystemDemo() {
         {/* Status Colors */}
         <Card className="card-surface">
           <CardHeader>
-            <CardTitle className="text-inkHead">Status Colors</CardTitle>
-            <CardDescription className="text-inkBody">Semantic colors for UI states</CardDescription>
+            <CardTitle className="text-ink-head">Status Colors</CardTitle>
+            <CardDescription className="text-ink-body">Semantic colors for UI states</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
@@ -84,8 +84,8 @@ export function ColorSystemDemo() {
         {/* Buttons */}
         <Card className="card-surface">
           <CardHeader>
-            <CardTitle className="text-inkHead">Buttons</CardTitle>
-            <CardDescription className="text-inkBody">Button styles with new colors</CardDescription>
+            <CardTitle className="text-ink-head">Buttons</CardTitle>
+            <CardDescription className="text-ink-body">Button styles with new colors</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
@@ -99,8 +99,8 @@ export function ColorSystemDemo() {
         {/* Gradient */}
         <Card className="card-surface">
           <CardHeader>
-            <CardTitle className="text-inkHead">Brand Gradient</CardTitle>
-            <CardDescription className="text-inkBody">The signature SkillSwap gradient</CardDescription>
+            <CardTitle className="text-ink-head">Brand Gradient</CardTitle>
+            <CardDescription className="text-ink-body">The signature SkillSwap gradient</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="h-24 bg-brand-gradient rounded-lg flex items-center justify-center text-white font-bold text-lg">
@@ -114,8 +114,8 @@ export function ColorSystemDemo() {
       <div className="mt-8">
         <Card className="card-surface">
           <CardHeader>
-            <CardTitle className="text-inkHead">Theme Toggle</CardTitle>
-            <CardDescription className="text-inkBody">Switch between light and dark themes</CardDescription>
+            <CardTitle className="text-ink-head">Theme Toggle</CardTitle>
+            <CardDescription className="text-ink-body">Switch between light and dark themes</CardDescription>
           </CardHeader>
           <CardContent>
             <Button 
