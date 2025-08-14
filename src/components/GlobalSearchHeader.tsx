@@ -530,9 +530,10 @@ export default function GlobalSearchHeader() {
             </Link>
 
             {/* Theme toggle */}
-            <button 
+            <button
+              id="themeToggle"
               onClick={toggleTheme}
-              aria-label="Toggle theme" 
+              aria-label="Toggle theme"
               className="ml-1 text-ink-body hover:text-ink-head"
             >
               🌓
