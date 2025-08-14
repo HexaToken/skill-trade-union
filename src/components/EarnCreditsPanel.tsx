@@ -138,7 +138,7 @@ export default function EarnCreditsPanel({
       
       <CardContent className="space-y-4">
         {hasActiveMultiplier && (
-          <div className="p-3 rounded-lg border" style={{ background: 'linear-gradient(90deg, rgba(11, 95, 255, 0.1), rgba(18, 214, 223, 0.1))', borderColor: 'rgba(11, 95, 255, 0.2)' }}>
+          <div className="p-3 bg-gradient-to-r from-brand-primary/10 to-brand-secondary/10 rounded-lg border border-brand-primary/20">
             <div className="flex items-center gap-2 mb-1">
               <Crown className="w-4 h-4 text-brand-primary" />
               <span className="font-semibold text-sm">Sprint Multiplier Active</span>
