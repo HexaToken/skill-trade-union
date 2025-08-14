@@ -191,7 +191,7 @@ export default function InstantHelpDrawer({
 
   const renderMatching = () => (
     <div className="space-y-6 text-center">
-      <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto animate-pulse" style={{ background: 'var(--gradient-brand)' }}>
+      <div className="w-16 h-16 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-full flex items-center justify-center mx-auto animate-pulse">
         <Zap className="w-8 h-8 text-white" />
       </div>
       
