@@ -765,43 +765,44 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <Card 
-      className="group cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1 bg-surface border-border h-full"
+    <Card
+      className="group cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1 bg-surface border-border h-full overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <CardContent className="p-5 h-full flex flex-col">
-        <div className="flex items-start gap-4 mb-4">
-          <div className="relative">
-            <Avatar className="h-16 w-16 ring-2 ring-primary/10 ring-offset-1 ring-offset-background">
+      <CardContent className="p-5 h-full flex flex-col relative">
+        {/* Header with Avatar and Info */}
+        <div className="flex items-start gap-3 mb-4">
+          <div className="relative flex-shrink-0">
+            <Avatar className="h-14 w-14 ring-2 ring-primary/10">
               <AvatarImage src={mentor.avatar} alt={mentor.name} className="object-cover" />
-              <AvatarFallback className="bg-primary/10 text-primary font-bold">
+              <AvatarFallback className="bg-primary/10 text-primary font-bold text-sm">
                 {mentor.name.split(' ').map(n => n[0]).join('')}
               </AvatarFallback>
             </Avatar>
           </div>
           <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between mb-2">
+            <div className="flex items-start justify-between">
               <div className="flex-1 min-w-0 pr-2">
-                <h3 className="font-bold text-lg text-ink-head group-hover:text-primary transition-colors truncate">
+                <h3 className="font-bold text-base text-ink-head group-hover:text-primary transition-colors truncate">
                   {mentor.name}
                 </h3>
-                <p className="text-sm text-ink-body font-medium truncate">
+                <p className="text-sm text-ink-body font-medium truncate mb-1">
                   {mentor.headline}
                 </p>
-                <div className="flex items-center gap-1 mt-1">
+                <div className="flex items-center gap-1">
                   <span className="text-sm">{mentor.countryFlag}</span>
-                  <span className="text-xs text-ink-body">{mentor.location}</span>
+                  <span className="text-xs text-ink-body truncate">{mentor.location}</span>
                 </div>
               </div>
               <div className="flex gap-1 flex-shrink-0">
                 {mentor.verifiedID && (
-                  <div className="w-6 h-6 bg-success/10 rounded-full flex items-center justify-center border border-success/20">
+                  <div className="w-5 h-5 bg-success/10 rounded-full flex items-center justify-center border border-success/20">
                     <Shield className="h-3 w-3 text-success" />
                   </div>
                 )}
                 {mentor.skillTested && (
-                  <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
+                  <div className="w-5 h-5 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
                     <CheckCircle className="h-3 w-3 text-primary" />
                   </div>
                 )}
@@ -810,38 +811,40 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) => {
           </div>
         </div>
 
-        <div className="flex items-center gap-3 text-sm text-ink-body mb-3">
+        {/* Rating and Sessions */}
+        <div className="flex items-center gap-2 text-sm text-ink-body mb-3">
           <div className="flex items-center gap-1">
             <div className="flex">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star 
-                  key={i} 
+                <Star
+                  key={i}
                   className={cn(
                     "w-3 h-3",
-                    i < Math.floor(mentor.rating) 
-                      ? "fill-warning text-warning" 
+                    i < Math.floor(mentor.rating)
+                      ? "fill-warning text-warning"
                       : "text-border"
                   )}
                 />
               ))}
             </div>
-            <span className="font-semibold text-ink-head">{mentor.rating}</span>
-            <span>({mentor.reviews})</span>
+            <span className="font-semibold text-ink-head text-sm">{mentor.rating}</span>
+            <span className="text-xs">({mentor.reviews})</span>
           </div>
-          <span>•</span>
-          <span className="font-medium">{mentor.sessions} sessions</span>
+          <span className="text-border">•</span>
+          <span className="font-medium text-xs">{mentor.sessions} sessions</span>
         </div>
 
-        <p className="text-sm text-ink-body mb-4 line-clamp-2 flex-1 leading-relaxed">
+        {/* Description */}
+        <p className="text-sm text-ink-body mb-3 line-clamp-2 flex-1 leading-relaxed">
           {mentor.blurb}
         </p>
 
-        {/* Top 3 Skills with Hover Tooltips */}
-        <div className="flex flex-wrap gap-1.5 mb-4">
+        {/* Skills Tags */}
+        <div className="flex flex-wrap gap-1 mb-4">
           {mentor.tags.slice(0, 3).map((tag) => (
-            <Badge 
-              key={tag} 
-              variant="outline" 
+            <Badge
+              key={tag}
+              variant="outline"
               className="text-xs bg-primary/5 text-primary border-primary/25 font-medium hover:bg-primary/10 transition-colors cursor-help"
               title={`Skill: ${tag}`}
             >
@@ -855,26 +858,27 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) => {
           )}
         </div>
 
+        {/* Footer with Price and Actions */}
         <div className="flex items-center justify-between pt-3 border-t border-border mt-auto">
-          <div className="flex items-center gap-2">
-            <span className="text-xl font-bold text-primary">{mentor.creditsPerHour}</span>
-            <span className="text-xs text-ink-body font-medium">credits/hr</span>
+          <div className="flex items-baseline gap-1">
+            <span className="text-lg font-bold text-primary">{mentor.creditsPerHour}</span>
+            <span className="text-xs text-ink-body">credits/hr</span>
           </div>
-          <div className="flex gap-2">
-            <Button 
-              variant="ghost" 
-              size="sm" 
+          <div className="flex gap-2 items-center">
+            <Button
+              variant="ghost"
+              size="sm"
               className={cn(
-                "text-secondary hover:text-secondary/80 hover:bg-secondary/10 font-medium text-xs px-3 transition-all duration-200",
+                "text-secondary hover:text-secondary/80 hover:bg-secondary/10 font-medium text-xs px-2 h-8 transition-all duration-200",
                 isHovered ? "opacity-100 translate-x-0" : "opacity-0 translate-x-2"
               )}
             >
               <MessageCircle className="h-3 w-3 mr-1" />
               Message
             </Button>
-            <Button 
-              size="sm" 
-              className="bg-primary hover:bg-primary-600 text-white font-semibold shadow-sm hover:shadow-md transition-all duration-200 text-xs px-4" 
+            <Button
+              size="sm"
+              className="bg-primary hover:bg-primary-600 text-white font-semibold shadow-sm hover:shadow-md transition-all duration-200 text-xs px-3 h-8"
               onClick={() => onBookNow(mentor)}
             >
               Book
