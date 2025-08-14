@@ -85,6 +85,7 @@
   --ring: 122 167 255;
 }
 
+/* Base app wiring */
 html, body {
   background: var(--canvas);
   color: var(--ink-body);
