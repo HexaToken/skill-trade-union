@@ -805,61 +805,6 @@ export default function GlobalSearchHeader() {
       <CreditWalletModal
         open={showCreditWallet}
         onClose={() => setShowCreditWallet(false)}
-        walletData={{
-          balance: currentUser.wallet.credits,
-          upcomingDeductions: [
-            {
-              id: 'h1',
-              title: 'Session with Marcus Chen',
-              date: '2025-01-20T15:00:00Z',
-              amount: 15
-            }
-          ],
-          recentTransactions: [
-            {
-              id: 't1',
-              type: 'earn' as const,
-              title: 'Taught: Logo critique session',
-              subtitle: 'Completed 30-min design review',
-              amount: 10,
-              balanceAfter: currentUser.wallet.credits,
-              timestamp: '2025-01-15T18:00:00Z',
-              skill: 'Design',
-              partnerName: 'Sarah Wilson'
-            },
-            {
-              id: 't2',
-              type: 'spend' as const,
-              title: 'Enrolled: Brand Strategy Essentials',
-              subtitle: 'Advanced course enrollment',
-              amount: -150,
-              balanceAfter: currentUser.wallet.credits - 150,
-              timestamp: '2025-01-14T10:10:00Z',
-              skill: 'Marketing',
-              partnerName: 'Alex Thompson'
-            }
-          ]
-        }}
-        onEarnCreditsAction={(action) => {
-          setShowCreditWallet(false);
-          switch (action) {
-            case 'teach':
-              navigate('/matches');
-              break;
-            case 'sprint':
-              navigate('/challenges');
-              break;
-            case 'refer':
-              // Open referral flow
-              break;
-            default:
-              console.log('Earn credits action:', action);
-          }
-        }}
-        onDonateCredits={() => {
-          setShowCreditWallet(false);
-          navigate('/donate');
-        }}
       />
     </>
   );
