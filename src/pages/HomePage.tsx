@@ -409,7 +409,7 @@ const HomePage = () => {
                         <div className="flex items-center justify-between text-sm text-gray-600">
                           <span>{course.currentSeats}/{course.maxSeats} enrolled</span>
                           <div className="flex items-center space-x-1">
-                            <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
+                            <Star className="h-4 w-4 fill-orange-400 text-orange-400" />
                             <span>4.8</span>
                           </div>
                         </div>
