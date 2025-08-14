@@ -616,6 +616,61 @@ All colors MUST be HSL.
 /* Fix yellow blur effects */
 .bg-yellow-500\/20 { background-color: rgba(251, 146, 60, 0.2) !important; }
 
+/* Fix Credit Wallet modal yellow backgrounds */
+[data-testid="credit-wallet-modal"] {
+  background-color: white !important;
+}
+
+.dark [data-testid="credit-wallet-modal"] {
+  background-color: #0F172A !important;
+}
+
+/* Fix Credit Wallet modal content backgrounds */
+[data-testid="credit-wallet-modal"] * {
+  background-image: none !important;
+}
+
+[data-testid="credit-wallet-modal"] .bg-yellow-50,
+[data-testid="credit-wallet-modal"] .bg-yellow-100,
+[data-testid="credit-wallet-modal"] .bg-yellow-200,
+[data-testid="credit-wallet-modal"] .bg-yellow-300,
+[data-testid="credit-wallet-modal"] .bg-yellow-400,
+[data-testid="credit-wallet-modal"] .bg-yellow-500 {
+  background-color: #F8FAFC !important;
+}
+
+.dark [data-testid="credit-wallet-modal"] .bg-yellow-50,
+.dark [data-testid="credit-wallet-modal"] .bg-yellow-100,
+.dark [data-testid="credit-wallet-modal"] .bg-yellow-200,
+.dark [data-testid="credit-wallet-modal"] .bg-yellow-300,
+.dark [data-testid="credit-wallet-modal"] .bg-yellow-400,
+.dark [data-testid="credit-wallet-modal"] .bg-yellow-500 {
+  background-color: #1E293B !important;
+}
+
+/* Override any Dialog content with yellow backgrounds */
+[role="dialog"] {
+  background-color: white !important;
+}
+
+.dark [role="dialog"] {
+  background-color: #0F172A !important;
+}
+
+/* Fix any remaining yellow elements in credit components */
+[data-component*="credit"] * {
+  background-image: none !important;
+}
+
+[data-component*="credit"] .bg-yellow-50,
+[data-component*="credit"] .bg-yellow-100,
+[data-component*="credit"] .bg-yellow-200,
+[data-component*="credit"] .bg-yellow-300,
+[data-component*="credit"] .bg-yellow-400,
+[data-component*="credit"] .bg-yellow-500 {
+  background-color: #F8FAFC !important;
+}
+
 /* Fix yellow page background on matches page */
 [data-page="matches"] {
   background-color: #ffffff !important;
