@@ -352,7 +352,7 @@ nav a:hover, [role="navigation"] a:hover {
 }
 
 /* === Yellow Kill-Switch (load LAST) === */
-:root { --theme-warning: var(--color-warning, #F59E0B); }
+:root { --theme-warning: var(--warning, #F59E0B); }
 
 /* Common hex & palette aliases seen in libs/components */
 [style*="#f59e0b"], [style*="#F59E0B"],
