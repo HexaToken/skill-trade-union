@@ -86,7 +86,7 @@ export default function InstantHelpDrawer({
   const renderRequestForm = () => (
     <div className="space-y-6">
       <div className="text-center space-y-2">
-        <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto" style={{ background: 'var(--gradient-brand)' }}>
+        <div className="w-16 h-16 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-full flex items-center justify-center mx-auto">
           <Zap className="w-8 h-8 text-white" />
         </div>
         <h3 className="text-xl font-semibold">Get Instant Expert Help</h3>
