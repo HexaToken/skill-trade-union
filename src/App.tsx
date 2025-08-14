@@ -31,6 +31,7 @@ import OfflineTradeConfirmPage from "./pages/OfflineTradeConfirmPage";
 import OfflineTradeReceipt from "./pages/OfflineTradeReceipt";
 import MapPage from "./pages/MapPage";
 import DonationPage from "./pages/DonationPage";
+import CreditWalletPage from "./pages/CreditWalletPage";
 
 const queryClient = new QueryClient();
 
