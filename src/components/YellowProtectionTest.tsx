@@ -11,8 +11,8 @@ export function YellowProtectionTest() {
         {/* Test inline styles (should be overridden) */}
         <Card className="card-surface">
           <CardHeader>
-            <CardTitle className="text-inkHead">Inline Style Tests</CardTitle>
-            <CardDescription className="text-inkBody">These should be converted to blue</CardDescription>
+            <CardTitle className="text-ink-head">Inline Style Tests</CardTitle>
+            <CardDescription className="text-ink-body">These should be converted to blue</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div 
