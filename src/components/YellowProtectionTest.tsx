@@ -99,13 +99,53 @@ export function YellowProtectionTest() {
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-success rounded-full"></div>
+                <span className="text-sm text-inkBody">Runtime yellow detector active</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-success rounded-full"></div>
                 <span className="text-sm text-inkBody">Design token system active</span>
               </div>
             </div>
-            
+
+            <div className="mt-4 space-y-2">
+              <Button
+                onClick={() => {
+                  if (typeof window !== 'undefined' && window.yellowDetector) {
+                    const conversions = window.yellowDetector.scanNow();
+                    alert(`Scanned page: ${conversions} potential yellow elements checked`);
+                  }
+                }}
+                className="btn-primary w-full"
+              >
+                🔍 Run Manual Yellow Scan
+              </Button>
+
+              <Button
+                onClick={() => {
+                  // Browser console inline style detector
+                  const script = `
+[...document.querySelectorAll('[style]')]
+  .filter(n => /#f59e0b|#fbbf24|#eab308|#ffc107|#facc15|yellow|amber/i.test(n.getAttribute('style')))
+  .map(n => ({el:n, style:n.getAttribute('style')}))
+                  `;
+                  console.log('🔍 Running inline style checker...');
+                  console.log('Copy and paste this into console to find yellow inline styles:');
+                  console.log(script);
+                  alert('Check console for inline style detector script!');
+                }}
+                variant="outline"
+                className="w-full"
+              >
+                📋 Get Console Detector Script
+              </Button>
+            </div>
+
             <div className="mt-4 p-3 bg-elevated rounded-lg border border-border">
               <p className="text-xs text-inkBody/70">
                 ✅ All yellow colors should be automatically converted to blue primary tokens
+              </p>
+              <p className="text-xs text-inkBody/70 mt-1">
+                🔍 Use manual scan to check for any remaining yellow elements
               </p>
             </div>
           </CardContent>
