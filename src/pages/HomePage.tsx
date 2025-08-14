@@ -118,7 +118,7 @@ const HomePage = () => {
                     Find a Match
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="h-12 px-8 text-lg border-primary text-primary hover:bg-primary/5 !border-blue-600 !text-blue-600 !bg-white hover:!bg-blue-50">
+                <Button asChild variant="outline" size="lg" className="h-12 px-8 text-lg border-primary text-primary hover:bg-primary/5">
                   <Link to="/classes">
                     <BookOpen className="mr-2 h-5 w-5" />
                     Browse Courses
@@ -366,7 +366,7 @@ const HomePage = () => {
                 ))}
               </div>
               <div className="text-center mt-8">
-                <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/5 !border-blue-600 !text-blue-600 !bg-white hover:!bg-blue-50">
+                <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/5">
                   <Link to="/search">
                     View All People
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -505,7 +505,7 @@ const HomePage = () => {
           </div>
 
           <div className="text-center mt-8">
-            <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/5 !border-blue-600 !text-blue-600 !bg-white hover:!bg-blue-50">
+            <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/5">
               <Link to="/challenges">
                 View All Challenges
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -701,12 +701,7 @@ const HomePage = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 !border-blue-600 !text-blue-600 hover:!bg-blue-50 !bg-white"
-                  style={{
-                    borderColor: '#2563eb',
-                    color: '#2563eb',
-                    backgroundColor: 'white'
-                  }}
+                  className="border-2 border-primary text-primary hover:bg-primary/5"
                 >
                   <Crown className="mr-2 h-5 w-5" />
                   Upgrade to Pro
