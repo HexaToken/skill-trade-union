@@ -502,12 +502,12 @@ export default function GlobalSearchHeader() {
 
           {/* Right: Actions */}
           <nav className="flex items-center gap-3">
-            <Link to="/matches" className="text-ink-body hover:text-ink-head">Find a Match</Link>
-            <Link to="/classes" className="text-ink-body hover:text-ink-head">Classes</Link>
-            <Link to="/mentors" className="text-ink-body hover:text-ink-head">Mentors</Link>
-            <Link to="/challenges" className="text-ink-body hover:text-ink-head">Challenges</Link>
-            <Link to="/map" className="text-ink-body hover:text-ink-head">Map</Link>
-            <Link to="/donate" className="text-ink-body hover:text-ink-head">Donate</Link>
+            <Link to="/matches" className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 font-medium">Find a Match</Link>
+            <Link to="/classes" className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 font-medium">Classes</Link>
+            <Link to="/mentors" className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 font-medium">Mentors</Link>
+            <Link to="/challenges" className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 font-medium">Challenges</Link>
+            <Link to="/map" className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 font-medium">Map</Link>
+            <Link to="/donate" className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 font-medium">Donate</Link>
 
             {/* Credit pill */}
             <CreditBalancePill
