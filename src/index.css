@@ -394,5 +394,16 @@ svg[class*="amber"],  svg [class*="amber"] {
   stroke: var(--theme-warning) !important;
 }
 
+/* Additional star ratings and button overrides */
+[class*="icon-"], .rating i, .star {
+  color: var(--warning) !important;  /* keeps stars "gold" but on-theme */
+}
+.btn-primary, .cta {
+  background: var(--primary) !important;
+}
+.btn-primary:hover, .cta:hover {
+  background: var(--primary-600) !important;
+}
+
 /* If yellow is accidentally used as "primary", remap it to your real primary: */
 /* :root { --theme-warning: var(--color-primary); } */
