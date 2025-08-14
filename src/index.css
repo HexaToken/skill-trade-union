@@ -97,8 +97,8 @@
 }
 
 html, body {
-  background: var(--color-canvas);
-  color: var(--color-ink-body);
+  background: var(--canvas);
+  color: var(--ink-body);
 }
 
 @layer base {
