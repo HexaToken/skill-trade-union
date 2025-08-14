@@ -627,9 +627,9 @@ All colors MUST be HSL.
 .dark .border-amber-800 { border-color: #9A3412 !important; }
 
 /* Replace brand-amber with cyan/blue combination */
-.text-brand-amber { color: #06B6D4 !important; }
-.bg-brand-amber { background-color: #06B6D4 !important; }
-.border-brand-amber { border-color: #06B6D4 !important; }
+.text-brand-amber { color: #0056D2 !important; }
+.bg-brand-amber { background-color: #0056D2 !important; }
+.border-brand-amber { border-color: #0056D2 !important; }
 
 /* Fix gradients that use brand-amber */
 .from-brand-amber { --tw-gradient-from: #06B6D4 !important; }
