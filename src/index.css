@@ -847,6 +847,55 @@ body[data-pathname="/credits"] .bg-yellow-500 {
   color: inherit !important;
 }
 
+/* Aggressive overrides for EarnCreditsPanel */
+[data-component="earn-credits-panel"] {
+  background-color: #ffffff !important;
+}
+
+[data-component="earn-credits-panel"] * {
+  background-image: none !important;
+}
+
+[data-component="earn-credits-panel"] .grid > div {
+  border-color: #E2E8F0 !important;
+  background-color: #ffffff !important;
+}
+
+[data-component="earn-credits-panel"] [class*="badge"],
+[data-component="earn-credits-panel"] .badge {
+  background-color: #F1F5F9 !important;
+  color: #475569 !important;
+  border-color: #E2E8F0 !important;
+}
+
+[data-component="earn-credits-panel"] .bg-secondary {
+  background-color: #F1F5F9 !important;
+  color: #475569 !important;
+  border-color: #E2E8F0 !important;
+}
+
+.dark [data-component="earn-credits-panel"] {
+  background-color: #1E293B !important;
+}
+
+.dark [data-component="earn-credits-panel"] .grid > div {
+  border-color: #475569 !important;
+  background-color: #1E293B !important;
+}
+
+.dark [data-component="earn-credits-panel"] [class*="badge"],
+.dark [data-component="earn-credits-panel"] .badge {
+  background-color: #334155 !important;
+  color: #E2E8F0 !important;
+  border-color: #475569 !important;
+}
+
+.dark [data-component="earn-credits-panel"] .bg-secondary {
+  background-color: #334155 !important;
+  color: #E2E8F0 !important;
+  border-color: #475569 !important;
+}
+
 /* Fix yellow page background on matches page */
 [data-page="matches"] {
   background-color: #ffffff !important;
