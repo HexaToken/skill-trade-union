@@ -83,7 +83,7 @@ const HomePage = () => {
                 variants={fadeInUp}
               >
                 Trade Skills. Learn Anything.{' '}
-                <span className="text-primary">Without Spending a Dollar.</span>
+                <span className="text-gradient">Without Spending a Dollar.</span>
               </motion.h1>
               
               <motion.p 
@@ -285,7 +285,7 @@ const HomePage = () => {
                   style={{
                     '--active-bg': '#ffffff',
                     '--active-bg-dark': '#4b5563',
-                    '--active-color': '#2563eb'
+                    '--active-color': 'var(--ink-head)'
                   } as React.CSSProperties}
                 >
                   <Users className="h-4 w-4" />
@@ -297,7 +297,7 @@ const HomePage = () => {
                   style={{
                     '--active-bg': '#ffffff',
                     '--active-bg-dark': '#4b5563',
-                    '--active-color': '#2563eb'
+                    '--active-color': 'var(--ink-head)'
                   } as React.CSSProperties}
                 >
                   <BookOpen className="h-4 w-4" />
