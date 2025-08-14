@@ -189,14 +189,14 @@ html, body {
 
   /* Button utilities */
   .btn-primary {
-    background: var(--color-primary);
+    background: var(--primary);
     color: white;
     border-radius: 999px;
     box-shadow: var(--shadow-sm);
   }
 
   .btn-primary:hover {
-    background: var(--color-primary-600);
+    background: var(--primary-600);
   }
 
   /* Page container */
@@ -206,15 +206,15 @@ html, body {
 
   /* Card styling */
   .card-surface {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 16px;
     box-shadow: var(--shadow-sm);
   }
 
   /* Text gradient with correct classes */
-  .text-gradient { 
-    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  .text-gradient {
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
