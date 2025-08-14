@@ -6,7 +6,7 @@ export default {
 		"./pages/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./src/**/*.{ts,tsx,js,jsx,html}",
 	],
 	prefix: "",
 	theme: {
@@ -19,28 +19,20 @@ export default {
 		},
 		extend: {
 			colors: {
-				// New SkillSwap color system
-				primary: 'var(--color-primary)',
-				primary600: 'var(--color-primary-600)',
-				secondary: 'var(--color-secondary)',
-				canvas: 'var(--color-canvas)',
-				surface: 'var(--color-surface)',
-				elevated: 'var(--color-elevated)',
-				inkHead: 'var(--color-ink-head)',
-				inkBody: 'var(--color-ink-body)',
-				// Shadcn/ui border for compatibility
-				border: 'hsl(var(--border))',
-				// Our custom border color
-				'border-custom': 'var(--color-border)',
-
-				// Brand colors for gradient compatibility
-				'brand-primary': 'var(--color-primary)',
-				'brand-secondary': 'var(--color-secondary)',
-				'brand-amber': 'var(--color-warning)',
-				'brand-green': 'var(--color-success)',
-				success: 'var(--color-success)',
-				warning: 'var(--color-warning)',
-				danger: 'var(--color-danger)',
+				primary: 'var(--primary)',
+				'primary-600': 'var(--primary-600)',
+				secondary: 'var(--secondary)',
+				ink: {
+					head: 'var(--ink-head)',
+					body: 'var(--ink-body)',
+				},
+				canvas: 'var(--canvas)',
+				surface: 'var(--surface)',
+				elevated: 'var(--elevated)',
+				border: 'var(--border)',
+				success: 'var(--success)',
+				warning: 'var(--warning)',
+				danger: 'var(--danger)',
 
 				// Shadcn/ui compatibility
 				background: 'hsl(var(--background))',
@@ -67,30 +59,33 @@ export default {
 				},
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
-			},
-			boxShadow: {
-				sm: 'var(--shadow-sm)',
-				md: 'var(--shadow-md)',
+
+				// Brand colors for gradient compatibility
+				'brand-primary': 'var(--primary)',
+				'brand-secondary': 'var(--secondary)',
+				'brand-amber': 'var(--warning)',
+				'brand-green': 'var(--success)',
+
+				// Legacy compatibility
+				inkHead: 'var(--ink-head)',
+				inkBody: 'var(--ink-body)',
 			},
 			backgroundImage: {
-				'brand-gradient': 'var(--gradient-brand)',
+				'brand-gradient': 'var(--brand-gradient)',
 			},
 			borderRadius: {
 				card: '16px',
 				pill: '999px',
+				xl2: '1rem',
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			boxShadow: {
+				sm: 'var(--shadow-sm)',
+				md: 'var(--shadow-md)',
+				card: '0 8px 24px rgba(0,0,0,0.25)',
+				'card-light': '0 8px 24px rgba(2,6,23,0.06)',
 			},
 			fontFamily: {
 				sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
