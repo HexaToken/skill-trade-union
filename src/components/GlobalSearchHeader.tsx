@@ -66,6 +66,7 @@ export default function GlobalSearchHeader() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [suggestions, setSuggestions] = useState<SearchSuggestion[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [showCreditWallet, setShowCreditWallet] = useState(false);
 
   const navItems = [
     { label: 'Find a Match', href: '/matches', icon: Users },
