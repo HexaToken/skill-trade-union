@@ -616,6 +616,53 @@ All colors MUST be HSL.
 /* Fix yellow blur effects */
 .bg-yellow-500\/20 { background-color: rgba(251, 146, 60, 0.2) !important; }
 
+/* Fix yellow page background on matches page */
+[data-page="matches"] {
+  background-color: #ffffff !important;
+}
+
+.dark [data-page="matches"] {
+  background-color: #0F172A !important;
+}
+
+/* Override any yellow body/page backgrounds */
+body:has([data-page="matches"]) {
+  background-color: #ffffff !important;
+}
+
+.dark body:has([data-page="matches"]) {
+  background-color: #0F172A !important;
+}
+
+/* Fix yellow toggle switches */
+[data-page="matches"] [data-state="checked"] span {
+  background-color: #06B6D4 !important;
+}
+
+/* Force white/normal backgrounds on all matches page elements */
+[data-page="matches"] * {
+  background-image: none !important;
+}
+
+/* Specific yellow background overrides */
+[data-page="matches"] .bg-yellow-50,
+[data-page="matches"] .bg-yellow-100,
+[data-page="matches"] .bg-yellow-200,
+[data-page="matches"] .bg-yellow-300,
+[data-page="matches"] .bg-yellow-400,
+[data-page="matches"] .bg-yellow-500 {
+  background-color: #ffffff !important;
+}
+
+.dark [data-page="matches"] .bg-yellow-50,
+.dark [data-page="matches"] .bg-yellow-100,
+.dark [data-page="matches"] .bg-yellow-200,
+.dark [data-page="matches"] .bg-yellow-300,
+.dark [data-page="matches"] .bg-yellow-400,
+.dark [data-page="matches"] .bg-yellow-500 {
+  background-color: #1E293B !important;
+}
+
 /* Custom tab styling for HomePage */
 .home-tabs [data-state=active] {
   background-color: white !important;
