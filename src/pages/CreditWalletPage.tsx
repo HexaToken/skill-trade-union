@@ -366,27 +366,35 @@ function CreditWalletPageContent() {
                 </div>
 
                 {/* Transaction List */}
-                <div className="space-y-4">
-                  {filteredTransactions.length > 0 ? (
-                    filteredTransactions.map((transaction) => (
-                      <CreditTxnItem 
-                        key={transaction.id} 
-                        transaction={transaction}
-                      />
-                    ))
-                  ) : (
-                    <Card>
-                      <CardContent className="p-12 text-center">
-                        <div className="text-muted-foreground">
-                          {searchQuery || historyFilter !== 'all' 
-                            ? 'No transactions match your filters'
-                            : 'No transaction history yet'
-                          }
-                        </div>
-                      </CardContent>
-                    </Card>
-                  )}
-                </div>
+            <div className="space-y-4">
+              {isLoadingTransactions ? (
+                <Card>
+                  <CardContent className="p-12 text-center">
+                    <div className="text-muted-foreground">
+                      Loading transaction history...
+                    </div>
+                  </CardContent>
+                </Card>
+              ) : filteredTransactions.length > 0 ? (
+                filteredTransactions.map((transaction) => (
+                  <CreditTxnItem
+                    key={transaction.id}
+                    tx={transaction}
+                  />
+                ))
+              ) : (
+                <Card>
+                  <CardContent className="p-12 text-center">
+                    <div className="text-muted-foreground">
+                      {searchQuery || historyFilter !== 'all'
+                        ? 'No transactions match your filters'
+                        : 'No transaction history yet'
+                      }
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+            </div>
               </TabsContent>
             </Tabs>
           </div>
