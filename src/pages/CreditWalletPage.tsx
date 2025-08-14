@@ -260,18 +260,18 @@ function CreditWalletPageContent() {
                   <CardContent className="p-8 text-center">
                     <div className="space-y-3">
                       <div className="text-5xl font-bold text-brand-primary">
-                        {mockWalletData.balance}
+                        {isLoading ? '...' : balance}
                       </div>
                       <div className="text-xl font-semibold text-foreground">Credits</div>
                       <div className="text-muted-foreground">
-                        {getBalanceEquivalent(mockWalletData.balance)}
+                        {getBalanceEquivalent(balance)}
                       </div>
                     </div>
                   </CardContent>
                 </Card>
 
                 {/* Upcoming Deductions */}
-                {mockWalletData.upcomingDeductions.length > 0 && (
+                {holds.length > 0 && (
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
@@ -281,16 +281,16 @@ function CreditWalletPageContent() {
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-3">
-                        {mockWalletData.upcomingDeductions.map((deduction) => (
-                          <div key={deduction.id} className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
+                        {holds.map((hold) => (
+                          <div key={hold.id} className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
                             <div>
-                              <div className="font-medium">{deduction.title}</div>
+                              <div className="font-medium">{hold.reason}</div>
                               <div className="text-sm text-muted-foreground">
-                                {new Date(deduction.date).toLocaleDateString()}
+                                Release: {new Date(hold.releaseAt).toLocaleDateString()}
                               </div>
                             </div>
                             <Badge variant="outline" className="text-red-600 border-red-200">
-                              −{deduction.amount} credits
+                              −{hold.amount} credits
                             </Badge>
                           </div>
                         ))}
