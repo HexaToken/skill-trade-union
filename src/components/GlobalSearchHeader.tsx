@@ -514,7 +514,7 @@ export default function GlobalSearchHeader() {
             <Link
               to="/login"
               className="ml-2 inline-flex items-center rounded-pill h-9 px-4 text-sm text-white"
-              style={{ background: 'var(--color-primary)', boxShadow: 'var(--shadow-sm)' }}
+              style={{ background: 'var(--primary)' }}
             >
               Sign in
             </Link>
