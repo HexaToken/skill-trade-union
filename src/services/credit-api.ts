@@ -111,44 +111,83 @@ export interface ApiError {
   };
 }
 
-// Generate UUID for idempotency keys
-function generateIdempotencyKey(): string {
-  return 'idem_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-}
+import {
+  rateLimiter,
+  validateCreditAmount,
+  sanitizeMetadata,
+  generateSecureIdempotencyKey,
+  detectSuspiciousActivity,
+  SubmissionGuard
+} from '@/utils/security';
 
-// Base API request function with auth and error handling
+// Base API request function with security and error handling
 async function apiRequest<T>(
   endpoint: string,
   options: RequestInit = {},
   idempotent = false
 ): Promise<T> {
+  const isWrite = ['POST', 'PUT', 'PATCH', 'DELETE'].includes(options.method || 'GET');
+  const userId = getCurrentUserId(); // TODO: Get from auth context
+
+  // Rate limiting check
+  if (!rateLimiter.checkLimit(userId, isWrite)) {
+    const retryAfter = rateLimiter.getRetryAfter(userId);
+    throw new Error(`Rate limit exceeded. Retry after ${retryAfter} seconds.`);
+  }
+
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${getAuthToken()}`,
+    'X-Client-Version': '1.0.0', // For API versioning
+    'X-Request-ID': generateSecureIdempotencyKey(), // For request tracing
     ...options.headers,
   };
 
   // Add idempotency key for write operations
-  if (idempotent && (options.method === 'POST' || options.method === 'PUT' || options.method === 'PATCH')) {
-    headers['Idempotency-Key'] = generateIdempotencyKey();
+  if (idempotent && isWrite) {
+    headers['Idempotency-Key'] = generateSecureIdempotencyKey();
   }
 
-  const response = await fetch(`${API_BASE}${endpoint}`, {
-    ...options,
-    headers,
-  });
+  // Create unique key for submission guard
+  const guardKey = `${endpoint}-${JSON.stringify(options.body || {})}-${userId}`;
 
-  if (!response.ok) {
-    if (response.status === 429) {
-      const retryAfter = response.headers.get('Retry-After');
-      throw new Error(`Rate limited. Retry after ${retryAfter} seconds`);
+  return SubmissionGuard.guard(guardKey, async () => {
+    const response = await fetch(`${API_BASE}${endpoint}`, {
+      ...options,
+      headers,
+      // Add request timeout
+      signal: AbortSignal.timeout(30000), // 30 second timeout
+    });
+
+    if (!response.ok) {
+      if (response.status === 429) {
+        const retryAfter = response.headers.get('Retry-After') || '60';
+        throw new Error(`Rate limited. Retry after ${retryAfter} seconds`);
+      }
+
+      if (response.status === 401) {
+        // Token expired or invalid
+        throw new Error('Authentication required. Please log in again.');
+      }
+
+      if (response.status === 403) {
+        throw new Error('You are not authorized to perform this action.');
+      }
+
+      if (response.status >= 500) {
+        throw new Error('Server error. Please try again later.');
+      }
+
+      try {
+        const errorData: ApiError = await response.json();
+        throw new Error(errorData.error.message || 'API request failed');
+      } catch {
+        throw new Error(`Request failed with status ${response.status}`);
+      }
     }
-    
-    const errorData: ApiError = await response.json();
-    throw new Error(errorData.error.message || 'API request failed');
-  }
 
-  return response.json();
+    return response.json();
+  }, 30000); // 30 second guard timeout
 }
 
 // Mock auth token getter - replace with actual auth implementation
