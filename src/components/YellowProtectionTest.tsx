@@ -65,10 +65,7 @@ export function YellowProtectionTest() {
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-2">
               <Button
-                onClick={() => {
-                  const current = document.documentElement.dataset.theme;
-                  document.documentElement.dataset.theme = current === 'dark' ? 'light' : 'dark';
-                }}
+                onClick={toggleTheme}
                 className="btn-primary"
               >
                 Toggle Theme
