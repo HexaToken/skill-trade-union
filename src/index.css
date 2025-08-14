@@ -1082,3 +1082,44 @@ body:has([data-page="matches"]) {
   --yellow-400: #FB923C !important;
   --yellow-500: #F97316 !important;
 }
+
+/* Fix yellow buttons on donate page */
+[data-page="donate"] .bg-yellow-400,
+[data-page="donate"] .bg-yellow-500,
+[data-page="donate"] button[class*="yellow"],
+[data-page="donate"] button[style*="yellow"],
+[data-page="donate"] button[style*="background-color: rgb(255, 193, 7)"],
+[data-page="donate"] button[style*="background-color: rgb(254, 240, 138)"],
+[data-page="donate"] *[style*="background-color: rgb(254, 240, 138)"] {
+  background-color: #0056D2 !important;
+  color: white !important;
+  border-color: #0056D2 !important;
+}
+
+/* Target donation amount buttons specifically */
+[data-page="donate"] button[class*="bg-yellow"],
+[data-page="donate"] .donation-amount button,
+[data-page="donate"] .amount-selector button {
+  background-color: #0056D2 !important;
+  color: white !important;
+  border-color: #0056D2 !important;
+}
+
+/* Force override any yellow styles on donate page */
+body:has([href*="/donate"]) button[class*="yellow"],
+body:has([href*="/donate"]) *[class*="yellow"],
+body:has([href*="/donate"]) button[style*="yellow"],
+body:has([href*="/donate"]) *[style*="yellow"] {
+  background-color: #0056D2 !important;
+  color: white !important;
+  border-color: #0056D2 !important;
+}
+
+/* Universal yellow to blue conversion for donate page */
+body[data-pathname="/donate"] *[style*="background-color: rgb(254, 240, 138)"],
+body[data-pathname="/donate"] *[style*="background-color: rgb(255, 193, 7)"],
+body[data-pathname="/donate"] .bg-yellow-400,
+body[data-pathname="/donate"] .bg-yellow-500 {
+  background-color: #0056D2 !important;
+  color: white !important;
+}
