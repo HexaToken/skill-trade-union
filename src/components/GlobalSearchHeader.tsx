@@ -85,10 +85,12 @@ export default function GlobalSearchHeader() {
   const searchRef = useRef<HTMLInputElement>(null);
   const suggestionsRef = useRef<HTMLDivElement>(null);
 
-  // Theme toggle function
+  // Theme toggle function with localStorage persistence
   const toggleTheme = () => {
-    const currentTheme = document.documentElement.dataset.theme;
-    document.documentElement.dataset.theme = currentTheme === 'dark' ? 'light' : 'dark';
+    const root = document.documentElement;
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
   };
 
   // Generate search suggestions
