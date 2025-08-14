@@ -455,3 +455,12 @@ function CreditWalletPageContent() {
     </div>
   );
 }
+
+// Main component wrapped with WalletProvider
+export default function CreditWalletPage() {
+  return (
+    <WalletProvider>
+      <CreditWalletPageContent />
+    </WalletProvider>
+  );
+}
