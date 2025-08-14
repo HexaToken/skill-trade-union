@@ -128,7 +128,7 @@ export default function EarnCreditsPanel({
   };
 
   return (
-    <Card className={cn("", className)}>
+    <Card className={cn("", className)} data-component="earn-credits-panel">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Zap className="w-5 h-5 text-brand-primary" />
