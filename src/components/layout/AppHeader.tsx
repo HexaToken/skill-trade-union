@@ -12,7 +12,7 @@ export const AppHeader = () => {
       <div className="container mx-auto flex h-14 items-center gap-3">
         <SidebarTrigger className="mr-1" />
         <Link to="/" className="flex items-center font-semibold text-lg tracking-tight">
-          <span className="text-gradient">SkillSwap</span>
+          <span className="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">SkillSwap</span>
         </Link>
         <Badge variant="secondary" className="ml-1 bg-brand-primary/10 text-brand-primary border-brand-primary/20">Trade skills, not cash</Badge>
         <div className="ml-4 hidden flex-1 items-center gap-2 md:flex">
