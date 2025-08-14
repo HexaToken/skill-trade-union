@@ -88,18 +88,12 @@ export default function GlobalSearchHeader() {
 
   // Initialize theme from localStorage
   useEffect(() => {
-    const saved = localStorage.getItem('theme');
-    if (saved) {
-      document.documentElement.setAttribute('data-theme', saved);
-    }
+    initializeTheme();
   }, []);
 
   // Theme toggle function with localStorage persistence
   const toggleTheme = () => {
-    const root = document.documentElement;
-    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
+    utilToggleTheme();
   };
 
   // Generate search suggestions
