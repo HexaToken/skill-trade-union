@@ -18,7 +18,9 @@ import {
   Target,
   Map,
   Heart,
-  Menu
+  Menu,
+  Moon,
+  Sun
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -69,19 +71,21 @@ export default function GlobalSearchHeader() {
   const [showCreditWallet, setShowCreditWallet] = useState(false);
 
   const navItems = [
-    { label: 'Find a Match', href: '/matches', icon: Users },
+    { label: 'Mentors', href: '/mentors', icon: Users },
     { label: 'Classes', href: '/classes', icon: BookOpen },
-    { label: 'Mentors', href: '/mentors', icon: Award },
-    { label: 'Profile Demo', href: '/mentor/marcus-chen', icon: User },
-    { label: 'Challenges', href: '/challenges', icon: Target },
-    { label: 'Skill Sprints', href: '/skill-sprints', icon: Zap },
     { label: 'Map', href: '/map', icon: Map },
-    { label: 'Donate', href: '/donate', icon: Heart },
+    { label: 'Skill Sprints', href: '/skill-sprints', icon: Zap },
   ];
   
   const navigate = useNavigate();
   const searchRef = useRef<HTMLInputElement>(null);
   const suggestionsRef = useRef<HTMLDivElement>(null);
+
+  // Theme toggle function
+  const toggleTheme = () => {
+    const currentTheme = document.documentElement.dataset.theme;
+    document.documentElement.dataset.theme = currentTheme === 'dark' ? 'light' : 'dark';
+  };
 
   // Generate search suggestions
   useEffect(() => {
@@ -220,482 +224,342 @@ export default function GlobalSearchHeader() {
   return (
     <>
       {/* Main Header */}
-      <header className="sticky top-0 z-50 w-full bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-xl border-b border-slate-200/20 dark:border-white/06 shadow-sm transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 lg:h-16 items-center justify-between">
-            
-            {/* Left: Mobile Menu + Logo */}
-            <div className="flex items-center gap-4">
-              {/* Mobile menu trigger */}
-              <Sheet open={showMobileMenu} onOpenChange={setShowMobileMenu}>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="sm" className="md:hidden text-[#06B6D4] hover:bg-[#06B6D4]/10">
-                    <Menu className="h-5 w-5" />
-                    <span className="sr-only">Open menu</span>
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="left" className="w-80 bg-white dark:bg-[#1E293B]">
-                  <SheetHeader>
-                    <SheetTitle className="text-left">
-                      <Link
-                        to="/"
-                        className="flex items-center gap-3"
-                        onClick={() => setShowMobileMenu(false)}
-                      >
-                        <div className="w-8 h-8 bg-gradient-to-br from-[#0056D2] to-[#06B6D4] rounded-lg flex items-center justify-center shadow-lg">
-                          <span className="text-white font-bold text-sm">S</span>
-                        </div>
-                        <span className="text-xl font-heading font-bold bg-gradient-to-r from-[#0056D2] to-[#06B6D4] bg-clip-text text-transparent">
-                          SkillSwap
-                        </span>
-                      </Link>
-                    </SheetTitle>
-                  </SheetHeader>
+      <header className="sticky top-0 z-40 backdrop-blur bg-surface/95 border-b border-border shadow-sm">
+        <div className="mx-auto max-w-7xl px-4 h-16 flex items-center justify-between">
+          
+          {/* Left: Mobile Menu + Logo */}
+          <div className="flex items-center gap-2">
+            {/* Mobile menu trigger */}
+            <Sheet open={showMobileMenu} onOpenChange={setShowMobileMenu}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="sm" className="md:hidden">
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">Open menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-80">
+                <SheetHeader>
+                  <SheetTitle className="text-left">
+                    <Link
+                      to="/"
+                      className="flex items-center gap-3"
+                      onClick={() => setShowMobileMenu(false)}
+                    >
+                      <div className="h-6 w-6 rounded-md bg-brand-gradient"></div>
+                      <span className="text-inkHead font-semibold">SkillSwap</span>
+                    </Link>
+                  </SheetTitle>
+                </SheetHeader>
 
-                  <div className="flex flex-col gap-6 py-6">
-                    {/* Search in mobile menu */}
-                    <div className="relative">
-                      <div className="relative flex items-center w-full h-11 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                        <Search className="absolute left-4 w-5 h-5 text-[#06B6D4]" />
-                        <input
-                          type="text"
-                          placeholder="Search skills, people, or courses…"
-                          className="w-full h-full pl-12 pr-4 bg-transparent border-0 focus:ring-0 rounded-full placeholder:text-slate-400 dark:placeholder:text-slate-500"
-                          onClick={() => {
-                            setShowMobileMenu(false);
-                            setShowMobileSearch(true);
-                          }}
-                        />
+                <div className="flex flex-col gap-6 py-6">
+                  {/* Search in mobile menu */}
+                  <div className="relative">
+                    <div className="relative flex items-center w-full h-10 rounded-pill bg-elevated/40 border border-border px-3">
+                      <Search className="w-5 h-5 text-secondary" />
+                      <input
+                        type="text"
+                        placeholder="Search skills, mentors, or courses…"
+                        className="w-full h-full pl-3 bg-transparent border-0 focus:ring-0 text-sm text-inkBody placeholder:text-inkBody/50 focus:outline-none"
+                        onClick={() => {
+                          setShowMobileMenu(false);
+                          setShowMobileSearch(true);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Navigation */}
+                  <nav className="flex flex-col gap-2">
+                    {navItems.map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={item.href}
+                          to={item.href}
+                          onClick={() => setShowMobileMenu(false)}
+                          className="flex items-center gap-3 px-3 py-3 rounded-xl text-inkBody hover:text-inkHead transition-all duration-200"
+                        >
+                          <Icon className="w-5 h-5" />
+                          {item.label}
+                        </Link>
+                      );
+                    })}
+                  </nav>
+
+                  {/* Mobile user section */}
+                  <div className="border-t border-border pt-6 mt-auto">
+                    <div className="flex items-center gap-3 mb-4">
+                      <Avatar className="w-10 h-10">
+                        <AvatarImage src={currentUser.avatarUrl} alt={currentUser.name} />
+                        <AvatarFallback>
+                          {currentUser.name.split(' ').map(n => n[0]).join('')}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="font-medium text-inkHead">{currentUser.name}</p>
+                        <div className="flex items-center gap-1">
+                          <Wallet className="w-3 h-3 text-secondary" />
+                          <span className="text-sm font-medium text-secondary">
+                            {currentUser.wallet.credits.toLocaleString()} credits
+                          </span>
+                        </div>
                       </div>
                     </div>
 
-                    {/* Navigation */}
-                    <nav className="flex flex-col gap-2">
-                      {navItems.map((item) => {
-                        const Icon = item.icon;
+                    <div className="grid grid-cols-2 gap-2">
+                      <Button variant="outline" size="sm" asChild>
+                        <Link to="/wallet" onClick={() => setShowMobileMenu(false)}>
+                          <Wallet className="w-4 h-4 mr-2" />
+                          Wallet
+                        </Link>
+                      </Button>
+                      <Button variant="outline" size="sm" asChild>
+                        <Link to="/messages" onClick={() => setShowMobileMenu(false)}>
+                          <MessageCircle className="w-4 h-4 mr-2" />
+                          Messages
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
+
+            {/* Logo */}
+            <Link
+              to="/"
+              className="flex items-center gap-2"
+            >
+              <div className="h-6 w-6 rounded-md bg-brand-gradient"></div>
+              <span className="text-inkHead font-semibold">SkillSwap</span>
+            </Link>
+          </div>
+
+          {/* Center: Global search (Desktop) */}
+          <div className="hidden md:flex flex-1 max-w-xl mx-6">
+            <div className="flex items-center gap-2 w-full bg-elevated/40 border border-border rounded-pill px-3 h-10">
+              <Search className="text-inkBody/60 w-5 h-5" />
+              <input 
+                ref={searchRef}
+                className="bg-transparent flex-1 text-sm text-inkBody placeholder:text-inkBody/50 focus:outline-none"
+                placeholder="Search skills, mentors, or courses…"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => {
+                  setTimeout(() => {
+                    setIsSearchFocused(false);
+                    setShowSuggestions(false);
+                  }, 150);
+                }}
+                onKeyDown={handleKeyDown}
+              />
+              {searchQuery && (
+                <button
+                  onClick={clearSearch}
+                  className="p-1 hover:bg-elevated/60 rounded-full transition-colors"
+                >
+                  <X className="w-4 h-4 text-inkBody/60" />
+                </button>
+              )}
+            </div>
+
+            {/* Suggestions Dropdown */}
+            {showSuggestions && (isSearchFocused || selectedIndex >= 0) && (
+              <div 
+                ref={suggestionsRef}
+                className="absolute top-full left-0 right-0 mt-1 bg-surface border border-border rounded-card shadow-md z-50 max-h-96 overflow-hidden"
+              >
+                <div className="p-2">
+                  {/* People Section */}
+                  {peopleResults.length > 0 && (
+                    <div className="mb-4">
+                      <div className="px-3 py-2 text-xs font-medium text-inkBody/60 uppercase tracking-wider">
+                        People
+                      </div>
+                      {peopleResults.map((person, index) => {
+                        const globalIndex = index;
                         return (
-                          <Link
-                            key={item.href}
-                            to={item.href}
-                            onClick={() => setShowMobileMenu(false)}
-                            className="flex items-center gap-3 px-3 py-3 rounded-xl text-[#0F172A] dark:text-[#F1F5F9] hover:bg-[#0056D2]/10 hover:text-[#0056D2] transition-all duration-200"
+                          <button
+                            key={person.id}
+                            onClick={() => handleSuggestionClick(person)}
+                            className={cn(
+                              "w-full flex items-center gap-3 p-3 rounded-lg transition-colors text-left",
+                              selectedIndex === globalIndex
+                                ? "bg-primary/10"
+                                : "hover:bg-elevated/60"
+                            )}
                           >
-                            <Icon className="w-5 h-5" />
-                            {item.label}
-                          </Link>
+                            <Avatar className="w-10 h-10">
+                              <AvatarImage src={person.avatar} alt={person.name} />
+                              <AvatarFallback>
+                                {person.name.split(' ').map(n => n[0]).join('')}
+                              </AvatarFallback>
+                            </Avatar>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2">
+                                <p className="font-medium text-inkHead truncate">
+                                  {person.name}
+                                </p>
+                                {person.verified && (
+                                  <CheckCircle className="w-4 h-4 text-success" />
+                                )}
+                              </div>
+                              <p className="text-sm text-inkBody">
+                                {person.skill}
+                              </p>
+                            </div>
+                            <div className="text-right">
+                              <p className="text-sm font-medium text-secondary">
+                                {person.credits} credits/hr
+                              </p>
+                            </div>
+                          </button>
                         );
                       })}
-                    </nav>
-
-                    {/* Mobile user section */}
-                    <div className="border-t border-slate-200 dark:border-slate-700 pt-6 mt-auto">
-                      <div className="flex items-center gap-3 mb-4">
-                        <Avatar className="w-10 h-10">
-                          <AvatarImage src={currentUser.avatarUrl} alt={currentUser.name} />
-                          <AvatarFallback className="bg-[#0056D2]/10 text-[#0056D2] font-medium">
-                            {currentUser.name.split(' ').map(n => n[0]).join('')}
-                          </AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <p className="font-medium text-[#0F172A] dark:text-[#F1F5F9]">{currentUser.name}</p>
-                          <div className="flex items-center gap-1">
-                            <Wallet className="w-3 h-3 text-[#06B6D4]" />
-                            <span className="text-sm font-medium text-[#06B6D4]">
-                              {currentUser.wallet.credits.toLocaleString()} credits
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-2">
-                        <Button variant="outline" size="sm" asChild>
-                          <Link to="/wallet" onClick={() => setShowMobileMenu(false)}>
-                            <Wallet className="w-4 h-4 mr-2" />
-                            Wallet
-                          </Link>
-                        </Button>
-                        <Button variant="outline" size="sm" asChild>
-                          <Link to="/messages" onClick={() => setShowMobileMenu(false)}>
-                            <MessageCircle className="w-4 h-4 mr-2" />
-                            Messages
-                          </Link>
-                        </Button>
-                      </div>
                     </div>
-                  </div>
-                </SheetContent>
-              </Sheet>
+                  )}
 
-              {/* Logo */}
-              <Link
-                to="/"
-                className="flex items-center gap-3 hover:scale-105 transition-transform duration-200"
-              >
-                <div className="w-8 h-8 bg-gradient-to-br from-[#0056D2] to-[#06B6D4] rounded-lg flex items-center justify-center shadow-lg">
-                  <span className="text-white font-bold text-sm">S</span>
-                </div>
-                <span className="text-xl lg:text-2xl font-heading font-bold bg-gradient-to-r from-[#0056D2] to-[#06B6D4] bg-clip-text text-transparent">
-                  SkillSwap
-                </span>
-              </Link>
-            </div>
+                  {/* Courses Section */}
+                  {courseResults.length > 0 && (
+                    <div className="mb-2">
+                      <div className="px-3 py-2 text-xs font-medium text-inkBody/60 uppercase tracking-wider">
+                        Courses
+                      </div>
+                      {courseResults.map((course, index) => {
+                        const globalIndex = peopleResults.length + index;
+                        return (
+                          <button
+                            key={course.id}
+                            onClick={() => handleSuggestionClick(course)}
+                            className={cn(
+                              "w-full flex items-center gap-3 p-3 rounded-lg transition-colors text-left",
+                              selectedIndex === globalIndex
+                                ? "bg-primary/10"
+                                : "hover:bg-elevated/60"
+                            )}
+                          >
+                            <div className="w-14 h-10 rounded-lg overflow-hidden bg-elevated">
+                              <img 
+                                src={course.thumbnail} 
+                                alt={course.name}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="font-medium text-inkHead truncate">
+                                {course.name}
+                              </p>
+                              <p className="text-sm text-inkBody">
+                                by {course.instructor}
+                              </p>
+                            </div>
+                            <div className="text-right">
+                              <p className="text-sm font-medium text-secondary">
+                                {course.credits} credits
+                              </p>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
 
-            {/* Center: Search Bar (Desktop) */}
-            <div className="hidden md:flex flex-1 max-w-2xl mx-8 relative">
-              <div className="relative w-full">
-                <div className={cn(
-                  "relative flex items-center w-full h-11 rounded-full transition-all duration-200 border",
-                  "bg-white dark:bg-[#1E293B]",
-                  isSearchFocused || showSuggestions
-                    ? "border-[#0056D2] shadow-lg shadow-[#0056D2]/10"
-                    : "border-slate-200 dark:border-white/08 hover:border-slate-300 dark:hover:border-white/12"
-                )}>
-                  <Search className="absolute left-4 w-5 h-5 text-[#06B6D4]" />
-                  <Input
-                    ref={searchRef}
-                    type="text"
-                    placeholder="Search skills, people, or courses…"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onFocus={() => setIsSearchFocused(true)}
-                    onBlur={() => {
-                      // Delay hiding suggestions to allow clicking
-                      setTimeout(() => {
-                        setIsSearchFocused(false);
-                        setShowSuggestions(false);
-                      }, 150);
-                    }}
-                    onKeyDown={handleKeyDown}
-                    className="w-full h-full pl-12 pr-12 bg-transparent border-0 focus:ring-0 rounded-full placeholder:text-slate-400 dark:placeholder:text-slate-500"
-                    aria-label="Global Search"
-                    autoComplete="off"
-                  />
-                  {searchQuery && (
+                  {/* View All Results */}
+                  {suggestions.length > 0 && (
                     <button
-                      onClick={clearSearch}
-                      className="absolute right-4 p-1 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full transition-colors"
-                      aria-label="Clear search"
+                      onClick={handleSearch}
+                      className="w-full p-3 text-center text-primary hover:bg-primary/5 rounded-lg transition-colors font-medium"
                     >
-                      <X className="w-4 h-4 text-slate-400" />
+                      View all results for "{searchQuery}"
                     </button>
                   )}
+
+                  {/* Empty State */}
+                  {suggestions.length === 0 && searchQuery.length >= 2 && (
+                    <div className="p-6 text-center">
+                      <p className="text-inkBody mb-1">
+                        No matches found for "{searchQuery}"
+                      </p>
+                      <p className="text-sm text-inkBody/60">
+                        Try another keyword or browse categories
+                      </p>
+                    </div>
+                  )}
                 </div>
-
-                {/* Suggestions Dropdown */}
-                {showSuggestions && (isSearchFocused || selectedIndex >= 0) && (
-                  <div 
-                    ref={suggestionsRef}
-                    className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-white/08 rounded-xl shadow-2xl z-50 max-h-96 overflow-hidden animate-fade-in"
-                    role="listbox"
-                  >
-                    <div className="p-2">
-                      {/* People Section */}
-                      {peopleResults.length > 0 && (
-                        <div className="mb-4">
-                          <div className="px-3 py-2 text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                            People
-                          </div>
-                          {peopleResults.map((person, index) => {
-                            const globalIndex = index;
-                            return (
-                              <button
-                                key={person.id}
-                                onClick={() => handleSuggestionClick(person)}
-                                className={cn(
-                                  "w-full flex items-center gap-3 p-3 rounded-lg transition-colors text-left",
-                                  selectedIndex === globalIndex
-                                    ? "bg-[#0056D2]/6 dark:bg-[#06B6D4]/15"
-                                    : "hover:bg-slate-50 dark:hover:bg-slate-800/50"
-                                )}
-                                role="option"
-                                aria-selected={selectedIndex === globalIndex}
-                              >
-                                <Avatar className="w-10 h-10 ring-2 ring-white dark:ring-slate-700">
-                                  <AvatarImage src={person.avatar} alt={person.name} />
-                                  <AvatarFallback className="bg-[#0056D2]/10 text-[#0056D2] font-medium">
-                                    {person.name.split(' ').map(n => n[0]).join('')}
-                                  </AvatarFallback>
-                                </Avatar>
-                                <div className="flex-1 min-w-0">
-                                  <div className="flex items-center gap-2">
-                                    <p className="font-medium text-[#0F172A] dark:text-[#F1F5F9] truncate">
-                                      {person.name}
-                                    </p>
-                                    {person.verified && (
-                                      <CheckCircle className="w-4 h-4 text-emerald-500" />
-                                    )}
-                                  </div>
-                                  <p className="text-sm text-[#334155] dark:text-[#E2E8F0]">
-                                    {person.skill}
-                                  </p>
-                                </div>
-                                <div className="text-right">
-                                  <p className="text-sm font-medium text-[#06B6D4]">
-                                    {person.credits} credits/hr
-                                  </p>
-                                </div>
-                              </button>
-                            );
-                          })}
-                        </div>
-                      )}
-
-                      {/* Courses Section */}
-                      {courseResults.length > 0 && (
-                        <div className="mb-2">
-                          <div className="px-3 py-2 text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                            Courses
-                          </div>
-                          {courseResults.map((course, index) => {
-                            const globalIndex = peopleResults.length + index;
-                            return (
-                              <button
-                                key={course.id}
-                                onClick={() => handleSuggestionClick(course)}
-                                className={cn(
-                                  "w-full flex items-center gap-3 p-3 rounded-lg transition-colors text-left",
-                                  selectedIndex === globalIndex
-                                    ? "bg-[#0056D2]/6 dark:bg-[#06B6D4]/15"
-                                    : "hover:bg-slate-50 dark:hover:bg-slate-800/50"
-                                )}
-                                role="option"
-                                aria-selected={selectedIndex === globalIndex}
-                              >
-                                <div className="w-14 h-10 rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-800">
-                                  <img 
-                                    src={course.thumbnail} 
-                                    alt={course.name}
-                                    className="w-full h-full object-cover"
-                                  />
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                  <p className="font-medium text-[#0F172A] dark:text-[#F1F5F9] truncate">
-                                    {course.name}
-                                  </p>
-                                  <p className="text-sm text-[#334155] dark:text-[#E2E8F0]">
-                                    by {course.instructor}
-                                  </p>
-                                </div>
-                                <div className="text-right">
-                                  <p className="text-sm font-medium text-[#06B6D4]">
-                                    {course.credits} credits
-                                  </p>
-                                </div>
-                              </button>
-                            );
-                          })}
-                        </div>
-                      )}
-
-                      {/* View All Results */}
-                      {suggestions.length > 0 && (
-                        <button
-                          onClick={handleSearch}
-                          className="w-full p-3 text-center text-[#0056D2] hover:bg-[#0056D2]/5 rounded-lg transition-colors font-medium"
-                        >
-                          View all results for "{searchQuery}"
-                        </button>
-                      )}
-
-                      {/* Empty State */}
-                      {suggestions.length === 0 && searchQuery.length >= 2 && (
-                        <div className="p-6 text-center">
-                          <p className="text-[#334155] dark:text-[#E2E8F0] mb-1">
-                            No matches found for "{searchQuery}"
-                          </p>
-                          <p className="text-sm text-slate-500 dark:text-slate-400">
-                            Try another keyword or browse categories
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
               </div>
-            </div>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-1 ml-8">
-              {navItems.map((item) => (
-                <Button
-                  key={item.href}
-                  variant="ghost"
-                  size="sm"
-                  className="text-[#334155] dark:text-[#E2E8F0] hover:text-[#0056D2] hover:bg-[#0056D2]/10 transition-all duration-200"
-                  asChild
-                >
-                  <Link to={item.href}>
-                    {item.label}
-                  </Link>
-                </Button>
-              ))}
-            </nav>
-
-            {/* Right: Quick Links */}
-            <div className="flex items-center gap-2">
-              {/* Add Skill Offer (Desktop) */}
-              <Button 
-                variant="outline" 
-                size="sm"
-                className="hidden lg:flex border-[#06B6D4] text-[#06B6D4] hover:bg-[#06B6D4] hover:text-white transition-all duration-200"
-                asChild
-              >
-                <Link to="/create">
-                  <Plus className="w-4 h-4 mr-2" />
-                  Add Skill Offer
-                </Link>
-              </Button>
-
-              {/* Search Icon (Tablet) */}
-              <Button
-                variant="ghost"
-                size="sm"
-                className="hidden md:flex lg:hidden text-[#06B6D4] hover:bg-[#06B6D4]/10"
-                onClick={() => setShowMobileSearch(true)}
-              >
-                <Search className="w-5 h-5" />
-                <span className="sr-only">Search</span>
-              </Button>
-
-              {/* Messages */}
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className="relative text-[#06B6D4] hover:bg-[#06B6D4]/10 rounded-xl transition-all duration-200" 
-                asChild
-              >
-                <Link to="/messages">
-                  <MessageCircle className="w-5 h-5" />
-                  <Badge className="absolute -top-1 -right-1 h-5 w-5 p-0 text-xs bg-red-500 text-white">
-                    3
-                  </Badge>
-                  <span className="sr-only">Messages</span>
-                </Link>
-              </Button>
-
-              {/* Credits Balance */}
-              <CreditBalancePill
-                balance={currentUser.wallet.credits}
-                onClick={() => setShowCreditWallet(true)}
-              />
-
-              {/* Profile Menu */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    className="hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all duration-200"
-                  >
-                    <Avatar className="w-8 h-8">
-                      <AvatarImage src={currentUser.avatarUrl} alt={currentUser.name} />
-                      <AvatarFallback className="bg-[#0056D2]/10 text-[#0056D2] font-medium">
-                        {currentUser.name.split(' ').map(n => n[0]).join('')}
-                      </AvatarFallback>
-                    </Avatar>
-                    <span className="sr-only">Open user menu</span>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent 
-                  align="end" 
-                  className="w-56 bg-white dark:bg-[#1E293B] border-slate-200 dark:border-white/08 shadow-xl"
-                >
-                  <div className="px-2 py-1.5">
-                    <p className="font-medium text-[#0F172A] dark:text-[#F1F5F9]">{currentUser.name}</p>
-                    <p className="text-sm text-[#334155] dark:text-[#E2E8F0]">{currentUser.location.city}</p>
-                    <div className="mt-1 flex items-center gap-1">
-                      <Wallet className="w-3 h-3 text-[#06B6D4]" />
-                      <span className="text-sm font-medium text-[#06B6D4]">
-                        {currentUser.wallet.credits.toLocaleString()} credits
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <DropdownMenuSeparator />
-                  
-                  <DropdownMenuItem asChild>
-                    <Link to="/dashboard">
-                      <Award className="mr-2 h-4 w-4" />
-                      Dashboard
-                    </Link>
-                  </DropdownMenuItem>
-                  
-                  <DropdownMenuItem asChild>
-                    <Link to="/sessions">
-                      <Zap className="mr-2 h-4 w-4" />
-                      My Sessions
-                    </Link>
-                  </DropdownMenuItem>
-                  
-                  <DropdownMenuItem asChild>
-                    <Link to="/classes">
-                      <Award className="mr-2 h-4 w-4" />
-                      My Courses
-                    </Link>
-                  </DropdownMenuItem>
-
-                  <DropdownMenuItem className="p-0">
-                    <OfflineTradeButton
-                      variant="ghost"
-                      size="sm"
-                      className="w-full justify-start font-normal text-sm h-8"
-                      showIcon={true}
-                    />
-                  </DropdownMenuItem>
-
-                  <DropdownMenuItem asChild>
-                    <Link to="/settings">
-                      <Settings className="mr-2 h-4 w-4" />
-                      Settings
-                    </Link>
-                  </DropdownMenuItem>
-                  
-                  <DropdownMenuSeparator />
-                  
-                  <DropdownMenuItem>
-                    <LogOut className="mr-2 h-4 w-4" />
-                    Log Out
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
+            )}
           </div>
+
+          {/* Right: Actions */}
+          <nav className="flex items-center gap-3">
+            <Link to="/mentors" className="text-inkBody hover:text-inkHead">Mentors</Link>
+            <Link to="/classes" className="text-inkBody hover:text-inkHead">Classes</Link>
+            <Link to="/map" className="text-inkBody hover:text-inkHead">Map</Link>
+            <Link to="/skill-sprints" className="text-inkBody hover:text-inkHead">Sprints</Link>
+
+            {/* Credit pill */}
+            <CreditBalancePill
+              balance={currentUser.wallet.credits}
+              onClick={() => setShowCreditWallet(true)}
+            />
+
+            {/* CTA */}
+            <Link
+              to="/login"
+              className="ml-2 inline-flex items-center rounded-pill h-9 px-4 text-sm text-white"
+              style={{ background: 'var(--color-primary)', boxShadow: 'var(--shadow-sm)' }}
+            >
+              Sign in
+            </Link>
+
+            {/* Theme toggle */}
+            <button 
+              onClick={toggleTheme}
+              aria-label="Toggle theme" 
+              className="ml-1 text-inkBody hover:text-inkHead"
+            >
+              🌓
+            </button>
+          </nav>
         </div>
+        {/* Subtle futuristic accent line */}
+        <div className="h-[2px] w-full bg-brand-gradient"></div>
       </header>
 
       {/* Mobile Search Overlay */}
       <Dialog open={showMobileSearch} onOpenChange={setShowMobileSearch}>
-        <DialogContent className="sm:max-w-none w-full h-full max-h-none p-0 bg-[#0F172A]/95 backdrop-blur-xl border-0">
+        <DialogContent className="sm:max-w-none w-full h-full max-h-none p-0 bg-canvas/95 backdrop-blur-xl border-0">
           <div className="flex flex-col h-full">
             {/* Search Header */}
-            <div className="flex items-center gap-4 p-4 border-b border-white/08">
+            <div className="flex items-center gap-4 p-4 border-b border-border">
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setShowMobileSearch(false)}
-                className="text-white hover:bg-white/10"
+                className="text-inkHead hover:bg-elevated/60"
               >
                 <X className="w-5 h-5" />
               </Button>
               
               <div className="flex-1 relative">
-                <div className="relative flex items-center w-full h-11 rounded-full bg-[#1E293B] border border-white/08">
-                  <Search className="absolute left-4 w-5 h-5 text-[#06B6D4]" />
+                <div className="relative flex items-center w-full h-11 rounded-pill bg-elevated border border-border">
+                  <Search className="absolute left-4 w-5 h-5 text-secondary" />
                   <Input
                     type="text"
                     placeholder="Search skills, people, or courses…"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    className="w-full h-full pl-12 pr-12 bg-transparent border-0 focus:ring-0 rounded-full text-white placeholder:text-slate-400"
+                    className="w-full h-full pl-12 pr-12 bg-transparent border-0 focus:ring-0 rounded-pill text-inkHead placeholder:text-inkBody/50"
                     autoFocus
                   />
                   {searchQuery && (
                     <button
                       onClick={clearSearch}
-                      className="absolute right-4 p-1 hover:bg-slate-700 rounded-full transition-colors"
+                      className="absolute right-4 p-1 hover:bg-elevated/60 rounded-full transition-colors"
                     >
-                      <X className="w-4 h-4 text-slate-400" />
+                      <X className="w-4 h-4 text-inkBody/60" />
                     </button>
                   )}
                 </div>
@@ -706,7 +570,7 @@ export default function GlobalSearchHeader() {
             <div className="flex-1 overflow-y-auto p-4">
               {peopleResults.length > 0 && (
                 <div className="mb-6">
-                  <h3 className="text-sm font-medium text-slate-400 uppercase tracking-wider mb-3">
+                  <h3 className="text-sm font-medium text-inkBody/60 uppercase tracking-wider mb-3">
                     People
                   </h3>
                   <div className="space-y-2">
@@ -714,25 +578,25 @@ export default function GlobalSearchHeader() {
                       <button
                         key={person.id}
                         onClick={() => handleSuggestionClick(person)}
-                        className="w-full flex items-center gap-3 p-3 rounded-lg bg-[#1E293B]/50 hover:bg-[#1E293B] transition-colors text-left"
+                        className="w-full flex items-center gap-3 p-3 rounded-lg bg-elevated/50 hover:bg-elevated transition-colors text-left"
                       >
                         <Avatar className="w-12 h-12">
                           <AvatarImage src={person.avatar} alt={person.name} />
-                          <AvatarFallback className="bg-[#0056D2]/20 text-[#06B6D4]">
+                          <AvatarFallback>
                             {person.name.split(' ').map(n => n[0]).join('')}
                           </AvatarFallback>
                         </Avatar>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
-                            <p className="font-medium text-white truncate">
+                            <p className="font-medium text-inkHead truncate">
                               {person.name}
                             </p>
                             {person.verified && (
-                              <CheckCircle className="w-4 h-4 text-emerald-400" />
+                              <CheckCircle className="w-4 h-4 text-success" />
                             )}
                           </div>
-                          <p className="text-sm text-slate-300">{person.skill}</p>
-                          <p className="text-sm text-[#06B6D4] font-medium">
+                          <p className="text-sm text-inkBody">{person.skill}</p>
+                          <p className="text-sm text-secondary font-medium">
                             {person.credits} credits/hr
                           </p>
                         </div>
@@ -744,7 +608,7 @@ export default function GlobalSearchHeader() {
 
               {courseResults.length > 0 && (
                 <div className="mb-6">
-                  <h3 className="text-sm font-medium text-slate-400 uppercase tracking-wider mb-3">
+                  <h3 className="text-sm font-medium text-inkBody/60 uppercase tracking-wider mb-3">
                     Courses
                   </h3>
                   <div className="space-y-2">
@@ -752,9 +616,9 @@ export default function GlobalSearchHeader() {
                       <button
                         key={course.id}
                         onClick={() => handleSuggestionClick(course)}
-                        className="w-full flex items-center gap-3 p-3 rounded-lg bg-[#1E293B]/50 hover:bg-[#1E293B] transition-colors text-left"
+                        className="w-full flex items-center gap-3 p-3 rounded-lg bg-elevated/50 hover:bg-elevated transition-colors text-left"
                       >
-                        <div className="w-16 h-12 rounded-lg overflow-hidden bg-slate-700">
+                        <div className="w-16 h-12 rounded-lg overflow-hidden bg-elevated">
                           <img 
                             src={course.thumbnail} 
                             alt={course.name}
@@ -762,11 +626,11 @@ export default function GlobalSearchHeader() {
                           />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="font-medium text-white truncate mb-1">
+                          <p className="font-medium text-inkHead truncate mb-1">
                             {course.name}
                           </p>
-                          <p className="text-sm text-slate-300">by {course.instructor}</p>
-                          <p className="text-sm text-[#06B6D4] font-medium">
+                          <p className="text-sm text-inkBody">by {course.instructor}</p>
+                          <p className="text-sm text-secondary font-medium">
                             {course.credits} credits
                           </p>
                         </div>
@@ -778,10 +642,10 @@ export default function GlobalSearchHeader() {
 
               {suggestions.length === 0 && searchQuery.length >= 2 && (
                 <div className="text-center py-12">
-                  <p className="text-slate-300 mb-2">
+                  <p className="text-inkBody mb-2">
                     No matches found for "{searchQuery}"
                   </p>
-                  <p className="text-sm text-slate-400">
+                  <p className="text-sm text-inkBody/60">
                     Try another keyword or browse categories
                   </p>
                 </div>
@@ -790,7 +654,8 @@ export default function GlobalSearchHeader() {
               {searchQuery.length > 0 && suggestions.length > 0 && (
                 <Button
                   onClick={handleSearch}
-                  className="w-full bg-[#0056D2] hover:bg-[#004BB8] text-white mt-4"
+                  style={{ background: 'var(--color-primary)' }}
+                  className="w-full text-white mt-4"
                 >
                   View all results for "{searchQuery}"
                 </Button>
