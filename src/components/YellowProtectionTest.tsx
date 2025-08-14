@@ -58,22 +58,48 @@ export function YellowProtectionTest() {
         {/* Test theme switching */}
         <Card className="card-surface">
           <CardHeader>
-            <CardTitle className="text-inkHead">Theme Test</CardTitle>
-            <CardDescription className="text-inkBody">Test light/dark theme switching</CardDescription>
+            <CardTitle className="text-inkHead">Theme & Mapping Test</CardTitle>
+            <CardDescription className="text-inkBody">Test theme switching and yellow mapping</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <Button 
-              onClick={() => {
-                const current = document.documentElement.dataset.theme;
-                document.documentElement.dataset.theme = current === 'dark' ? 'light' : 'dark';
-              }}
-              className="btn-primary"
-            >
-              Toggle Theme
-            </Button>
+            <div className="grid grid-cols-2 gap-2">
+              <Button
+                onClick={() => {
+                  const current = document.documentElement.dataset.theme;
+                  document.documentElement.dataset.theme = current === 'dark' ? 'light' : 'dark';
+                }}
+                className="btn-primary"
+              >
+                Toggle Theme
+              </Button>
+
+              <Button
+                onClick={() => {
+                  // Toggle between warning and primary mapping
+                  const root = document.documentElement;
+                  const current = getComputedStyle(root).getPropertyValue('--theme-warning');
+                  const isPrimary = current.includes('var(--color-primary)');
+
+                  if (isPrimary) {
+                    root.style.setProperty('--theme-warning', 'var(--color-warning, #F59E0B)');
+                    alert('Yellow mapping: Warning (orange)');
+                  } else {
+                    root.style.setProperty('--theme-warning', 'var(--color-primary)');
+                    alert('Yellow mapping: Primary (blue)');
+                  }
+                }}
+                variant="outline"
+              >
+                Toggle Yellow Mapping
+              </Button>
+            </div>
+
             <div className="bg-canvas border border-border p-4 rounded">
               <p className="text-inkHead font-semibold mb-2">Canvas Background</p>
               <p className="text-inkBody">This should adapt to theme changes</p>
+              <div className="mt-2 p-2 bg-elevated rounded text-xs text-inkBody/70">
+                Current yellow mapping: <span id="yellow-mapping">Warning (orange)</span>
+              </div>
             </div>
           </CardContent>
         </Card>
