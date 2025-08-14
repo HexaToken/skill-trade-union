@@ -755,6 +755,38 @@ body[data-pathname="/credits"] .bg-yellow-500 {
   color: #E2E8F0 !important;
 }
 
+/* Aggressive override for any remaining yellow elements in credit areas */
+[data-page="credits"] *[class*="yellow"],
+[data-testid="credit-wallet-modal"] *[class*="yellow"],
+[data-page="credits"] *[style*="yellow"],
+[data-testid="credit-wallet-modal"] *[style*="yellow"] {
+  background-color: #F1F5F9 !important;
+  color: #475569 !important;
+}
+
+.dark [data-page="credits"] *[class*="yellow"],
+.dark [data-testid="credit-wallet-modal"] *[class*="yellow"],
+.dark [data-page="credits"] *[style*="yellow"],
+.dark [data-testid="credit-wallet-modal"] *[style*="yellow"] {
+  background-color: #334155 !important;
+  color: #E2E8F0 !important;
+}
+
+/* Override secondary background specifically in credit components */
+[data-page="credits"] .bg-secondary,
+[data-testid="credit-wallet-modal"] .bg-secondary {
+  background-color: #F1F5F9 !important;
+  color: #475569 !important;
+  border-color: #E2E8F0 !important;
+}
+
+.dark [data-page="credits"] .bg-secondary,
+.dark [data-testid="credit-wallet-modal"] .bg-secondary {
+  background-color: #334155 !important;
+  color: #E2E8F0 !important;
+  border-color: #475569 !important;
+}
+
 /* Fix yellow page background on matches page */
 [data-page="matches"] {
   background-color: #ffffff !important;
