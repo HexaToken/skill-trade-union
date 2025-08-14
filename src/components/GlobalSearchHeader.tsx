@@ -32,6 +32,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
+import CreditBalancePill from '@/components/CreditBalancePill';
+import CreditWalletModal from '@/components/CreditWalletModal';
 import {
   Sheet,
   SheetContent,
