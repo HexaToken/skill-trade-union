@@ -36,8 +36,8 @@ export function YellowProtectionTest() {
         {/* Test our correct design tokens */}
         <Card className="card-surface">
           <CardHeader>
-            <CardTitle className="text-inkHead">Correct Token Usage</CardTitle>
-            <CardDescription className="text-inkBody">These use proper design tokens</CardDescription>
+            <CardTitle className="text-ink-head">Correct Token Usage</CardTitle>
+            <CardDescription className="text-ink-body">These use proper design tokens</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="bg-primary text-white p-2 rounded">
@@ -49,7 +49,7 @@ export function YellowProtectionTest() {
             <Button className="btn-primary">
               Proper primary button
             </Button>
-            <div className="bg-surface border border-border p-2 rounded text-inkHead">
+            <div className="bg-surface border border-border p-2 rounded text-ink-head">
               Surface with border (correct)
             </div>
           </CardContent>
@@ -58,8 +58,8 @@ export function YellowProtectionTest() {
         {/* Test theme switching */}
         <Card className="card-surface">
           <CardHeader>
-            <CardTitle className="text-inkHead">Theme & Mapping Test</CardTitle>
-            <CardDescription className="text-inkBody">Test theme switching and yellow mapping</CardDescription>
+            <CardTitle className="text-ink-head">Theme & Mapping Test</CardTitle>
+            <CardDescription className="text-ink-body">Test theme switching and yellow mapping</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-2">
@@ -95,9 +95,9 @@ export function YellowProtectionTest() {
             </div>
 
             <div className="bg-canvas border border-border p-4 rounded">
-              <p className="text-inkHead font-semibold mb-2">Canvas Background</p>
-              <p className="text-inkBody">This should adapt to theme changes</p>
-              <div className="mt-2 p-2 bg-elevated rounded text-xs text-inkBody/70">
+              <p className="text-ink-head font-semibold mb-2">Canvas Background</p>
+              <p className="text-ink-body">This should adapt to theme changes</p>
+              <div className="mt-2 p-2 bg-elevated rounded text-xs text-ink-body/70">
                 Current yellow mapping: <span id="yellow-mapping">Warning (orange)</span>
               </div>
             </div>
@@ -107,30 +107,30 @@ export function YellowProtectionTest() {
         {/* Emergency override status */}
         <Card className="card-surface">
           <CardHeader>
-            <CardTitle className="text-inkHead">Protection Status</CardTitle>
-            <CardDescription className="text-inkBody">System guardrails</CardDescription>
+            <CardTitle className="text-ink-head">Protection Status</CardTitle>
+            <CardDescription className="text-ink-body">System guardrails</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-success rounded-full"></div>
-                <span className="text-sm text-inkBody">Emergency CSS overrides active</span>
+                <span className="text-sm text-ink-body">Emergency CSS overrides active</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-success rounded-full"></div>
-                <span className="text-sm text-inkBody">ESLint yellow protection enabled</span>
+                <span className="text-sm text-ink-body">ESLint yellow protection enabled</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-success rounded-full"></div>
-                <span className="text-sm text-inkBody">Stylelint hex color blocking enabled</span>
+                <span className="text-sm text-ink-body">Stylelint hex color blocking enabled</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-success rounded-full"></div>
-                <span className="text-sm text-inkBody">Runtime yellow detector active</span>
+                <span className="text-sm text-ink-body">Runtime yellow detector active</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-success rounded-full"></div>
-                <span className="text-sm text-inkBody">Design token system active</span>
+                <span className="text-sm text-ink-body">Design token system active</span>
               </div>
             </div>
 
@@ -195,10 +195,10 @@ export function YellowProtectionTest() {
             </div>
 
             <div className="mt-4 p-3 bg-elevated rounded-lg border border-border">
-              <p className="text-xs text-inkBody/70">
+              <p className="text-xs text-ink-body/70">
                 ✅ All yellow colors should be automatically converted to blue primary tokens
               </p>
-              <p className="text-xs text-inkBody/70 mt-1">
+              <p className="text-xs text-ink-body/70 mt-1">
                 🔍 Use manual scan to check for any remaining yellow elements
               </p>
             </div>
