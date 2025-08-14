@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import GlobalSearchHeader from "@/components/GlobalSearchHeader";
 import Footer from "@/components/layout/Footer";
 import SkipLinks from "@/components/SkipLinks";
+import { ColorSystemDemo } from "@/components/ColorSystemDemo";
 
 // Import all pages
 import HomePage from "./pages/HomePage";
