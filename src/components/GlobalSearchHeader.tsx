@@ -803,7 +803,7 @@ export default function GlobalSearchHeader() {
 
       {/* Credit Wallet Modal */}
       <CreditWalletModal
-        isOpen={showCreditWallet}
+        open={showCreditWallet}
         onClose={() => setShowCreditWallet(false)}
         walletData={{
           balance: currentUser.wallet.credits,
