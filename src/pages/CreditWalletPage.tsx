@@ -212,12 +212,27 @@ function CreditWalletPageContent() {
               <p className="text-muted-foreground">
                 Manage your credits, track earnings, and see transaction history
               </p>
+              {error && (
+                <p className="text-destructive text-sm mt-1">
+                  {error}
+                </p>
+              )}
             </div>
 
-            <CreditBalancePill 
-              balance={mockWalletData.balance} 
-              isLowBalance={mockWalletData.balance < 20}
-            />
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleRefresh}
+                disabled={isLoading}
+              >
+                <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
+              </Button>
+              <CreditBalancePill
+                balance={balance}
+                loading={isLoading}
+              />
+            </div>
           </div>
         </div>
       </div>
