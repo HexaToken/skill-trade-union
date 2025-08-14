@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 export function ColorSystemDemo() {
   return (
     <div className="page-container py-8">
-      <h1 className="text-inkHead mb-8">SkillSwap Color System Demo</h1>
+      <h1 className="text-ink-head mb-8">SkillSwap Color System Demo</h1>
       
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {/* Primary Colors */}
