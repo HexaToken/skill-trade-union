@@ -154,23 +154,27 @@ html, body {
 
 @layer utilities {
   /* Color utilities */
-  .text-primary { color: var(--color-primary); }
-  .text-primary600 { color: var(--color-primary-600); }
-  .text-secondary { color: var(--color-secondary); }
-  .text-inkHead { color: var(--color-ink-head); }
-  .text-inkBody { color: var(--color-ink-body); }
-  .text-success { color: var(--color-success); }
-  .text-warning { color: var(--color-warning); }
-  .text-danger { color: var(--color-danger); }
+  .text-primary { color: var(--primary); }
+  .text-primary600 { color: var(--primary-600); }
+  .text-secondary { color: var(--secondary); }
+  .text-ink-head { color: var(--ink-head); }
+  .text-ink-body { color: var(--ink-body); }
+  .text-success { color: var(--success); }
+  .text-warning { color: var(--warning); }
+  .text-danger { color: var(--danger); }
 
-  .bg-canvas { background-color: var(--color-canvas); }
-  .bg-surface { background-color: var(--color-surface); }
-  .bg-elevated { background-color: var(--color-elevated); }
-  .bg-primary { background-color: var(--color-primary); }
-  .bg-primary600 { background-color: var(--color-primary-600); }
-  .bg-secondary { background-color: var(--color-secondary); }
+  .bg-canvas { background-color: var(--canvas); }
+  .bg-surface { background-color: var(--surface); }
+  .bg-elevated { background-color: var(--elevated); }
+  .bg-primary { background-color: var(--primary); }
+  .bg-primary600 { background-color: var(--primary-600); }
+  .bg-secondary { background-color: var(--secondary); }
 
-  .border-border { border-color: var(--color-border); }
+  .border-border { border-color: var(--border); }
+
+  /* Legacy support for existing classes */
+  .text-inkHead { color: var(--ink-head); }
+  .text-inkBody { color: var(--ink-body); }
 
   /* Shadow utilities */
   .shadow-sm { box-shadow: var(--shadow-sm); }
