@@ -119,11 +119,8 @@ export function ColorSystemDemo() {
             <CardDescription className="text-ink-body">Switch between light and dark themes</CardDescription>
           </CardHeader>
           <CardContent>
-            <Button 
-              onClick={() => {
-                const currentTheme = document.documentElement.dataset.theme;
-                document.documentElement.dataset.theme = currentTheme === 'dark' ? 'light' : 'dark';
-              }}
+            <Button
+              onClick={toggleTheme}
               className="btn-primary"
             >
               Toggle Theme
