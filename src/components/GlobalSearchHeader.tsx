@@ -71,10 +71,14 @@ export default function GlobalSearchHeader() {
   const [showCreditWallet, setShowCreditWallet] = useState(false);
 
   const navItems = [
-    { label: 'Mentors', href: '/mentors', icon: Users },
+    { label: 'Find a Match', href: '/matches', icon: Users },
     { label: 'Classes', href: '/classes', icon: BookOpen },
-    { label: 'Map', href: '/map', icon: Map },
+    { label: 'Mentors', href: '/mentors', icon: Award },
+    { label: 'Profile Demo', href: '/mentor/marcus-chen', icon: User },
+    { label: 'Challenges', href: '/challenges', icon: Target },
     { label: 'Skill Sprints', href: '/skill-sprints', icon: Zap },
+    { label: 'Map', href: '/map', icon: Map },
+    { label: 'Donate', href: '/donate', icon: Heart },
   ];
   
   const navigate = useNavigate();
