@@ -671,6 +671,54 @@ All colors MUST be HSL.
   background-color: #F8FAFC !important;
 }
 
+/* Fix Credit Wallet page yellow background */
+body:has([href="/credits"]) {
+  background-color: #ffffff !important;
+}
+
+.dark body:has([href="/credits"]) {
+  background-color: #0F172A !important;
+}
+
+/* Target Credit Wallet page by URL path */
+body[data-pathname="/credits"],
+body[data-pathname="/credits"] * {
+  background-image: none !important;
+}
+
+body[data-pathname="/credits"] .bg-yellow-50,
+body[data-pathname="/credits"] .bg-yellow-100,
+body[data-pathname="/credits"] .bg-yellow-200,
+body[data-pathname="/credits"] .bg-yellow-300,
+body[data-pathname="/credits"] .bg-yellow-400,
+body[data-pathname="/credits"] .bg-yellow-500 {
+  background-color: #ffffff !important;
+}
+
+.dark body[data-pathname="/credits"] .bg-yellow-50,
+.dark body[data-pathname="/credits"] .bg-yellow-100,
+.dark body[data-pathname="/credits"] .bg-yellow-200,
+.dark body[data-pathname="/credits"] .bg-yellow-300,
+.dark body[data-pathname="/credits"] .bg-yellow-400,
+.dark body[data-pathname="/credits"] .bg-yellow-500 {
+  background-color: #0F172A !important;
+}
+
+/* Universal yellow background override for all credit-related pages */
+[data-page="credits"],
+[data-page="credits"] * {
+  background-color: unset !important;
+  background-image: none !important;
+}
+
+[data-page="credits"] {
+  background: #ffffff !important;
+}
+
+.dark [data-page="credits"] {
+  background: #0F172A !important;
+}
+
 /* Fix yellow page background on matches page */
 [data-page="matches"] {
   background-color: #ffffff !important;
