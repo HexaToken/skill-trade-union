@@ -307,8 +307,8 @@ function CreditWalletPageContent() {
                         <History className="w-5 h-5" />
                         Recent Activity
                       </CardTitle>
-                      <Button 
-                        variant="ghost" 
+                      <Button
+                        variant="ghost"
                         size="sm"
                         onClick={() => setActiveTab('history')}
                       >
@@ -318,12 +318,18 @@ function CreditWalletPageContent() {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      {mockWalletData.recentTransactions.slice(0, 5).map((transaction) => (
-                        <CreditTxnItem 
-                          key={transaction.id} 
-                          transaction={transaction}
-                        />
-                      ))}
+                      {recentTransactions.length > 0 ? (
+                        recentTransactions.slice(0, 5).map((transaction) => (
+                          <CreditTxnItem
+                            key={transaction.id}
+                            tx={transaction}
+                          />
+                        ))
+                      ) : (
+                        <div className="text-center py-8 text-muted-foreground">
+                          {isLoading ? 'Loading transactions...' : 'No recent activity'}
+                        </div>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
