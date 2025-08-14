@@ -574,19 +574,11 @@ export default function GlobalSearchHeader() {
               </Button>
 
               {/* Credits Balance */}
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className="text-[#06B6D4] hover:bg-[#06B6D4]/10 rounded-xl transition-all duration-200" 
-                asChild
-              >
-                <Link to="/wallet" className="flex items-center gap-2">
-                  <Wallet className="w-5 h-5" />
-                  <span className="hidden sm:inline font-medium">
-                    {currentUser.wallet.credits.toLocaleString()}
-                  </span>
-                </Link>
-              </Button>
+              <CreditBalancePill
+                balance={currentUser.wallet.credits}
+                isLowBalance={currentUser.wallet.credits < 20}
+                onClick={() => setShowCreditWallet(true)}
+              />
 
               {/* Profile Menu */}
               <DropdownMenu>
