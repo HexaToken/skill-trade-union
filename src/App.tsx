@@ -9,6 +9,7 @@ import Footer from "@/components/layout/Footer";
 import SkipLinks from "@/components/SkipLinks";
 import "@/utils/yellowDetector";
 import "@/utils/advancedYellowDetector";
+import "@/utils/themeUtils";
 import { ColorSystemDemo } from "@/components/ColorSystemDemo";
 import { YellowProtectionTest } from "@/components/YellowProtectionTest";
 
