@@ -5,11 +5,23 @@
 ### 🛡️ CSS Override System
 - **File:** `src/index.css`
 - **Purpose:** Intercepts and converts yellow colors to design tokens
-- **Coverage:** 
-  - Hex values: `#f59e0b`, `#fbbf24`, `#eab308`, `#ffc107`, `#facc15`
-  - RGB values: `rgb(254, 240, 138)`, `rgb(255, 193, 7)`, `rgb(251, 191, 36)`
+- **Coverage:**
+  - Hex values: `#f59e0b`, `#fbbf24`, `#eab308`, `#ffc107`, `#facc15`, `#ffd54f`, `#ffeb3b`, `#fff59d`, `#ffcc02`, `#ffd700`, `#f9a825`
+  - RGB values: `rgb(254, 240, 138)`, `rgb(255, 193, 7)`, `rgb(251, 191, 36)`, `rgb(255, 235, 59)`, `rgb(255, 245, 157)`, `rgb(255, 213, 79)`
   - Tailwind utilities: `*-yellow-*`, `*-amber-*`
+  - Keywords: `yellow`, `amber`
   - Inline styles, button elements, badges, pills
+  - **Header/Footer enforcement:** Ensures navigation uses design tokens only
+
+### 🤖 Runtime Protection System
+- **File:** `src/utils/yellowDetector.ts`
+- **Purpose:** Real-time detection and conversion of yellow colors
+- **Features:**
+  - **Mutation Observer:** Watches for dynamic content changes
+  - **Comprehensive Detection:** Hex, RGB, keywords, class names
+  - **Auto-Conversion:** Converts yellow to primary blue tokens
+  - **Console Logging:** Reports all conversions for debugging
+  - **Manual Scan:** `window.yellowDetector.scanNow()` for testing
 
 ## 🔒 Regression Prevention System
 
