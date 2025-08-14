@@ -32,6 +32,12 @@ export default {
 				border: 'hsl(var(--border))',
 				// Our custom border color
 				'border-custom': 'var(--color-border)',
+
+				// Brand colors for gradient compatibility
+				'brand-primary': 'var(--color-primary)',
+				'brand-secondary': 'var(--color-secondary)',
+				'brand-amber': 'var(--color-warning)',
+				'brand-green': 'var(--color-success)',
 				success: 'var(--color-success)',
 				warning: 'var(--color-warning)',
 				danger: 'var(--color-danger)',
