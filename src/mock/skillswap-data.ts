@@ -348,7 +348,6 @@ export const users: User[] = [
       txHistory: []
     },
     socials: {
-      instagram: '@isabellayoga',
       website: 'isabellaflow.com'
     },
     joinedAt: '2023-07-10',

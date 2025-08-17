@@ -576,7 +576,7 @@ export default function BookingModalUnified({
               <Checkbox 
                 id="terms"
                 checked={agreeToTerms}
-                onCheckedChange={setAgreeToTerms}
+                onCheckedChange={(checked) => setAgreeToTerms(checked === true)}
                 className="mt-0.5"
               />
               <Label htmlFor="terms" className="text-sm leading-relaxed">

@@ -386,7 +386,7 @@ const Dashboard = () => {
                 credits={stats.credits}
                 recentEarning={stats.recentEarning}
                 isPro={false}
-                variant="detailed"
+                variant="full"
                 onEarnCredits={() => navigate('/matches')}
                 onViewWallet={() => navigate('/wallet')}
               />
@@ -438,7 +438,7 @@ const Dashboard = () => {
                           key={skill.id}
                           skill={skill}
                           variant="compact"
-                          showDemand={false}
+                          
                           onClick={() => navigate('/profile')}
                         />
                       ) : null;

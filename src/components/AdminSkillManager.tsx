@@ -15,6 +15,7 @@ import {
   MoreHorizontal,
   FileText,
   AlertCircle,
+  ExternalLink,
 } from 'lucide-react';
 import {
   Card,

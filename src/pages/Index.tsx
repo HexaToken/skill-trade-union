@@ -1,5 +1,6 @@
 import Home from './Home';
 import { useEffect } from "react";
+import { Card, CardContent } from '@/components/ui/card';
 
 const StatCard = ({ title, value }: { title: string; value: string }) => (
   <Card className="glass">

@@ -319,8 +319,8 @@ export interface EnterpriseOrganization extends Organization {
 
 // Service interface stubs for implementation
 export interface MatchService {
-  search(filters: AdvancedSearchFilters): Promise<MatchResult[]>;
-  getRecommendations(userId: string): Promise<MatchResult[]>;
+  search(filters: AdvancedSearchFilters): Promise<User[]>;
+  getRecommendations(userId: string): Promise<User[]>;
   getMapData(bounds: { ne: [number, number]; sw: [number, number] }): Promise<MapDataPoint[]>;
 }
 

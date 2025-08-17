@@ -692,6 +692,7 @@ const ChallengeDetail = () => {
           mode="mentor"
           isOpen={showBookingModal}
           onClose={() => setShowBookingModal(false)}
+          userBalance={120}
         />
       )}
     </div>

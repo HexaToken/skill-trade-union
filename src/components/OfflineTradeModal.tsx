@@ -115,10 +115,11 @@ const OfflineTradeModal: React.FC<OfflineTradeModalProps> = ({
     
     // Auto-calculate credits when duration or complexity changes
     if (field === 'durationMins' || field === 'complexity') {
+      const currentForm = detailsForm;
       const newCredits = calculateTotalCredits(
         BASE_CREDITS_PER_HOUR,
-        field === 'durationMins' ? value : prev.durationMins,
-        field === 'complexity' ? value : prev.complexity,
+        field === 'durationMins' ? value : currentForm.durationMins,
+        field === 'complexity' ? value : currentForm.complexity,
         1.1
       );
       setDetailsForm(p => ({ ...p, creditsProposed: newCredits }));
