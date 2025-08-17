@@ -219,42 +219,35 @@ html, body {
   }
 }
 
-/* Legacy yellow color overrides - keeping these for compatibility */
+/* Background yellow overrides - use theme colors only */
 .bg-yellow-400,
 .bg-yellow-500,
 .bg-amber-400,
 .bg-amber-500 {
-  background-color: var(--color-primary) !important;
-  color: white !important;
+  background-color: var(--warning) !important;
+  color: var(--ink-head) !important;
 }
 
 .text-yellow-400,
 .text-yellow-500,
 .text-amber-400,
 .text-amber-500 {
-  color: var(--color-primary) !important;
+  color: var(--warning) !important;
 }
 
-/* === Emergency theming overrides === */
-/* Map common yellows to your warning token (or primary) */
-:root {
-  --theme-warning: #F59E0B;              /* light */
-}
-:root[data-theme="dark"] { --theme-warning: #FBBF24; }
-
-/* Nuclear option: scan for any yellow-ish colors and convert to primary */
+/* Comprehensive yellow background removal */
 *[style*="yellow"], *[class*="yellow"],
 *[style*="amber"], *[class*="amber"],
 *[style*="#ffc"], *[style*="#ff0"],
 *[style*="#fe0"], *[style*="#fd0"],
 *[style*="rgb(255, 255, 0)"], *[style*="rgb(255, 193, 7)"],
 *[style*="rgb(255, 235, 59)"], *[style*="rgb(254, 240, 138)"] {
-  background-color: var(--color-primary) !important;
-  color: white !important;
-  border-color: var(--color-primary) !important;
+  background-color: var(--surface) !important;
+  color: var(--ink-body) !important;
+  border-color: var(--border) !important;
 }
 
-/* Inline styles using HEX - comprehensive yellow detection */
+/* Inline hex yellow styles - convert to theme colors */
 [style*="#f59e0b"], [style*="#F59E0B"],
 [style*="#fbbf24"], [style*="#FBBF24"],
 [style*="#eab308"], [style*="#EAB308"],
@@ -272,12 +265,12 @@ html, body {
 [style*="rgb(255, 235, 59)"], [style*="RGB(255, 235, 59)"],
 [style*="rgb(255, 245, 157)"], [style*="RGB(255, 245, 157)"],
 [style*="rgb(255, 213, 79)"], [style*="RGB(255, 213, 79)"] {
-  color: var(--color-primary) !important;
-  border-color: var(--color-primary) !important;
-  background-color: var(--color-primary) !important;
+  background-color: var(--surface) !important;
+  color: var(--ink-body) !important;
+  border-color: var(--border) !important;
 }
 
-/* Tailwind-like utility classes some libraries ship with */
+/* Yellow utility classes - convert to theme */
 [class*="text-yellow-"], [class*="bg-yellow-"], [class*="border-yellow-"],
 [class*="text-amber-"], [class*="bg-amber-"], [class*="border-amber-"],
 .text-yellow-400, .text-yellow-500, .text-yellow-600,
@@ -286,28 +279,28 @@ html, body {
 .text-amber-400, .text-amber-500, .text-amber-600,
 .bg-amber-400, .bg-amber-500, .bg-amber-600,
 .border-amber-400, .border-amber-500, .border-amber-600 {
-  color: var(--color-primary) !important;
-  border-color: var(--color-primary) !important;
-  background-color: var(--color-primary) !important;
+  background-color: var(--surface) !important;
+  color: var(--ink-body) !important;
+  border-color: var(--border) !important;
 }
 
-/* Button-specific overrides */
+/* Button yellow overrides */
 button[style*="background-color: rgb(254, 240, 138)"],
 button[style*="background-color: rgb(255, 193, 7)"],
 button[style*="background-color: rgb(251, 191, 36)"],
 button[class*="bg-yellow-"],
 button[class*="bg-amber-"] {
-  background-color: var(--color-primary) !important;
+  background-color: var(--primary) !important;
   color: white !important;
-  border-color: var(--color-primary) !important;
+  border-color: var(--primary) !important;
 }
 
-/* Badge and pill overrides */
+/* Badge yellow overrides */
 .badge[class*="yellow"], .badge[class*="amber"],
 [data-variant="secondary"][class*="yellow"], [data-variant="secondary"][class*="amber"] {
-  background-color: color-mix(in oklab, var(--color-primary) 16%, transparent) !important;
-  color: var(--color-primary) !important;
-  border-color: color-mix(in oklab, var(--color-primary) 32%, transparent) !important;
+  background-color: var(--surface) !important;
+  color: var(--warning) !important;
+  border-color: var(--warning) !important;
 }
 
 /* Header & Footer 100% design token enforcement */
@@ -349,61 +342,14 @@ nav a:hover, [role="navigation"] a:hover {
   color: var(--ink-head) !important;
 }
 
-/* === Yellow Kill-Switch (load LAST) === */
-:root { --theme-warning: var(--warning, #F59E0B); }
-
-/* Common hex & palette aliases seen in libs/components */
-[style*="#f59e0b"], [style*="#F59E0B"],
-[style*="#fbbf24"], [style*="#FBBF24"],
-[style*="#eab308"], [style*="#EAB308"],
-[style*="#ffc107"], [style*="#FFC107"],
-[style*="#facc15"], [style*="#FACC15"],
-[style*="yellow"], [style*="amber"] {
-  color: var(--theme-warning) !important;
-  background-color: color-mix(in oklab, var(--theme-warning) 16%, transparent) !important;
-  border-color: var(--theme-warning) !important;
-}
-
-/* Tailwind-like classes */
-[class*="text-yellow-"], [class*="bg-yellow-"], [class*="border-yellow-"],
-[class*="text-amber-"], [class*="bg-amber-"], [class*="border-amber-"] {
-  color: var(--theme-warning) !important;
-  background-color: color-mix(in oklab, var(--theme-warning) 16%, transparent) !important;
-  border-color: var(--theme-warning) !important;
-}
-
-/* SVG fills & strokes (inline attributes and computed styles) */
-svg [fill="#f59e0b"], svg [fill="#F59E0B"],
-svg [fill="#fbbf24"], svg [fill="#FBBF24"],
-svg [fill="#eab308"], svg [fill="#EAB308"],
-svg [fill="#ffc107"], svg [fill="#FFC107"],
-svg [fill="#facc15"], svg [fill="#FACC15"],
-svg [stroke="#f59e0b"], svg [stroke="#F59E0B"],
-svg [stroke="#fbbf24"], svg [stroke="#FBBF24"],
-svg [stroke="#eab308"], svg [stroke="#EAB308"],
-svg [stroke="#ffc107"], svg [stroke="#FFC107"],
-svg [stroke="#facc15"], svg [stroke="#FACC15"] {
-  fill: var(--theme-warning) !important;
-  stroke: var(--theme-warning) !important;
-}
-
-/* Generic fallback: any svg with yellow-ish computed fill/stroke (class hints) */
-svg[class*="yellow"], svg [class*="yellow"],
-svg[class*="amber"],  svg [class*="amber"] {
-  fill: var(--theme-warning) !important;
-  stroke: var(--theme-warning) !important;
-}
-
-/* Additional star ratings and button overrides */
+/* Final yellow cleanup - ensure no yellow backgrounds remain */
 [class*="icon-"], .rating i, .star {
   color: var(--warning) !important;  /* keeps stars "gold" but on-theme */
 }
-.btn-primary, .cta {
-  background: var(--primary) !important;
-}
-.btn-primary:hover, .cta:hover {
-  background: var(--primary-600) !important;
-}
 
-/* If yellow is accidentally used as "primary", remap it to your real primary: */
-/* :root { --theme-warning: var(--color-primary); } */
+/* SVG yellow cleanup */
+svg [fill*="yellow"], svg [stroke*="yellow"],
+svg [fill*="amber"], svg [stroke*="amber"] {
+  fill: var(--warning) !important;
+  stroke: var(--warning) !important;
+}
