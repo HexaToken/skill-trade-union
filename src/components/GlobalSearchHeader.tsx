@@ -130,7 +130,7 @@ export default function GlobalSearchHeader() {
     courses.forEach(course => {
       if (
         course.title.toLowerCase().includes(query) ||
-        course.category.toLowerCase().includes(query) ||
+        (course as any).category?.toLowerCase().includes(query) ||
         course.subtitle?.toLowerCase().includes(query)
       ) {
         newSuggestions.push({

@@ -149,39 +149,39 @@ export default function Classes() {
     }
     
     // Category filter
-    if (filters.category && classItem.category.toLowerCase() !== filters.category.toLowerCase()) {
+    if (filters.category && (classItem as any).category?.toLowerCase() !== filters.category.toLowerCase()) {
       return false;
     }
     
     // Level filter
-    if (filters.level && filters.level.length > 0 && !filters.level.includes(classItem.level)) {
+    if (filters.level && filters.level.length > 0 && !filters.level.includes((classItem as any).level)) {
       return false;
     }
     
     // Price range
-    if (filters.priceRange && (classItem.priceCredits < filters.priceRange[0] || classItem.priceCredits > filters.priceRange[1])) {
+    if (filters.priceRange && ((classItem as any).priceCredits < filters.priceRange[0] || (classItem as any).priceCredits > filters.priceRange[1])) {
       return false;
     }
     
     // Duration range (in hours)
-    const durationHours = classItem.durationMins / 60;
+    const durationHours = (classItem as any).durationMins / 60;
     if (filters.duration && (durationHours < filters.duration[0] || durationHours > filters.duration[1])) {
       return false;
     }
     
     // Rating filter
-    if (filters.rating && classItem.ratingAvg < filters.rating) {
+    if (filters.rating && (classItem as any).ratingAvg < filters.rating) {
       return false;
     }
     
     // Language filter
-    if (filters.language && filters.language.length > 0 && !filters.language.includes(classItem.language)) {
+    if (filters.language && filters.language.length > 0 && !filters.language.includes((classItem as any).language)) {
       return false;
     }
     
     // Instructor filter
     if (filters.instructor) {
-      const instructor = users.find(u => u.id === classItem.instructorId);
+      const instructor = users.find(u => u.id === (classItem as any).instructorId);
       if (!instructor || !instructor.name.toLowerCase().includes(filters.instructor.toLowerCase())) {
         return false;
       }
@@ -194,13 +194,13 @@ export default function Classes() {
   const sortedClasses = [...filteredClasses].sort((a, b) => {
     switch (sortBy) {
       case 'most-popular':
-        return b.studentsCount - a.studentsCount;
+        return (b as any).studentsCount - (a as any).studentsCount;
       case 'highest-rated':
-        return b.ratingAvg - a.ratingAvg;
+        return (b as any).ratingAvg - (a as any).ratingAvg;
       case 'newest':
         return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
       case 'lowest-credits':
-        return a.priceCredits - b.priceCredits;
+        return (a as any).priceCredits - (b as any).priceCredits;
       default:
         return 0;
     }
@@ -223,7 +223,7 @@ export default function Classes() {
   };
 
   const ClassCard = ({ course, variant = 'grid' }: { course: typeof classes[0], variant?: 'grid' | 'list' }) => {
-    const instructor = users.find(u => u.id === course.instructorId);
+    const instructor = users.find(u => u.id === (course as any).instructorId);
     const [isWishlisted, setIsWishlisted] = useState(false);
     
     if (variant === 'list') {
@@ -233,7 +233,7 @@ export default function Classes() {
             <div className="flex gap-4">
               <div className="relative w-64 h-36 shrink-0 overflow-hidden">
                 <img 
-                  src={course.thumbnailUrl} 
+                  src={(course as any).thumbnailUrl || '/placeholder.jpg'} 
                   alt={course.title}
                   className="w-full h-full object-cover rounded-l-lg group-hover:scale-105 transition-transform duration-300"
                 />
@@ -269,7 +269,7 @@ export default function Classes() {
                   </div>
                   <div className="text-right ml-4">
                     <div className="text-xl font-bold text-primary">
-                      {course.priceCredits} credits
+                      {(course as any).priceCredits || 0} credits
                     </div>
                   </div>
                 </div>
@@ -292,7 +292,7 @@ export default function Classes() {
                           key={i} 
                           className={cn(
                             "w-3 h-3",
-                            i < Math.floor(course.ratingAvg)
+                            i < Math.floor((course as any).ratingAvg || 0)
                               ? "fill-warning text-warning"
                               : "text-border"
                           )}
@@ -300,29 +300,29 @@ export default function Classes() {
                       ))}
                     </div>
                     <span className="text-sm text-ink-body">
-                      {course.ratingAvg > 0 ? `${course.ratingAvg} (${course.ratingCount})` : 'No ratings yet'}
+                      {(course as any).ratingAvg > 0 ? `${(course as any).ratingAvg} (${(course as any).ratingCount || 0})` : 'No ratings yet'}
                     </span>
                   </div>
                   
                   <div className="flex items-center gap-1 text-sm text-ink-body">
                     <Clock className="w-4 h-4" />
-                    <span>{formatDuration(course.durationMins)}</span>
+                    <span>{(course as any).durationMins ? formatDuration((course as any).durationMins) : 'Self-paced'}</span>
                   </div>
                   
                   <div className="flex items-center gap-1 text-sm text-ink-body">
                     <Users className="w-4 h-4" />
-                    <span>{(course.studentsCount || course.currentSeats || 0).toLocaleString()}</span>
+                    <span>{((course as any).studentsCount || (course as any).currentSeats || 0).toLocaleString()}</span>
                   </div>
                 </div>
                 
                 <div className="flex items-center gap-2">
                   <Badge variant="outline" className="text-xs">
-                    {course.level}
+                    {(course as any).level || 'Beginner'}
                   </Badge>
                   <Badge variant="outline" className="text-xs">
-                    {course.category}
+                    {(course as any).category || 'General'}
                   </Badge>
-                  {course.studentsCount > 1000 && (
+                  {(course as any).studentsCount > 1000 && (
                     <Badge className="text-xs bg-secondary text-white">Most Popular</Badge>
                   )}
                 </div>
@@ -337,7 +337,7 @@ export default function Classes() {
       <Card className="group cursor-pointer hover:shadow-md transition-all duration-200 border-border bg-surface rounded-lg overflow-hidden">
         <div className="relative overflow-hidden">
           <img 
-            src={course.thumbnailUrl} 
+            src={(course as any).thumbnailUrl || '/placeholder.jpg'} 
             alt={course.title}
             className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
           />
@@ -361,9 +361,9 @@ export default function Classes() {
           </button>
           <div className="absolute top-3 left-3 flex gap-2">
             <Badge className="bg-white/90 text-ink-head text-xs">
-              {course.level}
+              {(course as any).level || 'Beginner'}
             </Badge>
-            {course.studentsCount > 1000 && (
+            {(course as any).studentsCount > 1000 && (
               <Badge className="bg-secondary text-white text-xs">Most Popular</Badge>
             )}
           </div>
@@ -391,7 +391,7 @@ export default function Classes() {
                   key={i} 
                   className={cn(
                     "w-3 h-3",
-                    i < Math.floor(course.ratingAvg)
+                    i < Math.floor((course as any).ratingAvg || 0)
                       ? "fill-warning text-warning"
                       : "text-border"
                   )}
@@ -399,29 +399,29 @@ export default function Classes() {
               ))}
             </div>
             <span className="text-xs text-ink-body">
-              {course.ratingAvg > 0 ? `${course.ratingAvg} (${course.ratingCount})` : 'No ratings yet'}
+              {(course as any).ratingAvg > 0 ? `${(course as any).ratingAvg} (${(course as any).ratingCount || 0})` : 'No ratings yet'}
             </span>
           </div>
           
           <div className="flex items-center gap-2 text-xs text-ink-body mb-3">
             <div className="flex items-center gap-1">
               <Clock className="w-3 h-3" />
-              <span>{course.durationMins ? formatDuration(course.durationMins) : 'Self-paced'}</span>
+              <span>{(course as any).durationMins ? formatDuration((course as any).durationMins) : 'Self-paced'}</span>
             </div>
             <span>•</span>
             <div className="flex items-center gap-1">
               <Users className="w-3 h-3" />
-              <span>{(course.studentsCount || course.currentSeats || 0).toLocaleString()}</span>
+              <span>{((course as any).studentsCount || (course as any).currentSeats || 0).toLocaleString()}</span>
             </div>
           </div>
           
           <div className="flex items-center justify-between">
             <Badge variant="outline" className="text-xs">
-              {course.category}
+              {(course as any).category || 'General'}
             </Badge>
             <div className="text-right">
               <div className="text-sm font-bold text-primary">
-                {course.priceCredits} credits
+                {(course as any).priceCredits || 0} credits
               </div>
             </div>
           </div>
