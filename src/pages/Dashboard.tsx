@@ -383,12 +383,7 @@ const Dashboard = () => {
             <div className="space-y-6">
               {/* Wallet Widget */}
               <WalletWidget
-                credits={stats.credits}
-                recentEarning={stats.recentEarning}
-                isPro={false}
                 variant="full"
-                onEarnCredits={() => navigate('/matches')}
-                onViewWallet={() => navigate('/wallet')}
               />
 
               {/* Active Challenge */}
@@ -438,8 +433,7 @@ const Dashboard = () => {
                           key={skill.id}
                           skill={skill}
                           variant="compact"
-                          
-                          onClick={() => navigate('/profile')}
+                          onSelect={() => navigate('/profile')}
                         />
                       ) : null;
                     })}

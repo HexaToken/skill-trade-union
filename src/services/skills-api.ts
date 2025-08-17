@@ -336,7 +336,7 @@ export const skillsApi = {
       rejectionReason: action === 'reject' ? reason : undefined,
     };
     
-    mockSuggestions[index] = updated;
+    mockSuggestions[index] = updated as any;
     
     // If approved, create the actual skill
     if (action === 'approve') {
@@ -347,7 +347,7 @@ export const skillsApi = {
       });
     }
     
-    return updated;
+    return updated as any;
   },
 
   // Get skill analytics

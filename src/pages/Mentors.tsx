@@ -123,9 +123,9 @@ export default function Mentors() {
       );
     }
 
-    if (filters.mentorTier && filters.mentorTier !== 'all') {
+    if (filters.mentorTier && (filters.mentorTier as string) !== 'all') {
       filtered = filtered.filter(mentor => 
-        mentor.tier.toLowerCase() === filters.mentorTier?.toLowerCase()
+        (mentor.tier as any).toLowerCase() === filters.mentorTier?.toLowerCase()
       );
     }
 

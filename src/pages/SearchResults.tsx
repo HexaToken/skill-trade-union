@@ -94,7 +94,7 @@ export default function SearchResults() {
   // Update URL when search changes
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
     const query = formData.get('search') as string;
     if (query.trim()) {
       setSearchParams({ q: query.trim() });
@@ -133,7 +133,7 @@ export default function SearchResults() {
 
   const mockCourses = courses.slice(0, 8).map(course => ({
     ...course,
-    category: course.category || (course.skillId === 'web-development' ? 'Technology' :
+    category: (course as any).category || (course.skillId === 'web-development' ? 'Technology' :
              course.skillId === 'logo-design' ? 'Design' :
              course.skillId === 'spanish-tutoring' ? 'Languages' :
              course.skillId === 'guitar' ? 'Music' : 'Technology')

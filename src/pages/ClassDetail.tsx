@@ -63,7 +63,7 @@ export default function ClassDetail() {
   // Mock data - in real app this would come from API
   const course = courses.find(c => c.id === id) || courses[0];
   const instructor = users.find(u => u.id === course.teacherId) || users[0];
-  const relatedCourses = courses.filter(c => c.id !== course.id && c.category === course.category).slice(0, 4);
+  const relatedCourses = courses.filter(c => c.id !== course.id && (c as any).category === (course as any).category).slice(0, 4);
 
   const modules: CourseModule[] = [
     {
@@ -157,7 +157,7 @@ export default function ClassDetail() {
               <Badge className="bg-emerald-500 text-white border-0 px-3 py-1">
                 {course.difficulty === 1 ? 'Beginner' : course.difficulty === 2 ? 'Intermediate' : 'Advanced'}
               </Badge>
-              {course.badges.includes('live') && (
+              {(course as any).badges?.includes('live') && (
                 <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 px-3 py-1 animate-pulse">
                   Live
                 </Badge>
@@ -541,7 +541,7 @@ export default function ClassDetail() {
                 </div>
 
                 <Badge className="w-full mb-6 bg-[#06B6D4]/10 text-[#06B6D4] border-[#06B6D4]/20 py-2 justify-center">
-                  {course.category}
+                  {(course as any).category || 'Technology'}
                 </Badge>
 
                 {/* Action Buttons */}

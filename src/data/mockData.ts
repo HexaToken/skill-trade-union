@@ -355,6 +355,18 @@ export const users: User[] = [
 // Current authenticated user (for demo purposes)
 export const currentUser: AuthUser = {
   ...users[1], // Marcus Chen
+  role: 'user',
+  preferences: {
+    theme: 'system',
+    language: 'English',
+    notifications: {
+      email: true,
+      push: true,
+      sessions: true,
+      matches: true,
+      challenges: true,
+    }
+  }
 }
 
 // Credit Transactions
@@ -463,9 +475,7 @@ export const reviews: Review[] = [
     sessionId: 'session-1',
     rating: 5,
     text: 'Marcus is an exceptional teacher! He explained React concepts clearly and provided practical examples. My understanding has improved dramatically.',
-    createdAt: '2024-01-18T18:00:00Z',
-    helpful: 0,
-    reported: false
+    createdAt: '2024-01-18T18:00:00Z'
   },
   {
     id: 'review-2',
@@ -474,9 +484,7 @@ export const reviews: Review[] = [
     sessionId: 'session-2',
     rating: 5,
     text: 'Sofia has incredible design skills! She helped me create a professional logo that perfectly captures my brand vision.',
-    createdAt: '2024-01-17T16:00:00Z',
-    helpful: 0,
-    reported: false
+    createdAt: '2024-01-17T16:00:00Z'
   }
 ];
 
@@ -493,7 +501,6 @@ export const challenges: Challenge[] = [
     rewardCredits: 500,
     status: 'active',
     participants: 247,
-    difficulty: 2,
     leaderboard: [
       { userId: 'user-1', points: 950, rank: 1 },
       { userId: 'user-4', points: 890, rank: 2 },
@@ -513,7 +520,6 @@ export const challenges: Challenge[] = [
     rewardCredits: 1000,
     status: 'active',
     participants: 89,
-    difficulty: 3,
     leaderboard: [
       { userId: 'user-2', points: 1200, rank: 1 },
       { userId: 'user-5', points: 1050, rank: 2 }

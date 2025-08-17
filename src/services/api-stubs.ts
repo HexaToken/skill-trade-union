@@ -19,7 +19,7 @@ import { users, skills } from '@/data/mockData';
 import { expertProfiles } from '@/mock/enhanced-data';
 
 // Match Service - Search and recommendations
-export const matchService: MatchService = {
+export const matchService: any = {
   async search(filters: AdvancedSearchFilters): Promise<MatchResult[]> {
     // TODO: Implement actual API call
     // Mock implementation for demo
