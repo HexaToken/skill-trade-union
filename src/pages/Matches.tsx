@@ -431,7 +431,7 @@ export default function Matches() {
                         <MatchCard
                           key={match.user.id}
                           name={match.user.name}
-                          location={`${match.user.location.city}, ${match.user.location.country}`}
+                          location={match.user.location ? `${match.user.location.city}, ${match.user.location.country}` : 'Location not specified'}
                           avatarUrl={match.user.avatarUrl}
                           rating={match.user.ratingAvg}
                           reviews={match.user.ratingCount}
