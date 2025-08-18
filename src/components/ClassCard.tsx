@@ -21,9 +21,9 @@ interface ClassCardProps {
 }
 
 const difficultyLabels = {
-  1: { label: 'Beginner', color: 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-800' },
-  2: { label: 'Intermediate', color: 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-800' },
-  3: { label: 'Advanced', color: 'bg-red-50 text-red-700 border-red-200 dark:bg-red-900/20 dark:text-red-300 dark:border-red-800' }
+  1: { label: 'Beginner', color: 'bg-success/10 text-success border-success/20' },
+  2: { label: 'Intermediate', color: 'bg-warning/10 text-warning border-warning/20' },
+  3: { label: 'Advanced', color: 'bg-danger/10 text-danger border-danger/20' }
 };
 
 export default function ClassCard({
@@ -78,7 +78,7 @@ export default function ClassCard({
             <p className="text-sm text-[#334155] dark:text-[#E2E8F0] truncate">{teacher?.name}</p>
             <div className="flex items-center gap-2 mt-1">
               <div className="flex items-center gap-1">
-                <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+                <Star className="w-3 h-3 fill-warning text-warning" />
                 <span className="text-xs font-medium text-[#0F172A] dark:text-[#F1F5F9]">{course.ratingAvg}</span>
               </div>
               <span className="text-xs text-[#06B6D4] font-medium">{course.pricePerSeat} credits</span>
@@ -111,8 +111,8 @@ export default function ClassCard({
           {course.badges.map((badge) => {
             const badgeConfig = {
               group: { icon: Users, label: 'Group Class', color: 'bg-[#0056D2]' },
-              materials: { icon: BookOpen, label: 'Materials', color: 'bg-emerald-500' },
-              recorded: { icon: Play, label: 'Recorded', color: 'bg-purple-500' },
+              materials: { icon: BookOpen, label: 'Materials', color: 'bg-success' },
+              recorded: { icon: Play, label: 'Recorded', color: 'bg-secondary' },
               certificate: { icon: Award, label: 'Certificate', color: 'bg-[#06B6D4]' }
             }[badge];
 
@@ -175,7 +175,7 @@ export default function ClassCard({
           <div className="flex-1 min-w-0">
             <p className="text-sm font-semibold truncate text-[#0F172A] dark:text-[#F1F5F9]">{teacher?.name}</p>
             <div className="flex items-center gap-1">
-              <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+              <Star className="w-3 h-3 fill-warning text-warning" />
               <span className="text-xs font-medium text-[#0F172A] dark:text-[#F1F5F9]">{teacher?.ratingAvg}</span>
               <span className="text-xs text-[#334155] dark:text-[#E2E8F0]">({teacher?.ratingCount})</span>
             </div>
@@ -187,7 +187,7 @@ export default function ClassCard({
         <div className="flex items-center justify-between text-sm">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1">
-              <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+              <Star className="w-4 h-4 fill-warning text-warning" />
               <span className="font-semibold text-[#0F172A] dark:text-[#F1F5F9]">{course.ratingAvg}</span>
               <span className="text-[#334155] dark:text-[#E2E8F0]">({course.ratingCount})</span>
             </div>
@@ -213,7 +213,7 @@ export default function ClassCard({
           </div>
           <Progress value={seatsPercentage} className="h-2" />
           {seatsRemaining <= 3 && seatsRemaining > 0 && (
-            <Badge variant="destructive" size="sm" className="bg-red-500 text-white">
+            <Badge variant="destructive" size="sm" className="bg-danger text-white">
               Limited seats!
             </Badge>
           )}

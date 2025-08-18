@@ -163,11 +163,11 @@ export const getTradeStatusColor = (status: TradeStatus): string => {
     case 'awaiting-counterparty':
       return 'bg-[#06B6D4]/10 text-[#06B6D4] border-[#06B6D4]/20';
     case 'confirmed':
-      return 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-800';
+      return 'bg-success/10 text-success border-success/20';
     case 'needs-reconfirm':
-      return 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-800';
+      return 'bg-warning/10 text-warning border-warning/20';
     case 'disputed':
-      return 'bg-red-50 text-red-700 border-red-200 dark:bg-red-900/20 dark:text-red-300 dark:border-red-800';
+      return 'bg-danger/10 text-danger border-danger/20';
     case 'expired':
       return 'bg-[#64748B]/10 text-[#64748B] border-[#64748B]/20';
     default:

@@ -19,20 +19,20 @@ export default {
 		},
 		extend: {
 			colors: {
-				primary: 'var(--primary)',
-				'primary-600': 'var(--primary-600)',
-				secondary: 'var(--secondary)',
+				primary: 'hsl(var(--primary))',
+				'primary-dark': 'hsl(var(--primary-dark))',
+				secondary: 'hsl(var(--secondary))',
 				ink: {
-					head: 'var(--ink-head)',
-					body: 'var(--ink-body)',
+					head: 'hsl(var(--ink-head))',
+					body: 'hsl(var(--ink-body))',
 				},
-				canvas: 'var(--canvas)',
-				surface: 'var(--surface)',
-				elevated: 'var(--elevated)',
-				border: 'var(--border)',
-				success: 'var(--success)',
-				warning: 'var(--warning)',
-				danger: 'var(--danger)',
+				canvas: 'hsl(var(--canvas))',
+				surface: 'hsl(var(--surface))',
+				elevated: 'hsl(var(--elevated))',
+				border: 'hsl(var(--border))',
+				success: 'hsl(var(--success))',
+				warning: 'hsl(var(--warning))',
+				danger: 'hsl(var(--danger))',
 
 				// Shadcn/ui compatibility
 				background: 'hsl(var(--background))',
@@ -61,14 +61,14 @@ export default {
 				ring: 'hsl(var(--ring))',
 
 				// Brand colors for gradient compatibility
-				'brand-primary': 'var(--primary)',
-				'brand-secondary': 'var(--secondary)',
-				'brand-amber': 'var(--warning)',
-				'brand-green': 'var(--success)',
+				'brand-primary': 'hsl(var(--primary))',
+				'brand-secondary': 'hsl(var(--secondary))',
+				'brand-warning': 'hsl(var(--warning))',
+				'brand-success': 'hsl(var(--success))',
 
 				// Legacy compatibility
-				inkHead: 'var(--ink-head)',
-				inkBody: 'var(--ink-body)',
+				inkHead: 'hsl(var(--ink-head))',
+				inkBody: 'hsl(var(--ink-body))',
 			},
 			backgroundImage: {
 				'brand-gradient': 'var(--brand-gradient)',

@@ -56,8 +56,8 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
 
   const getTimerColor = () => {
     const hoursLeft = timeLeft.total / (1000 * 60 * 60);
-    if (hoursLeft <= 2) return 'text-red-600 dark:text-red-400';
-    if (hoursLeft <= 24) return 'text-amber-600 dark:text-amber-400';
+    if (hoursLeft <= 2) return 'text-danger';
+    if (hoursLeft <= 24) return 'text-warning';
     return 'text-[#0056D2] dark:text-[#06B6D4]';
   };
 

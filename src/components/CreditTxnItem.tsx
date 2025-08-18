@@ -3,7 +3,7 @@ import { type Transaction } from '@/services/credit-api';
 
 export function CreditTxnItem({ tx }: { tx: Transaction }) {
   const sign = tx.amount >= 0 ? '+' : '−';
-  const tone = tx.amount >= 0 ? 'text-emerald-400' : 'text-rose-400';
+  const tone = tx.amount >= 0 ? 'text-success' : 'text-danger';
   const icon = tx.type === 'earn' ? '⬆️' : tx.type === 'spend' ? '⬇️' : tx.type === 'hold' ? '⛓️' : '↩️';
 
   return (

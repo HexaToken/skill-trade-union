@@ -8,25 +8,25 @@
 /* Professional SkillSwap Color System - Light & Dark Themes */
 
 :root {
-  /* Brand */
-  --primary: #0B5FFF;      /* electric academic blue */
-  --primary-600: #084AC7;  /* hover/pressed */
-  --secondary: #12D6DF;    /* tech cyan */
+  /* Brand - Light Theme */
+  --primary: 11 95 255;      /* #0B5FFF electric academic blue */
+  --primary-dark: 8 74 199;  /* #084AC7 hover/pressed */
+  --secondary: 18 214 223;   /* #12D6DF tech cyan */
 
-  /* Text */
-  --ink-head: #0F172A;
-  --ink-body: #334155;
+  /* Text - Light Theme */
+  --ink-head: 15 23 42;      /* #0F172A */
+  --ink-body: 51 65 85;      /* #334155 */
 
-  /* Surfaces */
-  --canvas: #F7F9FC;       /* app background */
-  --surface: #FFFFFF;      /* cards/nav */
-  --elevated: #FFFFFF;     /* modals/dropdowns */
-  --border: #E5E7EB;
+  /* Surfaces - Light Theme */
+  --canvas: 247 249 252;     /* #F7F9FC app background */
+  --surface: 255 255 255;    /* #FFFFFF cards/nav */
+  --elevated: 255 255 255;   /* #FFFFFF modals/dropdowns */
+  --border: 229 231 235;     /* #E5E7EB */
 
-  /* States */
-  --success: #16A34A;
-  --warning: #F59E0B;
-  --danger:  #EF4444;
+  /* States - Light Theme */
+  --success: 22 163 74;      /* #16A34A */
+  --warning: 245 158 11;     /* #F59E0B */
+  --danger: 239 68 68;       /* #EF4444 */
 
   /* Gradients */
   --brand-gradient: linear-gradient(90deg, #6C2BD9 0%, #12D6DF 100%);
@@ -54,22 +54,27 @@
 }
 
 [data-theme="dark"] {
-  --primary: #7AA7FF;
-  --primary-600: #5F86D1;
-  --secondary: #2BE4EE;
+  /* Brand - Dark Theme */
+  --primary: 122 167 255;    /* #7AA7FF */
+  --primary-dark: 95 134 209; /* #5F86D1 */
+  --secondary: 43 228 238;   /* #2BE4EE */
 
-  --ink-head: #E5EDF9;
-  --ink-body: #C8D1E2;
+  /* Text - Dark Theme */
+  --ink-head: 229 237 249;   /* #E5EDF9 */
+  --ink-body: 200 209 226;   /* #C8D1E2 */
 
-  --canvas: #0B1220;
-  --surface: #121A2B;
-  --elevated: #16213A;
-  --border: #233047;
+  /* Surfaces - Dark Theme */
+  --canvas: 11 18 32;        /* #0B1220 */
+  --surface: 18 26 43;       /* #121A2B */
+  --elevated: 22 33 58;      /* #16213A */
+  --border: 35 48 71;        /* #233047 */
 
-  --success: #22C55E;
-  --warning: #FBBF24;
-  --danger:  #F87171;
+  /* States - Dark Theme */
+  --success: 34 197 94;      /* #22C55E */
+  --warning: 251 191 36;     /* #FBBF24 */
+  --danger: 248 113 113;     /* #F87171 */
 
+  /* Gradients */
   --brand-gradient: linear-gradient(90deg, #8B5CF6 0%, #2BE4EE 100%);
 
   /* Shadows */
@@ -95,8 +100,8 @@
 
 /* Base app wiring */
 html, body {
-  background: var(--canvas);
-  color: var(--ink-body);
+  background: hsl(var(--canvas));
+  color: hsl(var(--ink-body));
 }
 
 @layer base {
@@ -106,14 +111,14 @@ html, body {
 
   body {
     @apply font-sans antialiased;
-    background: var(--canvas);
-    color: var(--ink-body);
+    background: hsl(var(--canvas));
+    color: hsl(var(--ink-body));
   }
 
   /* Typography Hierarchy */
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-semibold tracking-tight;
-    color: var(--ink-head);
+    color: hsl(var(--ink-head));
   }
 
   h1 {
@@ -135,44 +140,47 @@ html, body {
 
   /* Links */
   a {
-    color: var(--primary);
+    color: hsl(var(--primary));
     text-underline-offset: 2px;
   }
 
   a:hover {
-    color: var(--secondary);
+    color: hsl(var(--secondary));
   }
 
   /* Focus ring */
   :focus-visible {
-    outline: 2px solid var(--secondary);
+    outline: 2px solid hsl(var(--secondary));
     outline-offset: 2px;
   }
 }
 
 @layer utilities {
   /* Color utilities */
-  .text-primary { color: var(--primary); }
-  .text-primary600 { color: var(--primary-600); }
-  .text-secondary { color: var(--secondary); }
-  .text-ink-head { color: var(--ink-head); }
-  .text-ink-body { color: var(--ink-body); }
-  .text-success { color: var(--success); }
-  .text-warning { color: var(--warning); }
-  .text-danger { color: var(--danger); }
+  .text-primary { color: hsl(var(--primary)); }
+  .text-primary-dark { color: hsl(var(--primary-dark)); }
+  .text-secondary { color: hsl(var(--secondary)); }
+  .text-ink-head { color: hsl(var(--ink-head)); }
+  .text-ink-body { color: hsl(var(--ink-body)); }
+  .text-success { color: hsl(var(--success)); }
+  .text-warning { color: hsl(var(--warning)); }
+  .text-danger { color: hsl(var(--danger)); }
 
-  .bg-canvas { background-color: var(--canvas); }
-  .bg-surface { background-color: var(--surface); }
-  .bg-elevated { background-color: var(--elevated); }
-  .bg-primary { background-color: var(--primary); }
-  .bg-primary600 { background-color: var(--primary-600); }
-  .bg-secondary { background-color: var(--secondary); }
+  .bg-canvas { background-color: hsl(var(--canvas)); }
+  .bg-surface { background-color: hsl(var(--surface)); }
+  .bg-elevated { background-color: hsl(var(--elevated)); }
+  .bg-primary { background-color: hsl(var(--primary)); }
+  .bg-primary-dark { background-color: hsl(var(--primary-dark)); }
+  .bg-secondary { background-color: hsl(var(--secondary)); }
+  .bg-success { background-color: hsl(var(--success)); }
+  .bg-warning { background-color: hsl(var(--warning)); }
+  .bg-danger { background-color: hsl(var(--danger)); }
 
-  .border-border { border-color: var(--border); }
+  .border-border { border-color: hsl(var(--border)); }
 
   /* Legacy support for existing classes */
-  .text-inkHead { color: var(--ink-head); }
-  .text-inkBody { color: var(--ink-body); }
+  .text-inkHead { color: hsl(var(--ink-head)); }
+  .text-inkBody { color: hsl(var(--ink-body)); }
 
   /* Shadow utilities */
   .shadow-sm { box-shadow: var(--shadow-sm); }
@@ -187,14 +195,14 @@ html, body {
 
   /* Button utilities */
   .btn-primary {
-    background: var(--primary);
+    background: hsl(var(--primary));
     color: white;
     border-radius: 999px;
     box-shadow: var(--shadow-sm);
   }
 
   .btn-primary:hover {
-    background: var(--primary-600);
+    background: hsl(var(--primary-dark));
   }
 
   /* Page container */
@@ -204,15 +212,15 @@ html, body {
 
   /* Card styling */
   .card-surface {
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: hsl(var(--surface));
+    border: 1px solid hsl(var(--border));
     border-radius: 16px;
     box-shadow: var(--shadow-sm);
   }
 
   /* Text gradient with correct classes */
   .text-gradient {
-    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    background: linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

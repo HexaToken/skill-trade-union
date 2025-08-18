@@ -119,12 +119,12 @@ export default function EarnCreditsPanel({
       return (
         <div className="flex items-center gap-1">
           <span className="line-through text-muted-foreground text-sm">+{baseAmount}</span>
-          <span className="text-emerald-600 font-semibold">+{finalAmount}</span>
+          <span className="text-success font-semibold">+{finalAmount}</span>
         </div>
       );
     }
     
-    return <span className="text-emerald-600 font-semibold">+{baseAmount}</span>;
+    return <span className="text-success font-semibold">+{baseAmount}</span>;
   };
 
   return (
