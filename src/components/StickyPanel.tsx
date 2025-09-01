@@ -175,7 +175,7 @@ export default function StickyPanel({
           </div>
           {rating && (
             <div className="flex items-center gap-1">
-              <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+              <Star className="w-4 h-4 fill-warning text-warning" />
               <span className="font-medium">{rating}</span>
               <span className="text-sm text-muted-foreground">({ratingCount})</span>
             </div>
@@ -296,7 +296,7 @@ export default function StickyPanel({
           {canInstantHelp && onInstantHelp && (
             <Button
               variant="secondary"
-              className="w-full bg-gradient-to-r from-brand-amber/20 to-brand-green/20 border-brand-amber/50 text-brand-amber hover:from-brand-amber/30 hover:to-brand-green/30"
+              className="w-full bg-gradient-to-r from-warning/20 to-success/20 border-warning/50 text-warning hover:from-warning/30 hover:to-success/30"
               onClick={onInstantHelp}
             >
               <Zap className="w-4 h-4 mr-2" />

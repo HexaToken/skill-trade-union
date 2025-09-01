@@ -16,7 +16,7 @@ interface SkillCardProps {
 
 const difficultyLabels = {
   1: { label: 'Beginner', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
-  2: { label: 'Intermediate', color: 'bg-amber-100 text-amber-700 border-amber-200' },
+  2: { label: 'Intermediate', color: 'bg-warning/10 text-warning border-warning/20' },
   3: { label: 'Advanced', color: 'bg-red-100 text-red-700 border-red-200' }
 };
 
@@ -74,7 +74,7 @@ export default function SkillCard({
           </div>
 
           {variant === 'featured' && (
-            <Badge variant="secondary" className="bg-gradient-to-r from-orange-100 to-amber-100 text-orange-600 border-orange-200 font-semibold shadow-sm">
+            <Badge variant="secondary" className="bg-gradient-to-r from-warning/20 to-warning/25 text-warning border-warning/20 font-semibold shadow-sm">
               Featured
             </Badge>
           )}

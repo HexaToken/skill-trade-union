@@ -67,7 +67,7 @@ export function SkillBadge({
       )}
 
       {variant === 'featured' && skill.isFeatured && (
-        <span className="text-amber-500" aria-label="Featured skill">
+        <span className="text-warning" aria-label="Featured skill">
           ⭐
         </span>
       )}
@@ -90,7 +90,7 @@ export function SkillBadge({
   switch (variant) {
     case 'featured':
       badgeVariant = "default";
-      variantClasses = "bg-gradient-to-r from-amber-50 to-orange-50 text-amber-800 border-amber-200 dark:from-amber-900/20 dark:to-orange-900/20 dark:text-amber-300 dark:border-amber-800";
+      variantClasses = "bg-gradient-to-r from-warning/10 to-warning/15 text-warning border-warning/20";
       break;
     case 'verified':
       badgeVariant = "default";

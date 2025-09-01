@@ -138,7 +138,7 @@ export default function ClassCard({
 
         {variant === 'featured' && (
           <div className="absolute top-3 right-3">
-            <Badge className="bg-gradient-to-r from-orange-400 to-amber-400 text-white border-0 shadow-lg">Featured</Badge>
+            <Badge className="bg-gradient-to-r from-warning/20 to-warning/30 text-warning border-warning/20 shadow-lg">Featured</Badge>
           </div>
         )}
       </div>
@@ -265,7 +265,7 @@ export default function ClassCard({
         <Button
           variant="secondary"
           size="sm"
-          className="w-full bg-gradient-to-r from-brand-amber/20 to-brand-green/20 border-brand-amber/50 text-brand-amber hover:from-brand-amber/30 hover:to-brand-green/30"
+          className="w-full bg-gradient-to-r from-warning/20 to-success/20 border-warning/50 text-warning hover:from-warning/30 hover:to-success/30"
           onClick={() => onInstantHelp?.(course.id)}
         >
           <Zap className="w-4 h-4 mr-2" />

@@ -549,7 +549,7 @@ export function AdminSkillManager() {
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <SkillBadge skill={skill} size="sm" />
-                        {skill.isFeatured && <Star className="w-4 h-4 text-amber-500" />}
+                        {skill.isFeatured && <Star className="w-4 h-4 text-warning" />}
                       </div>
                     </TableCell>
                     <TableCell>

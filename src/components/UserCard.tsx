@@ -150,7 +150,7 @@ export function UserCard({
                     {user.badges.includes('top-mentor') && (
                       <Tooltip>
                         <TooltipTrigger>
-                          <Award className="w-4 h-4 text-brand-amber" />
+                          <Award className="w-4 h-4 text-warning" />
                         </TooltipTrigger>
                         <TooltipContent>
                           <p>Top Mentor</p>

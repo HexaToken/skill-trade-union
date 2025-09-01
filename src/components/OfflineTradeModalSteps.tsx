@@ -186,9 +186,9 @@ export const Step2Verification: React.FC<Step2VerificationProps> = ({
 
       {/* High Value Trade Warning */}
       {isHighValue && (
-        <Alert className="border-amber-200 bg-amber-50 dark:bg-amber-900/20">
-          <AlertTriangle className="h-4 w-4 text-amber-600" />
-          <AlertDescription className="text-amber-700 dark:text-amber-300">
+        <Alert className="border-warning/20 bg-warning/10">
+          <AlertTriangle className="h-4 w-4 text-warning" />
+          <AlertDescription className="text-warning">
             <strong>High Value Trade:</strong> This trade involves {detailsForm.creditsProposed} credits. 
             Additional verification may be required and photo evidence is recommended.
           </AlertDescription>
@@ -360,7 +360,7 @@ export const Step3Review: React.FC<Step3ReviewProps> = ({
                 {detailsForm.creditsProposed}
               </span>
               {isHighValue && (
-                <Badge className="bg-amber-50 text-amber-700 border-amber-200 text-xs">
+                <Badge className="bg-warning/10 text-warning border-warning/20 text-xs">
                   High Value
                 </Badge>
               )}

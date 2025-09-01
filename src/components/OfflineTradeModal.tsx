@@ -551,7 +551,7 @@ const OfflineTradeModal: React.FC<OfflineTradeModalProps> = ({
                     <div className="flex items-center gap-2">
                       <span className="text-2xl font-bold text-[#0056D2]">{calculatedCredits}</span>
                       {isHighValue && (
-                        <Badge className="bg-amber-50 text-amber-700 border-amber-200 text-xs">
+                        <Badge className="bg-warning/10 text-warning border-warning/20 text-xs">
                           High Value
                         </Badge>
                       )}

@@ -22,7 +22,7 @@ interface MentorCardProps {
 
 const tierConfig = {
   Silver: { color: 'bg-slate-50 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600', icon: '🥈' },
-  Gold: { color: 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-700', icon: '🥇' },
+  Gold: { color: 'bg-warning/10 text-warning border-warning/20', icon: '🥇' },
   Platinum: { color: 'bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-700', icon: '💎' }
 };
 
@@ -110,7 +110,7 @@ export default function MentorCard({
             
             <div className="flex items-center gap-4 mt-2 text-sm">
               <div className="flex items-center gap-1">
-                <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                <Star className="w-4 h-4 fill-warning text-warning" />
                 <span className="font-medium">{mentor.ratingAvg}</span>
                 <span className="text-muted-foreground">({mentor.ratingCount})</span>
               </div>
@@ -218,7 +218,7 @@ export default function MentorCard({
               <Button
                 variant="secondary"
                 size="sm"
-                className="bg-gradient-to-r from-brand-amber/20 to-brand-green/20 border-brand-amber/50 text-brand-amber hover:from-brand-amber/30 hover:to-brand-green/30"
+                className="bg-gradient-to-r from-warning/20 to-success/20 border-warning/50 text-warning hover:from-warning/30 hover:to-success/30"
                 onClick={() => onInstantCall?.(mentor.id)}
               >
                 <Zap className="w-4 h-4 mr-1" />
