@@ -71,13 +71,13 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-purple-50 via-white to-cyan-50 dark:from-slate-800 dark:via-slate-900 dark:to-cyan-900/20">
+      <section className="relative overflow-hidden bg-canvas">
         <div className="absolute inset-0 bg-grid-black/[0.02] dark:bg-grid-white/[0.02] bg-[size:50px_50px]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-educational-blue/5 via-transparent to-educational-cyan/5" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5" />
         <div className="relative page-container py-24 md:py-36">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             {/* Hero Badge */}
-            <Badge className="bg-gradient-to-r from-educational-blue/10 to-educational-cyan/10 text-educational-blue border-educational-blue/20 px-6 py-3 hover:bg-gradient-to-r hover:from-educational-blue/15 hover:to-educational-cyan/15 transition-all duration-300 rounded-full shadow-lg hover:shadow-xl animate-float">
+            <Badge className="bg-gradient-to-r from-primary/10 to-secondary/10 text-primary border-primary/20 px-6 py-3 hover:bg-gradient-to-r hover:from-primary/15 hover:to-secondary/15 transition-all duration-300 rounded-full shadow-lg hover:shadow-xl animate-float">
               <Zap className="w-4 h-4 mr-2" />
               Now with ExpertMatch AI - Get instant help!
             </Badge>
@@ -86,24 +86,24 @@ export default function Home() {
             <div className="space-y-6">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold leading-tight text-foreground tracking-tight">
                 Trade{' '}
-                <span className="text-transparent bg-gradient-to-r from-educational-blue to-educational-cyan bg-clip-text animate-gradient-shift">skills</span>,{' '}
-                <span className="text-transparent bg-gradient-to-r from-educational-cyan to-purple-500 bg-clip-text">not cash</span>
+                <span className="text-transparent bg-gradient-to-r from-primary to-secondary bg-clip-text animate-gradient-shift">skills</span>,{' '}
+                <span className="text-transparent bg-gradient-to-r from-secondary to-primary bg-clip-text">not cash</span>
               </h1>
-              <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed font-medium">
+              <p className="text-xl md:text-2xl text-ink-body max-w-3xl mx-auto leading-relaxed font-medium">
                 Learn anything, teach anything. Join the world's largest skill-sharing community where knowledge flows freely.
               </p>
             </div>
 
             {/* Hero Actions */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Button size="lg" className="text-lg px-10 py-7 hover-scale bg-educational-blue hover:bg-gradient-to-r hover:from-educational-blue hover:to-educational-cyan text-white shadow-xl hover:shadow-2xl rounded-2xl transition-all duration-300 font-semibold" asChild>
+              <Button size="lg" className="text-lg px-10 py-7 hover-scale bg-primary hover:bg-gradient-to-r hover:from-primary hover:to-secondary text-white shadow-xl hover:shadow-2xl rounded-2xl transition-all duration-300 font-semibold" asChild>
                 <Link to="/matches">
                   Find a Match
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>
 
-              <Button size="lg" className="text-lg px-10 py-7 hover-scale bg-educational-cyan hover:bg-educational-cyan/90 text-white shadow-xl hover:shadow-2xl rounded-2xl transition-all duration-300 font-semibold" asChild>
+              <Button size="lg" className="text-lg px-10 py-7 hover-scale bg-secondary hover:bg-secondary/90 text-white shadow-xl hover:shadow-2xl rounded-2xl transition-all duration-300 font-semibold" asChild>
                 <Link to="/onboarding">
                   Offer a Skill
                 </Link>
@@ -111,7 +111,7 @@ export default function Home() {
 
               <InstantHelpDrawer
                 trigger={
-                  <Button size="lg" className="text-lg px-10 py-7 hover-scale bg-gradient-to-r from-educational-blue to-educational-cyan hover:from-educational-cyan hover:to-purple-500 text-white shadow-xl hover:shadow-2xl rounded-2xl transition-all duration-300 font-semibold animate-pulse-glow">
+                  <Button size="lg" className="text-lg px-10 py-7 hover-scale bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary text-white shadow-xl hover:shadow-2xl rounded-2xl transition-all duration-300 font-semibold animate-pulse-glow">
                     <Zap className="w-5 h-5 mr-2" />
                     Need Help Now?
                   </Button>
@@ -120,21 +120,21 @@ export default function Home() {
             </div>
 
             {/* Trust Indicators */}
-            <div className="flex flex-wrap justify-center gap-10 pt-12 text-sm text-slate-600 dark:text-slate-300">
-              <div className="flex items-center gap-3 bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-lg border border-white/20">
-                <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg">
+            <div className="flex flex-wrap justify-center gap-10 pt-12 text-sm text-ink-body">
+              <div className="flex items-center gap-3 bg-surface/70 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-lg border border-surface/20">
+                <div className="w-10 h-10 bg-gradient-to-br from-success to-success rounded-xl flex items-center justify-center shadow-lg">
                   <Star className="w-5 h-5 text-white" />
                 </div>
                 <span className="font-medium">ID Verified Members</span>
               </div>
-              <div className="flex items-center gap-3 bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-lg border border-white/20">
-                <div className="w-10 h-10 bg-gradient-to-br from-educational-blue to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="flex items-center gap-3 bg-surface/70 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-lg border border-surface/20">
+                <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary rounded-xl flex items-center justify-center shadow-lg">
                   <Award className="w-5 h-5 text-white" />
                 </div>
                 <span className="font-medium">Skill Tested Experts</span>
               </div>
-              <div className="flex items-center gap-3 bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-lg border border-white/20">
-                <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="flex items-center gap-3 bg-surface/70 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-lg border border-surface/20">
+                <div className="w-10 h-10 bg-gradient-to-br from-secondary to-secondary rounded-xl flex items-center justify-center shadow-lg">
                   <Heart className="w-5 h-5 text-white" />
                 </div>
                 <span className="font-medium">Community Driven</span>
@@ -145,24 +145,24 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 border-b bg-gradient-to-r from-white via-slate-50 to-white dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+      <section className="py-20 border-b bg-canvas">
         <div className="page-container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               const colors = [
-                'bg-gradient-to-br from-educational-blue to-blue-600 text-white',
-                'bg-gradient-to-br from-educational-cyan to-cyan-600 text-white',
-                'bg-gradient-to-br from-purple-500 to-purple-600 text-white',
-                'bg-gradient-to-br from-emerald-500 to-emerald-600 text-white'
+                'bg-gradient-to-br from-primary to-primary text-white',
+                'bg-gradient-to-br from-secondary to-secondary text-white',
+                'bg-gradient-to-br from-primary to-secondary text-white',
+                'bg-gradient-to-br from-success to-success text-white'
               ];
               return (
                 <div key={stat.label} className="text-center space-y-4 hover-lift group">
                   <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 ${colors[index % colors.length]} group-hover:scale-110`}>
                     <Icon className="w-8 h-8" />
                   </div>
-                  <div className="text-4xl font-bold font-heading text-slate-800 dark:text-white group-hover:text-educational-blue transition-colors">{stat.value}</div>
-                  <div className="text-sm font-medium text-slate-600 dark:text-slate-300 uppercase tracking-wide">{stat.label}</div>
+                  <div className="text-4xl font-bold font-heading text-ink-head group-hover:text-primary transition-colors">{stat.value}</div>
+                  <div className="text-sm font-medium text-ink-body uppercase tracking-wide">{stat.label}</div>
                 </div>
               );
             })}
@@ -171,11 +171,11 @@ export default function Home() {
       </section>
 
       {/* Category Rail */}
-      <section className="py-16 border-b bg-gradient-to-b from-white to-slate-50/50 dark:from-slate-900 dark:to-slate-800/50">
+      <section className="py-16 border-b bg-canvas">
         <div className="page-container">
           <div className="text-center space-y-6">
-            <h2 className="text-4xl font-heading font-bold text-slate-800 dark:text-white">Explore by Category</h2>
-            <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-heading font-bold text-ink-head">Explore by Category</h2>
+            <p className="text-lg text-ink-body max-w-2xl mx-auto">
               Discover skills across diverse categories or dive deep into your area of expertise
             </p>
           </div>
@@ -188,8 +188,8 @@ export default function Home() {
                 size="lg"
                 className={`hover-scale transition-all duration-300 shadow-lg hover:shadow-xl rounded-2xl border-2 ${
                   selectedCategory === category.id
-                    ? 'bg-gradient-to-r from-educational-blue to-educational-cyan hover:from-educational-cyan hover:to-purple-500 text-white border-transparent shadow-xl'
-                    : 'bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm hover:bg-white dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 hover:text-educational-blue border-slate-200 dark:border-slate-600 hover:border-educational-cyan/50 hover:shadow-2xl hover:-translate-y-1'
+                    ? 'bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary text-white border-transparent shadow-xl'
+                    : 'bg-surface/80 backdrop-blur-sm hover:bg-surface text-ink-body hover:text-primary border-border hover:border-secondary/50 hover:shadow-2xl hover:-translate-y-1'
                 }`}
                 onClick={() => setSelectedCategory(category.id === selectedCategory ? null : category.id)}
                 asChild
@@ -198,7 +198,7 @@ export default function Home() {
                   <span className="text-xl mr-3">{category.icon}</span>
                   <span className="font-medium">{category.name}</span>
                   {category.popular && (
-                    <Badge size="sm" variant="secondary" className="ml-3 bg-gradient-to-r from-orange-100 to-amber-100 text-orange-600 border-orange-200 font-medium">
+                    <Badge size="sm" variant="secondary" className="ml-3 bg-warning/10 text-warning border-warning/20 font-medium">
                       Popular
                     </Badge>
                   )}
@@ -210,16 +210,16 @@ export default function Home() {
       </section>
 
       {/* Popular Skills */}
-      <section className="py-20 bg-gradient-to-br from-white via-slate-50/30 to-white dark:from-slate-900 dark:via-slate-800/30 dark:to-slate-900">
+      <section className="py-20 bg-canvas">
         <div className="page-container">
           <div className="flex items-center justify-between mb-12">
             <div className="space-y-3">
-              <h2 className="text-4xl font-heading font-bold text-slate-800 dark:text-white">Popular Skills</h2>
-              <p className="text-lg text-slate-600 dark:text-slate-300">
+              <h2 className="text-4xl font-heading font-bold text-ink-head">Popular Skills</h2>
+              <p className="text-lg text-ink-body">
                 Most in-demand skills in our community
               </p>
             </div>
-            <Button variant="outline" className="border-educational-blue text-educational-blue hover:bg-educational-blue hover:text-white rounded-xl px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300" asChild>
+            <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white rounded-xl px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300" asChild>
               <Link to="/matches">
                 View All Skills
                 <ArrowRight className="ml-2 w-4 h-4" />
@@ -242,16 +242,16 @@ export default function Home() {
       </section>
 
       {/* Featured Classes */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50/30 dark:from-slate-800 dark:to-cyan-900/20">
+      <section className="py-20 bg-canvas">
         <div className="page-container">
           <div className="flex items-center justify-between mb-12">
             <div className="space-y-3">
-              <h2 className="text-4xl font-heading font-bold text-slate-800 dark:text-white">Featured Classes</h2>
-              <p className="text-lg text-slate-600 dark:text-slate-300">
+              <h2 className="text-4xl font-heading font-bold text-ink-head">Featured Classes</h2>
+              <p className="text-lg text-ink-body">
                 Join structured learning experiences with expert instructors
               </p>
             </div>
-            <Button variant="outline" className="border-educational-cyan text-educational-cyan hover:bg-educational-cyan hover:text-white rounded-xl px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300" asChild>
+            <Button variant="outline" className="border-secondary text-secondary hover:bg-secondary hover:text-white rounded-xl px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300" asChild>
               <Link to="/classes">
                 Browse All Classes
                 <ArrowRight className="ml-2 w-4 h-4" />
@@ -275,16 +275,16 @@ export default function Home() {
       </section>
 
       {/* Top Mentors */}
-      <section className="py-20 bg-gradient-to-br from-white via-purple-50/20 to-white dark:from-slate-900 dark:via-purple-900/10 dark:to-slate-900">
+      <section className="py-20 bg-canvas">
         <div className="page-container">
           <div className="flex items-center justify-between mb-12">
             <div className="space-y-3">
-              <h2 className="text-4xl font-heading font-bold text-slate-800 dark:text-white">Top Mentors</h2>
-              <p className="text-lg text-slate-600 dark:text-slate-300">
+              <h2 className="text-4xl font-heading font-bold text-ink-head">Top Mentors</h2>
+              <p className="text-lg text-ink-body">
                 Learn from the best in their fields with personalized guidance
               </p>
             </div>
-            <Button variant="outline" className="border-purple-500 text-purple-600 hover:bg-purple-500 hover:text-white rounded-xl px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300" asChild>
+            <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white rounded-xl px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300" asChild>
               <Link to="/mentors">
                 Find Mentors
                 <ArrowRight className="ml-2 w-4 h-4" />
@@ -297,14 +297,14 @@ export default function Home() {
               <Card key={mentor.id} className="hover-lift cursor-pointer group">
                 <CardContent className="p-6 text-center space-y-4">
                   <div className="relative">
-                    <Avatar className="w-20 h-20 mx-auto border-4 border-muted group-hover:border-brand-primary transition-colors">
+                    <Avatar className="w-20 h-20 mx-auto border-4 border-muted group-hover:border-primary transition-colors">
                       <AvatarImage src={mentor.avatarUrl} alt={mentor.name} />
                       <AvatarFallback className="text-lg">
                         {mentor.name.split(' ').map(n => n[0]).join('')}
                       </AvatarFallback>
                     </Avatar>
                     {mentor.verification.idVerified && (
-                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 border-2 border-white rounded-full flex items-center justify-center">
+                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-success border-2 border-surface rounded-full flex items-center justify-center">
                         <Star className="w-3 h-3 text-white fill-white" />
                       </div>
                     )}
@@ -317,7 +317,7 @@ export default function Home() {
                     </p>
                     
                     <div className="flex items-center justify-center gap-1">
-                      <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                      <Star className="w-4 h-4 fill-warning text-warning" />
                       <span className="font-medium">{mentor.ratingAvg}</span>
                       <span className="text-sm text-muted-foreground">({mentor.ratingCount})</span>
                     </div>
@@ -347,10 +347,10 @@ export default function Home() {
       </section>
 
       {/* ExpertMatch AI Promo */}
-      <section className="py-16 bg-gradient-to-r from-blue-50/50 via-background to-cyan-50/50 dark:from-slate-800/50 dark:via-background dark:to-cyan-900/20 border-y">
+      <section className="py-16 bg-canvas border-y">
         <div className="page-container">
           <div className="max-w-4xl mx-auto text-center space-y-6">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-2xl shadow-lg">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl shadow-lg">
               <Zap className="w-8 h-8 text-white" />
             </div>
 
@@ -365,8 +365,8 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
               <div className="space-y-3 p-6 bg-card rounded-xl shadow-soft border hover:shadow-elev transition-shadow">
-                <div className="w-12 h-12 bg-brand-primary/10 rounded-lg flex items-center justify-center mx-auto">
-                  <TrendingUp className="w-6 h-6 text-brand-primary" />
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto">
+                  <TrendingUp className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="font-semibold text-foreground">AI-Powered Matching</h3>
                 <p className="text-sm text-muted-foreground">
@@ -375,8 +375,8 @@ export default function Home() {
               </div>
 
               <div className="space-y-3 p-6 bg-card rounded-xl shadow-soft border hover:shadow-elev transition-shadow">
-                <div className="w-12 h-12 bg-brand-secondary/10 rounded-lg flex items-center justify-center mx-auto">
-                  <Zap className="w-6 h-6 text-brand-secondary" />
+                <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mx-auto">
+                  <Zap className="w-6 h-6 text-secondary" />
                 </div>
                 <h3 className="font-semibold text-foreground">Instant Availability</h3>
                 <p className="text-sm text-muted-foreground">
@@ -385,8 +385,8 @@ export default function Home() {
               </div>
 
               <div className="space-y-3 p-6 bg-card rounded-xl shadow-soft border hover:shadow-elev transition-shadow">
-                <div className="w-12 h-12 bg-brand-secondary/20 rounded-lg flex items-center justify-center mx-auto">
-                  <Star className="w-6 h-6 text-brand-secondary" />
+                <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center mx-auto">
+                  <Star className="w-6 h-6 text-secondary" />
                 </div>
                 <h3 className="font-semibold text-foreground">Per-Minute Billing</h3>
                 <p className="text-sm text-muted-foreground">
@@ -397,7 +397,7 @@ export default function Home() {
 
             <InstantHelpDrawer
               trigger={
-                <Button size="lg" className="bg-gradient-to-r from-brand-primary to-brand-secondary hover:from-brand-secondary hover:to-brand-primary text-white border-0 px-8 py-6 shadow-lg hover:shadow-glow transition-all duration-200">
+                <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary text-white border-0 px-8 py-6 shadow-lg hover:shadow-glow transition-all duration-200">
                   <Zap className="w-5 h-5 mr-2" />
                   Try ExpertMatch AI
                 </Button>
@@ -408,11 +408,11 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-900">
+      <section className="py-20 bg-canvas">
         <div className="page-container">
           <div className="text-center space-y-6 mb-16">
-            <h2 className="text-4xl font-heading font-bold text-slate-800 dark:text-white">What Our Community Says</h2>
-            <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-heading font-bold text-ink-head">What Our Community Says</h2>
+            <p className="text-lg text-ink-body max-w-2xl mx-auto">
               Real stories from learners and teachers who've transformed their skills through SkillSwap
             </p>
           </div>
@@ -423,7 +423,7 @@ export default function Home() {
                 <CardContent className="p-6 space-y-4">
                   <div className="flex items-center gap-1">
                     {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                      <Star key={i} className="w-4 h-4 fill-warning text-warning" />
                     ))}
                   </div>
                   
@@ -455,18 +455,18 @@ export default function Home() {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 bg-gradient-to-br from-cyan-50/50 via-white to-blue-50/30 dark:from-cyan-900/20 dark:via-slate-900 dark:to-blue-900/20">
+      <section className="py-20 bg-canvas">
         <div className="page-container">
           <div className="text-center space-y-6 mb-16">
-            <h2 className="text-4xl font-heading font-bold text-slate-800 dark:text-white">How SkillSwap Works</h2>
-            <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-heading font-bold text-ink-head">How SkillSwap Works</h2>
+            <p className="text-lg text-ink-body max-w-2xl mx-auto">
               Simple steps to start sharing and learning skills in our community
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-brand-primary rounded-2xl flex items-center justify-center mx-auto shadow-lg hover:shadow-glow transition-shadow">
+              <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto shadow-lg hover:shadow-glow transition-shadow">
                 <span className="text-2xl font-bold text-white">1</span>
               </div>
               <h3 className="text-xl font-semibold text-foreground">Offer Your Skills</h3>
@@ -476,8 +476,8 @@ export default function Home() {
             </div>
 
             <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-brand-secondary rounded-2xl flex items-center justify-center mx-auto shadow-lg hover:shadow-glow transition-shadow">
-                <span className="text-2xl font-bold text-foreground">2</span>
+              <div className="w-16 h-16 bg-secondary rounded-2xl flex items-center justify-center mx-auto shadow-lg hover:shadow-glow transition-shadow">
+                <span className="text-2xl font-bold text-white">2</span>
               </div>
               <h3 className="text-xl font-semibold text-foreground">Earn Credits</h3>
               <p className="text-muted-foreground">
@@ -486,7 +486,7 @@ export default function Home() {
             </div>
 
             <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-2xl flex items-center justify-center mx-auto shadow-lg hover:shadow-glow transition-shadow">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto shadow-lg hover:shadow-glow transition-shadow">
                 <span className="text-2xl font-bold text-white">3</span>
               </div>
               <h3 className="text-xl font-semibold text-foreground">Learn Anything</h3>
