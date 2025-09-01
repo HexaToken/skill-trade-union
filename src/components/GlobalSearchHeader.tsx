@@ -502,12 +502,12 @@ export default function GlobalSearchHeader() {
 
           {/* Right: Actions */}
           <nav className="flex items-center gap-3">
-            <Link to="/matches" className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 font-medium">Find a Match</Link>
-            <Link to="/classes" className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 font-medium">Classes</Link>
-            <Link to="/mentors" className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 font-medium">Mentors</Link>
-            <Link to="/challenges" className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 font-medium">Challenges</Link>
-            <Link to="/map" className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 font-medium">Map</Link>
-            <Link to="/donate" className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 font-medium">Donate</Link>
+            <Link to="/matches" className="text-ink-body hover:text-ink-head font-medium">Find a Match</Link>
+            <Link to="/classes" className="text-ink-body hover:text-ink-head font-medium">Classes</Link>
+            <Link to="/mentors" className="text-ink-body hover:text-ink-head font-medium">Mentors</Link>
+            <Link to="/challenges" className="text-ink-body hover:text-ink-head font-medium">Challenges</Link>
+            <Link to="/map" className="text-ink-body hover:text-ink-head font-medium">Map</Link>
+            <Link to="/donate" className="text-ink-body hover:text-ink-head font-medium">Donate</Link>
 
             {/* Credit pill */}
             <CreditBalancePill
@@ -518,8 +518,7 @@ export default function GlobalSearchHeader() {
             {/* CTA */}
             <Link
               to="/login"
-              className="ml-2 inline-flex items-center rounded-pill h-9 px-4 text-sm text-white"
-              style={{ background: 'var(--primary)' }}
+              className="ml-2 inline-flex items-center rounded-pill h-9 px-4 text-sm bg-primary text-white hover:bg-primary-dark transition-colors"
             >
               Sign in
             </Link>
@@ -666,8 +665,7 @@ export default function GlobalSearchHeader() {
               {searchQuery.length > 0 && suggestions.length > 0 && (
                 <Button
                   onClick={handleSearch}
-                  style={{ background: 'var(--color-primary)' }}
-                  className="w-full text-white mt-4"
+                  className="w-full bg-primary hover:bg-primary-dark text-white mt-4"
                 >
                   View all results for "{searchQuery}"
                 </Button>
