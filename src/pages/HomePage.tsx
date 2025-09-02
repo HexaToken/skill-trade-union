@@ -516,7 +516,7 @@ const HomePage = () => {
       </section>
 
       {/* Why SkillSwap is Different */}
-      <section className="py-20 !bg-white dark:!bg-slate-900" style={{ backgroundColor: 'white' }}>
+      <section className="py-20 bg-surface">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center mb-16"
@@ -524,7 +524,7 @@ const HomePage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold font-['Poppins'] mb-4 !text-gray-900 dark:!text-white" style={{ color: '#111827' }}>Why SkillSwap is Different</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-['Poppins'] mb-4 text-ink-head">Why SkillSwap is Different</h2>
             <p className="text-xl text-gray-600 dark:text-gray-400">The future of skill exchange</p>
           </motion.div>
 
@@ -646,7 +646,7 @@ const HomePage = () => {
       </section>
 
       {/* Credits & Membership Teaser */}
-      <section className="py-20 !bg-white dark:!bg-slate-900" style={{ backgroundColor: 'white' }}>
+      <section className="py-20 bg-surface">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -665,7 +665,7 @@ const HomePage = () => {
                 >
                   <Coins className="h-16 w-16 text-white" />
                 </motion.div>
-                <h3 className="text-2xl font-bold mb-4 !text-gray-900 dark:!text-white" style={{ color: '#111827' }}>Credit System</h3>
+                <h3 className="text-2xl font-bold mb-4 text-ink-head">Credit System</h3>
                 <p className="text-gray-600 dark:text-gray-400">
                   Earn credits by teaching, spend them learning. Simple, fair, and transparent.
                 </p>
@@ -678,7 +678,7 @@ const HomePage = () => {
               viewport={{ once: true }}
             >
               <div className="space-y-6">
-                <h3 className="text-3xl font-bold font-['Poppins'] !text-gray-900 dark:!text-white" style={{ color: '#111827' }}>Ready to Go Pro?</h3>
+                <h3 className="text-3xl font-bold font-['Poppins'] text-ink-head">Ready to Go Pro?</h3>
                 <p className="text-xl text-gray-600 dark:text-gray-400">
                   Unlock unlimited matches, priority support, and advanced tools
                 </p>

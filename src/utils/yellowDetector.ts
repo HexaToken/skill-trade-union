@@ -199,17 +199,51 @@ export class YellowDetector {
   }
 }
 
-// Auto-start when DOM is ready
+// AGGRESSIVE AUTO-START - Multiple trigger points
 if (typeof window !== 'undefined') {
   const startDetector = () => {
     const detector = YellowDetector.getInstance();
     detector.start();
+    
+    // Also start advanced detector for maximum coverage
+    import('./advancedYellowDetector').then(module => {
+      const advancedDetector = module.AdvancedYellowDetector.getInstance();
+      // Run immediate scan on start
+      setTimeout(() => {
+        advancedDetector.scanAndMark();
+        advancedDetector.fixDetectedElements();
+      }, 100);
+      
+      // Run periodic scans
+      setInterval(() => {
+        const results = advancedDetector.scanAndMark();
+        if (results.total > 0) {
+          advancedDetector.fixDetectedElements();
+        }
+      }, 2000);
+    });
   };
 
+  // Multiple trigger points
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', startDetector);
   } else {
     startDetector();
+  }
+  
+  // Additional protection - start after any navigation
+  window.addEventListener('popstate', startDetector);
+  window.addEventListener('hashchange', startDetector);
+  
+  // Protection against dynamic content
+  const observer = new MutationObserver(() => {
+    const detector = YellowDetector.getInstance();
+    if (!detector) return;
+    setTimeout(() => detector.scanNow(), 50);
+  });
+  
+  if (document.body) {
+    observer.observe(document.body, { childList: true, subtree: true });
   }
 }
 

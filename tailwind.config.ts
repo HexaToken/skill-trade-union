@@ -132,7 +132,23 @@ export default {
 	},
 	// Explicitly disable yellow and amber color palettes to prevent accidental usage
 	corePlugins: {
-		// Keep all core plugins except we'll override colors
+		// Remove yellow and amber from default color palette
 	},
+	safelist: [
+		// Explicitly prevent any yellow/amber utilities
+		{
+			pattern: /^(text|bg|border)-(yellow|amber)-.*/,
+			variants: [],
+		}
+	],
+	blocklist: [
+		// Block all yellow and amber utilities
+		'text-yellow-50', 'text-yellow-100', 'text-yellow-200', 'text-yellow-300', 'text-yellow-400', 'text-yellow-500', 'text-yellow-600', 'text-yellow-700', 'text-yellow-800', 'text-yellow-900',
+		'bg-yellow-50', 'bg-yellow-100', 'bg-yellow-200', 'bg-yellow-300', 'bg-yellow-400', 'bg-yellow-500', 'bg-yellow-600', 'bg-yellow-700', 'bg-yellow-800', 'bg-yellow-900',
+		'border-yellow-50', 'border-yellow-100', 'border-yellow-200', 'border-yellow-300', 'border-yellow-400', 'border-yellow-500', 'border-yellow-600', 'border-yellow-700', 'border-yellow-800', 'border-yellow-900',
+		'text-amber-50', 'text-amber-100', 'text-amber-200', 'text-amber-300', 'text-amber-400', 'text-amber-500', 'text-amber-600', 'text-amber-700', 'text-amber-800', 'text-amber-900',
+		'bg-amber-50', 'bg-amber-100', 'bg-amber-200', 'bg-amber-300', 'bg-amber-400', 'bg-amber-500', 'bg-amber-600', 'bg-amber-700', 'bg-amber-800', 'bg-amber-900',
+		'border-amber-50', 'border-amber-100', 'border-amber-200', 'border-amber-300', 'border-amber-400', 'border-amber-500', 'border-amber-600', 'border-amber-700', 'border-amber-800', 'border-amber-900',
+	],
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
