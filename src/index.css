@@ -25,7 +25,7 @@
 
   /* States - Light Theme */
   --success: 22 163 74;      /* #16A34A */
-  --warning: 245 158 11;     /* #F59E0B */
+  --warning: 251 113 27;     /* #FB711B orange instead of yellow */
   --danger: 239 68 68;       /* #EF4444 */
 
   /* Gradients */
@@ -71,7 +71,7 @@
 
   /* States - Dark Theme */
   --success: 34 197 94;      /* #22C55E */
-  --warning: 251 191 36;     /* #FBBF24 */
+  --warning: 249 115 22;     /* #F97316 orange instead of yellow */
   --danger: 248 113 113;     /* #F87171 */
 
   /* Gradients */

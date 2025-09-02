@@ -112,7 +112,7 @@ const HomePage = () => {
                 className="flex flex-col sm:flex-row gap-4"
                 variants={fadeInUp}
               >
-                <Button asChild size="lg" className="h-12 px-8 text-lg">
+                <Button asChild size="lg" className="h-12 px-8 text-lg bg-primary text-white hover:bg-primary/90">
                   <Link to="/search">
                     <Users className="mr-2 h-5 w-5" />
                     Find a Match
