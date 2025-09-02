@@ -415,7 +415,7 @@ export default function MapPage() {
               <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-1/4 left-1/5 w-32 h-32 bg-red-500/20 rounded-full blur-xl" />
                 <div className="absolute top-1/3 left-1/2 w-24 h-24 bg-orange-500/20 rounded-full blur-xl" />
-                <div className="absolute top-2/3 left-2/3 w-20 h-20 bg-yellow-500/20 rounded-full blur-xl" />
+                <div className="absolute top-2/3 left-2/3 w-20 h-20 bg-warning/20 rounded-full blur-xl" />
               </div>
             )}
           </div>
@@ -542,7 +542,7 @@ export default function MapPage() {
                         <div className="flex items-center gap-2">
                           <p className="font-medium text-sm truncate">{mentor.name}</p>
                           <div className="flex items-center gap-1">
-                            <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                            <Star className="w-3 h-3 fill-warning text-warning" />
                             <span className="text-xs">{mentor.ratingAvg}</span>
                           </div>
                         </div>
@@ -677,7 +677,7 @@ export default function MapPage() {
                             <div className="flex items-center gap-2 mb-1">
                               <p className="font-medium truncate">{mentor.name}</p>
                               <div className="flex items-center gap-1">
-                                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                                <Star className="w-4 h-4 fill-warning text-warning" />
                                 <span className="text-sm">{mentor.ratingAvg}</span>
                               </div>
                             </div>

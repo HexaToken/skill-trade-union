@@ -575,7 +575,7 @@ export const mentorTiers: MentorTier[] = [
     name: 'Gold', 
     creditsPerHour: 25,
     features: ['1:1 Sessions', 'Priority Support', 'Portfolio Review', 'Career Guidance'],
-    color: '#FFD700'
+    color: 'hsl(var(--warning))'
   },
   {
     id: 'platinum',

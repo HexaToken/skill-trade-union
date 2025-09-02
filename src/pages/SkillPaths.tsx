@@ -86,7 +86,7 @@ export default function SkillPaths() {
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h1 className="text-5xl font-bold tracking-tight">
               Master New Skills with
-              <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent"> Guided Learning Paths</span>
+              <span className="bg-gradient-to-r from-warning to-secondary bg-clip-text text-transparent"> Guided Learning Paths</span>
             </h1>
             <p className="text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed">
               Follow structured learning journeys designed by experts. Track your progress, 
@@ -211,7 +211,7 @@ export default function SkillPaths() {
                       <h3 className="font-semibold text-lg text-slate-900 dark:text-white mb-2">{user.name}</h3>
                       <p className="text-sm text-muted-foreground">{(user as any).headline || user.bio}</p>
                       <div className="flex items-center justify-center gap-2 mt-3">
-                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                        <Star className="w-4 h-4 fill-warning text-warning" />
                         <span className="text-sm font-medium">{user.ratingAvg}</span>
                         <span className="text-xs text-muted-foreground">({user.ratingCount} reviews)</span>
                       </div>
@@ -300,7 +300,7 @@ function SkillPathCard({ path, featured = false, className }: SkillPathCardProps
         {/* Overlay badges */}
         <div className="absolute top-4 left-4 flex flex-wrap gap-2">
           {featured && (
-            <Badge className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black border-0 font-semibold shadow-lg">
+            <Badge className="bg-gradient-to-r from-warning to-secondary text-white border-0 font-semibold shadow-lg">
               <Award className="w-3 h-3 mr-1" />
               Featured
             </Badge>
@@ -316,8 +316,8 @@ function SkillPathCard({ path, featured = false, className }: SkillPathCardProps
             <span className="text-muted-foreground">{(path as any).studentsCount || 0} students</span>
           </div>
           <div className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-lg px-3 py-1 text-sm font-medium">
-            <Star className="w-3 h-3 inline mr-1 fill-yellow-400 text-yellow-400" />
-            <span className="text-yellow-600">{(path as any).ratingAvg || 4.5}</span>
+            <Star className="w-3 h-3 inline mr-1 fill-warning text-warning" />
+            <span className="text-warning">{(path as any).ratingAvg || 4.5}</span>
           </div>
           <div className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-lg px-3 py-1 text-sm font-medium">
             <Clock className="w-3 h-3 inline mr-1" />

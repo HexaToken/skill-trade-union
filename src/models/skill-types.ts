@@ -260,7 +260,7 @@ export function getSkillCategoryColor(category: SkillCategory): string {
     'Design': '#EF4444',          // red-500
     'Development': '#3B82F6',     // blue-500
     'Language': '#10B981',        // emerald-500
-    'Music': '#F59E0B',           // amber-500
+    'Music': 'hsl(var(--warning))',           // warning color
     'Business': '#8B5CF6',        // violet-500
     'DIY': '#F97316',             // orange-500
     'Health/Fitness': '#06B6D4',  // cyan-500

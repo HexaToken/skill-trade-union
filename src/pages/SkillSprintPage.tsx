@@ -173,7 +173,7 @@ const SkillSprintPage: React.FC = () => {
 
   const getRankBadge = (rank: number) => {
     switch (rank) {
-      case 1: return <Crown className="h-4 w-4 text-yellow-500" />;
+      case 1: return <Crown className="h-4 w-4 text-warning" />;
       case 2: return <Medal className="h-4 w-4 text-gray-400" />;
       case 3: return <Award className="h-4 w-4 text-amber-600" />;
       default: return <span className="text-sm font-bold text-[#64748B]">#{rank}</span>;

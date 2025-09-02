@@ -317,7 +317,7 @@ export const skillBadges: SkillBadge[] = [
     requirements: {
       hoursTeaching: 10
     },
-    color: '#F59E0B',
+    color: 'hsl(var(--warning))',
     rarity: 'common'
   }
 ];
