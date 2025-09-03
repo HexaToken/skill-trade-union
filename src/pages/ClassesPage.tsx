@@ -200,7 +200,7 @@ export const ClassesPage = () => {
                 />
               </div>
 
-              <Button variant="outline" className="w-full mt-6 border-border">
+              <Button variant="outline" className="w-full mt-6">
                 Clear All Filters
               </Button>
             </div>
@@ -250,13 +250,13 @@ export const ClassesPage = () => {
 
             {/* Pagination */}
             <div className="flex justify-center mt-12">
-              <div className="flex space-x-2">
-                <Button variant="outline" className="border-border">Previous</Button>
-                <Button className="bg-primary hover:bg-primary-dark text-white">1</Button>
-                <Button variant="outline" className="border-border">2</Button>
-                <Button variant="outline" className="border-border">3</Button>
-                <Button variant="outline" className="border-border">Next</Button>
-              </div>
+            <div className="flex space-x-2">
+              <Button variant="outline">Previous</Button>
+              <Button>1</Button>
+              <Button variant="outline">2</Button>
+              <Button variant="outline">3</Button>
+              <Button variant="outline">Next</Button>
+            </div>
             </div>
           </div>
         </div>

@@ -42,8 +42,7 @@ export const SiteHeader = () => {
           <div className="flex items-center space-x-4">
             <ThemeToggle />
             <Button 
-              variant="default" 
-              className="hidden sm:flex bg-primary hover:bg-primary-dark text-white"
+              className="hidden sm:flex"
             >
               Sign In
             </Button>
@@ -79,7 +78,7 @@ export const SiteHeader = () => {
                 </Link>
               ))}
               <div className="px-4 pt-2">
-                <Button className="w-full bg-primary hover:bg-primary-dark text-white">
+                <Button className="w-full">
                   Sign In
                 </Button>
               </div>

@@ -60,7 +60,7 @@ export const SimpleCard = ({
       {/* Rating & Response */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-1">
-          <Star className="h-4 w-4 fill-warning text-warning" />
+          <Star className="h-4 w-4 fill-current text-warning" />
           <span className="text-sm font-medium text-ink-head">{rating}</span>
           <span className="text-sm text-ink-body">({reviewCount})</span>
         </div>
@@ -107,7 +107,6 @@ export const SimpleCard = ({
           <Button 
             size="sm"
             onClick={() => onBookSession(id)}
-            className="bg-primary hover:bg-primary-dark text-white"
           >
             <Calendar className="h-4 w-4 mr-1" />
             Book

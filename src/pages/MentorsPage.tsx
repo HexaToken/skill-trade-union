@@ -124,7 +124,7 @@ export const MentorsPage = () => {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-12 h-14 text-lg bg-elevated border-border"
                 />
-                <Button className="absolute right-2 top-2 bg-primary hover:bg-primary-dark text-white">
+                <Button className="absolute right-2 top-2">
                   Search
                 </Button>
               </div>
@@ -243,7 +243,7 @@ export const MentorsPage = () => {
                     />
                   </div>
 
-                  <Button variant="outline" className="w-full mt-6 border-border">
+                  <Button variant="outline" className="w-full mt-6">
                     Clear All Filters
                   </Button>
                 </div>
@@ -270,13 +270,13 @@ export const MentorsPage = () => {
 
                 {/* Pagination */}
                 <div className="flex justify-center mt-12">
-                  <div className="flex space-x-2">
-                    <Button variant="outline" className="border-border">Previous</Button>
-                    <Button className="bg-primary hover:bg-primary-dark text-white">1</Button>
-                    <Button variant="outline" className="border-border">2</Button>
-                    <Button variant="outline" className="border-border">3</Button>
-                    <Button variant="outline" className="border-border">Next</Button>
-                  </div>
+            <div className="flex space-x-2">
+              <Button variant="outline">Previous</Button>
+              <Button>1</Button>
+              <Button variant="outline">2</Button>
+              <Button variant="outline">3</Button>
+              <Button variant="outline">Next</Button>
+            </div>
                 </div>
               </div>
             </div>
@@ -298,7 +298,7 @@ export const MentorsPage = () => {
                 <h3 className="text-lg font-semibold text-ink-head">Sarah Chen</h3>
                 <p className="text-ink-body">Senior Frontend Engineer at Meta</p>
                 <div className="flex items-center justify-center space-x-1 mt-2">
-                  <Star className="h-4 w-4 fill-warning text-warning" />
+                  <Star className="h-4 w-4 fill-current text-warning" />
                   <span className="text-sm font-medium">4.9</span>
                   <span className="text-sm text-ink-body">(127 reviews)</span>
                 </div>
@@ -310,7 +310,7 @@ export const MentorsPage = () => {
                   <span className="text-lg font-semibold text-ink-head">$150/hour</span>
                 </div>
                 
-                <Button className="w-full bg-primary hover:bg-primary-dark text-white">
+                <Button className="w-full">
                   Continue to Booking
                 </Button>
               </div>

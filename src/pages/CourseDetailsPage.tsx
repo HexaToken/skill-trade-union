@@ -100,11 +100,11 @@ export const CourseDetailsPage = () => {
 
                   {/* Stats */}
                   <div className="flex flex-wrap items-center gap-6 text-sm">
-                    <div className="flex items-center space-x-1">
-                      <Star className="h-4 w-4 fill-warning text-warning" />
-                      <span className="font-medium text-ink-head">{course.rating}</span>
-                      <span className="text-ink-body">({course.reviewCount} reviews)</span>
-                    </div>
+                  <div className="flex items-center space-x-1">
+                    <Star className="h-4 w-4 fill-current text-warning" />
+                    <span className="font-medium text-ink-head">{course.rating}</span>
+                    <span className="text-ink-body">({course.reviewCount} reviews)</span>
+                  </div>
                     <div className="flex items-center space-x-1">
                       <Users className="h-4 w-4 text-ink-body" />
                       <span className="text-ink-body">{course.enrolledCount} students</span>
@@ -162,7 +162,7 @@ export const CourseDetailsPage = () => {
                     </div>
 
                     <Button 
-                      className="w-full mb-4 bg-primary hover:bg-primary-dark text-white"
+                      className="w-full mb-4"
                       size="lg"
                       onClick={() => setIsEnrolled(!isEnrolled)}
                     >
@@ -196,7 +196,7 @@ export const CourseDetailsPage = () => {
                       </div>
                     </div>
 
-                    <Button variant="outline" className="w-full mt-4 border-border">
+                    <Button variant="outline" className="w-full mt-4">
                       <Share2 className="h-4 w-4 mr-2" />
                       Share Course
                     </Button>
@@ -225,7 +225,7 @@ export const CourseDetailsPage = () => {
               {/* What You'll Learn */}
               <section>
                 <h2 className="text-2xl font-bold text-ink-head mb-6">What you'll learn</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {learningOutcomes.map((outcome, index) => (
                     <div key={index} className="flex items-start space-x-3">
                       <CheckCircle className="h-5 w-5 text-success mt-0.5 flex-shrink-0" />
@@ -277,7 +277,7 @@ export const CourseDetailsPage = () => {
                       <div className="text-4xl font-bold text-ink-head">{course.rating}</div>
                       <div className="flex justify-center mb-2">
                         {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="h-4 w-4 fill-warning text-warning" />
+                          <Star key={i} className="h-4 w-4 fill-current text-warning" />
                         ))}
                       </div>
                       <div className="text-sm text-ink-body">Course Rating</div>
@@ -306,13 +306,13 @@ export const CourseDetailsPage = () => {
                       <div className="aspect-video bg-elevated rounded-lg mb-3"></div>
                       <h4 className="font-medium text-ink-head mb-1">Related Course {i}</h4>
                       <div className="text-sm text-ink-body mb-2">Instructor Name</div>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-1">
-                          <Star className="h-3 w-3 fill-warning text-warning" />
-                          <span className="text-sm">4.{8-i}</span>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-1">
+                            <Star className="h-3 w-3 fill-current text-warning" />
+                            <span className="text-sm">4.{8-i}</span>
+                          </div>
+                          <div className="text-sm font-medium text-ink-head">{20+i*5} Credits</div>
                         </div>
-                        <div className="text-sm font-medium text-ink-head">{20+i*5} Credits</div>
-                      </div>
                     </div>
                   ))}
                 </div>

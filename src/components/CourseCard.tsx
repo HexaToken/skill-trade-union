@@ -69,7 +69,7 @@ export const CourseCard = ({
         {/* Rating & Stats */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-1">
-            <Star className="h-4 w-4 fill-warning text-warning" />
+            <Star className="h-4 w-4 fill-current text-warning" />
             <span className="text-sm font-medium text-ink-head">{rating}</span>
             <span className="text-sm text-ink-body">({reviewCount})</span>
           </div>
@@ -107,8 +107,7 @@ export const CourseCard = ({
             {credits} Credits
           </div>
           <Button 
-            size="sm" 
-            className="bg-primary hover:bg-primary-dark text-white"
+            size="sm"
           >
             View Details
           </Button>
