@@ -68,7 +68,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-gray-900 dark:to-gray-800 py-20 lg:py-32">
+      <section className="bg-canvas py-20 lg:py-32">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Column - Content */}
@@ -79,7 +79,7 @@ const HomePage = () => {
               variants={staggerChildren}
             >
               <motion.h1 
-                className="text-4xl md:text-5xl lg:text-6xl font-bold font-['Poppins'] text-gray-900 dark:text-white leading-tight"
+                className="text-4xl md:text-5xl lg:text-6xl font-bold font-['Poppins'] text-ink-head leading-tight"
                 variants={fadeInUp}
               >
                 Trade Skills. Learn Anything.{' '}
@@ -87,7 +87,7 @@ const HomePage = () => {
               </motion.h1>
               
               <motion.p 
-                className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed"
+                className="text-xl text-ink-body leading-relaxed"
                 variants={fadeInUp}
               >
                 SkillSwap connects people to exchange knowledge and services — powered by AI matching and a time-based credit system.
@@ -98,12 +98,12 @@ const HomePage = () => {
                 className="relative max-w-md"
                 variants={fadeInUp}
               >
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-ink-body h-5 w-5" />
                 <Input
                   placeholder="What skill do you want to learn?"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 h-12 text-lg border-2 border-gray-200 focus:border-primary bg-white dark:bg-gray-800"
+                  className="pl-10 h-12 text-lg border-2 border-border focus:border-primary bg-surface"
                 />
               </motion.div>
 
@@ -112,13 +112,13 @@ const HomePage = () => {
                 className="flex flex-col sm:flex-row gap-4"
                 variants={fadeInUp}
               >
-                <Button asChild size="lg" className="h-12 px-8 text-lg bg-primary text-white hover:bg-primary/90">
+                <Button asChild size="lg" className="h-12 px-8 text-lg">
                   <Link to="/search">
                     <Users className="mr-2 h-5 w-5" />
                     Find a Match
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="h-12 px-8 text-lg border-primary text-primary hover:bg-primary/5">
+                <Button asChild variant="outline" size="lg" className="h-12 px-8 text-lg">
                   <Link to="/classes">
                     <BookOpen className="mr-2 h-5 w-5" />
                     Browse Courses
@@ -134,24 +134,24 @@ const HomePage = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl">
+              <div className="relative bg-surface rounded-3xl p-8 shadow-2xl">
                 <div className="flex items-center justify-between mb-8">
                   <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 bg-brand-gradient rounded-full flex items-center justify-center">
                       <Users className="h-6 w-6 text-white" />
                     </div>
                     <div>
                       <div className="font-semibold">You</div>
-                      <div className="text-sm text-gray-500">Guitar Player</div>
+                      <div className="text-sm text-ink-body">Guitar Player</div>
                     </div>
                   </div>
-                  <ArrowRight className="h-6 w-6 text-gray-400" />
+                  <ArrowRight className="h-6 w-6 text-ink-body" />
                   <div className="flex items-center space-x-4">
                     <div>
                       <div className="font-semibold">Marcus</div>
-                      <div className="text-sm text-gray-500">Web Developer</div>
+                      <div className="text-sm text-ink-body">Web Developer</div>
                     </div>
-                    <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 bg-brand-gradient rounded-full flex items-center justify-center">
                       <span className="text-2xl">💻</span>
                     </div>
                   </div>
@@ -166,7 +166,7 @@ const HomePage = () => {
                     {skillIcons[activeSkillIcon]}
                   </motion.div>
                   <div className="text-lg font-semibold text-primary">Skills Swapping!</div>
-                  <div className="text-sm text-gray-500 mt-2">AI-powered matching in action</div>
+                  <div className="text-sm text-ink-body mt-2">AI-powered matching in action</div>
                 </div>
 
                 <Button className="w-full mt-6" variant="ghost">
@@ -180,7 +180,7 @@ const HomePage = () => {
       </section>
 
       {/* Trust/Social Proof */}
-      <section className="py-12 bg-white dark:bg-gray-900 border-b">
+      <section className="py-12 bg-surface border-b border-border">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center"
@@ -188,7 +188,7 @@ const HomePage = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            <p className="text-gray-600 dark:text-gray-400 mb-8">Trusted by learners and experts in 50+ countries</p>
+            <p className="text-ink-body mb-8">Trusted by learners and experts in 50+ countries</p>
             <div className="flex justify-center items-center space-x-12 opacity-50">
               <div className="text-2xl font-bold">TechCrunch</div>
               <div className="text-2xl font-bold">Forbes</div>
@@ -200,7 +200,7 @@ const HomePage = () => {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
+      <section className="py-20 bg-elevated">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center mb-16"
@@ -209,7 +209,7 @@ const HomePage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold font-['Poppins'] mb-4">How It Works</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400">Three simple steps to start trading skills</p>
+            <p className="text-xl text-ink-body">Three simple steps to start trading skills</p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -246,7 +246,7 @@ const HomePage = () => {
                   </div>
                   <div className="text-sm font-semibold text-primary mb-2">Step {item.step}</div>
                   <h3 className="text-xl font-bold mb-4">{item.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-400">{item.description}</p>
+                  <p className="text-ink-body">{item.description}</p>
                 </Card>
               </motion.div>
             ))}
@@ -264,7 +264,7 @@ const HomePage = () => {
       </section>
 
       {/* Dual Discovery Section */}
-      <section className="py-20 bg-white dark:bg-slate-900 !bg-white dark:!bg-slate-900">
+      <section className="py-20 bg-surface">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center mb-12"
@@ -272,33 +272,23 @@ const HomePage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold font-['Poppins'] mb-4 text-foreground">Discover & Learn</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400">Connect with people or join structured courses</p>
+            <h2 className="text-3xl md:text-4xl font-bold font-['Poppins'] mb-4 text-ink-head">Discover & Learn</h2>
+            <p className="text-xl text-ink-body">Connect with people or join structured courses</p>
           </motion.div>
 
           <Tabs defaultValue="people" className="space-y-8 home-tabs">
             <div className="flex justify-center mb-8">
-              <TabsList className="grid w-[300px] grid-cols-2 !bg-gray-200 dark:!bg-gray-700 p-1 h-12 border border-border">
+              <TabsList className="grid w-[300px] grid-cols-2 bg-elevated p-1 h-12 border border-border">
                 <TabsTrigger
                   value="people"
-                  className="flex items-center space-x-2 rounded-md mx-0.5 text-gray-600 dark:text-gray-300"
-                  style={{
-                    '--active-bg': '#ffffff',
-                    '--active-bg-dark': '#4b5563',
-                    '--active-color': 'var(--ink-head)'
-                  } as React.CSSProperties}
+                  className="flex items-center space-x-2 rounded-md mx-0.5 text-ink-body data-[state=active]:bg-surface data-[state=active]:text-ink-head"
                 >
                   <Users className="h-4 w-4" />
                   <span>People</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="courses"
-                  className="flex items-center space-x-2 rounded-md mx-0.5 text-gray-600 dark:text-gray-300"
-                  style={{
-                    '--active-bg': '#ffffff',
-                    '--active-bg-dark': '#4b5563',
-                    '--active-color': 'var(--ink-head)'
-                  } as React.CSSProperties}
+                  className="flex items-center space-x-2 rounded-md mx-0.5 text-ink-body data-[state=active]:bg-surface data-[state=active]:text-ink-head"
                 >
                   <BookOpen className="h-4 w-4" />
                   <span>Courses</span>
@@ -331,11 +321,11 @@ const HomePage = () => {
                             {person.skillsOffered[0]?.skillId.replace('-', ' ')}
                           </Badge>
                           <div className="flex items-center justify-center space-x-1">
-                            <Star className="h-4 w-4 fill-orange-400 text-orange-400" />
+                            <Star className="h-4 w-4 fill-current text-warning" />
                             <span className="font-semibold">{person.ratingAvg}</span>
-                            <span className="text-gray-500">({person.ratingCount})</span>
+                            <span className="text-ink-body">({person.ratingCount})</span>
                           </div>
-                          <div className="text-sm text-gray-600 mt-1">
+                          <div className="text-sm text-ink-body mt-1">
                             {person.wallet.credits} credits/hour
                           </div>
                         </div>
@@ -366,7 +356,7 @@ const HomePage = () => {
                 ))}
               </div>
               <div className="text-center mt-8">
-                <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/5">
+                <Button asChild variant="outline" size="lg">
                   <Link to="/search">
                     View All People
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -386,8 +376,8 @@ const HomePage = () => {
                     transition={{ delay: index * 0.1 }}
                   >
                     <Card className="hover:shadow-lg transition-shadow">
-                      <div className="aspect-video bg-gradient-to-br from-blue-100 to-purple-100 rounded-t-lg flex items-center justify-center">
-                        <BookOpen className="h-12 w-12 text-gray-400" />
+                      <div className="aspect-video bg-elevated rounded-t-lg flex items-center justify-center">
+                        <BookOpen className="h-12 w-12 text-ink-body" />
                       </div>
                       <CardHeader>
                         <CardTitle className="text-lg">{course.title}</CardTitle>
@@ -400,16 +390,16 @@ const HomePage = () => {
                               <AvatarImage src={mockData.users.find(u => u.id === course.teacherId)?.avatarUrl} />
                               <AvatarFallback>T</AvatarFallback>
                             </Avatar>
-                            <span className="text-sm text-gray-600">
+                            <span className="text-sm text-ink-body">
                               {mockData.users.find(u => u.id === course.teacherId)?.name}
                             </span>
                           </div>
                           <Badge variant="outline">{course.pricePerSeat} credits</Badge>
                         </div>
-                        <div className="flex items-center justify-between text-sm text-gray-600">
+                        <div className="flex items-center justify-between text-sm text-ink-body">
                           <span>{course.currentSeats}/{course.maxSeats} enrolled</span>
                           <div className="flex items-center space-x-1">
-                            <Star className="h-4 w-4 fill-orange-400 text-orange-400" />
+                            <Star className="h-4 w-4 fill-current text-warning" />
                             <span>4.8</span>
                           </div>
                         </div>
@@ -456,7 +446,7 @@ const HomePage = () => {
       </section>
 
       {/* Community Challenges */}
-      <section className="py-20 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-gray-800 dark:to-gray-900">
+      <section className="py-20 bg-elevated">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center mb-12"
@@ -465,7 +455,7 @@ const HomePage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold font-['Poppins'] mb-4">Community Challenges</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400">Join challenges and climb the leaderboards</p>
+            <p className="text-xl text-ink-body">Join challenges and climb the leaderboards</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -480,18 +470,18 @@ const HomePage = () => {
                 <Card className="p-6 hover:shadow-lg transition-shadow">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center space-x-3">
-                      <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                      <div className="w-12 h-12 bg-brand-gradient rounded-full flex items-center justify-center">
                         <Target className="h-6 w-6 text-white" />
                       </div>
                       <div>
                         <h3 className="font-bold text-lg">{challenge.title}</h3>
-                        <p className="text-gray-600 dark:text-gray-400 text-sm">{challenge.description}</p>
+                        <p className="text-ink-body text-sm">{challenge.description}</p>
                       </div>
                     </div>
                     <Badge variant="secondary">{challenge.rewardCredits} credits</Badge>
                   </div>
                   
-                  <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400 mb-4">
+                  <div className="flex items-center justify-between text-sm text-ink-body mb-4">
                     <span>{challenge.participants} participants</span>
                     <span>12 days left</span>
                   </div>
@@ -505,7 +495,7 @@ const HomePage = () => {
           </div>
 
           <div className="text-center mt-8">
-            <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/5">
+            <Button asChild variant="outline" size="lg">
               <Link to="/challenges">
                 View All Challenges
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -525,7 +515,7 @@ const HomePage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold font-['Poppins'] mb-4 text-ink-head">Why SkillSwap is Different</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400">The future of skill exchange</p>
+            <p className="text-xl text-ink-body">The future of skill exchange</p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -557,19 +547,11 @@ const HomePage = () => {
                 transition={{ delay: index * 0.2 }}
               >
                 <Card className="text-center p-8 h-full hover:shadow-lg transition-shadow">
-                  <div
-                    className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-6"
-                    style={{
-                      background: 'linear-gradient(to right, #0056D2, #06B6D4)',
-                      color: 'white'
-                    }}
-                  >
-                    <div className="text-white">
-                      {feature.icon}
-                    </div>
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-brand-gradient rounded-full mb-6 text-white">
+                    {feature.icon}
                   </div>
                   <h3 className="text-xl font-bold mb-4">{feature.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-400">{feature.description}</p>
+                  <p className="text-ink-body">{feature.description}</p>
                 </Card>
               </motion.div>
             ))}
@@ -578,7 +560,7 @@ const HomePage = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
+      <section className="py-20 bg-elevated">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center mb-12"
@@ -587,7 +569,7 @@ const HomePage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold font-['Poppins'] mb-4">What Our Community Says</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400">Real stories from skill swappers worldwide</p>
+            <p className="text-xl text-ink-body">Real stories from skill swappers worldwide</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -629,15 +611,15 @@ const HomePage = () => {
                     </Avatar>
                     <div>
                       <div className="font-semibold">{testimonial.name}</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">{testimonial.skillSwapped}</div>
+                      <div className="text-sm text-ink-body">{testimonial.skillSwapped}</div>
                     </div>
                   </div>
                   <div className="flex items-center space-x-1 mb-3">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-orange-400 text-orange-400" />
+                      <Star key={i} className="h-4 w-4 fill-current text-warning" />
                     ))}
                   </div>
-                  <p className="text-gray-600 dark:text-gray-400">"{testimonial.review}"</p>
+                  <p className="text-ink-body">"{testimonial.review}"</p>
                 </Card>
               </motion.div>
             ))}
@@ -656,17 +638,14 @@ const HomePage = () => {
             >
               <div className="text-center">
                 <motion.div
-                  className="inline-flex items-center justify-center w-32 h-32 rounded-full mb-8"
-                  style={{
-                    background: 'linear-gradient(to right, #0056D2, #06B6D4)'
-                  }}
+                  className="inline-flex items-center justify-center w-32 h-32 bg-brand-gradient rounded-full mb-8"
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 >
                   <Coins className="h-16 w-16 text-white" />
                 </motion.div>
                 <h3 className="text-2xl font-bold mb-4 text-ink-head">Credit System</h3>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-ink-body">
                   Earn credits by teaching, spend them learning. Simple, fair, and transparent.
                 </p>
               </div>
@@ -679,7 +658,7 @@ const HomePage = () => {
             >
               <div className="space-y-6">
                 <h3 className="text-3xl font-bold font-['Poppins'] text-ink-head">Ready to Go Pro?</h3>
-                <p className="text-xl text-gray-600 dark:text-gray-400">
+                <p className="text-xl text-ink-body">
                   Unlock unlimited matches, priority support, and advanced tools
                 </p>
                 
@@ -692,7 +671,7 @@ const HomePage = () => {
                     "Early access to new features"
                   ].map((feature) => (
                     <div key={feature} className="flex items-center space-x-3">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
+                      <CheckCircle className="h-5 w-5 text-success" />
                       <span>{feature}</span>
                     </div>
                   ))}
@@ -701,7 +680,6 @@ const HomePage = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-primary text-primary hover:bg-primary/5"
                 >
                   <Crown className="mr-2 h-5 w-5" />
                   Upgrade to Pro
@@ -728,7 +706,7 @@ const HomePage = () => {
             <div className="max-w-md mx-auto flex space-x-4 mb-8">
               <Input 
                 placeholder="Enter your email"
-                className="bg-white text-gray-900 border-0"
+                className="bg-surface text-ink-head border-0"
               />
               <Button variant="secondary" size="lg">
                 Subscribe
