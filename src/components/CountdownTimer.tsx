@@ -86,7 +86,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
 
   if (timeLeft.total <= 0) {
     return (
-      <div className={cn('font-semibold text-gray-500 dark:text-gray-400', getSizeClasses(), className)}>
+      <div className={cn('font-semibold text-ink-body', getSizeClasses(), className)}>
         Sprint Ended
       </div>
     );

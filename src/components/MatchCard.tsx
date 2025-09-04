@@ -176,7 +176,7 @@ export default function MatchCard({
               <MapPin className="w-4 h-4 text-slate-400" />
               <span className="truncate">{location}</span>
               {sameCity && (
-                <Badge size="sm" className="bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-700 text-xs">
+                <Badge size="sm" className="bg-elevated text-ink-head border-border text-xs">
                   Same city
                 </Badge>
               )}

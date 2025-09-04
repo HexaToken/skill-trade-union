@@ -72,7 +72,7 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
       case 1:
         return <Trophy className="h-5 w-5 text-orange-500" />;
       case 2:
-        return <Medal className="h-5 w-5 text-gray-400" />;
+        return <Medal className="h-5 w-5 text-ink-body" />;
       case 3:
         return <Award className="h-5 w-5 text-orange-600" />;
       default:
@@ -90,9 +90,9 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
   const getDeltaIcon = (delta?: number) => {
     if (!delta) return null;
     if (delta > 0) {
-      return <TrendingUp className="h-3 w-3 text-green-500" />;
+      return <TrendingUp className="h-3 w-3 text-success" />;
     } else if (delta < 0) {
-      return <TrendingDown className="h-3 w-3 text-red-500" />;
+      return <TrendingDown className="h-3 w-3 text-danger" />;
     }
     return null;
   };

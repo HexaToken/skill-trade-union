@@ -205,7 +205,7 @@ export default function InstantHelpDrawer({
       <div className="space-y-3">
         <div className="flex items-center justify-between text-sm">
           <span>Analyzing request...</span>
-          <CheckCircle className="w-4 h-4 text-green-500" />
+          <CheckCircle className="w-4 h-4 text-success" />
         </div>
         <div className="flex items-center justify-between text-sm">
           <span>Checking expert availability...</span>
@@ -284,7 +284,7 @@ export default function InstantHelpDrawer({
                         </span>
                       </div>
                       
-                      <div className="flex items-center gap-1 text-green-600">
+                      <div className="flex items-center gap-1 text-success">
                         <div className="w-2 h-2 bg-green-500 rounded-full" />
                         <span>Responds in {responseTime}s</span>
                       </div>

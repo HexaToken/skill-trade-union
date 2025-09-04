@@ -57,7 +57,7 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({
     return (
       <div className={cn(
         'flex items-center gap-1 text-sm font-medium',
-        isPositive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
+        isPositive ? 'text-success' : 'text-danger'
       )}>
         <TrendingUp className={cn('h-3 w-3', !isPositive && 'rotate-180')} />
         {isPositive ? '+' : ''}{delta}

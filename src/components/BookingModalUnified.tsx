@@ -164,7 +164,7 @@ export default function BookingModalUnified({
             </div>
             
             <div className="space-y-2">
-              <h3 className="text-2xl font-bold text-[#0F172A] dark:text-[#F1F5F9] font-heading">
+              <h3 className="text-2xl font-bold text-ink-head font-heading">
                 {mode === 'mentor' ? "You're booked!" : "Enrollment successful!"}
               </h3>
               <p className="text-[#334155] dark:text-[#E2E8F0]">
@@ -207,7 +207,7 @@ export default function BookingModalUnified({
       <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto bg-white dark:bg-[#1E293B] border-[#06B6D4]/20">
           <DialogHeader>
-            <DialogTitle className="text-xl font-bold text-[#0F172A] dark:text-[#F1F5F9] font-heading">
+            <DialogTitle className="text-xl font-bold text-ink-head font-heading">
               {mode === 'mentor' 
                 ? `Book Session with ${mentor?.name || 'Mentor'}`
                 : `Enroll in ${course?.title || 'Course'}`
@@ -237,7 +237,7 @@ export default function BookingModalUnified({
                         </Badge>
                       )}
                       {mentor.skillTested && (
-                        <Badge className="bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 text-xs">
+                        <Badge className="bg-elevated text-ink-head border-border text-xs">
                           <Zap className="w-3 h-3 mr-1" />
                           Skill Tested
                         </Badge>
@@ -499,7 +499,7 @@ export default function BookingModalUnified({
                       <div className="text-sm text-[#334155] dark:text-[#E2E8F0]">
                         Balance: {userBalance} credits
                         {!canAfford && (
-                          <span className="text-red-500 ml-2">
+                          <span className="text-danger ml-2">
                             (Insufficient balance)
                           </span>
                         )}
