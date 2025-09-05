@@ -104,26 +104,26 @@ const JoinSprintCard: React.FC<JoinSprintCardProps> = ({
 
   if (isJoined) {
     return (
-      <Card className={cn('border-[#0056D2]/20 bg-gradient-to-br from-[#0056D2]/5 to-[#06B6D4]/5', className)}>
+      <Card className={cn('border-primary/20 bg-gradient-to-br from-primary/5 to-secondary/5', className)}>
         <CardContent className="p-6">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-[#0056D2] rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
               <Zap className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h3 className="font-heading font-bold text-[#0F172A] dark:text-[#F1F5F9]">
+              <h3 className="font-heading font-bold text-ink-head">
                 You're in the Sprint!
               </h3>
-              <p className="text-sm text-[#64748B] dark:text-[#94A3B8]">
+              <p className="text-sm text-ink-body">
                 Start booking or logging sessions to earn points
               </p>
             </div>
           </div>
           <div className="flex gap-2">
-            <Button size="sm" className="bg-[#0056D2] hover:bg-[#004BB8] text-white flex-1">
+            <Button size="sm" className="bg-primary hover:bg-primary-600 text-white flex-1">
               Book a Session
             </Button>
-            <Button size="sm" variant="outline" className="text-[#06B6D4] border-[#06B6D4]/30 hover:bg-[#06B6D4]/10">
+            <Button size="sm" variant="outline" className="text-secondary border-border hover:bg-elevated">
               Log Offline
             </Button>
           </div>
@@ -133,17 +133,17 @@ const JoinSprintCard: React.FC<JoinSprintCardProps> = ({
   }
 
   return (
-    <Card className={cn('border-[#0056D2]/15', className)}>
+    <Card className={cn('border-border', className)}>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-[#0F172A] dark:text-[#F1F5F9]">
-          <Users className="h-5 w-5 text-[#0056D2]" />
+        <CardTitle className="flex items-center gap-2 text-ink-head">
+          <Users className="h-5 w-5 text-primary" />
           Join Sprint
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Role Selection */}
         <div>
-          <Label className="text-sm font-semibold text-[#0F172A] dark:text-[#F1F5F9] mb-3 block">
+          <Label className="text-sm font-semibold text-ink-head mb-3 block">
             Participate as:
           </Label>
           <div className="grid grid-cols-2 gap-2">
@@ -154,8 +154,8 @@ const JoinSprintCard: React.FC<JoinSprintCardProps> = ({
               className={cn(
                 'justify-start',
                 roles.includes('learner')
-                  ? 'bg-[#0056D2] hover:bg-[#004BB8] text-white'
-                  : 'text-[#0056D2] border-[#0056D2]/30 hover:bg-[#0056D2]/10'
+                  ? 'bg-primary hover:bg-primary-600 text-white'
+                  : 'text-primary border-border hover:bg-elevated'
               )}
             >
               Learner
@@ -167,8 +167,8 @@ const JoinSprintCard: React.FC<JoinSprintCardProps> = ({
               className={cn(
                 'justify-start',
                 roles.includes('mentor')
-                  ? 'bg-[#0056D2] hover:bg-[#004BB8] text-white'
-                  : 'text-[#0056D2] border-[#0056D2]/30 hover:bg-[#0056D2]/10'
+                  ? 'bg-primary hover:bg-primary-600 text-white'
+                  : 'text-primary border-border hover:bg-elevated'
               )}
             >
               Mentor
@@ -178,7 +178,7 @@ const JoinSprintCard: React.FC<JoinSprintCardProps> = ({
 
         {/* Time Windows */}
         <div>
-          <Label className="text-sm font-semibold text-[#0F172A] dark:text-[#F1F5F9] mb-3 block">
+          <Label className="text-sm font-semibold text-ink-head mb-3 block">
             Preferred time windows:
           </Label>
           <div className="grid grid-cols-1 gap-2">
@@ -191,8 +191,8 @@ const JoinSprintCard: React.FC<JoinSprintCardProps> = ({
                 className={cn(
                   'justify-start text-xs',
                   timeWindows.includes(window)
-                    ? 'bg-[#06B6D4]/20 text-[#06B6D4] hover:bg-[#06B6D4]/30'
-                    : 'text-[#64748B] hover:bg-[#0056D2]/5 hover:text-[#0056D2]'
+                    ? 'bg-secondary/20 text-secondary hover:bg-secondary/30'
+                    : 'text-ink-body hover:bg-elevated hover:text-primary'
                 )}
               >
                 <Clock className="h-3 w-3 mr-2" />
@@ -210,7 +210,7 @@ const JoinSprintCard: React.FC<JoinSprintCardProps> = ({
             onCheckedChange={setOnlineOnly}
           />
           <Label htmlFor="online-only" className="flex items-center gap-2 text-sm font-medium cursor-pointer">
-            <Globe className="h-4 w-4 text-[#06B6D4]" />
+            <Globe className="h-4 w-4 text-secondary" />
             Online sessions only
           </Label>
         </div>
@@ -219,13 +219,13 @@ const JoinSprintCard: React.FC<JoinSprintCardProps> = ({
         <Button
           onClick={handleJoin}
           disabled={isSubmitting || roles.length === 0}
-          className="w-full bg-[#0056D2] hover:bg-[#004BB8] text-white font-semibold"
+          className="w-full bg-primary hover:bg-primary-600 text-white font-semibold"
         >
           {isSubmitting ? 'Joining...' : 'Join Sprint'}
         </Button>
 
         {/* Quick Info */}
-        <div className="text-xs text-[#64748B] dark:text-[#94A3B8] space-y-1">
+        <div className="text-xs text-ink-body space-y-1">
           <p>• Sessions must be ≥30 minutes to count</p>
           <p>• Both parties must confirm completion</p>
           <p>• Fair play rules apply</p>

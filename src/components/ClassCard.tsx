@@ -67,21 +67,21 @@ export default function ClassCard({
               className="w-20 h-14 object-cover rounded-xl"
             />
             {course.badges.includes('recorded') && (
-              <Badge size="sm" className="absolute -top-1 -right-1 bg-[#0056D2] text-white">
+              <Badge size="sm" className="absolute -top-1 -right-1 bg-primary text-white">
                 <Play className="w-3 h-3" />
               </Badge>
             )}
           </div>
 
           <div className="flex-1 min-w-0">
-            <h3 className="font-semibold truncate text-[#0F172A] dark:text-[#F1F5F9]">{course.title}</h3>
-            <p className="text-sm text-[#334155] dark:text-[#E2E8F0] truncate">{teacher?.name}</p>
+            <h3 className="font-semibold truncate text-ink-head">{course.title}</h3>
+            <p className="text-sm text-ink-body truncate">{teacher?.name}</p>
             <div className="flex items-center gap-2 mt-1">
               <div className="flex items-center gap-1">
                 <Star className="w-3 h-3 fill-warning text-warning" />
-                <span className="text-xs font-medium text-[#0F172A] dark:text-[#F1F5F9]">{course.ratingAvg}</span>
+                <span className="text-xs font-medium text-ink-head">{course.ratingAvg}</span>
               </div>
-              <span className="text-xs text-[#06B6D4] font-medium">{course.pricePerSeat} credits</span>
+              <span className="text-xs text-primary font-medium">{course.pricePerSeat} credits</span>
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@ export default function ClassCard({
     <Card
       className={cn(
         'hover-lift transition-all duration-300 group overflow-hidden cursor-pointer',
-        variant === 'featured' && 'bg-gradient-to-br from-blue-50/50 to-cyan-50/50 dark:from-blue-900/20 dark:to-cyan-900/20',
+        variant === 'featured' && 'bg-primary/5 border-primary/20',
         className
       )}
       onClick={handleViewDetails}
@@ -113,7 +113,7 @@ export default function ClassCard({
               group: { icon: Users, label: 'Group Class', color: 'bg-[#0056D2]' },
               materials: { icon: BookOpen, label: 'Materials', color: 'bg-success' },
               recorded: { icon: Play, label: 'Recorded', color: 'bg-secondary' },
-              certificate: { icon: Award, label: 'Certificate', color: 'bg-[#06B6D4]' }
+              certificate: { icon: Award, label: 'Certificate', color: 'bg-primary' }
             }[badge];
 
             if (!badgeConfig) return null;
@@ -130,7 +130,7 @@ export default function ClassCard({
 
         {/* Duration overlay */}
         <div className="absolute bottom-3 right-3">
-          <Badge className="bg-black/70 text-white border-0" size="sm">
+          <Badge className="bg-ink-body/70 text-white border-0" size="sm">
             <Clock className="w-3 h-3 mr-1" />
             {Math.round(totalDuration / 60)}h {totalDuration % 60}m
           </Badge>
@@ -198,7 +198,7 @@ export default function ClassCard({
             </div>
           </div>
 
-          <div className="font-bold text-[#06B6D4]">
+          <div className="font-bold text-primary">
             {course.pricePerSeat} credits
           </div>
         </div>
@@ -206,8 +206,8 @@ export default function ClassCard({
         {/* Seats progress */}
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
-            <span className="text-[#334155] dark:text-[#E2E8F0]">Available Seats</span>
-            <span className="font-semibold text-[#0F172A] dark:text-[#F1F5F9]">
+            <span className="text-ink-body">Available Seats</span>
+            <span className="font-semibold text-ink-head">
               {seatsRemaining} of {course.maxSeats} remaining
             </span>
           </div>
@@ -223,8 +223,8 @@ export default function ClassCard({
         {showProgress && (
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
-              <span className="text-[#334155] dark:text-[#E2E8F0]">Progress</span>
-              <span className="font-semibold text-[#0F172A] dark:text-[#F1F5F9]">{progress}% complete</span>
+              <span className="text-ink-body">Progress</span>
+              <span className="font-semibold text-ink-head">{progress}% complete</span>
             </div>
             <Progress value={progress} className="h-2" />
           </div>
@@ -232,8 +232,8 @@ export default function ClassCard({
 
         {/* Next session date */}
         {course.schedule?.length ? (
-          <div className="flex items-center gap-2 text-sm text-[#334155] dark:text-[#E2E8F0]">
-            <Calendar className="w-4 h-4 text-[#06B6D4]" />
+          <div className="flex items-center gap-2 text-sm text-ink-body">
+            <Calendar className="w-4 h-4 text-primary" />
             <span>
               Next session: {new Date(course.schedule[0].date).toLocaleDateString()}
             </span>
