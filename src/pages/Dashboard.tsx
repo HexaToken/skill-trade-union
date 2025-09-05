@@ -48,56 +48,56 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0F172A]">
+    <div className="min-h-screen bg-canvas">
       <div className="page-container py-8">
         <div className="space-y-8">
           {/* Header */}
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-heading font-bold text-[#0F172A] dark:text-[#F1F5F9]">Welcome back, {currentUser.name.split(' ')[0]}!</h1>
-              <p className="text-[#334155] dark:text-[#E2E8F0]">Here's what's happening with your skills today.</p>
+              <h1 className="text-3xl font-heading font-bold text-ink-head">Welcome back, {currentUser.name.split(' ')[0]}!</h1>
+              <p className="text-ink-body">Here's what's happening with your skills today.</p>
             </div>
             <div className="flex gap-3">
-              <Button onClick={() => navigate('/matches')} className="bg-[#0056D2] hover:bg-[#004BB8] text-white shadow-sm font-semibold">
+              <Button onClick={() => navigate('/matches')} className="bg-primary hover:bg-primary-600 text-white shadow-sm font-semibold">
                 <Search className="w-4 h-4 mr-2" />
                 Find Match
               </Button>
-              <Button onClick={() => navigate('/sessions')} className="bg-[#06B6D4] hover:bg-[#0891B2] text-white shadow-sm font-semibold">
+              <Button onClick={() => navigate('/sessions')} className="bg-brand-gradient text-white shadow-sm font-semibold">
                 <Plus className="w-4 h-4 mr-2" />
                 Offer Skill
               </Button>
               <OfflineTradeButton
                 variant="outline"
-                className="text-[#0056D2] border-[#0056D2]/30 hover:bg-[#0056D2]/10 shadow-sm font-semibold"
+                className="text-primary border-border hover:bg-elevated shadow-sm font-semibold"
               />
             </div>
           </div>
 
           {/* Quick Stats Row */}
           <div className="grid gap-4 md:grid-cols-4">
-            <Card className="bg-white dark:bg-[#1E293B] border-[#06B6D4]/20 rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1">
+            <Card className="bg-surface border-border rounded-xl shadow-card hover:shadow-elevated transition-all duration-300 hover:-translate-y-1">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-[#334155] dark:text-[#E2E8F0]">Credits Balance</CardTitle>
-                <Zap className="h-4 w-4 text-[#06B6D4]" />
+                <CardTitle className="text-sm font-medium text-ink-body">Credits Balance</CardTitle>
+                <Zap className="h-4 w-4 text-primary" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-[#0056D2]">{stats.credits}</div>
-                <p className="text-xs text-emerald-600">+{stats.recentEarning} from last session</p>
+                <div className="text-2xl font-bold text-primary">{stats.credits}</div>
+                <p className="text-xs text-success">+{stats.recentEarning} from last session</p>
               </CardContent>
             </Card>
 
-            <Card className="bg-white dark:bg-[#1E293B] border-[#06B6D4]/20 rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1">
+            <Card className="bg-surface border-border rounded-xl shadow-card hover:shadow-elevated transition-all duration-300 hover:-translate-y-1">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-[#334155] dark:text-[#E2E8F0]">Sessions This Month</CardTitle>
-                <CalendarDays className="h-4 w-4 text-[#0056D2]" />
+                <CardTitle className="text-sm font-medium text-ink-body">Sessions This Month</CardTitle>
+                <CalendarDays className="h-4 w-4 text-primary" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-[#0056D2]">{stats.sessionsThisMonth}</div>
-                <p className="text-xs text-emerald-600">+3 from last month</p>
+                <div className="text-2xl font-bold text-primary">{stats.sessionsThisMonth}</div>
+                <p className="text-xs text-success">+3 from last month</p>
               </CardContent>
             </Card>
 
-            <Card className="bg-white dark:bg-[#1E293B] border-[#06B6D4]/20 rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1">
+            <Card className="bg-surface border-border rounded-xl shadow-card hover:shadow-elevated transition-all duration-300 hover:-translate-y-1">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium text-[#334155] dark:text-[#E2E8F0]">Your Rating</CardTitle>
                 <Star className="h-4 w-4 text-[#06B6D4]" />

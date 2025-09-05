@@ -103,7 +103,7 @@ export default function FilterPanel({
         <FilterSection title="Availability">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-brand-secondary" />
+              <Zap className="w-4 h-4 text-primary" />
               <Label htmlFor="instant-available" className="text-sm">
                 Available for instant help
               </Label>
@@ -138,7 +138,7 @@ export default function FilterPanel({
               variant={filters.category === category ? "default" : "outline"}
               className={cn(
                 "cursor-pointer hover-scale",
-                filters.category === category && "bg-brand-primary hover:bg-brand-primary"
+                filters.category === category && "bg-primary hover:bg-primary"
               )}
               onClick={() => updateFilter('category', filters.category === category ? undefined : category)}
             >
@@ -161,7 +161,7 @@ export default function FilterPanel({
               variant={filters.mode === mode.value ? "default" : "outline"}
               className={cn(
                 "cursor-pointer hover-scale",
-                filters.mode === mode.value && "bg-brand-primary hover:bg-brand-primary"
+                filters.mode === mode.value && "bg-primary hover:bg-primary"
               )}
               onClick={() => updateFilter('mode', filters.mode === mode.value ? undefined : mode.value)}
             >
@@ -175,7 +175,7 @@ export default function FilterPanel({
       <FilterSection title="Minimum Rating">
         <div className="space-y-2">
           <div className="flex items-center gap-2">
-            <Star className="w-4 h-4 fill-orange-400 text-orange-400" />
+            <Star className="w-4 h-4 fill-warning text-warning" />
             <span className="text-sm font-medium">
               {filters.minRating ? `${filters.minRating}+ stars` : 'Any rating'}
             </span>
@@ -195,7 +195,7 @@ export default function FilterPanel({
       <FilterSection title="Price Range (Credits/Hour)">
         <div className="space-y-2">
           <div className="flex items-center gap-2">
-            <DollarSign className="w-4 h-4" />
+            <DollarSign className="w-4 h-4 text-muted-foreground" />
             <span className="text-sm font-medium">
               {filters.priceRange ? 
                 `${filters.priceRange[0]} - ${filters.priceRange[1]} credits` : 
@@ -218,7 +218,7 @@ export default function FilterPanel({
       <FilterSection title="Maximum Distance">
         <div className="space-y-2">
           <div className="flex items-center gap-2">
-            <MapPin className="w-4 h-4" />
+            <MapPin className="w-4 h-4 text-muted-foreground" />
             <span className="text-sm font-medium">
               {filters.maxDistance ? 
                 `Within ${filters.maxDistance}km` : 

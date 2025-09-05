@@ -236,10 +236,10 @@ const ChallengeDetail = () => {
 
   const getThemeColor = (theme: string) => {
     const colors = {
-      Design: 'bg-pink-100 text-pink-700 border-pink-200 dark:bg-pink-900/20 dark:text-pink-300 dark:border-pink-800',
-      Development: 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800',
-      Language: 'bg-green-100 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800',
-      Business: 'bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-800'
+      Design: 'bg-success/10 text-success border-success/20',
+      Development: 'bg-primary/10 text-primary border-primary/20',
+      Language: 'bg-warning/10 text-warning border-warning/20',
+      Business: 'bg-danger/10 text-danger border-danger/20'
     };
     return colors[theme as keyof typeof colors] || colors.Design;
   };
@@ -255,9 +255,9 @@ const ChallengeDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0F172A]">
+    <div className="min-h-screen bg-canvas">
       {/* Header Band */}
-      <div className="border-b bg-gradient-to-r from-[#0056D2]/5 to-[#06B6D4]/5">
+      <div className="border-b bg-gradient-to-r from-primary/5 to-secondary/5">
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div className="flex-1">
@@ -269,36 +269,36 @@ const ChallengeDetail = () => {
                   <CountdownTimer endAt={sprint.endsAt} size="sm" variant="pill" />
                 )}
                 {sprint.status === 'past' && (
-                  <Badge variant="outline" className="text-gray-600">
+                  <Badge variant="outline" className="text-muted-foreground">
                     Ended on {new Date(sprint.endsAt).toLocaleDateString()}
                   </Badge>
                 )}
               </div>
-              <h1 className="text-3xl lg:text-4xl font-heading font-bold text-[#0F172A] dark:text-[#F1F5F9] mb-2">
+              <h1 className="text-3xl lg:text-4xl font-heading font-bold text-ink-head mb-2">
                 {sprint.title}
               </h1>
-              <p className="text-[#64748B] dark:text-[#94A3B8]">
+              <p className="text-ink-body">
                 Week-long sprint • Join as Mentor, Learner or Both
               </p>
             </div>
             <div className="grid grid-cols-3 gap-4 text-center lg:text-right">
               <div>
-                <div className="text-2xl font-bold text-[#0056D2]">
+                <div className="text-2xl font-bold text-primary">
                   {sprint.participants.toLocaleString()}
                 </div>
-                <div className="text-xs text-[#64748B] dark:text-[#94A3B8]">Participants</div>
+                <div className="text-xs text-ink-body">Participants</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-[#06B6D4]">
+                <div className="text-2xl font-bold text-secondary">
                   {sprint.metrics.sessions.toLocaleString()}
                 </div>
-                <div className="text-xs text-[#64748B] dark:text-[#94A3B8]">Sessions</div>
+                <div className="text-xs text-ink-body">Sessions</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-green-600">
+                <div className="text-2xl font-bold text-success">
                   {sprint.metrics.hours.toLocaleString()}
                 </div>
-                <div className="text-xs text-[#64748B] dark:text-[#94A3B8]">Hours</div>
+                <div className="text-xs text-ink-body">Hours</div>
               </div>
             </div>
           </div>
@@ -306,7 +306,7 @@ const ChallengeDetail = () => {
       </div>
 
       {/* Sticky Subnav */}
-      <div className="sticky top-0 z-40 bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-sm border-b">
+      <div className="sticky top-0 z-40 bg-surface/95 backdrop-blur-sm border-b border-border">
         <div className="container mx-auto px-4">
           <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
             <TabsList className="grid w-full grid-cols-5 h-12 bg-[#F8FAFC] dark:bg-[#1E293B]">

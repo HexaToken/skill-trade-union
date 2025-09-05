@@ -15,9 +15,9 @@ interface SkillCardProps {
 }
 
 const difficultyLabels = {
-  1: { label: 'Beginner', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
+  1: { label: 'Beginner', color: 'bg-success/10 text-success border-success/20' },
   2: { label: 'Intermediate', color: 'bg-warning/10 text-warning border-warning/20' },
-  3: { label: 'Advanced', color: 'bg-red-100 text-red-700 border-red-200' }
+  3: { label: 'Advanced', color: 'bg-destructive/10 text-destructive border-destructive/20' }
 };
 
 export default function SkillCard({ 
@@ -37,7 +37,7 @@ export default function SkillCard({
         size="sm"
         className={cn(
           'h-auto p-3 justify-start text-left',
-          selected && 'ring-2 ring-blue-500 ring-offset-2',
+          selected && 'ring-2 ring-primary ring-offset-2',
           className
         )}
         onClick={() => onSelect?.(skill)}
@@ -55,8 +55,8 @@ export default function SkillCard({
     <Card
       className={cn(
         'cursor-pointer group',
-        selected && 'ring-2 ring-blue-500 ring-offset-2',
-        variant === 'featured' && 'bg-gradient-to-br from-blue-50/50 to-cyan-50/50 dark:from-blue-900/20 dark:to-cyan-900/20',
+        selected && 'ring-2 ring-primary ring-offset-2',
+        variant === 'featured' && 'bg-primary/5 border-primary/20',
         className
       )}
       onClick={() => onSelect?.(skill)}
@@ -64,12 +64,12 @@ export default function SkillCard({
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-200">
+            <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-200">
               {skill.icon}
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-semibold truncate text-slate-900 dark:text-slate-100">{skill.name}</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-300 truncate">{skill.category}</p>
+              <h3 className="font-semibold truncate text-foreground">{skill.name}</h3>
+              <p className="text-sm text-muted-foreground truncate">{skill.category}</p>
             </div>
           </div>
 
@@ -89,9 +89,9 @@ export default function SkillCard({
         <div className="flex items-center justify-between text-xs">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1">
-              <TrendingUp className="w-4 h-4 text-educational-cyan" />
-              <span className="text-slate-600 dark:text-slate-300">Demand:</span>
-              <span className="font-bold text-educational-cyan">{skill.demandScore}%</span>
+              <TrendingUp className="w-4 h-4 text-primary" />
+              <span className="text-muted-foreground">Demand:</span>
+              <span className="font-bold text-primary">{skill.demandScore}%</span>
             </div>
 
             <Badge
@@ -103,18 +103,18 @@ export default function SkillCard({
             </Badge>
           </div>
 
-          <div className="flex items-center gap-1 text-slate-600 dark:text-slate-300">
-            <span className="font-bold text-educational-blue">{skill.baseRateCredits}</span>
+          <div className="flex items-center gap-1 text-muted-foreground">
+            <span className="font-bold text-primary">{skill.baseRateCredits}</span>
             <span>credits/hr</span>
           </div>
         </div>
 
         {showActions && (
           <div className="flex gap-2 pt-2">
-            <Button size="sm" className="flex-1 bg-blue-600 hover:bg-blue-700 text-white">
+            <Button size="sm" className="flex-1">
               Learn
             </Button>
-            <Button size="sm" variant="outline" className="flex-1 border-cyan-500 text-cyan-600 hover:bg-cyan-50 dark:hover:bg-cyan-900/20">
+            <Button size="sm" variant="outline" className="flex-1">
               Teach
             </Button>
           </div>

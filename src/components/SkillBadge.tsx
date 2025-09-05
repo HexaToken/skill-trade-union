@@ -52,7 +52,7 @@ export function SkillBadge({
 
       {variant === 'new' && (
         <span className={cn(
-          "bg-green-500 text-white rounded-full px-1.5 py-0.5 text-xs font-bold",
+          "bg-success text-white rounded-full px-1.5 py-0.5 text-xs font-bold",
           size === 'sm' && "text-xs px-1 py-0.5",
           size === 'lg' && "text-sm px-2 py-1"
         )}>
@@ -61,7 +61,7 @@ export function SkillBadge({
       )}
 
       {variant === 'verified' && (
-        <span className="text-blue-500" aria-label="Verified skill">
+        <span className="text-primary" aria-label="Verified skill">
           ✓
         </span>
       )}
@@ -94,11 +94,11 @@ export function SkillBadge({
       break;
     case 'verified':
       badgeVariant = "default";
-      variantClasses = "bg-gradient-to-r from-blue-50 to-cyan-50 text-blue-800 border-blue-200 dark:from-blue-900/20 dark:to-cyan-900/20 dark:text-blue-300 dark:border-blue-800";
+      variantClasses = "bg-primary/10 text-primary border-primary/20";
       break;
     case 'new':
       badgeVariant = "default";
-      variantClasses = "bg-gradient-to-r from-green-50 to-emerald-50 text-green-800 border-green-200 dark:from-green-900/20 dark:to-emerald-900/20 dark:text-green-300 dark:border-green-800";
+      variantClasses = "bg-success/10 text-success border-success/20";
       break;
     default:
       badgeVariant = "secondary";
