@@ -18,7 +18,7 @@
   --ink-body: 215 25 27;      /* #334155 */
 
   /* Surfaces - Light Theme */
-  --canvas: 210 40 98;        /* #F7F9FC app background */
+  --canvas: 210 40 96;        /* #F1F5F9 slightly darker app background */
   --surface: 0 0 100;         /* #FFFFFF cards/nav */
   --elevated: 0 0 100;        /* #FFFFFF modals/dropdowns */
   --border: 220 13 91;        /* #E5E7EB */
@@ -36,7 +36,7 @@
   --shadow-md: 0 6px 20px rgba(15, 23, 42, 0.08);
 
   /* Shadcn/ui compatibility layer */
-  --background: 210 40 98; /* #F7F9FC */
+  --background: 210 40 96; /* #F1F5F9 */
   --foreground: 220 39 11; /* #0F172A */
   --card: 0 0 100; /* #FFFFFF */
   --card-foreground: 215 25 27; /* #334155 */
