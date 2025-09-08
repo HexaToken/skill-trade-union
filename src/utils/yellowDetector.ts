@@ -199,7 +199,9 @@ export class YellowDetector {
   }
 }
 
-// AGGRESSIVE AUTO-START - Multiple trigger points
+// YELLOW DETECTION AUTO-START (disabled to prevent performance issues during development)
+// This aggressive detection system was causing the app to fail during startup
+/*
 if (typeof window !== 'undefined') {
   const startDetector = () => {
     const detector = YellowDetector.getInstance();
@@ -246,6 +248,7 @@ if (typeof window !== 'undefined') {
     observer.observe(document.body, { childList: true, subtree: true });
   }
 }
+*/
 
 // Global access for debugging
 declare global {
