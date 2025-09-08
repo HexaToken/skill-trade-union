@@ -214,13 +214,13 @@ if (typeof window !== 'undefined') {
         advancedDetector.fixDetectedElements();
       }, 100);
       
-      // Run periodic scans
-      setInterval(() => {
-        const results = advancedDetector.scanAndMark();
-        if (results.total > 0) {
-          advancedDetector.fixDetectedElements();
-        }
-      }, 2000);
+      // Run periodic scans (disabled to prevent performance issues)
+      // setInterval(() => {
+      //   const results = advancedDetector.scanAndMark();
+      //   if (results.total > 0) {
+      //     advancedDetector.fixDetectedElements();
+      //   }
+      // }, 2000);
     });
   };
 
