@@ -1,0 +1,56 @@
+You are designing SkillSwap, a professional learning & mentorship platform. 
+Use the following theme system and build UI components in Tailwind with consistent styles.
+
+🎨 Brand Theme (light + dark via CSS variables):
+Light:
+--primary:#0B5FFF; --primary-600:#084AC7; --secondary:#12D6DF;
+--ink-head:#0F172A; --ink-body:#334155;
+--canvas:#F7F9FC; --surface:#FFFFFF; --elevated:#FFFFFF; --border:#E5E7EB;
+--success:#16A34A; --warning:#F59E0B; --danger:#EF4444;
+--brand-gradient:linear-gradient(90deg,#6C2BD9 0%,#12D6DF 100%);
+Dark ([data-theme="dark"]):
+--primary:#7AA7FF; --primary-600:#5F86D1; --secondary:#2BE4EE;
+--ink-head:#E5EDF9; --ink-body:#C8D1E2;
+--canvas:#0B1220; --surface:#121A2B; --elevated:#16213A; --border:#233047;
+--success:#22C55E; --warning:#FBBF24; --danger:#F87171;
+--brand-gradient:linear-gradient(90deg,#8B5CF6 0%,#2BE4EE 100%);
+
+⚡ Tailwind Setup:
+- Colors mapped to CSS vars (bg-primary, text-ink-head, border-border, etc).
+- Gradient available as bg-brand-gradient.
+- Use rounded-xl or rounded-2xl for cards/buttons.
+- Use shadow-card for elevated surfaces.
+
+✅ Components to Build:
+1. **Header (site-wide)**:
+   - Logo text with brand-gradient
+   - Nav links (Classes, Mentors, Pricing)
+   - Theme toggle button
+   - Sign in button (primary)
+
+2. **Class Page (Catalog)**:
+   - Search bar + Sort dropdown + View toggle
+   - Sidebar filters (Category, Level, Language)
+   - Grid of course cards (4 cols desktop, 2 tablet, 1 mobile)
+   - Course Card: 16:9 image, title, instructor avatar, rating, tags, credits, duration, hover zoom, “View Details” button
+   - Pagination with primary buttons
+
+3. **Course Details Page**:
+   - Hero: title, subtitle, rating, learners, level badge, share buttons
+   - Sticky enroll sidebar (credits, CTA, trust badges)
+   - Sections: What You’ll Learn, Description, Curriculum (accordion), Instructor Bio, Reviews, FAQ, Related Courses
+   - Bottom footer matching header style
+
+4. **Mentor Page**:
+   - Hero: “Find Your Mentor”, subtitle, search bar, category chips
+   - Featured Mentors carousel with spotlight cards
+   - All Mentors grid with filters (accordion sidebar)
+   - Mentor Card: profile image, name, title, location, rating, skills tags, hourly rate, View + Book buttons
+   - Book button triggers modal with profile summary + booking form
+
+💡 Style Goals:
+- Modern, professional, trustworthy (like Coursera/Udemy).
+- Dynamic hover effects, smooth transitions.
+- Dark mode default, light mode toggle.
+- High accessibility (WCAG AA).
+- Consistent components across pages.
