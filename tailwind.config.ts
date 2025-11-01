@@ -19,9 +19,15 @@ export default {
 		},
 		extend: {
 			colors: {
-				primary: 'hsl(var(--primary))',
+				primary: {
+					DEFAULT: 'hsl(var(--primary))',
+					foreground: 'hsl(var(--primary-foreground))'
+				},
 				'primary-dark': 'hsl(var(--primary-dark))',
-				secondary: 'hsl(var(--secondary))',
+				secondary: {
+					DEFAULT: 'hsl(var(--secondary))',
+					foreground: 'hsl(var(--secondary-foreground))'
+				},
 				ink: {
 					head: 'hsl(var(--ink-head))',
 					body: 'hsl(var(--ink-body))',

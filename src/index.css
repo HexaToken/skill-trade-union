@@ -10,8 +10,10 @@
 :root {
   /* Brand - Light Theme */
   --primary: 216 100 52;      /* #0B5FFF electric academic blue */
+  --primary-foreground: 0 0 100; /* #FFFFFF white text on primary */
   --primary-dark: 221 92 42;  /* #084AC7 hover/pressed */
   --secondary: 184 87 47;     /* #12D6DF tech cyan */
+  --secondary-foreground: 0 0 100; /* #FFFFFF white text on secondary */
 
   /* Text - Light Theme */
   --ink-head: 220 39 11;      /* #0F172A */
@@ -56,8 +58,10 @@
 [data-theme="dark"] {
   /* Brand - Dark Theme */
   --primary: 216 100 74;     /* #7AA7FF */
+  --primary-foreground: 220 39 11; /* #0F172A dark text on light primary */
   --primary-dark: 220 54 60; /* #5F86D1 */
   --secondary: 184 87 53;    /* #2BE4EE */
+  --secondary-foreground: 220 39 11; /* #0F172A dark text on light secondary */
 
   /* Text - Dark Theme */
   --ink-head: 214 32 91;     /* #E5EDF9 */
