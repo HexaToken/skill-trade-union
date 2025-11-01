@@ -191,7 +191,7 @@ html, body {
   .shadow-md { box-shadow: var(--shadow-md); }
 
   /* Gradient utilities */
-  .bg-brand-gradient { background-image: var(--gradient-brand); }
+  .bg-brand-gradient { background-image: var(--brand-gradient); }
 
   /* Border radius utilities */
   .rounded-card { border-radius: 16px; }
