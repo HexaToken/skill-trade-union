@@ -12,6 +12,7 @@ import "@/utils/advancedYellowDetector";
 import "@/utils/themeUtils";
 import { ColorSystemDemo } from "@/components/ColorSystemDemo";
 import { YellowProtectionTest } from "@/components/YellowProtectionTest";
+import { ThemeTestSuite } from "@/components/theme/ThemeTestSuite";
 
 // Import all pages
 import HomePage from "./pages/HomePage";
@@ -113,6 +114,7 @@ const App = () => (
             {/* Support pages */}
             <Route path="/color-demo" element={<Layout><ColorSystemDemo /></Layout>} />
             <Route path="/yellow-test" element={<Layout><YellowProtectionTest /></Layout>} />
+            <Route path="/theme-test" element={<Layout><ThemeTestSuite /></Layout>} />
             <Route path="/about" element={<Layout><Placeholder title="About SkillSwap" desc="Learn about our mission to democratize skill sharing." /></Layout>} />
             <Route path="/how-it-works" element={<Layout><Placeholder title="How It Works" desc="Discover how to trade skills, not cash." /></Layout>} />
             <Route path="/trust-safety" element={<Layout><Placeholder title="Trust & Safety" desc="Our commitment to a safe learning environment." /></Layout>} />
