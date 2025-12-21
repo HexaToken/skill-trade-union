@@ -130,14 +130,15 @@ export default function DonationPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div 
-        className="relative bg-gradient-to-br from-brand-primary via-brand-primary/90 to-brand-secondary bg-cover bg-center"
+      <div
+        className="relative bg-gradient-to-br from-primary to-secondary bg-cover bg-center"
         style={{
-          background: `linear-gradient(135deg, hsl(var(--brand-primary)) 0%, hsl(var(--brand-secondary)) 100%)`,
+          background: `linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%)`,
           minHeight: '500px'
         }}
       >
-        <div className="absolute inset-0 bg-black/10" />
+        {/* Adaptive overlay: stronger on light mode for WCAG AA contrast */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/25 to-black/30 dark:from-black/15 dark:via-black/10 dark:to-black/15" />
         
         <div className="relative page-container py-20 md:py-32">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
