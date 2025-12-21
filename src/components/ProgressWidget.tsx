@@ -82,10 +82,10 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({
         {/* Points and Rank */}
         <div className="grid grid-cols-2 gap-4">
           <div className="text-center">
-            <div className="text-2xl font-bold text-[#0056D2] mb-1">
+            <div className="text-2xl font-bold text-primary mb-1">
               {points}
             </div>
-            <div className="text-sm text-[#64748B] dark:text-[#94A3B8] flex items-center justify-center gap-1">
+            <div className="text-sm text-muted-foreground flex items-center justify-center gap-1">
               <Zap className="h-3 w-3" />
               Points this week
             </div>
