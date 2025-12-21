@@ -250,11 +250,13 @@ const MentorsDirectory = () => {
   return (
     <div className="min-h-screen bg-canvas">
       {/* Hero Section with Full-Width Gradient */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-primary via-primary-600 to-secondary">
+      <div className="relative overflow-hidden bg-gradient-to-r from-primary via-primary/90 to-secondary">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className={"absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\"20\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"white\" fill-opacity=\"0.1\"%3E%3Ccircle cx=\"10\" cy=\"10\" r=\"1\"/%3E%3C/g%3E%3C/svg%3E')]"}></div>
         </div>
+        {/* Adaptive overlay for contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-black/20 to-black/25 dark:from-black/15 dark:via-black/10 dark:to-black/15" />
         
         <div className="relative page-container py-16 lg:py-24">
           <div className="text-center max-w-4xl mx-auto">
