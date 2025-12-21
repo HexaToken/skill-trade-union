@@ -105,10 +105,10 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({
         {/* Goal Progress */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-[#0F172A] dark:text-[#F1F5F9]">
+            <span className="text-sm font-medium text-ink-head">
               Weekly Goal
             </span>
-            <span className="text-sm text-[#64748B] dark:text-[#94A3B8]">
+            <span className="text-sm text-muted-foreground">
               {current} / {goal}
             </span>
           </div>
