@@ -66,7 +66,7 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({
   };
 
   return (
-    <Card className={cn('border-[#0056D2]/15', className)}>
+    <Card className={cn('border-primary/15', className)}>
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center justify-between text-[#0F172A] dark:text-[#F1F5F9]">
           <div className="flex items-center gap-2">
