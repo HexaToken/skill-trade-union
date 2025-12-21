@@ -109,17 +109,17 @@ const OfflineTradeReceipt: React.FC = () => {
 
   if (!trade || !participants) {
     return (
-      <div className="min-h-screen bg-white dark:bg-[#0F172A] flex items-center justify-center">
+      <div className="min-h-screen bg-canvas flex items-center justify-center">
         <Card className="w-96">
           <CardContent className="p-8 text-center">
-            <AlertTriangle className="h-12 w-12 text-amber-500 mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-[#0F172A] dark:text-[#F1F5F9] mb-2">
+            <AlertTriangle className="h-12 w-12 text-warning mx-auto mb-4" />
+            <h2 className="text-xl font-bold text-ink-head mb-2">
               Receipt Not Found
             </h2>
-            <p className="text-[#64748B] dark:text-[#94A3B8] mb-4">
+            <p className="text-muted-foreground mb-4">
               The trade receipt you're looking for doesn't exist or has been removed.
             </p>
-            <Button onClick={() => navigate('/dashboard')} className="bg-[#0056D2] hover:bg-[#004BB8]">
+            <Button onClick={() => navigate('/dashboard')} className="bg-primary hover:bg-primary-dark">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Dashboard
             </Button>
@@ -134,36 +134,36 @@ const OfflineTradeReceipt: React.FC = () => {
   const otherParticipant = trade.initiatorId === currentUserId ? counterparty : initiator;
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0F172A]">
+    <div className="min-h-screen bg-canvas">
       {/* Header */}
-      <div className="bg-gradient-to-r from-[#0056D2]/5 to-[#06B6D4]/5 dark:from-[#0F172A] dark:to-[#1E293B] border-b">
+      <div className="bg-elevated border-b border-border">
         <div className="container mx-auto px-4 py-8">
           <div className="flex items-center gap-4 mb-4">
             <Button
               variant="ghost"
               onClick={() => navigate('/dashboard')}
-              className="text-[#64748B] hover:text-[#0056D2]"
+              className="text-muted-foreground hover:text-primary"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Dashboard
             </Button>
           </div>
-          
+
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-[#0F172A] dark:text-[#F1F5F9] mb-2">
+              <h1 className="text-3xl font-bold text-ink-head mb-2">
                 Trade Receipt
               </h1>
-              <p className="text-[#64748B] dark:text-[#94A3B8]">
+              <p className="text-muted-foreground">
                 Trade ID: {trade.id}
               </p>
             </div>
-            
+
             <div className="text-right">
               <Badge className={getTradeStatusColor(trade.status)} >
                 {getTradeStatusLabel(trade.status)}
               </Badge>
-              <div className="text-sm text-[#64748B] dark:text-[#94A3B8] mt-1">
+              <div className="text-sm text-muted-foreground mt-1">
                 {new Date(trade.audit.createdAt).toLocaleDateString()}
               </div>
             </div>
@@ -203,37 +203,37 @@ const OfflineTradeReceipt: React.FC = () => {
           )}
 
           {/* Quick Actions */}
-          <Card className="border-[#0056D2]/20">
+          <Card className="border-primary/20">
             <CardHeader>
-              <CardTitle className="text-lg flex items-center gap-2 text-[#0056D2]">
+              <CardTitle className="text-lg flex items-center gap-2 text-primary">
                 <Star className="h-5 w-5" />
                 Quick Actions
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-3">
-                <Button 
+                <Button
                   onClick={handleDownloadReceipt}
-                  className="bg-[#0056D2] hover:bg-[#004BB8] text-white"
+                  className="bg-primary hover:bg-primary-dark text-white"
                 >
                   <Download className="h-4 w-4 mr-2" />
                   Download PDF
                 </Button>
-                
+
                 {trade.status === 'confirmed' && (
-                  <Button 
+                  <Button
                     onClick={handleLeaveReview}
-                    className="bg-[#06B6D4] hover:bg-[#0891B2] text-white"
+                    className="bg-secondary hover:opacity-90 text-white"
                   >
                     <Star className="h-4 w-4 mr-2" />
                     Leave Review
                   </Button>
                 )}
-                
-                <Button 
+
+                <Button
                   variant="outline"
                   onClick={handleShare}
-                  className="text-[#64748B] border-[#64748B]/30"
+                  className="text-muted-foreground border-border"
                 >
                   <Share2 className="h-4 w-4 mr-2" />
                   Share
@@ -243,9 +243,9 @@ const OfflineTradeReceipt: React.FC = () => {
           </Card>
 
           {/* Trade Summary */}
-          <Card className="border-[#E2E8F0]">
+          <Card className="border-border">
             <CardHeader>
-              <CardTitle className="text-xl flex items-center gap-2 text-[#0F172A] dark:text-[#F1F5F9]">
+              <CardTitle className="text-xl flex items-center gap-2 text-ink-head">
                 <Users className="h-6 w-6" />
                 Trade Summary
               </CardTitle>
@@ -257,35 +257,35 @@ const OfflineTradeReceipt: React.FC = () => {
                   <div className="text-center">
                     <Avatar className="h-16 w-16 mx-auto mb-2">
                       <AvatarImage src={initiator.avatar} alt={initiator.name} />
-                      <AvatarFallback className="bg-[#0056D2]/10 text-[#0056D2] font-bold text-lg">
+                      <AvatarFallback className="bg-primary/10 text-primary font-bold text-lg">
                         {initiator.name.split(' ').map(n => n[0]).join('')}
                       </AvatarFallback>
                     </Avatar>
-                    <div className="font-medium text-[#0F172A] dark:text-[#F1F5F9]">
+                    <div className="font-medium text-ink-head">
                       {initiator.name}
                     </div>
-                    <div className="text-sm text-[#64748B] dark:text-[#94A3B8]">
-                      {trade.roles[initiator.id] === 'taught' ? 'Teacher' : 
+                    <div className="text-sm text-muted-foreground">
+                      {trade.roles[initiator.id] === 'taught' ? 'Teacher' :
                        trade.roles[initiator.id] === 'learned' ? 'Student' : 'Exchange Partner'}
                     </div>
                     {currentUserId === initiator.id && (
-                      <Badge className="bg-[#0056D2]/10 text-[#0056D2] border-[#0056D2]/20 text-xs mt-1">
+                      <Badge className="bg-primary/10 text-primary border-primary/20 text-xs mt-1">
                         You
                       </Badge>
                     )}
                   </div>
 
                   <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 bg-[#0056D2]/10 rounded-full flex items-center justify-center mb-2">
+                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-2">
                       {trade.status === 'confirmed' ? (
-                        <CheckCircle className="h-6 w-6 text-emerald-600" />
+                        <CheckCircle className="h-6 w-6 text-success" />
                       ) : trade.status === 'disputed' ? (
-                        <AlertTriangle className="h-6 w-6 text-red-600" />
+                        <AlertTriangle className="h-6 w-6 text-danger" />
                       ) : (
-                        <Clock className="h-6 w-6 text-amber-600" />
+                        <Clock className="h-6 w-6 text-warning" />
                       )}
                     </div>
-                    <div className="text-xs text-[#64748B] dark:text-[#94A3B8] uppercase tracking-wide">
+                    <div className="text-xs text-muted-foreground uppercase tracking-wide">
                       {getTradeStatusLabel(trade.status)}
                     </div>
                   </div>
@@ -293,19 +293,19 @@ const OfflineTradeReceipt: React.FC = () => {
                   <div className="text-center">
                     <Avatar className="h-16 w-16 mx-auto mb-2">
                       <AvatarImage src={counterparty.avatar} alt={counterparty.name} />
-                      <AvatarFallback className="bg-[#06B6D4]/10 text-[#06B6D4] font-bold text-lg">
+                      <AvatarFallback className="bg-secondary/10 text-secondary font-bold text-lg">
                         {counterparty.name.split(' ').map(n => n[0]).join('')}
                       </AvatarFallback>
                     </Avatar>
-                    <div className="font-medium text-[#0F172A] dark:text-[#F1F5F9]">
+                    <div className="font-medium text-ink-head">
                       {counterparty.name}
                     </div>
-                    <div className="text-sm text-[#64748B] dark:text-[#94A3B8]">
-                      {trade.roles[counterparty.id] === 'taught' ? 'Teacher' : 
+                    <div className="text-sm text-muted-foreground">
+                      {trade.roles[counterparty.id] === 'taught' ? 'Teacher' :
                        trade.roles[counterparty.id] === 'learned' ? 'Student' : 'Exchange Partner'}
                     </div>
                     {currentUserId === counterparty.id && (
-                      <Badge className="bg-[#06B6D4]/10 text-[#06B6D4] border-[#06B6D4]/20 text-xs mt-1">
+                      <Badge className="bg-secondary/10 text-secondary border-secondary/20 text-xs mt-1">
                         You
                       </Badge>
                     )}
@@ -319,17 +319,17 @@ const OfflineTradeReceipt: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div>
-                    <div className="text-sm text-[#64748B] dark:text-[#94A3B8] font-medium">Skill Traded</div>
-                    <div className="text-lg font-medium text-[#0F172A] dark:text-[#F1F5F9]">
+                    <div className="text-sm text-muted-foreground font-medium">Skill Traded</div>
+                    <div className="text-lg font-medium text-ink-head">
                       {trade.skill}
                     </div>
                     {trade.skillTags.length > 0 && (
                       <div className="flex flex-wrap gap-1 mt-2">
                         {trade.skillTags.map(tag => (
-                          <Badge 
-                            key={tag} 
-                            variant="outline" 
-                            className="bg-[#0056D2]/10 text-[#0056D2] border-[#0056D2]/20 text-xs"
+                          <Badge
+                            key={tag}
+                            variant="outline"
+                            className="bg-primary/10 text-primary border-primary/20 text-xs"
                           >
                             {tag}
                           </Badge>
@@ -339,19 +339,19 @@ const OfflineTradeReceipt: React.FC = () => {
                   </div>
 
                   <div>
-                    <div className="text-sm text-[#64748B] dark:text-[#94A3B8] font-medium">Duration</div>
-                    <div className="text-lg font-medium text-[#0F172A] dark:text-[#F1F5F9] flex items-center gap-2">
+                    <div className="text-sm text-muted-foreground font-medium">Duration</div>
+                    <div className="text-lg font-medium text-ink-head flex items-center gap-2">
                       <Clock className="h-4 w-4" />
                       {Math.floor(trade.durationMins / 60)}h {trade.durationMins % 60}m
                     </div>
                   </div>
 
                   <div>
-                    <div className="text-sm text-[#64748B] dark:text-[#94A3B8] font-medium">Complexity</div>
-                    <div className="text-lg font-medium text-[#0F172A] dark:text-[#F1F5F9]">
+                    <div className="text-sm text-muted-foreground font-medium">Complexity</div>
+                    <div className="text-lg font-medium text-ink-head">
                       {trade.pricing.complexity === 1.0 ? 'Simple' :
                        trade.pricing.complexity === 1.3 ? 'Standard' : 'Advanced'}
-                      <span className="text-sm text-[#64748B] dark:text-[#94A3B8] ml-2">
+                      <span className="text-sm text-muted-foreground ml-2">
                         ({trade.pricing.complexity}x)
                       </span>
                     </div>
@@ -360,8 +360,8 @@ const OfflineTradeReceipt: React.FC = () => {
 
                 <div className="space-y-4">
                   <div>
-                    <div className="text-sm text-[#64748B] dark:text-[#94A3B8] font-medium">Date & Time</div>
-                    <div className="text-lg font-medium text-[#0F172A] dark:text-[#F1F5F9] flex items-center gap-2">
+                    <div className="text-sm text-muted-foreground font-medium">Date & Time</div>
+                    <div className="text-lg font-medium text-ink-head flex items-center gap-2">
                       <Calendar className="h-4 w-4" />
                       {new Date(trade.startedAt).toLocaleDateString()} at{' '}
                       {new Date(trade.startedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -369,12 +369,12 @@ const OfflineTradeReceipt: React.FC = () => {
                   </div>
 
                   <div>
-                    <div className="text-sm text-[#64748B] dark:text-[#94A3B8] font-medium">Location</div>
-                    <div className="text-lg font-medium text-[#0F172A] dark:text-[#F1F5F9] flex items-center gap-2">
+                    <div className="text-sm text-muted-foreground font-medium">Location</div>
+                    <div className="text-lg font-medium text-ink-head flex items-center gap-2">
                       <MapPin className="h-4 w-4" />
                       {trade.location}
                       {trade.isInPerson && (
-                        <Badge variant="outline" className="text-xs bg-emerald-50 text-emerald-700 border-emerald-200">
+                        <Badge variant="outline" className="text-xs bg-success/10 text-success border-success/20">
                           In-Person
                         </Badge>
                       )}
@@ -382,16 +382,16 @@ const OfflineTradeReceipt: React.FC = () => {
                   </div>
 
                   <div>
-                    <div className="text-sm text-[#64748B] dark:text-[#94A3B8] font-medium">Verification</div>
-                    <div className="text-lg font-medium text-[#0F172A] dark:text-[#F1F5F9] flex items-center gap-2">
+                    <div className="text-sm text-muted-foreground font-medium">Verification</div>
+                    <div className="text-lg font-medium text-ink-head flex items-center gap-2">
                       {trade.verification.method === 'qr' ? (
                         <>
-                          <CheckCircle className="h-4 w-4 text-emerald-600" />
+                          <CheckCircle className="h-4 w-4 text-success" />
                           QR Code Verified
                         </>
                       ) : (
                         <>
-                          <CheckCircle className="h-4 w-4 text-emerald-600" />
+                          <CheckCircle className="h-4 w-4 text-success" />
                           PIN Verified
                         </>
                       )}
@@ -403,8 +403,8 @@ const OfflineTradeReceipt: React.FC = () => {
               {/* Notes */}
               {trade.notes && (
                 <div>
-                  <div className="text-sm text-[#64748B] dark:text-[#94A3B8] font-medium mb-2">Session Notes</div>
-                  <div className="text-sm text-[#0F172A] dark:text-[#F1F5F9] p-4 bg-[#F8FAFC] dark:bg-[#1E293B] rounded-lg">
+                  <div className="text-sm text-muted-foreground font-medium mb-2">Session Notes</div>
+                  <div className="text-sm text-ink-body p-4 bg-elevated rounded-lg">
                     {trade.notes}
                   </div>
                 </div>
@@ -413,9 +413,9 @@ const OfflineTradeReceipt: React.FC = () => {
           </Card>
 
           {/* Credit Transfer Breakdown */}
-          <Card className="border-[#06B6D4]/20 bg-[#06B6D4]/5">
+          <Card className="border-secondary/20 bg-secondary/5">
             <CardHeader>
-              <CardTitle className="text-xl flex items-center gap-2 text-[#06B6D4]">
+              <CardTitle className="text-xl flex items-center gap-2 text-secondary">
                 <DollarSign className="h-6 w-6" />
                 Credit Transfer Details
               </CardTitle>
@@ -423,17 +423,17 @@ const OfflineTradeReceipt: React.FC = () => {
             <CardContent className="space-y-4">
               {/* Main Transfer Amount */}
               <div className="flex items-center justify-between">
-                <span className="text-[#0F172A] dark:text-[#F1F5F9] font-medium">
+                <span className="text-ink-head font-medium">
                   {creditTransferDirection === 'received' && 'Credits Received:'}
                   {creditTransferDirection === 'sent' && 'Credits Sent:'}
                   {creditTransferDirection === 'exchange' && 'Skill Exchange:'}
                 </span>
                 <div className="flex items-center gap-2">
-                  <span className="text-3xl font-bold text-[#06B6D4]">
+                  <span className="text-3xl font-bold text-secondary">
                     {creditTransferDirection === 'exchange' ? '—' : (trade.creditsActual || trade.creditsProposed)}
                   </span>
                   {isHighValue && (
-                    <Badge className="bg-amber-50 text-amber-700 border-amber-200 text-xs">
+                    <Badge className="bg-warning/10 text-warning border-warning/20 text-xs">
                       High Value
                     </Badge>
                   )}
@@ -442,8 +442,8 @@ const OfflineTradeReceipt: React.FC = () => {
 
               {/* Transfer Details */}
               {creditTransferDirection !== 'exchange' && (
-                <div className="text-sm text-[#64748B] dark:text-[#94A3B8]">
-                  {creditTransferDirection === 'received' 
+                <div className="text-sm text-muted-foreground">
+                  {creditTransferDirection === 'received'
                     ? `Received from ${otherParticipant.name} for teaching ${trade.skill}`
                     : `Sent to ${otherParticipant.name} for learning ${trade.skill}`
                   }
@@ -451,11 +451,11 @@ const OfflineTradeReceipt: React.FC = () => {
               )}
 
               {/* Pricing Breakdown */}
-              <div className="bg-white dark:bg-[#1E293B] rounded-lg p-4 space-y-2">
-                <div className="text-sm font-medium text-[#0F172A] dark:text-[#F1F5F9] mb-2">
+              <div className="bg-elevated rounded-lg p-4 space-y-2">
+                <div className="text-sm font-medium text-ink-head mb-2">
                   Pricing Breakdown
                 </div>
-                <div className="text-xs text-[#64748B] dark:text-[#94A3B8] space-y-1">
+                <div className="text-xs text-muted-foreground space-y-1">
                   <div className="flex justify-between">
                     <span>Base rate ({trade.pricing.basePerHour} credits/hour):</span>
                     <span>{Math.round(trade.pricing.basePerHour * (trade.durationMins / 60))}</span>
@@ -469,7 +469,7 @@ const OfflineTradeReceipt: React.FC = () => {
                     <span>×{trade.pricing.demand}</span>
                   </div>
                   <Separator className="my-2" />
-                  <div className="flex justify-between font-medium text-[#0F172A] dark:text-[#F1F5F9]">
+                  <div className="flex justify-between font-medium text-ink-head">
                     <span>Total:</span>
                     <span>{trade.creditsActual || trade.creditsProposed} credits</span>
                   </div>
@@ -490,9 +490,9 @@ const OfflineTradeReceipt: React.FC = () => {
 
           {/* Attachments/Evidence */}
           {trade.attachments.length > 0 && (
-            <Card className="border-[#E2E8F0]">
+            <Card className="border-border">
               <CardHeader>
-                <CardTitle className="text-xl flex items-center gap-2 text-[#0F172A] dark:text-[#F1F5F9]">
+                <CardTitle className="text-xl flex items-center gap-2 text-ink-head">
                   <Camera className="h-6 w-6" />
                   Trade Documentation
                 </CardTitle>
@@ -504,15 +504,15 @@ const OfflineTradeReceipt: React.FC = () => {
                       <img
                         src={attachment.url}
                         alt={attachment.caption || 'Trade documentation'}
-                        className="w-full h-32 object-cover rounded-lg border"
+                        className="w-full h-32 object-cover rounded-lg border border-border"
                       />
                       {attachment.caption && (
-                        <div className="text-sm text-[#64748B] dark:text-[#94A3B8]">
+                        <div className="text-sm text-muted-foreground">
                           {attachment.caption}
                         </div>
                       )}
                       {attachment.timestamp && (
-                        <div className="text-xs text-[#64748B] dark:text-[#94A3B8]">
+                        <div className="text-xs text-muted-foreground">
                           {new Date(attachment.timestamp).toLocaleString()}
                         </div>
                       )}
@@ -524,9 +524,9 @@ const OfflineTradeReceipt: React.FC = () => {
           )}
 
           {/* Timeline */}
-          <Card className="border-[#E2E8F0]">
+          <Card className="border-border">
             <CardHeader>
-              <CardTitle className="text-xl flex items-center gap-2 text-[#0F172A] dark:text-[#F1F5F9]">
+              <CardTitle className="text-xl flex items-center gap-2 text-ink-head">
                 <Clock className="h-6 w-6" />
                 Trade Timeline
               </CardTitle>
@@ -534,10 +534,10 @@ const OfflineTradeReceipt: React.FC = () => {
             <CardContent>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <div className="w-3 h-3 bg-[#0056D2] rounded-full mt-1"></div>
+                  <div className="w-3 h-3 bg-primary rounded-full mt-1"></div>
                   <div>
-                    <div className="font-medium text-[#0F172A] dark:text-[#F1F5F9]">Trade Created</div>
-                    <div className="text-sm text-[#64748B] dark:text-[#94A3B8]">
+                    <div className="font-medium text-ink-head">Trade Created</div>
+                    <div className="text-sm text-muted-foreground">
                       {new Date(trade.audit.createdAt).toLocaleString()} by {initiator.name}
                     </div>
                   </div>
@@ -545,10 +545,10 @@ const OfflineTradeReceipt: React.FC = () => {
 
                 {trade.audit.updatedAt && (
                   <div className="flex items-start gap-3">
-                    <div className="w-3 h-3 bg-[#06B6D4] rounded-full mt-1"></div>
+                    <div className="w-3 h-3 bg-secondary rounded-full mt-1"></div>
                     <div>
-                      <div className="font-medium text-[#0F172A] dark:text-[#F1F5F9]">Trade Confirmed</div>
-                      <div className="text-sm text-[#64748B] dark:text-[#94A3B8]">
+                      <div className="font-medium text-ink-head">Trade Confirmed</div>
+                      <div className="text-sm text-muted-foreground">
                         {new Date(trade.audit.updatedAt).toLocaleString()} by {counterparty.name}
                       </div>
                     </div>
@@ -557,10 +557,10 @@ const OfflineTradeReceipt: React.FC = () => {
 
                 {trade.status === 'confirmed' && (
                   <div className="flex items-start gap-3">
-                    <div className="w-3 h-3 bg-emerald-600 rounded-full mt-1"></div>
+                    <div className="w-3 h-3 bg-success rounded-full mt-1"></div>
                     <div>
-                      <div className="font-medium text-[#0F172A] dark:text-[#F1F5F9]">Credits Transferred</div>
-                      <div className="text-sm text-[#64748B] dark:text-[#94A3B8]">
+                      <div className="font-medium text-ink-head">Credits Transferred</div>
+                      <div className="text-sm text-muted-foreground">
                         {trade.creditsActual || trade.creditsProposed} credits transferred successfully
                       </div>
                     </div>
@@ -572,29 +572,29 @@ const OfflineTradeReceipt: React.FC = () => {
 
           {/* Next Steps */}
           {trade.status === 'confirmed' && (
-            <Card className="border-[#0056D2]/20 bg-[#0056D2]/5">
+            <Card className="border-primary/20 bg-primary/5">
               <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2 text-[#0056D2]">
+                <CardTitle className="text-lg flex items-center gap-2 text-primary">
                   <Award className="h-5 w-5" />
                   What's Next?
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <CheckCircle className="h-4 w-4 text-emerald-600" />
-                  <span className="text-sm text-[#0F172A] dark:text-[#F1F5F9]">
+                  <CheckCircle className="h-4 w-4 text-success" />
+                  <span className="text-sm text-ink-head">
                     Leave a review for {otherParticipant.name} to help future traders
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <CheckCircle className="h-4 w-4 text-emerald-600" />
-                  <span className="text-sm text-[#0F172A] dark:text-[#F1F5F9]">
+                  <CheckCircle className="h-4 w-4 text-success" />
+                  <span className="text-sm text-ink-head">
                     Share this experience in the community
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <CheckCircle className="h-4 w-4 text-emerald-600" />
-                  <span className="text-sm text-[#0F172A] dark:text-[#F1F5F9]">
+                  <CheckCircle className="h-4 w-4 text-success" />
+                  <span className="text-sm text-ink-head">
                     Continue learning and teaching new skills
                   </span>
                 </div>
