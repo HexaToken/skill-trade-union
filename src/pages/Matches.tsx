@@ -446,8 +446,8 @@ export default function Matches() {
                             label: reason,
                             tone: reason.includes('high rating') ? 'success' as const : 'neutral' as const
                           }))}
-                          verifiedID={match.user.verification.idVerified}
-                          skillTested={(match.user.verification as any).skillTested || false}
+                          verifiedID={match.user.verification?.idVerified || false}
+                          skillTested={match.user.verification?.testsPassed && (match.user.verification.testsPassed as any).length > 0 || false}
                           matchPercent={match.matchScore}
                           onViewProfile={() => handleViewProfile(match.user.id)}
                           onBook={() => handleBook(match.user.id, match.skill.id)}
