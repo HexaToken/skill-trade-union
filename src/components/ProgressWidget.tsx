@@ -92,10 +92,10 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({
             {getDeltaDisplay()}
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-[#06B6D4] mb-1">
+            <div className="text-2xl font-bold text-secondary mb-1">
               #{rank}
             </div>
-            <div className="text-sm text-[#64748B] dark:text-[#94A3B8] flex items-center justify-center gap-1">
+            <div className="text-sm text-muted-foreground flex items-center justify-center gap-1">
               <Trophy className="h-3 w-3" />
               Current rank
             </div>
