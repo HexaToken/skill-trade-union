@@ -153,14 +153,14 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({
                 key={day}
                 className="text-center"
               >
-                <div className="text-xs text-[#64748B] dark:text-[#94A3B8] mb-1">
+                <div className="text-xs text-muted-foreground mb-1">
                   {day}
                 </div>
                 <div className={cn(
                   'w-8 h-8 rounded-full border-2 flex items-center justify-center transition-colors',
                   streakDays[index]
-                    ? 'bg-[#0056D2] border-[#0056D2] text-white'
-                    : 'border-[#0056D2]/20 text-[#64748B] dark:text-[#94A3B8]'
+                    ? 'bg-primary border-primary text-white'
+                    : 'border-primary/20 text-muted-foreground'
                 )}>
                   {streakDays[index] ? (
                     <CheckCircle className="h-4 w-4" />
