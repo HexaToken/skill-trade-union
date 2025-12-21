@@ -117,10 +117,10 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({
             className="h-3 mb-2"
           />
           <div className="flex items-center justify-between">
-            <span className="text-xs text-[#64748B] dark:text-[#94A3B8]">
+            <span className="text-xs text-muted-foreground">
               {isGoalMet ? 'Goal achieved! 🎉' : `${goal - current} sessions to go`}
             </span>
-            <span className="text-xs font-medium text-[#0056D2]">
+            <span className="text-xs font-medium text-primary">
               {Math.round(progressPercentage)}%
             </span>
           </div>
