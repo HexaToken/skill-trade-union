@@ -68,12 +68,12 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({
   return (
     <Card className={cn('border-primary/15', className)}>
       <CardHeader className="pb-4">
-        <CardTitle className="flex items-center justify-between text-[#0F172A] dark:text-[#F1F5F9]">
+        <CardTitle className="flex items-center justify-between text-ink-head">
           <div className="flex items-center gap-2">
-            <Target className="h-5 w-5 text-[#0056D2]" />
+            <Target className="h-5 w-5 text-primary" />
             My Progress
           </div>
-          <Badge variant="outline" className="bg-[#0056D2]/10 text-[#0056D2] border-[#0056D2]/20">
+          <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">
             Rank #{rank}
           </Badge>
         </CardTitle>
