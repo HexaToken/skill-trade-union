@@ -174,14 +174,14 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({
         </div>
 
         {/* Quick Tips */}
-        <div className="bg-[#0056D2]/5 dark:bg-[#0056D2]/10 rounded-lg p-4">
+        <div className="bg-primary/5 rounded-lg p-4">
           <div className="flex items-center gap-2 mb-2">
-            <Calendar className="h-4 w-4 text-[#0056D2]" />
-            <span className="text-sm font-medium text-[#0F172A] dark:text-[#F1F5F9]">
+            <Calendar className="h-4 w-4 text-primary" />
+            <span className="text-sm font-medium text-ink-head">
               Sprint Tips
             </span>
           </div>
-          <ul className="text-xs text-[#64748B] dark:text-[#94A3B8] space-y-1">
+          <ul className="text-xs text-muted-foreground space-y-1">
             <li>• Book sessions daily to maintain your streak</li>
             <li>• Complete sessions to earn bonus points</li>
             <li>• Rate sessions 5★ for extra credit</li>
