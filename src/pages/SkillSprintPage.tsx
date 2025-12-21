@@ -217,11 +217,13 @@ const SkillSprintPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#F9FAFB] dark:bg-[#0F172A]">
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-[#0056D2] via-[#0056D2] to-[#06B6D4]">
+      <div className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-secondary">
         {/* Animated Background */}
         <div className="absolute inset-0 opacity-10">
           <div className={"absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.1\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"2\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] animate-pulse"}></div>
         </div>
+        {/* Adaptive overlay for WCAG AA contrast */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/25 to-black/30 dark:from-black/15 dark:via-black/10 dark:to-black/15" />
         
         <div className="relative container mx-auto px-4 py-16 lg:py-24">
           <div className="text-center max-w-4xl mx-auto">
