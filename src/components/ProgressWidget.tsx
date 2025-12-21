@@ -130,17 +130,17 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({
         <div>
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
-              <Flame className="h-4 w-4 text-orange-500" />
-              <span className="text-sm font-medium text-[#0F172A] dark:text-[#F1F5F9]">
+              <Flame className="h-4 w-4 text-warning" />
+              <span className="text-sm font-medium text-ink-head">
                 Daily Streak
               </span>
             </div>
-            <Badge 
+            <Badge
               variant={currentStreak > 0 ? 'default' : 'secondary'}
               className={cn(
                 'text-xs',
-                currentStreak > 0 
-                  ? 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-800'
+                currentStreak > 0
+                  ? 'bg-warning/10 text-warning border-warning/20'
                   : ''
               )}
             >
