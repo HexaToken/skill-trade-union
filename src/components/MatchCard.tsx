@@ -73,23 +73,23 @@ export default function MatchCard({
       <Card className={cn('animate-pulse', className)}>
         <CardHeader className="p-6">
           <div className="flex items-start gap-4">
-            <div className="w-14 h-14 bg-slate-200 dark:bg-slate-700 rounded-full"></div>
+            <div className="w-14 h-14 bg-muted rounded-full"></div>
             <div className="flex-1 space-y-2">
-              <div className="h-5 bg-slate-200 dark:bg-slate-700 rounded w-3/4"></div>
-              <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-1/2"></div>
+              <div className="h-5 bg-muted rounded w-3/4"></div>
+              <div className="h-4 bg-muted rounded w-1/2"></div>
             </div>
-            <div className="h-6 w-16 bg-slate-200 dark:bg-slate-700 rounded-full"></div>
+            <div className="h-6 w-16 bg-muted rounded-full"></div>
           </div>
         </CardHeader>
         <CardContent className="p-6 pt-0 space-y-4">
-          <div className="h-12 bg-slate-200 dark:bg-slate-700 rounded-xl"></div>
+          <div className="h-12 bg-muted rounded-xl"></div>
           <div className="space-y-2">
-            <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-full"></div>
-            <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-4/5"></div>
+            <div className="h-4 bg-muted rounded w-full"></div>
+            <div className="h-4 bg-muted rounded w-4/5"></div>
           </div>
           <div className="flex gap-2">
-            <div className="h-8 bg-slate-200 dark:bg-slate-700 rounded flex-1"></div>
-            <div className="h-8 bg-slate-200 dark:bg-slate-700 rounded flex-1"></div>
+            <div className="h-8 bg-muted rounded flex-1"></div>
+            <div className="h-8 bg-muted rounded flex-1"></div>
           </div>
         </CardContent>
       </Card>
@@ -153,7 +153,7 @@ export default function MatchCard({
         {/* Header Row */}
         <div className="flex items-start gap-4 pr-20">
           <Avatar className={cn(
-            "ring-2 ring-slate-100 dark:ring-slate-700 transition-all duration-200",
+            "ring-2 ring-border transition-all duration-200",
             variant === 'compact' ? "w-12 h-12" : "w-14 h-14"
           )}>
             <AvatarImage src={avatarUrl} alt={name} />
@@ -165,15 +165,15 @@ export default function MatchCard({
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between mb-1">
               <h3 className={cn(
-                "font-bold text-[#0F172A] dark:text-[#F1F5F9] font-heading truncate",
+                "font-bold text-ink-head font-heading truncate",
                 variant === 'compact' ? "text-lg" : "text-xl"
               )}>
                 {name}
               </h3>
             </div>
             
-            <div className="flex items-center gap-2 text-sm text-[#334155] dark:text-[#E2E8F0] mb-2">
-              <MapPin className="w-4 h-4 text-slate-400" />
+            <div className="flex items-center gap-2 text-sm text-ink-body mb-2">
+              <MapPin className="w-4 h-4 text-muted-foreground" />
               <span className="truncate">{location}</span>
               {sameCity && (
                 <Badge size="sm" className="bg-elevated text-ink-head border-border text-xs">
@@ -184,13 +184,13 @@ export default function MatchCard({
             
             <div className="flex items-center gap-4 text-sm">
               <div className="flex items-center gap-1">
-                <Star className="w-4 h-4 fill-orange-400 text-orange-400" />
-                <span className="font-semibold text-[#0F172A] dark:text-[#F1F5F9]">{rating}</span>
-                <span className="text-slate-500">({reviews})</span>
+                <Star className="w-4 h-4 fill-warning text-warning" />
+                <span className="font-semibold text-ink-head">{rating}</span>
+                <span className="text-muted-foreground">({reviews})</span>
               </div>
               
               {availabilityNote && (
-                <span className="text-[#06B6D4] font-medium">
+                <span className="text-secondary font-medium">
                   {availabilityNote}
                 </span>
               )}
@@ -201,17 +201,17 @@ export default function MatchCard({
 
       <CardContent className={cn("space-y-4", variant === 'compact' && "p-0 space-y-3")}>
         {/* Skill Strip */}
-        <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-purple-100 via-blue-50 to-cyan-100 dark:from-slate-800 dark:via-blue-900/20 dark:to-cyan-900/20 p-4 border border-slate-200 dark:border-slate-700">
+        <div className="relative overflow-hidden rounded-xl bg-elevated dark:bg-elevated/50 p-4 border border-border">
           <div className="flex items-center justify-between">
             <div className="flex-1">
-              <h4 className="font-bold text-[#0F172A] dark:text-[#F1F5F9] text-lg mb-1">
+              <h4 className="font-bold text-ink-head text-lg mb-1">
                 {skillTitle}
               </h4>
-              <p className="text-sm text-[#06B6D4] font-medium">
+              <p className="text-sm text-secondary font-medium">
                 {creditsPerHour} credits/hour • {category}
               </p>
             </div>
-            <Badge className="bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600 text-xs font-semibold">
+            <Badge className="bg-muted text-ink-head border-border text-xs font-semibold">
               {level}
             </Badge>
           </div>
@@ -219,7 +219,7 @@ export default function MatchCard({
 
         {/* Blurb */}
         {variant !== 'compact' && (
-          <p className="text-[#334155] dark:text-[#E2E8F0] leading-relaxed">
+          <p className="text-ink-body leading-relaxed">
             {blurb}
           </p>
         )}
@@ -239,26 +239,26 @@ export default function MatchCard({
         )}>
           <Button
             variant="outline"
-            className="flex-1 border-[#06B6D4] text-[#06B6D4] hover:bg-[#06B6D4] hover:text-white transition-all duration-200 font-semibold"
+            className="flex-1 border-secondary text-secondary hover:bg-secondary hover:text-white transition-all duration-200 font-semibold"
             onClick={onViewProfile}
             aria-label={`View profile of ${name}`}
           >
             View Profile
           </Button>
-          
+
           <Button
-            className="flex-1 bg-[#0056D2] hover:bg-[#004BB8] text-white transition-all duration-200 font-semibold"
+            className="flex-1 bg-primary hover:bg-primary-dark text-white transition-all duration-200 font-semibold"
             onClick={onBook}
             aria-label={`Book session with ${name}`}
           >
             Book
           </Button>
-          
+
           <Button
             variant="ghost"
             size="sm"
             className={cn(
-              "hover:bg-slate-100 dark:hover:bg-slate-800 p-2",
+              "hover:bg-muted p-2",
               "hidden sm:flex md:inline-flex"
             )}
             onClick={() => {/* Handle message */}}
@@ -270,8 +270,8 @@ export default function MatchCard({
 
         {/* Instant Call Bar */}
         {showInstant && (
-          <div 
-            className="relative overflow-hidden rounded-xl bg-gradient-to-r from-[#0056D2] to-[#06B6D4] p-4 cursor-pointer hover:from-[#004BB8] hover:to-[#0891B2] transition-all duration-300 group/instant"
+          <div
+            className="relative overflow-hidden rounded-xl bg-gradient-to-r from-primary to-secondary p-4 cursor-pointer hover:opacity-90 transition-all duration-300 group/instant"
             onClick={onInstantCall}
             role="button"
             tabIndex={0}

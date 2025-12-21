@@ -66,14 +66,14 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({
   };
 
   return (
-    <Card className={cn('border-[#0056D2]/15', className)}>
+    <Card className={cn('border-primary/15', className)}>
       <CardHeader className="pb-4">
-        <CardTitle className="flex items-center justify-between text-[#0F172A] dark:text-[#F1F5F9]">
+        <CardTitle className="flex items-center justify-between text-ink-head">
           <div className="flex items-center gap-2">
-            <Target className="h-5 w-5 text-[#0056D2]" />
+            <Target className="h-5 w-5 text-primary" />
             My Progress
           </div>
-          <Badge variant="outline" className="bg-[#0056D2]/10 text-[#0056D2] border-[#0056D2]/20">
+          <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">
             Rank #{rank}
           </Badge>
         </CardTitle>
@@ -82,20 +82,20 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({
         {/* Points and Rank */}
         <div className="grid grid-cols-2 gap-4">
           <div className="text-center">
-            <div className="text-2xl font-bold text-[#0056D2] mb-1">
+            <div className="text-2xl font-bold text-primary mb-1">
               {points}
             </div>
-            <div className="text-sm text-[#64748B] dark:text-[#94A3B8] flex items-center justify-center gap-1">
+            <div className="text-sm text-muted-foreground flex items-center justify-center gap-1">
               <Zap className="h-3 w-3" />
               Points this week
             </div>
             {getDeltaDisplay()}
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-[#06B6D4] mb-1">
+            <div className="text-2xl font-bold text-secondary mb-1">
               #{rank}
             </div>
-            <div className="text-sm text-[#64748B] dark:text-[#94A3B8] flex items-center justify-center gap-1">
+            <div className="text-sm text-muted-foreground flex items-center justify-center gap-1">
               <Trophy className="h-3 w-3" />
               Current rank
             </div>
@@ -105,10 +105,10 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({
         {/* Goal Progress */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-[#0F172A] dark:text-[#F1F5F9]">
+            <span className="text-sm font-medium text-ink-head">
               Weekly Goal
             </span>
-            <span className="text-sm text-[#64748B] dark:text-[#94A3B8]">
+            <span className="text-sm text-muted-foreground">
               {current} / {goal}
             </span>
           </div>
@@ -117,10 +117,10 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({
             className="h-3 mb-2"
           />
           <div className="flex items-center justify-between">
-            <span className="text-xs text-[#64748B] dark:text-[#94A3B8]">
+            <span className="text-xs text-muted-foreground">
               {isGoalMet ? 'Goal achieved! 🎉' : `${goal - current} sessions to go`}
             </span>
-            <span className="text-xs font-medium text-[#0056D2]">
+            <span className="text-xs font-medium text-primary">
               {Math.round(progressPercentage)}%
             </span>
           </div>
@@ -130,17 +130,17 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({
         <div>
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
-              <Flame className="h-4 w-4 text-orange-500" />
-              <span className="text-sm font-medium text-[#0F172A] dark:text-[#F1F5F9]">
+              <Flame className="h-4 w-4 text-warning" />
+              <span className="text-sm font-medium text-ink-head">
                 Daily Streak
               </span>
             </div>
-            <Badge 
+            <Badge
               variant={currentStreak > 0 ? 'default' : 'secondary'}
               className={cn(
                 'text-xs',
-                currentStreak > 0 
-                  ? 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-800'
+                currentStreak > 0
+                  ? 'bg-warning/10 text-warning border-warning/20'
                   : ''
               )}
             >
@@ -153,14 +153,14 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({
                 key={day}
                 className="text-center"
               >
-                <div className="text-xs text-[#64748B] dark:text-[#94A3B8] mb-1">
+                <div className="text-xs text-muted-foreground mb-1">
                   {day}
                 </div>
                 <div className={cn(
                   'w-8 h-8 rounded-full border-2 flex items-center justify-center transition-colors',
                   streakDays[index]
-                    ? 'bg-[#0056D2] border-[#0056D2] text-white'
-                    : 'border-[#0056D2]/20 text-[#64748B] dark:text-[#94A3B8]'
+                    ? 'bg-primary border-primary text-white'
+                    : 'border-primary/20 text-muted-foreground'
                 )}>
                   {streakDays[index] ? (
                     <CheckCircle className="h-4 w-4" />
@@ -174,14 +174,14 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({
         </div>
 
         {/* Quick Tips */}
-        <div className="bg-[#0056D2]/5 dark:bg-[#0056D2]/10 rounded-lg p-4">
+        <div className="bg-primary/5 rounded-lg p-4">
           <div className="flex items-center gap-2 mb-2">
-            <Calendar className="h-4 w-4 text-[#0056D2]" />
-            <span className="text-sm font-medium text-[#0F172A] dark:text-[#F1F5F9]">
+            <Calendar className="h-4 w-4 text-primary" />
+            <span className="text-sm font-medium text-ink-head">
               Sprint Tips
             </span>
           </div>
-          <ul className="text-xs text-[#64748B] dark:text-[#94A3B8] space-y-1">
+          <ul className="text-xs text-muted-foreground space-y-1">
             <li>• Book sessions daily to maintain your streak</li>
             <li>• Complete sessions to earn bonus points</li>
             <li>• Rate sessions 5★ for extra credit</li>

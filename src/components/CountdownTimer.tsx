@@ -58,7 +58,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
     const hoursLeft = timeLeft.total / (1000 * 60 * 60);
     if (hoursLeft <= 2) return 'text-danger';
     if (hoursLeft <= 24) return 'text-warning';
-    return 'text-[#0056D2] dark:text-[#06B6D4]';
+    return 'text-primary';
   };
 
   const getSizeClasses = () => {
@@ -76,8 +76,8 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
     if (variant === 'pill') {
       return cn(
         'px-3 py-1.5 rounded-full',
-        'bg-white/90 dark:bg-[#1E293B]/90 backdrop-blur-sm',
-        'border border-[#0056D2]/20 dark:border-[#06B6D4]/20',
+        'bg-surface/90 backdrop-blur-sm',
+        'border border-primary/20',
         'shadow-sm'
       );
     }

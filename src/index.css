@@ -396,3 +396,101 @@ svg [fill*="amber"], svg [stroke*="amber"] {
   fill: var(--warning) !important;
   stroke: var(--warning) !important;
 }
+
+/* LIGHT MODE COLOR HARMONY - Auto-convert hardcoded colors to theme variables */
+
+/* Hardcoded text colors to ink-head for headings */
+.text-\[#0F172A\],
+.dark\:text-\[#F1F5F9\] {
+  color: hsl(var(--ink-head)) !important;
+}
+
+/* Hardcoded text colors to ink-body for body text */
+.text-\[#334155\],
+.text-\[#64748B\],
+.dark\:text-\[#E2E8F0\],
+.dark\:text-\[#94A3B8\] {
+  color: hsl(var(--ink-body)) !important;
+}
+
+/* Hardcoded primary blue to theme primary */
+.text-\[#0056D2\],
+.hover\:text-\[#0056D2\],
+.bg-\[#0056D2\],
+.border-\[#0056D2\],
+[class*="text-\[#0056D2\]"],
+[class*="bg-\[#0056D2\]"],
+[class*="border-\[#0056D2\]"],
+[class*="hover:bg-\[#0056D2\]"] {
+  color: hsl(var(--primary)) !important;
+}
+
+.bg-\[#0056D2\],
+.hover\:bg-\[#004BB8\],
+[class*="bg-\[#0056D2\]"],
+[class*="hover:bg-\[#004BB8\]"] {
+  background-color: hsl(var(--primary)) !important;
+}
+
+.border-\[#0056D2\],
+[class*="border-\[#0056D2\]"] {
+  border-color: hsl(var(--primary)) !important;
+}
+
+/* Hardcoded cyan/secondary to theme secondary */
+.text-\[#06B6D4\],
+.hover\:text-\[#06B6D4\],
+.dark\:text-\[#06B6D4\],
+[class*="text-\[#06B6D4\]"] {
+  color: hsl(var(--secondary)) !important;
+}
+
+.border-\[#06B6D4\],
+.hover\:border-\[#06B6D4\],
+[class*="border-\[#06B6D4\]"] {
+  border-color: hsl(var(--secondary)) !important;
+}
+
+/* Hardcoded white backgrounds to surface */
+.bg-white,
+[class*="bg-white"] {
+  background-color: hsl(var(--surface)) !important;
+}
+
+/* Hardcoded dark theme colors */
+.dark\:bg-\[#1E293B\],
+.dark\:bg-\[#0F172A\],
+[class*="dark:bg-\[#1E293B\]"],
+[class*="dark:bg-\[#0F172A\]"] {
+  background-color: hsl(var(--surface)) !important;
+}
+
+/* Light gray text that should use muted-foreground for better contrast */
+.text-slate-400,
+.text-slate-500,
+.text-slate-600,
+.dark\:text-slate-400,
+.dark\:text-slate-300,
+[class*="text-slate-"] {
+  color: hsl(var(--muted-foreground)) !important;
+}
+
+/* Light gray backgrounds to muted */
+.bg-slate-100,
+.bg-gray-100,
+.dark\:bg-slate-700,
+.dark\:bg-slate-800,
+[class*="bg-slate-"],
+[class*="bg-gray-"] {
+  background-color: hsl(var(--muted)) !important;
+}
+
+/* Light gray borders to border token */
+.border-slate-200,
+.border-gray-200,
+.border-\[#E2E8F0\],
+.dark\:border-slate-700,
+[class*="border-slate-"],
+[class*="border-gray-"] {
+  border-color: hsl(var(--border)) !important;
+}
