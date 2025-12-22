@@ -669,15 +669,15 @@ export default function DonationPage() {
               <p className="text-sm text-muted-foreground">Scholarships and free access</p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="w-8 h-8 text-purple-600" />
+              <div className="w-16 h-16 bg-secondary/10 dark:bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users className="w-8 h-8 text-secondary" />
               </div>
               <h3 className="font-semibold mb-2">Mentor Tools</h3>
               <p className="text-sm text-muted-foreground">Better teaching resources</p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Target className="w-8 h-8 text-orange-600" />
+              <div className="w-16 h-16 bg-warning/10 dark:bg-warning/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Target className="w-8 h-8 text-warning" />
               </div>
               <h3 className="font-semibold mb-2">Community Challenges</h3>
               <p className="text-sm text-muted-foreground">Sponsored learning events</p>
