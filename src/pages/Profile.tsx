@@ -301,13 +301,13 @@ export default function Profile() {
                     </h3>
                     <div className="flex flex-wrap gap-2">
                       {user.verification.idVerified && (
-                        <Badge className="bg-green-100 text-green-800">
+                        <Badge className="bg-success/20 text-success dark:text-success">
                           <CheckCircle className="w-3 h-3 mr-1" />
                           ID Verified
                         </Badge>
                       )}
                       {user.verification.testsPassed.map((test) => (
-                        <Badge key={test} className="bg-blue-100 text-blue-800">
+                        <Badge key={test} className="bg-primary/20 text-primary dark:text-primary">
                           <Award className="w-3 h-3 mr-1" />
                           {test}
                         </Badge>
