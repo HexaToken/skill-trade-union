@@ -314,9 +314,9 @@ export default function CourseDetailPageFixed() {
                     <Coins className="w-5 h-5 mr-2" />
                     Enroll with {course.credits} Credits
                   </Button>
-                  <Button 
-                    variant="outline" 
-                    className="w-full border-[#06B6D4] text-[#06B6D4] hover:bg-[#06B6D4] hover:text-white rounded-xl"
+                  <Button
+                    variant="outline"
+                    className="w-full border-secondary text-secondary hover:bg-secondary/10 hover:text-secondary rounded-xl"
                     onClick={() => setIsSaved(!isSaved)}
                   >
                     <Heart className={cn("w-4 h-4 mr-2", isSaved && "fill-current")} />
