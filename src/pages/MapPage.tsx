@@ -137,7 +137,7 @@ export default function MapPage() {
                 placeholder="Search by skill, mentor, or location…"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 h-12 md:h-14 text-base md:text-lg bg-white/98 backdrop-blur border-white/30 placeholder:text-slate-500 shadow-lg"
+                className="pl-12 h-12 md:h-14 text-base md:text-lg bg-white/98 backdrop-blur border-slate-300 dark:border-white/30 placeholder:text-slate-500 shadow-lg"
               />
             </div>
           </div>
