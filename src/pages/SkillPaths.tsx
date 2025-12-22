@@ -81,23 +81,25 @@ export default function SkillPaths() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 text-white">
-        <div className="page-container py-16">
+      <div className="relative bg-gradient-to-r from-primary via-purple-600 to-secondary text-white overflow-hidden">
+        {/* Adaptive overlay for WCAG AA contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-black/20 to-black/25 dark:from-black/15 dark:via-black/10 dark:to-black/15" />
+        <div className="relative page-container py-16">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h1 className="text-5xl font-bold tracking-tight">
               Master New Skills with
               <span className="bg-gradient-to-r from-warning to-secondary bg-clip-text text-transparent"> Guided Learning Paths</span>
             </h1>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed">
-              Follow structured learning journeys designed by experts. Track your progress, 
+            <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
+              Follow structured learning journeys designed by experts. Track your progress,
               unlock achievements, and connect with a community of learners.
             </p>
             <div className="flex flex-wrap justify-center gap-4 pt-4">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 border-0 px-8 py-3 text-lg font-semibold rounded-xl shadow-lg">
+              <Button size="lg" className="bg-white text-primary hover:bg-gray-100 border-0 px-8 py-3 text-lg font-semibold rounded-xl shadow-lg">
                 <BookOpen className="mr-2 h-5 w-5" />
                 Start Learning
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3 text-lg font-semibold rounded-xl">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/20 px-8 py-3 text-lg font-semibold rounded-xl">
                 <Play className="mr-2 h-5 w-5" />
                 Watch Demo
               </Button>
