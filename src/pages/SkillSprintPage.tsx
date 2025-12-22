@@ -243,10 +243,10 @@ const SkillSprintPage: React.FC = () => {
                 <Zap className="h-5 w-5 mr-2" />
                 {userProgress.hasJoined ? "View My Progress" : "Join This Week's Sprint"}
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 size="lg"
-                className="border-white/30 text-white hover:bg-white/10 font-bold text-lg px-8 py-4 rounded-xl backdrop-blur-sm"
+                className="border-ink-head/20 text-ink-head hover:bg-ink-head/5 dark:border-white/30 dark:text-white dark:hover:bg-white/10 font-bold text-lg px-8 py-4 rounded-xl backdrop-blur-sm"
                 onClick={() => navigate('#hall-of-fame')}
               >
                 <Trophy className="h-5 w-5 mr-2" />
