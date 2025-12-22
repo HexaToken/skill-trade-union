@@ -462,8 +462,8 @@ export default function WalletPage() {
               return (
                 <div key={index} className="flex items-center justify-between p-3 border rounded-lg hover:bg-muted/50 cursor-pointer">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-blue-50 rounded-lg">
-                      <Icon className="w-4 h-4 text-blue-600" />
+                    <div className="p-2 bg-primary/10 rounded-lg">
+                      <Icon className="w-4 h-4 text-primary" />
                     </div>
                     <div>
                       <p className="font-medium text-sm">{suggestion.title}</p>
