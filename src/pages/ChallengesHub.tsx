@@ -441,9 +441,9 @@ const SprintCard: React.FC<{ sprint: Sprint }> = ({ sprint }) => {
 
   const getStatusBadge = () => {
     const badgeProps = {
-      active: { variant: 'default' as const, className: 'bg-green-100 text-green-700 border-green-200' },
-      upcoming: { variant: 'secondary' as const, className: 'bg-blue-100 text-blue-700 border-blue-200' },
-      past: { variant: 'outline' as const, className: 'bg-gray-100 text-gray-700 border-gray-200' }
+      active: { variant: 'default' as const, className: 'bg-success/20 text-success dark:text-success border-success/30' },
+      upcoming: { variant: 'secondary' as const, className: 'bg-primary/20 text-primary dark:text-primary border-primary/30' },
+      past: { variant: 'outline' as const, className: 'bg-muted text-muted-foreground border-border' }
     };
     
     const props = badgeProps[sprint.status];
