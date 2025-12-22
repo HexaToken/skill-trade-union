@@ -418,12 +418,12 @@ export default function DonationPage() {
 
                   {/* Crypto Tab */}
                   <TabsContent value="crypto" className="space-y-6">
-                    <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-6 mb-6">
+                    <div className="bg-secondary/10 dark:bg-secondary/20 rounded-lg p-6 mb-6">
                       <div className="flex items-center gap-3 mb-2">
-                        <Zap className="w-5 h-5 text-purple-600" />
-                        <h3 className="font-semibold text-purple-900 dark:text-purple-100">Crypto Donations</h3>
+                        <Zap className="w-5 h-5 text-secondary" />
+                        <h3 className="font-semibold text-secondary dark:text-secondary">Crypto Donations</h3>
                       </div>
-                      <p className="text-purple-800 dark:text-purple-200">
+                      <p className="text-secondary/90 dark:text-secondary/80">
                         Support SkillSwap with cryptocurrency. All major currencies accepted.
                       </p>
                     </div>
