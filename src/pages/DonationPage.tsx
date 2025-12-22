@@ -334,12 +334,12 @@ export default function DonationPage() {
 
                   {/* Monthly Support Tab */}
                   <TabsContent value="monthly" className="space-y-6">
-                    <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6 mb-6">
+                    <div className="bg-primary/10 dark:bg-primary/20 rounded-lg p-6 mb-6">
                       <div className="flex items-center gap-3 mb-2">
-                        <Calendar className="w-5 h-5 text-blue-600" />
-                        <h3 className="font-semibold text-blue-900 dark:text-blue-100">Monthly Support</h3>
+                        <Calendar className="w-5 h-5 text-primary" />
+                        <h3 className="font-semibold text-primary dark:text-primary">Monthly Support</h3>
                       </div>
-                      <p className="text-blue-800 dark:text-blue-200">
+                      <p className="text-primary/90 dark:text-primary/80">
                         Join our community of monthly supporters and help us build a sustainable platform for skill sharing.
                       </p>
                     </div>
