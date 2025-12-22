@@ -122,14 +122,14 @@ export default function WalletPage() {
       title: 'Spend Credits',
       description: 'Learn new skills',
       icon: Minus,
-      color: 'text-blue-600 bg-blue-50 border-blue-200',
+      color: 'text-primary bg-primary/10 border-primary/20',
       action: () => setShowSpendDialog(true)
     },
     {
       title: 'Donate',
       description: 'Support organizations',
       icon: Heart,
-      color: 'text-pink-600 bg-pink-50 border-pink-200',
+      color: 'text-secondary bg-secondary/10 border-secondary/20',
       action: () => setShowDonateDialog(true)
     },
     {
