@@ -154,16 +154,16 @@ export default function ClassDetail() {
           <div className="max-w-4xl">
             {/* Course Badges */}
             <div className="flex flex-wrap gap-3 mb-6">
-              <Badge className="bg-emerald-500 text-white border-0 px-3 py-1">
+              <Badge className="bg-success text-white border-0 px-3 py-1">
                 {course.difficulty === 1 ? 'Beginner' : course.difficulty === 2 ? 'Intermediate' : 'Advanced'}
               </Badge>
               {(course as any).badges?.includes('live') && (
-                <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 px-3 py-1 animate-pulse">
+                <Badge className="bg-gradient-to-r from-purple-600 to-pink-600 text-white border-0 px-3 py-1 animate-pulse">
                   Live
                 </Badge>
               )}
               {course.badges.includes('recorded') && (
-                <Badge className="bg-blue-500 text-white border-0 px-3 py-1">
+                <Badge className="bg-primary text-white border-0 px-3 py-1">
                   Self-Paced
                 </Badge>
               )}
