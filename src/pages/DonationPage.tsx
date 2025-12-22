@@ -655,15 +655,15 @@ export default function DonationPage() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
             <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Lightbulb className="w-8 h-8 text-blue-600" />
+              <div className="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Lightbulb className="w-8 h-8 text-primary" />
               </div>
               <h3 className="font-semibold mb-2">Platform Development</h3>
               <p className="text-sm text-muted-foreground">New features and improvements</p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                <BookOpen className="w-8 h-8 text-green-600" />
+              <div className="w-16 h-16 bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <BookOpen className="w-8 h-8 text-success" />
               </div>
               <h3 className="font-semibold mb-2">Free Skill Programs</h3>
               <p className="text-sm text-muted-foreground">Scholarships and free access</p>
