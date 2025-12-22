@@ -373,17 +373,17 @@ export default function DonationPage() {
 
                   {/* Credits Tab */}
                   <TabsContent value="credits" className="space-y-6">
-                    <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-6 mb-6">
+                    <div className="bg-success/10 dark:bg-success/20 rounded-lg p-6 mb-6">
                       <div className="flex items-center gap-3 mb-2">
-                        <Coins className="w-5 h-5 text-green-600" />
-                        <h3 className="font-semibold text-green-900 dark:text-green-100">Donate Credits</h3>
+                        <Coins className="w-5 h-5 text-success" />
+                        <h3 className="font-semibold text-success dark:text-success">Donate Credits</h3>
                       </div>
-                      <p className="text-green-800 dark:text-green-200">
+                      <p className="text-success/90 dark:text-success/80">
                         Share your earned credits with other learners or support platform initiatives.
                       </p>
                       <div className="mt-3 flex items-center gap-2">
-                        <span className="text-sm text-green-700 dark:text-green-300">Your Balance:</span>
-                        <Badge variant="secondary" className="bg-green-100 text-green-800">
+                        <span className="text-sm text-success/80 dark:text-success/70">Your Balance:</span>
+                        <Badge variant="secondary" className="bg-success/20 text-success">
                           240 Credits
                         </Badge>
                       </div>
