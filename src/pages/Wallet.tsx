@@ -210,7 +210,7 @@ export default function WalletPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4 pt-4 border-t border-white/20">
+                  <div className="grid grid-cols-3 gap-4 pt-4 border-t border-ink-head/20 dark:border-white/20">
                     <div className="text-center">
                       <div className="text-xl font-semibold">{totalEarned}</div>
                       <div className="text-xs text-white/70">Total Earned</div>

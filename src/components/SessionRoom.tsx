@@ -149,10 +149,10 @@ export default function SessionRoom({
       'relative aspect-video bg-gradient-to-br rounded-lg overflow-hidden flex items-center justify-center',
       isExpert ? 'from-brand-primary to-brand-secondary' : 'from-gray-600 to-gray-800'
     )}>
-      <div className="text-center text-white">
-        <Avatar className="w-20 h-20 mx-auto mb-4 border-4 border-white/20">
+      <div className="text-center text-ink-head dark:text-white">
+        <Avatar className="w-20 h-20 mx-auto mb-4 border-4 border-ink-head/20 dark:border-white/20">
           <AvatarImage src={isExpert ? expert.avatarUrl : undefined} alt={name} />
-          <AvatarFallback className="bg-white/20 text-white text-xl">
+          <AvatarFallback className="bg-ink-head/10 dark:bg-white/20 text-ink-head dark:text-white text-xl">
             {name.split(' ').map(n => n[0]).join('')}
           </AvatarFallback>
         </Avatar>

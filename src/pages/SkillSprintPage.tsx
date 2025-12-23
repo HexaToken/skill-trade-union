@@ -585,9 +585,9 @@ const SkillSprintPage: React.FC = () => {
               <p className="text-white/90 mb-6">
                 Explore the global SkillSwap community and find sprint participants near you.
               </p>
-              <Button 
-                variant="outline" 
-                className="border-white/30 text-white hover:bg-white/10"
+              <Button
+                variant="outline"
+                className="border-ink-head/20 text-ink-head hover:bg-ink-head/5 dark:border-white/30 dark:text-white dark:hover:bg-white/10"
                 onClick={() => navigate('/map?filter=sprint')}
               >
                 <MapPin className="h-4 w-4 mr-2" />
