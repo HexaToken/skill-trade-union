@@ -219,16 +219,6 @@ html, body {
     background: hsl(var(--primary-dark));
   }
 
-  /* CTA link with colored background - ensures white text */
-  .cta-link-primary {
-    background-color: #0056D2 !important;
-    color: #FFFFFF !important;
-  }
-
-  .cta-link-primary:hover {
-    background-color: #004BB8 !important;
-    color: #FFFFFF !important;
-  }
 
   /* Page container */
   .page-container {
@@ -444,4 +434,17 @@ svg [fill*="yellow"], svg [stroke*="yellow"],
 svg [fill*="amber"], svg [stroke*="amber"] {
   fill: var(--warning) !important;
   stroke: var(--warning) !important;
+}
+
+/* CTA link with colored background - highest specificity outside layers */
+a.cta-link-primary,
+.cta-link-primary {
+  background-color: #0056D2 !important;
+  color: #FFFFFF !important;
+}
+
+a.cta-link-primary:hover,
+.cta-link-primary:hover {
+  background-color: #004BB8 !important;
+  color: #FFFFFF !important;
 }
