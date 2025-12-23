@@ -451,14 +451,14 @@ export default function SearchResults() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search skills, people, or courses…"
-              className="w-full pl-12 pr-12 h-14 text-lg rounded-xl border-[#06B6D4]/20 focus:border-[#0056D2] focus:ring-[#0056D2] bg-white dark:bg-[#1E293B]"
+              className="w-full pl-12 pr-12 h-14 text-lg rounded-xl border-primary/20 focus:border-primary focus:ring-primary bg-white dark:bg-[#1E293B]"
             />
             {searchQuery && (
               <Button
                 type="button"
                 variant="ghost"
                 size="sm"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 h-10 w-10 p-0 hover:bg-[#06B6D4]/10"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 h-10 w-10 p-0 hover:bg-secondary/10"
                 onClick={clearSearch}
               >
                 <X className="h-4 w-4" />
