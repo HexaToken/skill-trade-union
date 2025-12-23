@@ -107,7 +107,7 @@ export default function MatchCard({
       allChips.push({ label: "🧪 Skill Tested", tone: "neutral" });
     }
 
-    return allChips.map((chip) => {
+    return allChips.map((chip, index) => {
       const toneStyles = {
         warning: "bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-700",
         success: "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-700",
@@ -116,7 +116,7 @@ export default function MatchCard({
 
       return (
         <Badge
-          key={`${name}-${chip.label}`}
+          key={`chip-${index}-${chip.label}`}
           variant="outline"
           size="sm"
           className={cn(

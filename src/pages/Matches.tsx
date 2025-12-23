@@ -429,7 +429,7 @@ export default function Matches() {
                       const skill = skills.find(s => s.id === match.skill.id);
                       return (
                         <MatchCard
-                          key={match.user.id}
+                          key={`${match.user.id}-${match.skill.id}`}
                           name={match.user.name}
                           location={match.user.location ? `${match.user.location.city}, ${match.user.location.country}` : 'Location not specified'}
                           avatarUrl={match.user.avatarUrl}
