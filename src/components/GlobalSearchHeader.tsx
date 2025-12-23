@@ -518,11 +518,7 @@ export default function GlobalSearchHeader() {
             {/* CTA */}
             <Link
               to="/login"
-              className="ml-2 inline-flex items-center rounded-full h-9 px-4 text-sm font-medium transition-colors"
-              style={{
-                backgroundColor: '#0056D2',
-                color: '#FFFFFF'
-              }}
+              className="ml-2 inline-flex items-center rounded-full h-9 px-4 text-sm font-medium transition-colors cta-link-primary"
             >
               Sign in
             </Link>

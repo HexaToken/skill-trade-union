@@ -219,6 +219,17 @@ html, body {
     background: hsl(var(--primary-dark));
   }
 
+  /* CTA link with colored background - ensures white text */
+  .cta-link-primary {
+    background-color: #0056D2 !important;
+    color: #FFFFFF !important;
+  }
+
+  .cta-link-primary:hover {
+    background-color: #004BB8 !important;
+    color: #FFFFFF !important;
+  }
+
   /* Page container */
   .page-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
