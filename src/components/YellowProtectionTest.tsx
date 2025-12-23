@@ -95,7 +95,7 @@ export function YellowProtectionTest() {
             <div className="bg-canvas border border-border p-4 rounded">
               <p className="text-ink-head font-semibold mb-2">Canvas Background</p>
               <p className="text-ink-body">This should adapt to theme changes</p>
-              <div className="mt-2 p-2 bg-elevated rounded text-xs text-ink-body/70">
+              <div className="mt-2 p-2 bg-elevated rounded text-xs text-slate-500 dark:text-slate-400">
                 Current yellow mapping: <span id="yellow-mapping">Warning (orange)</span>
               </div>
             </div>
@@ -193,10 +193,10 @@ export function YellowProtectionTest() {
             </div>
 
             <div className="mt-4 p-3 bg-elevated rounded-lg border border-border">
-              <p className="text-xs text-ink-body/70">
+              <p className="text-xs text-slate-500 dark:text-slate-400">
                 ✅ All yellow colors should be automatically converted to blue primary tokens
               </p>
-              <p className="text-xs text-ink-body/70 mt-1">
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                 🔍 Use manual scan to check for any remaining yellow elements
               </p>
             </div>

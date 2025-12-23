@@ -268,7 +268,7 @@ export default function GlobalSearchHeader() {
                       <input
                         type="text"
                         placeholder="Search skills, mentors, or courses…"
-                        className="w-full h-full pl-3 bg-transparent border-0 focus:ring-0 text-sm text-ink-body placeholder:text-ink-body/50 focus:outline-none"
+                        className="w-full h-full pl-3 bg-transparent border-0 focus:ring-0 text-sm text-ink-body placeholder:text-slate-500 focus:outline-none"
                         onClick={() => {
                           setShowMobileMenu(false);
                           setShowMobileSearch(true);
@@ -383,7 +383,7 @@ export default function GlobalSearchHeader() {
                   {/* People Section */}
                   {peopleResults.length > 0 && (
                     <div className="mb-4">
-                      <div className="px-3 py-2 text-xs font-medium text-ink-body/60 uppercase tracking-wider">
+                      <div className="px-3 py-2 text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                         People
                       </div>
                       {peopleResults.map((person, index) => {
@@ -432,7 +432,7 @@ export default function GlobalSearchHeader() {
                   {/* Courses Section */}
                   {courseResults.length > 0 && (
                     <div className="mb-2">
-                      <div className="px-3 py-2 text-xs font-medium text-ink-body/60 uppercase tracking-wider">
+                      <div className="px-3 py-2 text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                         Courses
                       </div>
                       {courseResults.map((course, index) => {
@@ -581,7 +581,7 @@ export default function GlobalSearchHeader() {
             <div className="flex-1 overflow-y-auto p-4">
               {peopleResults.length > 0 && (
                 <div className="mb-6">
-                  <h3 className="text-sm font-medium text-ink-body/60 uppercase tracking-wider mb-3">
+                  <h3 className="text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
                     People
                   </h3>
                   <div className="space-y-2">
@@ -619,7 +619,7 @@ export default function GlobalSearchHeader() {
 
               {courseResults.length > 0 && (
                 <div className="mb-6">
-                  <h3 className="text-sm font-medium text-ink-body/60 uppercase tracking-wider mb-3">
+                  <h3 className="text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
                     Courses
                   </h3>
                   <div className="space-y-2">
@@ -656,7 +656,7 @@ export default function GlobalSearchHeader() {
                   <p className="text-ink-body mb-2">
                     No matches found for "{searchQuery}"
                   </p>
-                  <p className="text-sm text-ink-body/60">
+                  <p className="text-sm text-slate-500 dark:text-slate-400">
                     Try another keyword or browse categories
                   </p>
                 </div>

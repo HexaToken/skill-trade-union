@@ -40,7 +40,7 @@ export function CreditDisplay({
     )}>
       {showSign && isPositive && '+'}
       {Math.abs(amount).toLocaleString()}
-      <span className="ml-1 text-xs opacity-75">credits</span>
+      <span className="ml-1 text-xs text-slate-500 dark:text-slate-400">credits</span>
     </span>
   );
 }

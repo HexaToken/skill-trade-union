@@ -11,7 +11,7 @@ export function CreditCostBreakdown({ lines, total }: { lines: Line[]; total: nu
             <span className="text-muted-foreground">
               {l.label}
               {l.calc ? (
-                <span className="ml-1 text-xs text-muted-foreground/70">
+                <span className="ml-1 text-xs text-slate-500 dark:text-slate-400">
                   ({l.calc})
                 </span>
               ) : null}

@@ -68,7 +68,7 @@ export function RatingDisplay({
                     ? 'fill-brand-warning text-brand-warning' 
                     : isPartial
                     ? 'fill-brand-warning/50 text-brand-warning/50'
-                    : 'text-muted-foreground/30'
+                    : 'text-slate-300 dark:text-slate-600'
                 )}
               />
               
