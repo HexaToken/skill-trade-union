@@ -13,15 +13,15 @@
   --primary-dark: 221 92 42;  /* #084AC7 hover/pressed */
   --secondary: 184 87 47;     /* #12D6DF tech cyan */
 
-  /* Text - Light Theme */
-  --ink-head: 220 39 11;      /* #0F172A */
-  --ink-body: 215 25 27;      /* #334155 */
+  /* Text - Light Theme - Improved contrast */
+  --ink-head: 222 47 11;      /* #0F172A - Strong headings */
+  --ink-body: 215 28 32;      /* #475569 - Darker body text for WCAG AA compliance */
 
   /* Surfaces - Light Theme */
   --canvas: 210 40 96;        /* #F1F5F9 slightly darker app background */
   --surface: 0 0 100;         /* #FFFFFF cards/nav */
-  --elevated: 0 0 100;        /* #FFFFFF modals/dropdowns */
-  --border: 220 13 91;        /* #E5E7EB */
+  --elevated: 210 40 98;      /* #F8FAFC slight off-white for better depth */
+  --border: 214 32 75;        /* #B8C4D6 darker border for better visibility */
 
   /* States - Light Theme */
   --success: 142 76 39;       /* #16A34A */
@@ -39,16 +39,18 @@
   --background: 210 40 96; /* #F1F5F9 */
   --foreground: 220 39 11; /* #0F172A */
   --card: 0 0 100; /* #FFFFFF */
-  --card-foreground: 215 25 27; /* #334155 */
+  --card-foreground: 220 39 20; /* Darker for better contrast #1E293B */
   --popover: 0 0 100;
-  --popover-foreground: 215 25 27;
-  --muted: 220 13 91; /* #E5E7EB */
-  --muted-foreground: 215 25 27;
+  --popover-foreground: 220 39 20;
+  --primary-foreground: 0 0 100; /* White text on primary buttons */
+  --secondary-foreground: 220 39 11; /* Dark text on secondary */
+  --muted: 215 20 65; /* Darker muted for better contrast #94A3B8 */
+  --muted-foreground: 215 28 35; /* Much darker for WCAG compliance #475569 */
   --accent: 184 87 47; /* #12D6DF */
-  --accent-foreground: 0 0 100;
+  --accent-foreground: 220 39 11;
   --destructive: 0 84 60; /* #EF4444 */
   --destructive-foreground: 0 0 100;
-  --input: 220 13 91;
+  --input: 215 25 80; /* Darker input border for better visibility #CBD5E1 */
   --ring: 216 100 52;
   --radius: 1rem;
 }
@@ -88,6 +90,8 @@
   --card-foreground: 215 24 84; /* #C8D1E2 */
   --popover: 214 58 12;
   --popover-foreground: 215 24 84;
+  --primary-foreground: 0 0 100; /* White text on primary buttons */
+  --secondary-foreground: 214 32 91; /* Light text on secondary */
   --muted: 214 34 21; /* #233047 */
   --muted-foreground: 215 24 84;
   --accent: 184 87 53; /* #2BE4EE */
@@ -224,6 +228,34 @@ html, body {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+}
+
+/* LIGHT MODE CONTRAST IMPROVEMENTS */
+/* Fix opacity-based text that becomes unreadable in light mode */
+:root {
+  /* Override low-contrast opacity text in light mode */
+  .text-ink-body\/50,
+  .text-ink-body\/60 {
+    color: hsl(215 28% 45%) !important; /* Darker than 50% opacity for readability */
+  }
+  
+  /* Fix placeholder text contrast */
+  .placeholder\:text-ink-body\/50::placeholder,
+  .placeholder\:text-muted-foreground::placeholder {
+    color: hsl(215 20% 55%) !important;
+  }
+  
+  /* Fix search bar and input backgrounds */
+  .bg-elevated\/40,
+  .bg-elevated\/60 {
+    background-color: hsl(210 40% 96%) !important;
+    border: 1px solid hsl(214 32% 80%) !important;
+  }
+  
+  /* Fix light text on light backgrounds */
+  .text-muted-foreground {
+    color: hsl(var(--muted-foreground)) !important;
   }
 }
 

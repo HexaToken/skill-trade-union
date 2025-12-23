@@ -346,11 +346,11 @@ export default function GlobalSearchHeader() {
 
           {/* Center: Global search (Desktop) */}
           <div className="hidden md:flex flex-1 max-w-xl mx-6">
-            <div className="flex items-center gap-2 w-full bg-elevated/40 border border-border rounded-pill px-3 h-10">
-              <Search className="text-ink-body/60 w-5 h-5" />
+            <div className="flex items-center gap-2 w-full bg-slate-100 border-2 border-slate-300 rounded-pill px-3 h-10 [data-theme='dark']:bg-slate-800 [data-theme='dark']:border-slate-600">
+              <Search className="text-slate-500 w-5 h-5 [data-theme='dark']:text-slate-400" />
               <input 
                 ref={searchRef}
-                className="bg-transparent flex-1 text-sm text-ink-body placeholder:text-ink-body/50 focus:outline-none"
+                className="bg-transparent flex-1 text-sm text-slate-700 placeholder:text-slate-500 focus:outline-none [data-theme='dark']:text-slate-200 [data-theme='dark']:placeholder:text-slate-400"
                 placeholder="Search skills, mentors, or courses…"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -501,13 +501,13 @@ export default function GlobalSearchHeader() {
           </div>
 
           {/* Right: Actions */}
-          <nav className="flex items-center gap-3">
-            <Link to="/matches" className="text-ink-body hover:text-ink-head font-medium">Find a Match</Link>
-            <Link to="/classes" className="text-ink-body hover:text-ink-head font-medium">Classes</Link>
-            <Link to="/mentors" className="text-ink-body hover:text-ink-head font-medium">Mentors</Link>
-            <Link to="/challenges" className="text-ink-body hover:text-ink-head font-medium">Challenges</Link>
-            <Link to="/map" className="text-ink-body hover:text-ink-head font-medium">Map</Link>
-            <Link to="/donate" className="text-ink-body hover:text-ink-head font-medium">Donate</Link>
+          <nav className="hidden lg:flex items-center gap-4">
+            <Link to="/matches" className="text-slate-600 hover:text-slate-900 font-medium transition-colors [data-theme='dark']:text-slate-300 [data-theme='dark']:hover:text-white">Find a Match</Link>
+            <Link to="/classes" className="text-slate-600 hover:text-slate-900 font-medium transition-colors [data-theme='dark']:text-slate-300 [data-theme='dark']:hover:text-white">Classes</Link>
+            <Link to="/mentors" className="text-slate-600 hover:text-slate-900 font-medium transition-colors [data-theme='dark']:text-slate-300 [data-theme='dark']:hover:text-white">Mentors</Link>
+            <Link to="/challenges" className="text-slate-600 hover:text-slate-900 font-medium transition-colors [data-theme='dark']:text-slate-300 [data-theme='dark']:hover:text-white">Challenges</Link>
+            <Link to="/map" className="text-slate-600 hover:text-slate-900 font-medium transition-colors [data-theme='dark']:text-slate-300 [data-theme='dark']:hover:text-white">Map</Link>
+            <Link to="/donate" className="text-slate-600 hover:text-slate-900 font-medium transition-colors [data-theme='dark']:text-slate-300 [data-theme='dark']:hover:text-white">Donate</Link>
 
             {/* Credit pill */}
             <CreditBalancePill

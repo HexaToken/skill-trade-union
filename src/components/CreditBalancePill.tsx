@@ -26,13 +26,14 @@ export function CreditBalancePill({
       onClick={onClick}
       aria-label={`Credit balance: ${balance} credits`}
       className={cn(
-        "inline-flex items-center gap-2 rounded-full bg-card text-card-foreground px-3 py-1 shadow-sm hover:shadow-md transition-shadow",
-        "border border-border hover:border-brand-primary/50",
+        "inline-flex items-center gap-2 rounded-full px-3 py-1.5 shadow-sm hover:shadow-md transition-all",
+        "bg-slate-100 text-slate-700 border-2 border-slate-300 hover:border-primary/60 hover:bg-slate-50",
+        "[data-theme='dark']:bg-slate-800 [data-theme='dark']:text-slate-200 [data-theme='dark']:border-slate-600 [data-theme='dark']:hover:border-primary/60",
         className
       )}
     >
       <span className="text-lg">🪙</span>
-      <span className="font-medium">
+      <span className="font-semibold">
         {loading ? "…" : balance}
       </span>
     </button>
