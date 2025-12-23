@@ -375,7 +375,7 @@ const SprintCardFeatured: React.FC<{ sprint: Sprint }> = ({ sprint }) => {
 
         <div className="flex gap-3">
           <Button
-            className="flex-1 bg-[#0056D2] hover:bg-[#004BB8] text-white font-semibold"
+            className="flex-1 bg-primary hover:bg-primary/90 text-white font-semibold"
             onClick={() => navigate(`/challenges/${sprint.slug}`)}
           >
             Join Sprint
@@ -418,7 +418,7 @@ const SprintGrid: React.FC<{ sprints: Sprint[] }> = ({ sprints }) => {
         <Button
           variant="outline"
           onClick={() => window.location.reload()}
-          className="text-[#0056D2] border-[#0056D2]/30 hover:bg-[#0056D2]/10 font-medium"
+          className="text-primary border-primary/30 hover:bg-primary/10 font-medium"
         >
           Clear Filters
         </Button>
