@@ -429,7 +429,7 @@ export default function SearchResults() {
       {hasActiveFilters && (
         <Button
           variant="outline"
-          className="w-full border-[#06B6D4] text-[#06B6D4] hover:bg-[#06B6D4] hover:text-white"
+          className="w-full border-primary/30 text-primary dark:border-primary/50 dark:text-primary hover:bg-primary/10"
           onClick={clearFilters}
         >
           <X className="w-4 h-4 mr-2" />
