@@ -1,0 +1,89 @@
+https://ddeef8a7-8e61-49bb-ae96-65e4ed0de626-00-17yffe1y9hgw0.picard.replit.dev/node_modules/.vite/deps/chunk-PLT6GTVM.js?v=4dac6362:38:15)
+    at TooltipProvider (https://ddeef8a7-8e61-49bb-ae96-65e4ed0de626-00-17yffe1y9hgw0.picard.replit.dev/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=4dac6362:63:5)
+    at ThemeProvider (https://ddeef8a7-8e61-49bb-ae96-65e4ed0de626-00-17yffe1y9hgw0.picard.replit.dev/src/components/theme-provider.tsx:28:33)
+    at QueryClientProvider (https://ddeef8a7-8e61-49bb-ae96-65e4ed0de626-00-17yffe1y9hgw0.picard.replit.dev/node_modules/.vite/deps/@tanstack_react-query.js?v=4dac6362:2934:3)
+    at App
+(anonymous) @ VM1585 injected.js:37
+(anonymous) @ VM1585 injected.js:37
+(anonymous) @ VM1585 injected.js:37
+(anonymous) @ VM1585 injected.js:37
+(anonymous) @ VM1585 injected.js:37
+(anonymous) @ VM1585 injected.js:37
+(anonymous) @ VM1585 injected.js:37
+(anonymous) @ VM1585 injected.js:37
+(anonymous) @ VM1585 injected.js:37
+(anonymous) @ VM1585 injected.js:37
+(anonymous) @ VM1585 injected.js:37
+(anonymous) @ VM1585 injected.js:37
+(anonymous) @ VM1585 injected.js:37
+(anonymous) @ VM1585 injected.js:37
+(anonymous) @ VM1585 injected.js:37
+printWarning @ VM19 react_jsx-dev-runtime.js:64
+error @ VM19 react_jsx-dev-runtime.js:48
+validateExplicitKey @ VM19 react_jsx-dev-runtime.js:724
+validateChildKeys @ VM19 react_jsx-dev-runtime.js:737
+jsxWithValidation @ VM19 react_jsx-dev-runtime.js:855
+Matches @ VM1809 Matches.tsx:1117
+renderWithHooks @ VM21 chunk-R6S4VRB5.js:11548
+updateFunctionComponent @ VM21 chunk-R6S4VRB5.js:14582
+beginWork @ VM21 chunk-R6S4VRB5.js:15924
+beginWork$1 @ VM21 chunk-R6S4VRB5.js:19753
+performUnitOfWork @ VM21 chunk-R6S4VRB5.js:19198
+workLoopSync @ VM21 chunk-R6S4VRB5.js:19137
+renderRootSync @ VM21 chunk-R6S4VRB5.js:19116
+performConcurrentWorkOnRoot @ VM21 chunk-R6S4VRB5.js:18678
+workLoop @ VM21 chunk-R6S4VRB5.js:197
+flushWork @ VM21 chunk-R6S4VRB5.js:176
+performWorkUntilDeadline @ VM21 chunk-R6S4VRB5.js:384Understand this error
+VM1585 injected.js:37 [vite] server connection lost. Polling for restart...
+VM1585 injected.js:214  GET https://ddeef8a7-8e61-49bb-ae96-65e4ed0de626-00-17yffe1y9hgw0.picard.replit.dev/ 502 (Bad Gateway)
+apply @ VM1585 injected.js:214
+ping @ VM1466 client:736
+waitForSuccessfulPing @ VM1466 client:749
+(anonymous) @ VM1466 client:561Understand this error
+  GET https://ddeef8a7-8e61-49bb-ae96-65e4ed0de626-00-17yffe1y9hgw0.picard.replit.dev/ 502 (Bad Gateway)
+apply @ ddeef8a7-8e61-49bb-a…ols/injected.js:214
+ping @ ddeef8a7-8e61-49bb-a…ev/@vite/client:736
+waitForSuccessfulPing @ ddeef8a7-8e61-49bb-a…ev/@vite/client:749
+(anonymous) @ ddeef8a7-8e61-49bb-a…ev/@vite/client:561Understand this error
+  GET https://ddeef8a7-8e61-49bb-ae96-65e4ed0de626-00-17yffe1y9hgw0.picard.replit.dev/ 502 (Bad Gateway)
+apply @ ddeef8a7-8e61-49bb-a…ols/injected.js:214
+ping @ ddeef8a7-8e61-49bb-a…ev/@vite/client:736
+waitForSuccessfulPing @ ddeef8a7-8e61-49bb-a…ev/@vite/client:749
+(anonymous) @ ddeef8a7-8e61-49bb-a…ev/@vite/client:561Understand this error
+VM1466 client:562  GET https://ddeef8a7-8e61-49bb-ae96-65e4ed0de626-00-17yffe1y9hgw0.picard.replit.dev/matches 502 (Bad Gateway)
+(anonymous) @ VM1466 client:562Understand this error
+  GET https://ddeef8a7-8e61-49bb-ae96-65e4ed0de626-00-17yffe1y9hgw0.picard.replit.dev/matches 502 (Bad Gateway)
+(anonymous) @ ddeef8a7-8e61-49bb-a…ev/@vite/client:562Understand this error
+  GET https://ddeef8a7-8e61-49bb-ae96-65e4ed0de626-00-17yffe1y9hgw0.picard.replit.dev/matches 502 (Bad Gateway)
+(anonymous) @ ddeef8a7-8e61-49bb-a…ev/@vite/client:562Understand this error
+workspace_iframe.html?initialPath=%2F&id=%3Arfb%3A:32 Error while parsing the 'sandbox' attribute: 'allow-downloads-without-user-activation' is an invalid sandbox flag.Understand this error
+workspace_iframe.html?initialPath=%2F&id=%3Arfb%3A:32 Error while parsing the 'sandbox' attribute: 'allow-downloads-without-user-activation' is an invalid sandbox flag.Understand this error
+workspace_iframe.html?initialPath=%2F&id=%3Arfb%3A:151  GET https://ddeef8a7-8e61-49bb-ae96-65e4ed0de626-00-17yffe1y9hgw0.picard.replit.dev:3000/ 502 (Bad Gateway)
+(anonymous) @ workspace_iframe.html?initialPath=%2F&id=%3Arfb%3A:151Understand this error
+  GET https://ddeef8a7-8e61-49bb-ae96-65e4ed0de626-00-17yffe1y9hgw0.picard.replit.dev:3000/ 502 (Bad Gateway)
+(anonymous) @ workspace_iframe.htm…2F&id=%3Arfb%3A:151Understand this error
+workspace_iframe.html?initialPath=%2F&id=%3Arfb%3A:32 Error while parsing the 'sandbox' attribute: 'allow-downloads-without-user-activation' is an invalid sandbox flag.Understand this error
+injected.js:37 ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+(anonymous) @ injected.js:37
+warnOnce @ react-router-dom.js?v=4dac6362:4393
+logDeprecation @ react-router-dom.js?v=4dac6362:4396
+logV6DeprecationWarnings @ react-router-dom.js?v=4dac6362:4399
+(anonymous) @ react-router-dom.js?v=4dac6362:5271
+commitHookEffectListMount @ chunk-R6S4VRB5.js?v=4dac6362:16915
+commitPassiveMountOnFiber @ chunk-R6S4VRB5.js?v=4dac6362:18156
+commitPassiveMountEffects_complete @ chunk-R6S4VRB5.js?v=4dac6362:18129
+commitPassiveMountEffects_begin @ chunk-R6S4VRB5.js?v=4dac6362:18119
+commitPassiveMountEffects @ chunk-R6S4VRB5.js?v=4dac6362:18109
+flushPassiveEffectsImpl @ chunk-R6S4VRB5.js?v=4dac6362:19490
+flushPassiveEffects @ chunk-R6S4VRB5.js?v=4dac6362:19447
+performSyncWorkOnRoot @ chunk-R6S4VRB5.js?v=4dac6362:18868
+flushSyncCallbacks @ chunk-R6S4VRB5.js?v=4dac6362:9119
+commitRootImpl @ chunk-R6S4VRB5.js?v=4dac6362:19432
+commitRoot @ chunk-R6S4VRB5.js?v=4dac6362:19277
+finishConcurrentRender @ chunk-R6S4VRB5.js?v=4dac6362:18805
+performConcurrentWorkOnRoot @ chunk-R6S4VRB5.js?v=4dac6362:18718
+workLoop @ chunk-R6S4VRB5.js?v=4dac6362:197
+flushWork @ chunk-R6S4VRB5.js?v=4dac6362:176
+performWorkUntilDeadline @ chunk-R6S4VRB5.js?v=4dac6362:384Understand this warning
+injected.js:37 ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
