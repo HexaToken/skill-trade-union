@@ -53,6 +53,11 @@
   --input: 215 25 80; /* Darker input border for better visibility #CBD5E1 */
   --ring: 216 100 52;
   --radius: 1rem;
+
+  /* Credit Pill - Light Mode (WCAG AA compliant) */
+  --credit-pill-bg: #F1F5F9;
+  --credit-pill-text: #334155;
+  --credit-pill-border: #CBD5E1;
 }
 
 [data-theme="dark"] {
@@ -100,6 +105,11 @@
   --destructive-foreground: 0 0 100;
   --input: 214 34 21;
   --ring: 216 100 74;
+
+  /* Credit Pill - Dark Mode */
+  --credit-pill-bg: #1E293B;
+  --credit-pill-text: #E2E8F0;
+  --credit-pill-border: #475569;
 }
 
 /* Base app wiring */

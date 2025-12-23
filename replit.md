@@ -25,12 +25,14 @@ Preferred communication style: Simple, everyday language.
 - **Accessibility**: ARIA utilities, skip links, keyboard navigation support
 
 ## Recent Contrast Improvements (December 2025)
-- Fixed CreditBalancePill to use slate-100/slate-700 colors instead of opacity-based styling
+- Fixed CreditBalancePill using dedicated CSS variables (--credit-pill-bg, --credit-pill-text, --credit-pill-border) with inline styles to override any conflicting Tailwind classes
 - Updated CSS variables: --muted-foreground, --primary-foreground, --card-foreground for better visibility
 - Improved navigation link contrast in GlobalSearchHeader
 - Fixed "Trusted by" logos section - removed opacity-50 in favor of explicit text colors
 - Added text-white to primary buttons for guaranteed contrast
 - Footer text updated to use explicit slate colors instead of opacity-based classes
+- Replaced invalid `[data-theme='dark']:` selectors with proper `dark:` prefix across all components
+- Button component uses hardcoded hex colors (#0056D2 for primary, white text) to ensure WCAG AA compliance
 
 ## Component Architecture
 - **Atomic Design**: Reusable UI components built on Radix primitives

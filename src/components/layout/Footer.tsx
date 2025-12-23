@@ -57,7 +57,7 @@ export function Footer({ className }: FooterProps) {
             <div className="h-6 w-6 rounded-md bg-brand-gradient"></div>
             <span className="text-ink-head font-semibold">SkillSwap</span>
           </div>
-          <p className="text-slate-600 text-sm [data-theme='dark']:text-slate-400">
+          <p className="text-slate-600 text-sm dark:text-slate-400">
             A global "talent-for-talent" exchange powered by AI matching and credits.
           </p>
         </div>
@@ -91,13 +91,13 @@ export function Footer({ className }: FooterProps) {
       </div>
       <div className="border-t border-border">
         <div className="mx-auto max-w-7xl px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-slate-500 text-sm [data-theme='dark']:text-slate-400">
+          <p className="text-slate-500 text-sm dark:text-slate-400">
             © <span id="y">{new Date().getFullYear()}</span> SkillSwap. All rights reserved.
           </p>
-          <div className="flex gap-4 text-slate-600 [data-theme='dark']:text-slate-400">
-            <a href="#" aria-label="Twitter" className="hover:text-slate-900 [data-theme='dark']:hover:text-white transition-colors">𝕏</a>
-            <a href="#" aria-label="LinkedIn" className="hover:text-slate-900 [data-theme='dark']:hover:text-white transition-colors">in</a>
-            <a href="#" aria-label="Instagram" className="hover:text-slate-900 [data-theme='dark']:hover:text-white transition-colors">IG</a>
+          <div className="flex gap-4 text-slate-600 dark:text-slate-400">
+            <a href="#" aria-label="Twitter" className="hover:text-slate-900 dark:hover:text-white transition-colors">𝕏</a>
+            <a href="#" aria-label="LinkedIn" className="hover:text-slate-900 dark:hover:text-white transition-colors">in</a>
+            <a href="#" aria-label="Instagram" className="hover:text-slate-900 dark:hover:text-white transition-colors">IG</a>
           </div>
         </div>
       </div>
