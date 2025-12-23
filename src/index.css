@@ -372,24 +372,24 @@ button[style*="background-color: rgb(255, 193, 7)"],
 button[style*="background-color: rgb(251, 191, 36)"],
 button[class*="bg-yellow-"],
 button[class*="bg-amber-"] {
-  background-color: var(--primary) !important;
+  background-color: hsl(var(--primary)) !important;
   color: white !important;
-  border-color: var(--primary) !important;
+  border-color: hsl(var(--primary)) !important;
 }
 
 /* Badge yellow overrides */
 .badge[class*="yellow"], .badge[class*="amber"],
 [data-variant="secondary"][class*="yellow"], [data-variant="secondary"][class*="amber"] {
-  background-color: var(--surface) !important;
-  color: var(--warning) !important;
-  border-color: var(--warning) !important;
+  background-color: hsl(var(--surface)) !important;
+  color: hsl(var(--warning)) !important;
+  border-color: hsl(var(--warning)) !important;
 }
 
 /* Header & Footer 100% design token enforcement */
 .site-header, header, [role="banner"] {
-  background: var(--surface) !important;
-  color: var(--ink-body) !important;
-  border-bottom: 1px solid var(--border) !important;
+  background: hsl(var(--surface)) !important;
+  color: hsl(var(--ink-body)) !important;
+  border-bottom: 1px solid hsl(var(--border)) !important;
 }
 
 .site-header .cta, header .cta,
@@ -402,17 +402,17 @@ header a[class*="primary"]:not(.cta-link-primary) {
 }
 
 .site-footer, footer, [role="contentinfo"] {
-  background: var(--surface) !important;
-  color: var(--ink-body) !important;
-  border-top: 1px solid var(--border) !important;
+  background: hsl(var(--surface)) !important;
+  color: hsl(var(--ink-body)) !important;
+  border-top: 1px solid hsl(var(--border)) !important;
 }
 
 .site-footer a, footer a, [role="contentinfo"] a {
-  color: var(--ink-body) !important;
+  color: hsl(var(--ink-body)) !important;
 }
 
 .site-footer a:hover, footer a:hover, [role="contentinfo"] a:hover {
-  color: var(--ink-head) !important;
+  color: hsl(var(--ink-head)) !important;
 }
 
 /* Ensure nav links use design tokens */
@@ -426,14 +426,14 @@ nav a:not(.cta-link-primary):hover, [role="navigation"] a:not(.cta-link-primary)
 
 /* Final yellow cleanup - ensure no yellow backgrounds remain */
 [class*="icon-"], .rating i, .star {
-  color: var(--warning) !important;  /* keeps stars "gold" but on-theme */
+  color: hsl(var(--warning)) !important;  /* keeps stars "gold" but on-theme */
 }
 
 /* SVG yellow cleanup */
 svg [fill*="yellow"], svg [stroke*="yellow"],
 svg [fill*="amber"], svg [stroke*="amber"] {
-  fill: var(--warning) !important;
-  stroke: var(--warning) !important;
+  fill: hsl(var(--warning)) !important;
+  stroke: hsl(var(--warning)) !important;
 }
 
 /* CTA link with colored background - highest specificity outside layers */
