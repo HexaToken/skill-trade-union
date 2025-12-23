@@ -27,7 +27,25 @@ Preferred communication style: Simple, everyday language.
 ## Recent Contrast Improvements (December 2025) - LAUNCH READY
 
 ### Comprehensive WCAG AA Audit Completed
-The platform has been audited and certified for WCAG AA compliance in light mode while preserving all dark mode styling.
+The platform has been audited and certified for WCAG AA compliance in BOTH light and dark modes.
+
+### Dark Mode Badge/Label Pattern (December 2025)
+All badges and colored labels now use explicit Tailwind colors with proper dark mode variants instead of CSS variable opacity patterns like `bg-success/10 text-success`. The new pattern ensures WCAG AA compliance in both modes:
+- Light mode: `bg-{color}-100 text-{color}-700 border-{color}-200`
+- Dark mode: `dark:bg-{color}-900/30 dark:text-{color}-300 dark:border-{color}-700`
+
+Files updated with proper dark mode contrast:
+- SkillCard.tsx (difficulty labels: Beginner/Intermediate/Advanced)
+- SkillBadge.tsx (featured, verified, new variants)
+- MentorCard.tsx (tier badges: Silver/Gold/Platinum)
+- CourseDetailPage.tsx (quick tags: Beginner Friendly, Projects Included, Certificate)
+- MentorsDirectory.tsx (Verified and Tested badges)
+- ChallengeDetail.tsx (theme colors: Design/Development/Language/Business)
+- ChallengesHub.tsx (category theme colors)
+- offline-trade-types.ts (trade status colors)
+- Home.tsx (Popular badge)
+- OfflineTradeModal.tsx (High Value badge)
+- OfflineTradeModalSteps.tsx (High Value badge)
 
 ### CSS Architecture Fixes
 - **HSL Wrapper Enforcement**: All `var(--property)` color usages now properly use `hsl(var(--property))` wrapper

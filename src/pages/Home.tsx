@@ -198,7 +198,7 @@ export default function Home() {
                   <span className="text-xl mr-3">{category.icon}</span>
                   <span className="font-medium">{category.name}</span>
                   {category.popular && (
-                    <Badge size="sm" variant="secondary" className="ml-3 bg-warning/10 text-warning border-warning/20 font-medium">
+                    <Badge size="sm" variant="secondary" className="ml-3 bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-700 font-medium">
                       Popular
                     </Badge>
                   )}

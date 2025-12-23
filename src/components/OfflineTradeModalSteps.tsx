@@ -360,7 +360,7 @@ export const Step3Review: React.FC<Step3ReviewProps> = ({
                 {detailsForm.creditsProposed}
               </span>
               {isHighValue && (
-                <Badge className="bg-warning/10 text-warning border-warning/20 text-xs">
+                <Badge className="bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-700 text-xs">
                   High Value
                 </Badge>
               )}

@@ -236,10 +236,10 @@ const ChallengeDetail = () => {
 
   const getThemeColor = (theme: string) => {
     const colors = {
-      Design: 'bg-success/10 text-success border-success/20',
-      Development: 'bg-primary/10 text-primary border-primary/20',
-      Language: 'bg-warning/10 text-warning border-warning/20',
-      Business: 'bg-danger/10 text-danger border-danger/20'
+      Design: 'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-700',
+      Development: 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-700',
+      Language: 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-700',
+      Business: 'bg-red-100 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-700'
     };
     return colors[theme as keyof typeof colors] || colors.Design;
   };

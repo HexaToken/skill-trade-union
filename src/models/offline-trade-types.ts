@@ -159,19 +159,19 @@ export const isHighValueTrade = (credits: number): boolean => {
 export const getTradeStatusColor = (status: TradeStatus): string => {
   switch (status) {
     case 'draft':
-      return 'bg-[#64748B]/10 text-[#64748B] border-[#64748B]/20';
+      return 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600';
     case 'awaiting-counterparty':
-      return 'bg-[#06B6D4]/10 text-[#06B6D4] border-[#06B6D4]/20';
+      return 'bg-cyan-100 text-cyan-700 border-cyan-200 dark:bg-cyan-900/30 dark:text-cyan-300 dark:border-cyan-700';
     case 'confirmed':
-      return 'bg-success/10 text-success border-success/20';
+      return 'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-700';
     case 'needs-reconfirm':
-      return 'bg-warning/10 text-warning border-warning/20';
+      return 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-700';
     case 'disputed':
-      return 'bg-danger/10 text-danger border-danger/20';
+      return 'bg-red-100 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-700';
     case 'expired':
-      return 'bg-[#64748B]/10 text-[#64748B] border-[#64748B]/20';
+      return 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600';
     default:
-      return 'bg-[#64748B]/10 text-[#64748B] border-[#64748B]/20';
+      return 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600';
   }
 };
 

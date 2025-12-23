@@ -21,9 +21,9 @@ interface ClassCardProps {
 }
 
 const difficultyLabels = {
-  1: { label: 'Beginner', color: 'bg-success/10 text-success border-success/20' },
-  2: { label: 'Intermediate', color: 'bg-warning/10 text-warning border-warning/20' },
-  3: { label: 'Advanced', color: 'bg-danger/10 text-danger border-danger/20' }
+  1: { label: 'Beginner', color: 'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-700' },
+  2: { label: 'Intermediate', color: 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-700' },
+  3: { label: 'Advanced', color: 'bg-red-100 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-700' }
 };
 
 export default function ClassCard({

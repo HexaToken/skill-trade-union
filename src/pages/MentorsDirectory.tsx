@@ -685,13 +685,13 @@ const FeaturedMentorCard: React.FC<MentorCardProps> = ({ mentor, onBookNow }) =>
               </div>
               <div className="flex flex-col gap-2 ml-4">
                 {mentor.verifiedID && (
-                  <Badge className="bg-success/10 text-success border-success/20 text-xs font-medium">
+                  <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-700 text-xs font-medium">
                     <Shield className="h-3 w-3 mr-1" />
                     Verified
                   </Badge>
                 )}
                 {mentor.skillTested && (
-                  <Badge className="bg-primary/10 text-primary border-primary/20 text-xs font-medium">
+                  <Badge className="bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-700 text-xs font-medium">
                     <CheckCircle className="h-3 w-3 mr-1" />
                     Tested
                   </Badge>

@@ -22,7 +22,7 @@ interface MentorCardProps {
 
 const tierConfig = {
   Silver: { color: 'bg-slate-50 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600', icon: '🥈' },
-  Gold: { color: 'bg-warning/10 text-warning border-warning/20', icon: '🥇' },
+  Gold: { color: 'bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-700', icon: '🥇' },
   Platinum: { color: 'bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-700', icon: '💎' }
 };
 

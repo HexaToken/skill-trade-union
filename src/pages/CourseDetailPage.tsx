@@ -278,13 +278,13 @@ export default function CourseDetailPage({ className }: CourseDetailPageProps) {
               <CardContent>
                 {/* Quick Tags */}
                 <div className="flex flex-wrap gap-2 mb-6 p-4 bg-primary/5 rounded-lg border border-primary/10">
-                  <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">
+                  <Badge variant="outline" className="bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-700">
                     Beginner Friendly
                   </Badge>
-                  <Badge variant="outline" className="bg-secondary/10 text-secondary border-secondary/20">
+                  <Badge variant="outline" className="bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600">
                     Projects Included
                   </Badge>
-                  <Badge variant="outline" className="bg-success/10 text-success border-success/20">
+                  <Badge variant="outline" className="bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-700">
                     Certificate
                   </Badge>
                 </div>

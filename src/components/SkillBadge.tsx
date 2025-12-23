@@ -90,15 +90,15 @@ export function SkillBadge({
   switch (variant) {
     case 'featured':
       badgeVariant = "default";
-      variantClasses = "bg-gradient-to-r from-warning/10 to-warning/15 text-warning border-warning/20";
+      variantClasses = "bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-700";
       break;
     case 'verified':
       badgeVariant = "default";
-      variantClasses = "bg-primary/10 text-primary border-primary/20";
+      variantClasses = "bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-700";
       break;
     case 'new':
       badgeVariant = "default";
-      variantClasses = "bg-success/10 text-success border-success/20";
+      variantClasses = "bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-700";
       break;
     default:
       badgeVariant = "secondary";
