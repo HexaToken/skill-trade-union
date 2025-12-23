@@ -116,7 +116,7 @@ export default function MatchCard({
       
       return (
         <Badge
-          key={index}
+          key={chip.label}
           variant="outline"
           size="sm"
           className={cn(
