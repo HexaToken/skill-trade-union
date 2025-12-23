@@ -152,13 +152,13 @@ html, body {
     scroll-behavior: smooth;
   }
 
-  /* Links */
-  a {
+  /* Links - only apply default color to links without explicit background */
+  a:not([style*="background"]):not(.btn):not([class*="bg-"]) {
     color: hsl(var(--primary));
     text-underline-offset: 2px;
   }
 
-  a:hover {
+  a:not([style*="background"]):not(.btn):not([class*="bg-"]):hover {
     color: hsl(var(--secondary));
   }
 
