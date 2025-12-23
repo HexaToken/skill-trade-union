@@ -97,17 +97,14 @@ export default function MatchCard({
   }
 
   const renderChips = () => {
-    const allChips: Array<{ label: string; tone?: "neutral" | "success" | "warning"; id: string }> = (chips || []).map((chip, idx) => ({
-      ...chip,
-      id: `chip-${idx}`
-    }));
+    const allChips: Array<{ label: string; tone?: "neutral" | "success" | "warning" }> = [...(chips || [])];
 
     // Add verification chips
     if (verifiedID) {
-      allChips.push({ label: "✓ ID Verified", tone: "success", id: "verified-id" });
+      allChips.push({ label: "✓ ID Verified", tone: "success" });
     }
     if (skillTested) {
-      allChips.push({ label: "🧪 Skill Tested", tone: "neutral", id: "skill-tested" });
+      allChips.push({ label: "🧪 Skill Tested", tone: "neutral" });
     }
 
     return allChips.map((chip) => {
@@ -119,7 +116,7 @@ export default function MatchCard({
 
       return (
         <Badge
-          key={chip.id}
+          key={`${name}-${chip.label}`}
           variant="outline"
           size="sm"
           className={cn(
