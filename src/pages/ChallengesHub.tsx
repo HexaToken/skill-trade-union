@@ -172,7 +172,7 @@ const ChallengesHub = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-[#0F172A]">
       {/* Hero Banner */}
-      <div className="bg-gradient-to-r from-[#0056D2] to-[#06B6D4] text-white">
+      <div className="bg-gradient-to-r from-primary to-secondary text-white">
         <div className="container mx-auto px-4 py-16 lg:py-24">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl lg:text-6xl font-heading font-bold mb-6">
@@ -185,7 +185,7 @@ const ChallengesHub = () => {
               <Button
                 size="lg"
                 variant="secondary"
-                className="bg-white text-[#0056D2] hover:bg-gray-100 font-semibold text-lg px-8 py-4"
+                className="bg-white text-primary hover:bg-gray-100 font-semibold text-lg px-8 py-4"
                 onClick={() => navigate(`/challenges/${activeSprint.slug}`)}
               >
                 <Zap className="mr-2 h-5 w-5" />
