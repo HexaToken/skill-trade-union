@@ -300,7 +300,7 @@ const MentorsDirectory = () => {
                     "rounded-full font-medium transition-all duration-200",
                     filters.category.includes(category)
                       ? "bg-secondary text-white hover:bg-secondary/90 shadow-lg"
-                      : "bg-white/10 text-white border-white/20 hover:bg-white/20 backdrop-blur-sm"
+                      : "bg-white/10 dark:bg-white/10 text-white border-white/20 dark:border-white/20 hover:bg-white/20 dark:hover:bg-white/20 backdrop-blur-sm"
                   )}
                 >
                   {category}

@@ -323,7 +323,7 @@ const SkillSprintPage: React.FC = () => {
                 {!userProgress.hasJoined ? (
                   <Button 
                     onClick={() => setShowJoinModal(true)}
-                    className="bg-[#0056D2] hover:bg-[#004BB8] text-white font-semibold"
+                    className="bg-primary hover:bg-primary/90 text-white font-semibold"
                   >
                     <Users className="h-4 w-4 mr-2" />
                     Join Sprint
@@ -331,7 +331,7 @@ const SkillSprintPage: React.FC = () => {
                 ) : (
                   <Button 
                     onClick={() => navigate('#progress')}
-                    className="bg-[#06B6D4] hover:bg-[#0891B2] text-white font-semibold"
+                    className="bg-secondary hover:bg-secondary/90 text-white font-semibold"
                   >
                     <BarChart3 className="h-4 w-4 mr-2" />
                     View My Progress
@@ -533,7 +533,7 @@ const SkillSprintPage: React.FC = () => {
                   </p>
                   <Badge 
                     variant={badge.earned ? "default" : "outline"}
-                    className={badge.earned ? "bg-[#0056D2] text-white" : ""}
+                    className={badge.earned ? "bg-primary text-white" : ""}
                   >
                     {badge.earned ? "Earned" : badge.criteria}
                   </Badge>
@@ -576,7 +576,7 @@ const SkillSprintPage: React.FC = () => {
 
         {/* Map Integration Banner */}
         <section>
-          <Card className="bg-gradient-to-r from-[#0056D2] to-[#06B6D4] text-white">
+          <Card className="bg-gradient-to-r from-primary to-secondary text-white">
             <CardContent className="p-8 text-center">
               <MapPin className="h-12 w-12 mx-auto mb-4" />
               <h2 className="text-2xl font-bold mb-4">
