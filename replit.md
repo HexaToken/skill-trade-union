@@ -19,13 +19,18 @@ Preferred communication style: Simple, everyday language.
 
 ## Design System & Color Architecture
 - **Semantic Color Tokens**: CSS custom properties for consistent theming
-- **Yellow Protection System**: Multi-layered approach preventing yellow color usage:
-  - CSS overrides intercepting yellow hex codes and utilities
-  - Runtime detection using HSV color space analysis
-  - ESLint rules preventing yellow/amber Tailwind classes
-  - Stylelint rules blocking hex colors in favor of design tokens
+- **WCAG AA Compliance**: All text elements meet minimum contrast ratios (4.5:1 for normal text, 3:1 for large text)
+- **Light/Dark Mode Support**: Explicit color tokens for both themes with hardcoded hex values for guaranteed contrast
 - **Responsive Design**: Mobile-first approach with Tailwind breakpoints
 - **Accessibility**: ARIA utilities, skip links, keyboard navigation support
+
+## Recent Contrast Improvements (December 2025)
+- Fixed CreditBalancePill to use slate-100/slate-700 colors instead of opacity-based styling
+- Updated CSS variables: --muted-foreground, --primary-foreground, --card-foreground for better visibility
+- Improved navigation link contrast in GlobalSearchHeader
+- Fixed "Trusted by" logos section - removed opacity-50 in favor of explicit text colors
+- Added text-white to primary buttons for guaranteed contrast
+- Footer text updated to use explicit slate colors instead of opacity-based classes
 
 ## Component Architecture
 - **Atomic Design**: Reusable UI components built on Radix primitives
