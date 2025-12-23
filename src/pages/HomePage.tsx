@@ -189,7 +189,7 @@ const HomePage = () => {
             viewport={{ once: true }}
           >
             <p className="text-ink-body mb-8">Trusted by learners and experts in 50+ countries</p>
-            <div className="flex justify-center items-center space-x-12 opacity-50">
+            <div className="flex justify-center items-center space-x-12 text-slate-500 [data-theme='dark']:text-slate-400">
               <div className="text-2xl font-bold">TechCrunch</div>
               <div className="text-2xl font-bold">Forbes</div>
               <div className="text-2xl font-bold">Wired</div>
