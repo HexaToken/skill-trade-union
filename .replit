@@ -38,6 +38,7 @@ externalPort = 80
 
 [agent]
 expertMode = true
+integrations = ["github:1.0.0"]
 
 [userenv]
 
