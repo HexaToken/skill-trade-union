@@ -485,14 +485,14 @@ const ChallengeDetail = () => {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <Button
-                      className="w-full bg-[#0056D2] hover:bg-[#004BB8] text-white"
+                      className="w-full bg-primary hover:bg-primary/90 text-white"
                       onClick={() => setShowBookingModal(true)}
                     >
                       Book a Session
                     </Button>
                     <Button
                       variant="outline"
-                      className="w-full text-[#06B6D4] border-[#06B6D4]/30 hover:bg-[#06B6D4]/10"
+                      className="w-full text-secondary border-secondary/30 hover:bg-secondary/10"
                     >
                       Log Offline Session
                     </Button>

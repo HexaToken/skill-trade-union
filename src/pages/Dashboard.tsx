@@ -303,7 +303,7 @@ const Dashboard = () => {
                     <div className="text-center py-8">
                       <Users className="w-12 h-12 text-[#334155] dark:text-[#E2E8F0] mx-auto mb-4" />
                       <p className="text-[#334155] dark:text-[#E2E8F0] mb-4">No offline trades yet</p>
-                      <OfflineTradeButton className="bg-[#0056D2] hover:bg-[#004BB8] text-white">
+                      <OfflineTradeButton className="bg-primary hover:bg-primary/90 text-white">
                         Log Your First Trade
                       </OfflineTradeButton>
                     </div>
