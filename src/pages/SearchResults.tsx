@@ -283,9 +283,9 @@ export default function SearchResults() {
               variant={activeTab === type.value ? "default" : "outline"}
               className={cn(
                 "cursor-pointer transition-all duration-200 hover:scale-105",
-                activeTab === type.value 
-                  ? "bg-[#0056D2] text-white hover:bg-[#004BB8]" 
-                  : "border-[#06B6D4] text-[#06B6D4] hover:bg-[#06B6D4] hover:text-white"
+                activeTab === type.value
+                  ? "bg-primary text-white hover:bg-primary/90"
+                  : "border-primary/30 text-primary dark:border-primary/50 dark:text-primary hover:bg-primary/10"
               )}
               onClick={() => setActiveTab(type.value as any)}
             >
@@ -306,8 +306,8 @@ export default function SearchResults() {
               className={cn(
                 "cursor-pointer transition-all duration-200 hover:scale-105",
                 filters.categories.includes(category)
-                  ? "bg-[#0056D2] text-white hover:bg-[#004BB8]"
-                  : "border-[#06B6D4] text-[#06B6D4] hover:bg-[#06B6D4] hover:text-white"
+                  ? "bg-primary text-white hover:bg-primary/90"
+                  : "border-primary/30 text-primary dark:border-primary/50 dark:text-primary hover:bg-primary/10"
               )}
               onClick={() => toggleCategory(category)}
             >
@@ -506,7 +506,7 @@ export default function SearchResults() {
                     <Filter className="w-4 h-4 mr-2" />
                     Filters
                     {hasActiveFilters && (
-                      <Badge variant="secondary" className="ml-2 bg-[#0056D2] text-white">
+                      <Badge variant="secondary" className="ml-2 bg-primary text-white dark:bg-primary">
                         {[
                           ...filters.categories,
                           filters.level !== 'all' ? filters.level : '',
