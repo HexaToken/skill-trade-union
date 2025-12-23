@@ -407,8 +407,8 @@ export default function Matches() {
                 {isLoading ? (
                   <div className="space-y-6">
                     {Array.from({ length: 3 }).map((_, i) => (
-                      <MatchCard 
-                        key={i} 
+                      <MatchCard
+                        key={`skeleton-${i}`} 
                         variant="skeleton" 
                         name=""
                         location=""
