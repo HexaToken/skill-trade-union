@@ -153,12 +153,12 @@ html, body {
   }
 
   /* Links - only apply default color to links without explicit background */
-  a:not([style*="background"]):not(.btn):not([class*="bg-"]) {
+  a:not([style*="background"]):not(.btn):not([class*="bg-"]):not(.cta-link-primary) {
     color: hsl(var(--primary));
     text-underline-offset: 2px;
   }
 
-  a:not([style*="background"]):not(.btn):not([class*="bg-"]):hover {
+  a:not([style*="background"]):not(.btn):not([class*="bg-"]):not(.cta-link-primary):hover {
     color: hsl(var(--secondary));
   }
 
@@ -394,11 +394,11 @@ button[class*="bg-amber-"] {
 
 .site-header .cta, header .cta,
 [role="banner"] .cta,
-header button[class*="primary"],
-header a[class*="primary"] {
-  background: var(--primary) !important;
+header button[class*="primary"]:not(.cta-link-primary),
+header a[class*="primary"]:not(.cta-link-primary) {
+  background: hsl(var(--primary)) !important;
   color: #fff !important;
-  border-color: var(--primary) !important;
+  border-color: hsl(var(--primary)) !important;
 }
 
 .site-footer, footer, [role="contentinfo"] {
@@ -416,12 +416,12 @@ header a[class*="primary"] {
 }
 
 /* Ensure nav links use design tokens */
-nav a, [role="navigation"] a {
-  color: var(--ink-body) !important;
+nav a:not(.cta-link-primary), [role="navigation"] a:not(.cta-link-primary) {
+  color: hsl(var(--ink-body)) !important;
 }
 
-nav a:hover, [role="navigation"] a:hover {
-  color: var(--ink-head) !important;
+nav a:not(.cta-link-primary):hover, [role="navigation"] a:not(.cta-link-primary):hover {
+  color: hsl(var(--ink-head)) !important;
 }
 
 /* Final yellow cleanup - ensure no yellow backgrounds remain */
