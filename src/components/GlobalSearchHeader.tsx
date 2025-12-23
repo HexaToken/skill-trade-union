@@ -490,7 +490,7 @@ export default function GlobalSearchHeader() {
                       <p className="text-ink-body mb-1">
                         No matches found for "{searchQuery}"
                       </p>
-                      <p className="text-sm text-ink-body/60">
+                      <p className="text-sm text-slate-500">
                         Try another keyword or browse categories
                       </p>
                     </div>
@@ -562,7 +562,7 @@ export default function GlobalSearchHeader() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    className="w-full h-full pl-12 pr-12 bg-transparent border-0 focus:ring-0 rounded-pill text-ink-head placeholder:text-ink-body/50"
+                    className="w-full h-full pl-12 pr-12 bg-transparent border-0 focus:ring-0 rounded-pill text-ink-head placeholder:text-slate-500"
                     autoFocus
                   />
                   {searchQuery && (
@@ -570,7 +570,7 @@ export default function GlobalSearchHeader() {
                       onClick={clearSearch}
                       className="absolute right-4 p-1 hover:bg-elevated/60 rounded-full transition-colors"
                     >
-                      <X className="w-4 h-4 text-ink-body/60" />
+                      <X className="w-4 h-4 text-slate-500" />
                     </button>
                   )}
                 </div>

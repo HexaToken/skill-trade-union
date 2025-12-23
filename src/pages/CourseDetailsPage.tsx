@@ -205,11 +205,11 @@ export const CourseDetailsPage = () => {
                   {/* Trust Badges */}
                   <div className="bg-surface rounded-xl border border-border p-6">
                     <h4 className="font-semibold text-ink-head mb-4">Trusted by professionals at:</h4>
-                    <div className="grid grid-cols-2 gap-4 opacity-60">
-                      <div className="text-center text-sm">Google</div>
-                      <div className="text-center text-sm">Meta</div>
-                      <div className="text-center text-sm">Netflix</div>
-                      <div className="text-center text-sm">Stripe</div>
+                    <div className="grid grid-cols-2 gap-4 text-slate-500 dark:text-slate-400">
+                      <div className="text-center text-sm font-medium">Google</div>
+                      <div className="text-center text-sm font-medium">Meta</div>
+                      <div className="text-center text-sm font-medium">Netflix</div>
+                      <div className="text-center text-sm font-medium">Stripe</div>
                     </div>
                   </div>
                 </div>
